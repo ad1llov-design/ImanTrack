@@ -95,7 +95,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href as any}
                 className={cn(
                   "relative rounded-xl px-4 py-2 text-body-sm font-medium transition-all duration-250",
                   isActive
@@ -162,7 +162,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={item.href as any}
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-4 py-3 text-body font-medium transition-all duration-250",
                   isActive

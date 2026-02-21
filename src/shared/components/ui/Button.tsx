@@ -12,6 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
   isLoading?: boolean;
+  fullWidth?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -23,6 +24,7 @@ const variantClasses: Record<Variant, string> = {
   ghost:
     "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800",
   danger: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+  gold: "bg-gold-500 text-white hover:bg-gold-600 active:bg-gold-700 shadow-gold",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -39,6 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "md",
       isLoading = false,
+      fullWidth = false,
       leftIcon,
       rightIcon,
       className,
@@ -57,6 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "transition-all duration-200 active:scale-95",
           "disabled:pointer-events-none disabled:opacity-50",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
+          fullWidth && "w-full",
           variantClasses[variant],
           sizeClasses[size],
           className,

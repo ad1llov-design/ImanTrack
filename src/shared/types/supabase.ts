@@ -100,6 +100,67 @@ export interface Database {
           is_active?: boolean;
         };
       };
+      adhkar_progress: {
+        Row: {
+          id: string;
+          user_id: string;
+          dhikr_id: string;
+          current_count: number;
+          target_count: number;
+          is_completed: boolean;
+          completed_at: string | null;
+          date: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          dhikr_id: string;
+          current_count: number;
+          target_count: number;
+          is_completed: boolean;
+          completed_at?: string | null;
+          date: string;
+        };
+        Update: {
+          current_count?: number;
+          is_completed?: boolean;
+          completed_at?: string | null;
+        };
+      };
+      achievements: {
+        Row: {
+          id: string;
+          user_id: string;
+          achievement_id: string;
+          unlocked_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          achievement_id: string;
+          unlocked_at?: string;
+        };
+        Update: {
+          achievement_id?: string;
+        };
+      };
+      hadith_favorites: {
+        Row: {
+          id: string;
+          user_id: string;
+          hadith_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          hadith_id: string;
+        };
+        Update: {
+          hadith_id?: string;
+        };
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

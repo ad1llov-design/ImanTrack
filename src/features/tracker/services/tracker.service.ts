@@ -88,13 +88,15 @@ export async function calculateStreaks(): Promise<StreakInfo> {
 
   // Count prayers per date
   const countsByDate: Record<string, number> = {};
-  logs.forEach(log => {
-    countsByDate[log.date] = (countsByDate[log.date] || 0) + 1;
+  (logs as any[] || []).forEach(log => {
+    if (log && log.date) {
+      countsByDate[log.date] = (countsByDate[log.date] || 0) + 1;
+    }
   });
 
   // Filter dates with all 5 prayers
   const activeDates = Object.keys(countsByDate)
-    .filter(date => countsByDate[date] >= 5)
+    .filter(date => (countsByDate[date] || 0) >= 5)
     .sort((a, b) => b.localeCompare(a)); // Descending
 
   if (activeDates.length === 0) {
@@ -111,8 +113,12 @@ export async function calculateStreaks(): Promise<StreakInfo> {
   if (typedActiveDates[0] === today || typedActiveDates[0] === yesterday) {
     currentStreak = 1;
     for (let i = 0; i < typedActiveDates.length - 1; i++) {
-      const current = new Date(typedActiveDates[i]);
-      const next = new Date(typedActiveDates[i+1]);
+      const currentStr = typedActiveDates[i];
+      const nextStr = typedActiveDates[i+1];
+      if (!currentStr || !nextStr) break;
+
+      const current = new Date(currentStr);
+      const next = new Date(nextStr);
       const diffDays = Math.round((current.getTime() - next.getTime()) / (1000 * 60 * 60 * 24));
       
       if (diffDays === 1) {
@@ -127,8 +133,12 @@ export async function calculateStreaks(): Promise<StreakInfo> {
   let bestStreak = currentStreak;
   let tempStreak = 1;
   for (let i = 0; i < typedActiveDates.length - 1; i++) {
-    const current = new Date(typedActiveDates[i]);
-    const next = new Date(typedActiveDates[i+1]);
+    const currentStr = typedActiveDates[i];
+    const nextStr = typedActiveDates[i+1];
+    if (!currentStr || !nextStr) break;
+
+    const current = new Date(currentStr);
+    const next = new Date(nextStr);
     const diffDays = Math.round((current.getTime() - next.getTime()) / (1000 * 60 * 60 * 24));
     
     if (diffDays === 1) {
@@ -143,7 +153,7 @@ export async function calculateStreaks(): Promise<StreakInfo> {
   return {
     currentStreak,
     bestStreak,
-    lastActivityDate: typedActiveDates[0],
+    lastActivityDate: typedActiveDates[0] || null,
   };
 }
 
@@ -199,7 +209,7 @@ export async function checkAndUnlockAchievements(
   const updatedAchievements = currentAchievements.map(achievement => {
     // If already unlocked in DB, set as unlocked
     if (unlockedIds.has(achievement.id)) {
-      const dbUnlock = (unlockedData || []).find((a: any) => a.achievement_id === achievement.id);
+      const dbUnlock = (unlockedData as any[] || []).find((a: any) => a.achievement_id === achievement.id);
       return { 
         ...achievement, 
         status: "unlocked" as const, 

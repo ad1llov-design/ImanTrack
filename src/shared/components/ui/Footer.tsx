@@ -78,7 +78,7 @@ export function Footer({ className }: FooterProps) {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
+                    href={link.href as any}
                     className="text-body-sm text-neutral-600 transition-colors duration-250 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400"
                   >
                     {link.label}
@@ -97,7 +97,7 @@ export function Footer({ className }: FooterProps) {
               {resourceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
+                    href={link.href as any}
                     className="text-body-sm text-neutral-600 transition-colors duration-250 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400"
                   >
                     {link.label}

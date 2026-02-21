@@ -141,7 +141,7 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
       {/* ── Counter ──────────────────────────── */}
       <DhikrCounter
         dhikr={currentDhikr}
-        progress={currentProgress}
+        progress={currentProgress || null}
         onIncrement={increment}
         onReset={resetCurrent}
         onNext={goNext}

@@ -19,6 +19,35 @@ interface CategoryCardProps {
   index: number;
 }
 
+type ColorScheme = { bg: string; border: string; text: string; bar: string };
+
+const colorMap: Record<string, ColorScheme> = {
+  gold: {
+    bg: "from-gold-50 to-white dark:from-gold-950/20 dark:to-surface-dark",
+    border: "border-gold-200 dark:border-gold-800",
+    text: "text-gold-700 dark:text-gold-300",
+    bar: "bg-gold-500",
+  },
+  primary: {
+    bg: "from-primary-50 to-white dark:from-primary-950/20 dark:to-surface-dark",
+    border: "border-primary-200 dark:border-primary-800",
+    text: "text-primary-700 dark:text-primary-300",
+    bar: "bg-primary-500",
+  },
+  secondary: {
+    bg: "from-secondary-50 to-white dark:from-secondary-950/20 dark:to-surface-dark",
+    border: "border-secondary-200 dark:border-secondary-800",
+    text: "text-secondary-700 dark:text-secondary-300",
+    bar: "bg-secondary-500",
+  },
+  neutral: {
+    bg: "from-neutral-50 to-white dark:from-neutral-900/30 dark:to-surface-dark",
+    border: "border-neutral-200 dark:border-neutral-800",
+    text: "text-neutral-700 dark:text-neutral-300",
+    bar: "bg-neutral-500",
+  },
+};
+
 export function CategoryCard({ category, index }: CategoryCardProps) {
   const { progress } = useAdhkarStore();
 
@@ -30,38 +59,17 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
     dhikrs.length > 0 ? Math.round((completedCount / dhikrs.length) * 100) : 0;
   const isAllDone = percentage === 100;
 
-  const colorMap: Record<string, { bg: string; border: string; text: string; bar: string }> = {
-    gold: {
-      bg: "from-gold-50 to-white dark:from-gold-950/20 dark:to-surface-dark",
-      border: "border-gold-200 dark:border-gold-800",
-      text: "text-gold-700 dark:text-gold-300",
-      bar: "bg-gold-500",
-    },
-    primary: {
-      bg: "from-primary-50 to-white dark:from-primary-950/20 dark:to-surface-dark",
-      border: "border-primary-200 dark:border-primary-800",
-      text: "text-primary-700 dark:text-primary-300",
-      bar: "bg-primary-500",
-    },
-    secondary: {
-      bg: "from-secondary-50 to-white dark:from-secondary-950/20 dark:to-surface-dark",
-      border: "border-secondary-200 dark:border-secondary-800",
-      text: "text-secondary-700 dark:text-secondary-300",
-      bar: "bg-secondary-500",
-    },
-    neutral: {
-      bg: "from-neutral-50 to-white dark:from-neutral-900/30 dark:to-surface-dark",
-      border: "border-neutral-200 dark:border-neutral-800",
-      text: "text-neutral-700 dark:text-neutral-300",
-      bar: "bg-neutral-500",
-    },
+  // Безопасное получение цветов с гарантированным fallback
+  const colors: ColorScheme = colorMap[category.color] || colorMap.primary || {
+    bg: "from-primary-50 to-white",
+    border: "border-primary-200",
+    text: "text-primary-700",
+    bar: "bg-primary-500"
   };
-
-  const colors = colorMap[category.color] ?? colorMap.primary;
 
   return (
     <Link
-      href={`/adhkar/${category.id}`}
+      href={`/adhkar/${category.id}` as any}
       className={cn(
         "group relative block overflow-hidden rounded-2xl border bg-gradient-to-br p-5 transition-all duration-300 hover:shadow-card active:scale-[0.98]",
         "animate-fade-in-up",

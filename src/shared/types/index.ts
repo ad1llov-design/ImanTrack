@@ -62,7 +62,7 @@ export interface ApiError {
 // ── UI Types ──────────────────────────────────────────────────────────────────
 
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";
-export type Variant = "primary" | "secondary" | "ghost" | "danger";
+export type Variant = "primary" | "secondary" | "ghost" | "danger" | "gold";
 export type Status = "idle" | "loading" | "success" | "error";
 export type Theme = "light" | "dark" | "system";
 

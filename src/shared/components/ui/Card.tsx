@@ -1,5 +1,7 @@
 /**
  * @module shared/components/ui/Card
+ * 
+ * Универсальная карточка с поддержкой Glassmorphism и различных вариантов.
  */
 
 import { cn } from "@shared/lib/utils";
@@ -7,62 +9,59 @@ import { cn } from "@shared/lib/utils";
 interface CardProps {
   children: React.ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  variant?: "default" | "outlined" | "glass" | "elevated";
   padding?: "none" | "sm" | "md" | "lg";
+  interactive?: boolean;
 }
+
+const variantClasses = {
+  default: "bg-white border border-neutral-100 shadow-soft dark:bg-neutral-900 dark:border-neutral-800",
+  outlined: "bg-transparent border border-neutral-200 dark:border-neutral-700",
+  glass: "bg-white/70 backdrop-blur-md border border-white/20 shadow-lg dark:bg-neutral-900/70",
+  elevated: "bg-white border border-neutral-100 shadow-xl dark:bg-neutral-900 dark:border-neutral-800",
+};
 
 const paddingClasses = {
   none: "",
   sm: "p-4",
   md: "p-6",
   lg: "p-8",
-} as const;
+};
 
 export function Card({
   children,
   className,
-  as: Tag = "div",
+  variant = "default",
   padding = "md",
+  interactive = false,
 }: CardProps) {
   return (
-    <Tag
+    <div
       className={cn(
-        "rounded-3xl bg-white dark:bg-neutral-900",
-        "shadow-[0_1px_3px_rgba(0,0,0,0.06),_0_4px_16px_rgba(54,153,112,0.04)]",
-        "dark:shadow-[0_1px_3px_rgba(0,0,0,0.3),_0_4px_16px_rgba(54,153,112,0.08)]",
+        "rounded-3xl transition-all duration-300",
+        variantClasses[variant],
         paddingClasses[padding],
-        className,
+        interactive && "hover:-translate-y-1 hover:shadow-md cursor-pointer",
+        className
       )}
     >
-      {children}
-    </Tag>
-  );
-}
-
-export function CardHeader({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cn("mb-4 border-b border-neutral-100 pb-4 dark:border-neutral-800", className)}>
       {children}
     </div>
   );
 }
 
-export function CardTitle({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <h3 className={cn("text-lg font-semibold text-neutral-900 dark:text-neutral-100", className)}>
-      {children}
-    </h3>
-  );
+export function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn("mb-4", className)}>{children}</div>;
+}
+
+export function CardTitle({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <h3 className={cn("text-lg font-bold text-neutral-900 dark:text-white", className)}>{children}</h3>;
+}
+
+export function CardDescription({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <p className={cn("text-sm text-neutral-500 dark:text-neutral-400", className)}>{children}</p>;
+}
+
+export function CardFooter({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn("mt-6 flex items-center justify-between", className)}>{children}</div>;
 }

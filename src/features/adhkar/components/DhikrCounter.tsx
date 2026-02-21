@@ -44,9 +44,11 @@ function CircularProgress({
   size?: number;
   strokeWidth?: number;
 }) {
-  const radius = (size - strokeWidth) / 2;
+  const s = size ?? 240;
+  const sw = strokeWidth ?? 8;
+  const radius = (s - sw) / 2;
   const circumference = 2 * Math.PI * radius;
-  const percentage = Math.min(current / target, 1);
+  const percentage = Math.min(current / (target || 1), 1);
   const strokeDashoffset = circumference * (1 - percentage);
   const isComplete = current >= target;
 
@@ -144,6 +146,7 @@ export function DhikrCounter({
     }
 
     lastPercentageRef.current = percentage;
+    return undefined;
   }, [percentage]);
 
   // ── Keyboard support ────────────────────────────────────────────────
