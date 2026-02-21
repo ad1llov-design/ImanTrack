@@ -1,53 +1,82 @@
 /**
  * @module features/auth/components/RegisterForm
  *
- * Форма регистрации:
- * - Имя + Email + Пароль + Подтверждение пароля
- * - Валидация: Zod + react-hook-form
- * - Server Action: registerAction
- * - Показ success-сообщения (проверьте email)
+ * Форма регистрации - Client Component
  */
 
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createClient } from "@lib/supabase/client";
 
-import { registerAction } from "@features/auth/actions/auth.actions";
 import { type RegisterFormData, registerSchema } from "@features/auth/schemas/auth.schema";
 
 export function RegisterForm() {
-  const [serverError, setServerError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isPending, startTransition] = useTransition();
+  const [errorState, setErrorState] = useState<string | null>(null);
+  const [successState, setSuccessState] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
-    handleSubmit,
+    getValues,
+    trigger,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: { fullName: "", email: "", password: "", confirmPassword: "" },
   });
 
-  function onSubmit(data: RegisterFormData) {
-    setServerError(null);
-    setSuccessMessage(null);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorState(null);
+    setSuccessState(null);
 
-    startTransition(async () => {
-      const result = await registerAction(data);
-      if (result.success) {
-        setSuccessMessage(result.message ?? "Проверьте email!");
-      } else {
-        setServerError(result.error ?? "Ошибка регистрации");
+    try {
+      // Запускаем валидацию react-hook-form
+      const isValid = await trigger();
+      if (!isValid) {
+        setIsLoading(false);
+        return;
       }
-    });
-  }
+
+      const data = getValues();
+      console.log("Submitting register", data);
+
+      const supabase = createClient();
+      console.log("Calling supabase.auth.signUp...");
+
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          data: {
+            full_name: data.fullName,
+          },
+        },
+      });
+
+      console.log("Supabase response data:", authData);
+      console.log("Supabase response error:", authError);
+
+      if (authError) {
+        throw authError; // Перехватит catch
+      }
+
+      setSuccessState("Проверьте email для подтверждения регистрации!");
+    } catch (err: any) {
+      console.error("Register catch block error:", err);
+      setErrorState(err?.message || "Ошибка при регистрации. Пожалуйста, попробуйте еще раз.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Показываем success-экран после регистрации
-  if (successMessage) {
+  if (successState) {
     return (
       <div className="text-center">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-950/40">
@@ -59,7 +88,7 @@ export function RegisterForm() {
           Проверьте почту ✉️
         </h3>
         <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
-          {successMessage}
+          {successState}
         </p>
         <Link
           href="/auth/login"
@@ -74,13 +103,13 @@ export function RegisterForm() {
   return (
     <div className="w-full">
       {/* Server error */}
-      {serverError && (
+      {errorState && (
         <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-300">
-          ✗ {serverError}
+          ✗ {errorState}
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         {/* Full Name */}
         <div className="space-y-1.5">
           <label htmlFor="fullName" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -91,7 +120,7 @@ export function RegisterForm() {
             type="text"
             autoComplete="name"
             placeholder="Иван Иванов"
-            disabled={isPending}
+            disabled={isLoading}
             className="h-11 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition-all duration-200 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
             {...register("fullName")}
           />
@@ -110,7 +139,7 @@ export function RegisterForm() {
             type="email"
             autoComplete="email"
             placeholder="your@email.com"
-            disabled={isPending}
+            disabled={isLoading}
             className="h-11 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition-all duration-200 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
             {...register("email")}
           />
@@ -129,7 +158,7 @@ export function RegisterForm() {
             type="password"
             autoComplete="new-password"
             placeholder="Минимум 8 символов"
-            disabled={isPending}
+            disabled={isLoading}
             className="h-11 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition-all duration-200 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
             {...register("password")}
           />
@@ -151,7 +180,7 @@ export function RegisterForm() {
             type="password"
             autoComplete="new-password"
             placeholder="Повторите пароль"
-            disabled={isPending}
+            disabled={isLoading}
             className="h-11 w-full rounded-xl border border-neutral-200 bg-white px-4 text-sm text-neutral-900 placeholder:text-neutral-400 transition-all duration-200 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
             {...register("confirmPassword")}
           />
@@ -163,10 +192,10 @@ export function RegisterForm() {
         {/* Submit */}
         <button
           type="submit"
-          disabled={isPending}
+          disabled={isLoading}
           className="relative h-11 w-full rounded-xl bg-primary-600 font-semibold text-white transition-all duration-200 hover:bg-primary-700 active:scale-[0.98] disabled:opacity-50 dark:bg-primary-500 dark:hover:bg-primary-600"
         >
-          {isPending ? (
+          {isLoading ? (
             <span className="flex items-center justify-center gap-2">
               <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
