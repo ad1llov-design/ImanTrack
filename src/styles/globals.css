@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Custom Properties ─────────────────────────────────────────── */
+:root {
+  --color-surface: #fdfcf8;
+  --color-surface-secondary: #f0f9f4;
+  --color-text-primary: #184131;
+  --color-text-secondary: #5e524c;
+  --color-border: #ddd9ce;
+  --color-accent: #369970;
+  --radius-base: 0.75rem;
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(54, 153, 112, 0.04);
+}
+
+.dark {
+  --color-surface: #0f1a14;
+  --color-surface-secondary: #1a2b1f;
+  --color-text-primary: #f0f9f4;
+  --color-text-secondary: #aba08e;
+  --color-border: #2d3d35;
+  --color-accent: #58b58c;
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(54, 153, 112, 0.08);
+}
+
+/* ── Base Styles ────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-neutral-200 dark:border-neutral-800;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-surface-light text-neutral-900 dark:bg-surface-dark dark:text-neutral-100;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Arabic text */
+  [lang="ar"],
+  .arabic {
+    font-family: var(--font-amiri), "Amiri", serif;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary-100 text-primary-900;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-neutral-300 dark:bg-neutral-700;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-400;
+  }
+}
+
+/* ── Component Utilities ────────────────────────────────────────────── */
+@layer components {
+  /* Card */
+  .card {
+    @apply rounded-3xl bg-white p-6 shadow-sm dark:bg-neutral-900;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Button base */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-semibold
+           transition-all duration-200 active:scale-95 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+  }
+
+  .btn-secondary {
+    @apply btn border border-neutral-200 text-neutral-700 hover:border-primary-400 hover:text-primary-600
+           dark:border-neutral-700 dark:text-neutral-300;
+  }
+
+  .btn-ghost {
+    @apply btn text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800;
+  }
+
+  /* Input */
+  .input {
+    @apply w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm
+           text-neutral-900 placeholder-neutral-400 transition-colors
+           focus:border-primary-400 focus:ring-0
+           dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-green {
+    @apply badge bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300;
+  }
+
+  /* Islamic geometric divider */
+  .divider-islamic {
+    @apply relative my-8 flex items-center;
+  }
+
+  .divider-islamic::before,
+  .divider-islamic::after {
+    @apply flex-1 border-t border-neutral-200 dark:border-neutral-800;
+    content: "";
+  }
+
+  .divider-islamic span {
+    @apply mx-4 text-primary-500;
+  }
+
+  /* Shimmer loading effect */
+  .skeleton {
+    @apply animate-shimmer rounded-xl bg-gradient-to-r from-neutral-100 via-neutral-50 to-neutral-100
+           dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800;
+    background-size: 200% 100%;
+  }
+}
+
+/* ── Utilities ──────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
