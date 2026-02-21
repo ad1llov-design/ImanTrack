@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: imantrack
+    env: docker
+    plan: free # or starter
+    region: frankfurt # or your preferred region
+    dockerContext: .
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://imantrack.onrender.com # Change this to your actual URL
+      - key: NEXT_PUBLIC_APP_NAME
+        value: ImanTrack
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
