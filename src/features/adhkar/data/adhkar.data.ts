@@ -345,5 +345,6 @@ export const MOTIVATION_MESSAGES: MotivationMessage[] = [
 export function getMotivationMessage(percentage: number): MotivationMessage {
   // Находим последнее сообщение, чей threshold <= percentage
   const sorted = [...MOTIVATION_MESSAGES].sort((a, b) => b.threshold - a.threshold);
-  return sorted.find((m) => m.threshold <= percentage) ?? MOTIVATION_MESSAGES[0];
+  const found = sorted.find((m) => m.threshold <= percentage);
+  return (found || MOTIVATION_MESSAGES[0]) as MotivationMessage;
 }
