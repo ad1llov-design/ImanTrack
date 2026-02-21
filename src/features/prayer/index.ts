@@ -31,6 +31,10 @@ export {
   saveLocation,
   loadSavedLocation,
 } from "./services/geolocation";
+export {
+  getPrayerLogs,
+  upsertPrayerLog,
+} from "./services/prayer.persistence";
 
 // Types
 export type {
@@ -45,4 +49,5 @@ export type {
   AladhanResponse,
   AladhanTimings,
 } from "./types/prayer.types";
+export type { PrayerLog } from "./services/prayer.persistence";
 export { PRAYER_LIST } from "./types/prayer.types";

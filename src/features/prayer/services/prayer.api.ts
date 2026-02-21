@@ -27,8 +27,18 @@ const ALADHAN_BASE_URL = "https://api.aladhan.com/v1";
 /** Метод расчёта (2 = ISNA, 3 = Muslim World League, etc.) */
 const DEFAULT_METHOD = 2;
 
-/** Названия намазов для извлечения из API */
-const PRAYER_KEYS: PrayerName[] = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+/** Названия намазов для извлечения из API (с большой буквы) */
+const API_PRAYER_KEYS = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"] as const;
+
+/** Мапинг ключей API в наши внутренние ID (нижний регистр) */
+const API_TO_INTERNAL_MAP: Record<string, PrayerName> = {
+  Fajr: "fajr",
+  Sunrise: "sunrise",
+  Dhuhr: "dhuhr",
+  Asr: "asr",
+  Maghrib: "maghrib",
+  Isha: "isha",
+};
 
 /* ── API Fetch ──────────────────────────────────────────────────────── */
 
@@ -73,7 +83,6 @@ export async function fetchPrayerTimes(
  * Парсит строковое время "HH:mm (TZ)" в Date объект для текущего дня
  */
 function parseTimeString(timeStr: string, baseDate?: Date): Date {
-  // API возвращает "05:30 (EET)" — убираем timezone
   const cleanTime = timeStr.replace(/\s*\(.*\)/, "").trim();
   const [hours, minutes] = cleanTime.split(":").map(Number);
 
@@ -93,13 +102,14 @@ export function parsePrayerTimes(
   const timings = apiResponse.data.timings;
 
   // Создаём массив PrayerTime
-  const prayers: PrayerTime[] = PRAYER_KEYS.map((key) => {
-    const timeStr = timings[key];
+  const prayers: PrayerTime[] = API_PRAYER_KEYS.map((apiKey) => {
+    const timeStr = timings[apiKey];
     const dateTime = parseTimeString(timeStr);
-    const info = PRAYER_LIST.find((p) => p.name === key)!;
+    const internalId = API_TO_INTERNAL_MAP[apiKey]!;
+    const info = PRAYER_LIST.find((p) => p.name === internalId)!;
 
     return {
-      name: key,
+      name: internalId,
       time: timeStr.replace(/\s*\(.*\)/, "").trim(),
       dateTime,
       status: "upcoming" as PrayerStatus,

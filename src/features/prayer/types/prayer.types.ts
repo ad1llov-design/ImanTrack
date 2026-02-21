@@ -5,10 +5,12 @@
  * Используем Aladhan API (https://aladhan.com/prayer-times-api)
  */
 
+import type { PrayerName as DBPrayerName } from "@shared/types/supabase";
+
 /* ── Prayer Names ───────────────────────────────────────────────────── */
 
 /** 5 обязательных намазов + Sunrise (для расчётов) */
-export type PrayerName = "Fajr" | "Sunrise" | "Dhuhr" | "Asr" | "Maghrib" | "Isha";
+export type PrayerName = DBPrayerName | "sunrise";
 
 /** Информация о намазе: русское/арабское названия, иконка */
 export interface PrayerInfo {
@@ -20,14 +22,14 @@ export interface PrayerInfo {
   isFard: boolean;
 }
 
-/** Справочник всех намазов */
+/** Справочник всех намазов (ключи теперь в нижнем регистре) */
 export const PRAYER_LIST: PrayerInfo[] = [
-  { name: "Fajr",    nameRu: "Фаджр",   nameAr: "الفجر",    icon: "🌅", isFard: true },
-  { name: "Sunrise", nameRu: "Восход",   nameAr: "الشروق",   icon: "☀️", isFard: false },
-  { name: "Dhuhr",   nameRu: "Зухр",     nameAr: "الظهر",    icon: "🕐", isFard: true },
-  { name: "Asr",     nameRu: "Аср",      nameAr: "العصر",    icon: "🌤️", isFard: true },
-  { name: "Maghrib", nameRu: "Магриб",   nameAr: "المغرب",   icon: "🌅", isFard: true },
-  { name: "Isha",    nameRu: "Иша",      nameAr: "العشاء",   icon: "🌙", isFard: true },
+  { name: "fajr",    nameRu: "Фаджр",   nameAr: "الفجر",    icon: "🌅", isFard: true },
+  { name: "sunrise", nameRu: "Восход",   nameAr: "الشروق",   icon: "☀️", isFard: false },
+  { name: "dhuhr",   nameRu: "Зухр",     nameAr: "الظهر",    icon: "🕐", isFard: true },
+  { name: "asr",     nameRu: "Аср",      nameAr: "العصر",    icon: "🌤️", isFard: true },
+  { name: "maghrib", nameRu: "Магриб",   nameAr: "المغرب",   icon: "🌅", isFard: true },
+  { name: "isha",    nameRu: "Иша",      nameAr: "العشاء",   icon: "🌙", isFard: true },
 ];
 
 /* ── Prayer Status ──────────────────────────────────────────────────── */
