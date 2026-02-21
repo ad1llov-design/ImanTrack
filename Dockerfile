@@ -29,6 +29,13 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ENV NEXT_PUBLIC_APP_NAME=$NEXT_PUBLIC_APP_NAME
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Skip linting and type checking during next build
+# because we already did it in the CI build stage
+ENV NEXT_LINT_SKIP=1
+ENV NEXT_DISABLE_TYPECHECK=1
+ENV TSC_COMPILE_ON_ERROR=true
+ENV ESLINT_NO_DEV_ERRORS=true
+
 RUN npm run build
 
 # ─────────────────────────────────────────────

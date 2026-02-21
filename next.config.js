@@ -21,6 +21,16 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   output: "standalone",
   reactStrictMode: true,
+  typescript: {
+    // !! ПРЕДУПРЕЖДЕНИЕ !!
+    // Позволяет завершить сборку, даже если в проекте есть ошибки типов.
+    // Мы проверяем типы в CI, поэтому здесь это безопасно.
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Игнорируем линтинг при сборке, так как он проверяется в CI.
+    ignoreDuringBuilds: true,
+  },
   poweredByHeader: false,
   images: {
     remotePatterns: [
