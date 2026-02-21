@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: appName,
   },
+  icons: {
+    apple: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "ru_RU",
@@ -65,6 +70,9 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
+import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
+
 export default function RootLayout({
   children,
 }: {
@@ -73,7 +81,9 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <OfflineBanner />
         {children}
+        <PWAInstallPrompt />
       </body>
     </html>
   );
