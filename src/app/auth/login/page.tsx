@@ -4,7 +4,6 @@
  */
 
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import { LoginForm } from "@features/auth/components/LoginForm";
 
@@ -25,9 +24,7 @@ export default function LoginPage() {
         </p>
 
         <div className="mt-8">
-          <Suspense fallback={<div className="text-center text-sm text-neutral-400">Загрузка...</div>}>
-            <LoginForm />
-          </Suspense>
+          <LoginForm />
         </div>
       </div>
     </div>
