@@ -34,8 +34,9 @@ interface NavbarProps {
 const defaultItems: NavItem[] = [
   { label: "Главная", href: "/" },
   { label: "Дашборд", href: "/dashboard" },
-  { label: "Привычки", href: "/habits" },
-  { label: "Коран",   href: "/quran" },
+  { label: "Намаз",    href: "/prayer" },
+  { label: "Азкары",   href: "/adhkar" },
+  { label: "Прогресс", href: "/tracker" },
 ];
 
 /* ── Component ──────────────────────────────────────────────────────── */
