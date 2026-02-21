@@ -1,10 +1,7 @@
 /**
- * @module entities/user/model/user
- *
- * Типы пользователя и маппинг из Supabase profile.
+ * @module entities/user
+ * Доменная модель пользователя
  */
-
-/* ── User model ─────────────────────────────────────────────────────── */
 
 export interface User {
   id: string;
@@ -16,42 +13,37 @@ export interface User {
   updatedAt: Date;
 }
 
-/* ── Supabase profile row ───────────────────────────────────────────── */
-
-export interface ProfileRow {
-  id: string;
-  email: string;
-  full_name: string | null;
-  avatar_url: string | null;
-  timezone: string | null;
-  created_at: string;
-  updated_at: string;
+export interface UserProfile extends User {
+  // Расширенные данные профиля
+  stats?: UserStats;
 }
 
-/* ── Mapper ──────────────────────────────────────────────────────────── */
-
-export function mapProfileToUser(profile: ProfileRow): User {
-  return {
-    id: profile.id,
-    email: profile.email,
-    fullName: profile.full_name,
-    avatarUrl: profile.avatar_url,
-    timezone: profile.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
-    createdAt: new Date(profile.created_at),
-    updatedAt: new Date(profile.updated_at),
-  };
+export interface UserStats {
+  totalPrayersCompleted: number;
+  currentStreak: number;
+  longestStreak: number;
+  habitsCompleted: number;
 }
 
-/* ── Initials helper ─────────────────────────────────────────────────── */
-
-export function getUserInitials(user: User): string {
-  if (user.fullName) {
-    return user.fullName
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
+/** Маппер из Supabase Row в доменную модель */
+export function mapProfileToUser(
+  row: {
+    id: string;
+    email: string;
+    full_name: string | null;
+    avatar_url: string | null;
+    timezone: string;
+    created_at: string;
+    updated_at: string;
   }
-  return user.email.slice(0, 2).toUpperCase();
+): User {
+  return {
+    id: row.id,
+    email: row.email,
+    fullName: row.full_name,
+    avatarUrl: row.avatar_url,
+    timezone: row.timezone,
+    createdAt: new Date(row.created_at),
+    updatedAt: new Date(row.updated_at),
+  };
 }
