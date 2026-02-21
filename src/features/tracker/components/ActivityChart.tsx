@@ -67,8 +67,9 @@ export function ActivityChart({ data }: ActivityChartProps) {
           />
           <Tooltip
             content={({ active, payload }) => {
-              if (active && payload && payload.length) {
+              if (active && payload && payload.length && payload[0]) {
                 const item = payload[0].payload;
+                if (!item) return null;
                 return (
                   <div className="rounded-2xl border border-neutral-100 bg-white p-3 shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
                     <p className="mb-1 text-xs font-bold text-neutral-500">{item.fullDate}</p>
@@ -91,7 +92,7 @@ export function ActivityChart({ data }: ActivityChartProps) {
             radius={[6, 6, 0, 0]}
             barSize={24}
           >
-            {chartData.map((entry, index) => (
+            {chartData.map((entry: any, index: number) => (
               <Cell 
                 key={`cell-${index}`} 
                 fill={entry.score > 20 ? "#10b981" : "#6366f1"} 

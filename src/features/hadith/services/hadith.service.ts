@@ -27,7 +27,8 @@ export function getHadithOfTheDay(date?: Date): Hadith {
 
   // Детерминированный хеш из даты
   const hash = (dayOfYear * 7 + month * 13 + year * 3) % HADITH_LIST.length;
-  return HADITH_LIST[Math.abs(hash)];
+  const hadith = HADITH_LIST[Math.abs(hash)];
+  return hadith as Hadith;
 }
 
 /**
@@ -39,7 +40,8 @@ export function getRandomHadith(excludeId?: string): Hadith {
     : HADITH_LIST;
 
   const index = Math.floor(Math.random() * filtered.length);
-  return filtered[index];
+  const hadith = filtered[index];
+  return hadith as Hadith;
 }
 
 /**
@@ -106,7 +108,7 @@ export async function syncFavoritesToServer(favorites: string[]): Promise<void> 
         user_id: user.id,
         hadith_id: hadithId,
       }));
-      await supabase.from("hadith_favorites").insert(rows);
+      await (supabase.from("hadith_favorites") as any).insert(rows);
     }
   } catch {
     // Silently fail
@@ -128,7 +130,7 @@ export async function loadFavoritesFromServer(): Promise<string[]> {
 
     if (error || !data) return [];
 
-    return data.map((row) => row.hadith_id);
+    return (data as any[]).map((row) => row.hadith_id);
   } catch {
     return [];
   }

@@ -95,7 +95,7 @@ export async function syncProgressToServer(
 
     if (rows.length === 0) return;
 
-    await supabase.from("adhkar_progress").upsert(rows, {
+    await (supabase.from("adhkar_progress") as any).upsert(rows, {
       onConflict: "user_id,dhikr_id,date",
     });
   } catch {
@@ -127,19 +127,21 @@ export async function loadProgressFromServer(
       .from("adhkar_progress")
       .select("*")
       .eq("user_id", user.id)
-      .eq("date", dateStr);
+      .eq("date", dateStr || "");
 
     if (error || !data) return {};
 
     const serverProgress: Record<string, DhikrProgress> = {};
-    for (const row of data) {
-      serverProgress[row.dhikr_id] = {
-        dhikrId: row.dhikr_id,
-        currentCount: row.current_count,
-        targetCount: row.target_count,
-        isCompleted: row.is_completed,
-        completedAt: row.completed_at ? new Date(row.completed_at) : undefined,
-      };
+    if (data) {
+      for (const row of (data as any[])) {
+        serverProgress[row.dhikr_id] = {
+          dhikrId: row.dhikr_id,
+          currentCount: row.current_count,
+          targetCount: row.target_count,
+          isCompleted: row.is_completed,
+          completedAt: row.completed_at ? new Date(row.completed_at) : undefined,
+        };
+      }
     }
 
     // Merge: берём больший count
