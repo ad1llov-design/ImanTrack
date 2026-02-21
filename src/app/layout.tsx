@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
 import "@styles/globals.css";
+import { AuthProvider } from "@features/auth/components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -73,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
