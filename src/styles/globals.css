@@ -2,38 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS Custom Properties ─────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════════════
+   ImanTrack Design System — Global Styles
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties ─────────────────────────────────────────────────── */
 :root {
-  --color-surface: #fdfcf8;
-  --color-surface-secondary: #f0f9f4;
-  --color-text-primary: #184131;
-  --color-text-secondary: #5e524c;
-  --color-border: #ddd9ce;
-  --color-accent: #369970;
-  --radius-base: 0.75rem;
-  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(54, 153, 112, 0.04);
+  /* Surface */
+  --surface-primary: #fdfcfa;
+  --surface-secondary: #f5f3ef;
+  --surface-card: #ffffff;
+  --surface-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Text */
+  --text-primary: #133d26;
+  --text-secondary: #685c53;
+  --text-muted: #a49584;
+  --text-inverse: #fdfcfa;
+
+  /* Borders */
+  --border-default: #e0dbd4;
+  --border-hover: #ccc4b8;
+  --border-focus: #2d8f55;
+
+  /* Accent */
+  --accent-green: #2d8f55;
+  --accent-gold: #efa213;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 350ms;
+  --ease-bounce: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark {
-  --color-surface: #0f1a14;
-  --color-surface-secondary: #1a2b1f;
-  --color-text-primary: #f0f9f4;
-  --color-text-secondary: #aba08e;
-  --color-border: #2d3d35;
-  --color-accent: #58b58c;
-  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(54, 153, 112, 0.08);
+  --surface-primary: #0c1a10;
+  --surface-secondary: #142119;
+  --surface-card: #1a2b1f;
+  --surface-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #edf8f0;
+  --text-secondary: #a4ddb6;
+  --text-muted: #6ec48c;
+  --text-inverse: #0c1a10;
+
+  --border-default: #2a3d30;
+  --border-hover: #3a5040;
+  --border-focus: #40a86a;
+
+  --accent-green: #40a86a;
+  --accent-gold: #f5c02b;
 }
 
-/* ── Base Styles ────────────────────────────────────────────────────── */
+/* ── Base reset & defaults ─────────────────────────────────────────────────── */
 @layer base {
-  * {
-    @apply border-neutral-200 dark:border-neutral-800;
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -41,124 +85,132 @@
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  /* Arabic text */
-  [lang="ar"],
-  .arabic {
-    font-family: var(--font-amiri), "Amiri", serif;
+  /* Typography defaults */
+  h1 { @apply text-h1 font-heading; }
+  h2 { @apply text-h2 font-heading; }
+  h3 { @apply text-h3 font-heading; }
+  h4 { @apply text-h4 font-heading; }
+
+  p { @apply text-body leading-relaxed; }
+
+  /* Arabic */
+  [lang="ar"], .font-arabic {
     direction: rtl;
     text-align: right;
     line-height: 1.8;
   }
 
-  /* Focus visible */
+  /* Focus */
   *:focus-visible {
-    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+    @apply outline-none ring-2 ring-primary-500/50 ring-offset-2 ring-offset-surface-light dark:ring-offset-surface-dark;
+    border-radius: var(--radius-md);
   }
 
   /* Selection */
   ::selection {
-    @apply bg-primary-100 text-primary-900;
+    @apply bg-primary-200/60 text-primary-950;
+  }
+
+  .dark ::selection {
+    @apply bg-primary-800/40 text-primary-100;
   }
 
   /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply rounded-full bg-neutral-300 dark:bg-neutral-700; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-primary-400; }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-neutral-300 dark:bg-neutral-700;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-400;
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-/* ── Component Utilities ────────────────────────────────────────────── */
+/* ── Component layer ───────────────────────────────────────────────────────── */
 @layer components {
-  /* Card */
-  .card {
-    @apply rounded-3xl bg-white p-6 shadow-sm dark:bg-neutral-900;
-    box-shadow: var(--shadow-soft);
+
+  /* ── Container ─────────────────────────────────── */
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Button base */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-semibold
-           transition-all duration-200 active:scale-95 disabled:pointer-events-none disabled:opacity-50;
+  .container-narrow {
+    @apply mx-auto w-full max-w-3xl px-4 sm:px-6;
   }
 
-  .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+  /* ── Skeleton loader ───────────────────────────── */
+  .skeleton {
+    @apply relative overflow-hidden rounded-xl bg-neutral-200/60 dark:bg-neutral-800/60;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+  .dark .skeleton::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
   }
 
-  .btn-secondary {
-    @apply btn border border-neutral-200 text-neutral-700 hover:border-primary-400 hover:text-primary-600
-           dark:border-neutral-700 dark:text-neutral-300;
-  }
-
-  .btn-ghost {
-    @apply btn text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800;
-  }
-
-  /* Input */
-  .input {
-    @apply w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm
-           text-neutral-900 placeholder-neutral-400 transition-colors
-           focus:border-primary-400 focus:ring-0
-           dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100;
-  }
-
-  /* Badge */
-  .badge {
-    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
-  }
-
-  .badge-green {
-    @apply badge bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300;
-  }
-
-  /* Islamic geometric divider */
+  /* ── Divider Islamic ───────────────────────────── */
   .divider-islamic {
     @apply relative my-8 flex items-center;
   }
-
   .divider-islamic::before,
   .divider-islamic::after {
-    @apply flex-1 border-t border-neutral-200 dark:border-neutral-800;
     content: "";
+    @apply flex-1 border-t border-neutral-200 dark:border-neutral-800;
   }
-
   .divider-islamic span {
-    @apply mx-4 text-primary-500;
+    @apply mx-4 text-lg text-gold-500;
   }
 
-  /* Shimmer loading effect */
-  .skeleton {
-    @apply animate-shimmer rounded-xl bg-gradient-to-r from-neutral-100 via-neutral-50 to-neutral-100
-           dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800;
-    background-size: 200% 100%;
+  /* ── Glass effect ──────────────────────────────── */
+  .glass {
+    @apply border border-white/20 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-neutral-900/70;
   }
 }
 
-/* ── Utilities ──────────────────────────────────────────────────────── */
+/* ── Utility layer ─────────────────────────────────────────────────────────── */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .safe-top { padding-top: env(safe-area-inset-top); }
 
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-  .safe-top {
-    padding-top: env(safe-area-inset-top);
+  /* Animate on scroll viewport trigger class */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
