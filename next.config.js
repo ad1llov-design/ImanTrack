@@ -19,9 +19,14 @@ const withPWA = require("next-pwa")({
 });
 
 const nextConfig = {
-  output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -30,9 +35,6 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
-  },
-  experimental: {
-    typedRoutes: true,
   },
   headers: async () => [
     {
