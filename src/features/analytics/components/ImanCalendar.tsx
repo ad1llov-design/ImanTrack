@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, useMemo } from "react";
 import { format, subDays, eachDayOfInterval } from "date-fns";
 import { GlassCard } from "@shared/components/ui/GlassCard";
