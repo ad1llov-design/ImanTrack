@@ -14,7 +14,7 @@ function getMockImanLevel(dateStr: string) {
 
 export function ImanCalendar({ className }: { className?: string }) {
   // Generate last 28 days for a 4-week calendar overview
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const days = useMemo(() => {
     return eachDayOfInterval({ start: subDays(today, 27), end: today });
   }, [today]);

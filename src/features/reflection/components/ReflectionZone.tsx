@@ -53,6 +53,7 @@ export function ReflectionZone({ className }: { className?: string }) {
       handleSave(content, mood, focusDuration + 5);
     }
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimerRunning, timeRemaining]);
 
   const toggleTimer = () => {
@@ -127,7 +128,7 @@ export function ReflectionZone({ className }: { className?: string }) {
                 Тема для размышлений
               </span>
               <p className="text-lg text-primary-100 italic leading-relaxed">
-                "{currentPrompt}"
+                &quot;{currentPrompt}&quot;
               </p>
               <button onClick={refreshPrompt} className="mt-4 text-xs tracking-wider text-primary-500 hover:text-primary-300 uppercase transition-colors">
                 Сменить тему
