@@ -15,8 +15,8 @@ export function HabitsWidget({ className }: { className?: string }) {
     async function fetch() {
       setLoading(true);
       const activity = await getRecentActivity(1);
-      if (activity.length > 0) {
-        setTodayData(activity[0]);
+      if (activity && activity.length > 0) {
+        setTodayData(activity[0] || null);
       }
       setLoading(false);
     }
