@@ -52,6 +52,9 @@ export interface Database {
           status: PrayerStatus;
           on_time: boolean;
           notes: string | null;
+          concentration_level: number | null;
+          location: "mosque" | "home" | "travel" | null;
+          emotional_state: string | null;
           created_at: string;
         };
         Insert: {
@@ -62,11 +65,90 @@ export interface Database {
           status: PrayerStatus;
           on_time?: boolean;
           notes?: string | null;
+          concentration_level?: number | null;
+          location?: "mosque" | "home" | "travel" | null;
+          emotional_state?: string | null;
         };
         Update: {
           status?: PrayerStatus;
           on_time?: boolean;
           notes?: string | null;
+          concentration_level?: number | null;
+          location?: "mosque" | "home" | "travel" | null;
+          emotional_state?: string | null;
+        };
+      };
+      quran_logs: {
+        Row: {
+          id: string;
+          user_id: string;
+          date: string;
+          juz: number | null;
+          surah: number | null;
+          ayah: number | null;
+          pages_read: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          date: string;
+          juz?: number | null;
+          surah?: number | null;
+          ayah?: number | null;
+          pages_read?: number;
+        };
+        Update: {
+          juz?: number | null;
+          surah?: number | null;
+          ayah?: number | null;
+          pages_read?: number;
+        };
+      };
+      quran_bookmarks: {
+        Row: {
+          id: string;
+          user_id: string;
+          surah: number;
+          ayah: number;
+          note: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          surah: number;
+          ayah: number;
+          note?: string | null;
+        };
+        Update: {
+          surah?: number;
+          ayah?: number;
+          note?: string | null;
+        };
+      };
+      reflections: {
+        Row: {
+          id: string;
+          user_id: string;
+          date: string;
+          content: string;
+          mood: string | null;
+          focus_duration_minutes: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          date: string;
+          content: string;
+          mood?: string | null;
+          focus_duration_minutes?: number | null;
+        };
+        Update: {
+          content?: string;
+          mood?: string | null;
+          focus_duration_minutes?: number | null;
         };
       };
       habits: {

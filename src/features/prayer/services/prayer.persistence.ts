@@ -15,6 +15,9 @@ export interface PrayerLog {
   status: DBPrayerStatus;
   onTime: boolean;
   notes?: string | null;
+  concentrationLevel?: number | null;
+  location?: "mosque" | "home" | "travel" | null;
+  emotionalState?: string | null;
   createdAt?: string;
 }
 
@@ -37,6 +40,9 @@ export async function upsertPrayerLog(log: PrayerLog): Promise<boolean> {
         status: log.status,
         on_time: log.onTime,
         notes: log.notes || null,
+        concentration_level: log.concentrationLevel || null,
+        location: log.location || null,
+        emotional_state: log.emotionalState || null,
       } as any, // Cast to any to bypass strict Database table inference issues
       { onConflict: "user_id,prayer_name,date" }
     );
@@ -77,6 +83,9 @@ export async function getPrayerLogs(date: string): Promise<PrayerLog[]> {
     status: row.status,
     onTime: row.on_time,
     notes: row.notes,
+    concentrationLevel: row.concentration_level,
+    location: row.location,
+    emotionalState: row.emotional_state,
     createdAt: row.created_at,
   }));
 }
