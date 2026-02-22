@@ -46,10 +46,24 @@ export function GlobalNavigation() {
       <div className="md:hidden">
         {/* Мобильная верхняя панель (Header) */}
         <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-neutral-200/50 bg-white/95 px-4 shadow-soft backdrop-blur-xl dark:border-neutral-800/50 dark:bg-surface-dark/95">
-          <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary text-xs font-bold text-white">
-              ☪
-            </span>
+          <Link href="/" className="group flex items-center gap-2 transition-opacity hover:opacity-80">
+            {/* Minimalist Logo Box Mobile */}
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 dark:bg-primary-950/30 dark:text-primary-400 dark:group-hover:bg-primary-900/40">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className="h-4 w-4"
+              >
+                <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
+                <path d="M12 3a9 9 0 0 0 9 9" />
+                <path d="M12 21a9 9 0 0 0-9-9" />
+              </svg>
+            </div>
             <span className="text-lg font-bold text-neutral-900 dark:text-neutral-50">
               Iman<span className="text-primary-600 dark:text-primary-400">Track</span>
             </span>

@@ -77,19 +77,32 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
         {/* ── Logo ─────────────────────────────── */}
         <Link
           href="/"
-          className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
         >
-          {/* Logo dot */}
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary text-sm font-bold text-white">
-            ☪
-          </span>
-          <span className="text-h4 text-neutral-900 dark:text-neutral-50">
-            Iman<span className="text-primary-600 dark:text-primary-400">Track</span>
+          {/* Minimalist Logo Box */}
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 dark:bg-primary-950/30 dark:text-primary-400 dark:group-hover:bg-primary-900/40">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className="h-5 w-5"
+            >
+              <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
+              <path d="M12 3a9 9 0 0 0 9 9" />
+              <path d="M12 21a9 9 0 0 0-9-9" />
+            </svg>
+          </div>
+          <span className="text-[1.1rem] font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
+            Iman<span className="text-primary-500">Track</span>
           </span>
         </Link>
 
         {/* ── Desktop Nav ──────────────────────── */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           {items.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -97,17 +110,24 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
                 key={item.href}
                 href={item.href as any}
                 className={cn(
-                  "relative rounded-xl px-4 py-2 text-body-sm font-medium transition-all duration-250",
+                  "relative flex items-center gap-2 rounded-xl px-4 py-2 text-[0.875rem] font-medium transition-all duration-250",
                   isActive
-                    ? "text-primary-700 dark:text-primary-300"
-                    : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100",
+                    ? "bg-primary-50/50 text-primary-700 dark:bg-primary-950/20 dark:text-primary-300"
+                    : "text-neutral-500 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800/50 dark:hover:text-neutral-100",
                 )}
               >
-                {item.icon && <span className="mr-1.5">{item.icon}</span>}
-                {item.label}
-                {/* Active indicator */}
+                {item.icon && (
+                  <span className={cn(
+                    "flex items-center justify-center *:h-4 *:w-4",
+                    isActive ? "text-primary-600 dark:text-primary-400" : "text-neutral-400 dark:text-neutral-500"
+                  )}>
+                    {item.icon}
+                  </span>
+                )}
+                <span>{item.label}</span>
+                {/* Minimalist Active indicator */}
                 {isActive && (
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary-500" />
+                  <span className="absolute bottom-1 left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full bg-primary-500" />
                 )}
               </Link>
             );
@@ -121,26 +141,26 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
           {/* Burger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800 md:hidden"
+            className="relative flex h-10 w-10 items-center justify-center rounded-xl text-neutral-600 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 md:hidden"
             aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isOpen}
           >
             <div className="flex w-5 flex-col items-center gap-[5px]">
               <span
                 className={cn(
-                  "h-[2px] w-full rounded-full bg-neutral-800 transition-all duration-250 dark:bg-neutral-200",
+                  "h-[2px] w-full rounded-full bg-current transition-all duration-250",
                   isOpen && "translate-y-[7px] rotate-45",
                 )}
               />
               <span
                 className={cn(
-                  "h-[2px] w-full rounded-full bg-neutral-800 transition-all duration-250 dark:bg-neutral-200",
+                  "h-[2px] w-full rounded-full bg-current transition-all duration-250",
                   isOpen && "opacity-0",
                 )}
               />
               <span
                 className={cn(
-                  "h-[2px] w-full rounded-full bg-neutral-800 transition-all duration-250 dark:bg-neutral-200",
+                  "h-[2px] w-full rounded-full bg-current transition-all duration-250",
                   isOpen && "-translate-y-[7px] -rotate-45",
                 )}
               />
