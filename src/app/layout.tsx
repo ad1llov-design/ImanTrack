@@ -89,7 +89,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col`}>
+        {/* Global Islamic/Mosque Background Pattern */}
+        <div className="fixed inset-0 z-[-1] pointer-events-none bg-geometric-pattern bg-repeat opacity-[0.03] dark:opacity-10 mix-blend-overlay" />
+        
         <OfflineBanner />
         <GlobalNavigation />
         {children}

@@ -7,6 +7,8 @@
 
 import { createClient } from "@lib/supabase/server";
 import { LogoutButton } from "@features/auth/components/LogoutButton";
+import { PrayerWidget } from "@features/prayer/components/PrayerWidget";
+import { HabitsWidget } from "@features/tracker/components/HabitsWidget";
 
 export default async function DashboardPage() {
   const supabase = createClient();
@@ -59,20 +61,10 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Placeholder cards */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-primary-200 bg-primary-50 p-6 dark:border-primary-800 dark:bg-primary-950/30">
-          <h3 className="font-semibold text-primary-700 dark:text-primary-300">🕌 Намазы</h3>
-          <p className="mt-2 text-sm text-primary-600 dark:text-primary-400">
-            Модуль скоро будет доступен
-          </p>
-        </div>
-        <div className="rounded-2xl border border-gold-200 bg-gold-50 p-6 dark:border-gold-800 dark:bg-gold-950/30">
-          <h3 className="font-semibold text-gold-700 dark:text-gold-300">📖 Коран</h3>
-          <p className="mt-2 text-sm text-gold-600 dark:text-gold-400">
-            Модуль скоро будет доступен
-          </p>
-        </div>
+      {/* Core Tracker Widgets */}
+      <div className="mt-8 flex flex-col gap-6">
+        <PrayerWidget />
+        <HabitsWidget />
       </div>
     </div>
   );

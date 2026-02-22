@@ -65,8 +65,8 @@ module.exports = {
         },
         surface: {
           light: "#fdfcf8",
-          dark: "#0f1a14",
-          "dark-secondary": "#162019",
+          dark: "#06141B",
+          "dark-secondary": "#0A1F29",
         },
       },
       boxShadow: {

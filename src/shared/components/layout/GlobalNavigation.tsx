@@ -10,7 +10,8 @@ import {
   Clock,
   BookOpen,
   Library,
-  User 
+  User,
+  BarChart2
 } from "lucide-react";
 
 export function GlobalNavigation() {
@@ -22,11 +23,11 @@ export function GlobalNavigation() {
   }
 
   const navItems = [
-    { label: "Трекер", href: "/tracker", icon: <Home className="h-6 w-6" /> },
+    { label: "Главная", href: "/dashboard", icon: <Home className="h-6 w-6" /> },
     { label: "Намазы", href: "/prayer", icon: <Clock className="h-6 w-6" /> },
-    { label: "Азкары", href: "/adhkar", icon: <BookOpen className="h-6 w-6" /> },
-    { label: "Хадисы", href: "/hadith", icon: <Library className="h-6 w-6" /> },
-    { label: "Профиль", href: "/dashboard", icon: <User className="h-6 w-6" /> },
+    { label: "Анализ", href: "/analytics", icon: <BarChart2 className="h-6 w-6" /> },
+    { label: "Коран", href: "/quran", icon: <BookOpen className="h-6 w-6" /> },
+    { label: "Сунна", href: "/sunnah", icon: <Library className="h-6 w-6" /> },
   ];
 
   return (
