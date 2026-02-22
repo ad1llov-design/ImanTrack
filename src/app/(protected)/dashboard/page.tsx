@@ -21,10 +21,10 @@ export default async function DashboardPage() {
     <div className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
       <div className="mb-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted mb-2">
           السلام عليكم
         </p>
-        <h1 className="text-display text-4xl md:text-5xl font-bold text-neutral-100">
+        <h1 className="text-display text-4xl md:text-5xl font-bold text-main">
           Добро пожаловать{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}
         </h1>
       </div>
@@ -41,6 +41,18 @@ export default async function DashboardPage() {
             <PrayerWidget />
             <HabitsWidget />
           </div>
+        </section>
+
+        {/* Quick Links Section */}
+        <section className="grid grid-cols-2 gap-4">
+          <Link href="/dhikr" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
+            <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Свободный Тасбих</span>
+            <span className="text-xl">📿</span>
+          </Link>
+          <Link href="/hadith" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
+            <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Хадис Дня</span>
+            <span className="text-xl">📖</span>
+          </Link>
         </section>
 
         {/* Quote of the Day Section */}

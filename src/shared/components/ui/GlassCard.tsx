@@ -20,7 +20,7 @@ export function GlassCard({ children, className, delay = 0, ...props }: GlassCar
         delay 
       }}
       className={cn(
-        "rounded-3xl border border-white/20 bg-white/5 p-6 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]",
+        "rounded-3xl border border-border bg-surface/80 p-6 backdrop-blur-xl shadow-card",
         className
       )}
       {...props}

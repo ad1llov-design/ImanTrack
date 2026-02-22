@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 
 import { cn } from "@shared/lib/utils";
 import { useCountdown } from "../hooks/useCountdown";
-import { usePrayerStore } from "../store/prayerStore";
+import { usePrayerTimes } from "../hooks/usePrayerTimes";
 import { getDailyProgress, upsertDailyProgress, DailyProgress } from "../../tracker/services/daily_progress.service";
 import { CircularProgress } from "@shared/components/ui/CircularProgress";
 import { GlassCard } from "@shared/components/ui/GlassCard";
 
 export function PrayerWidget({ className }: { className?: string }) {
-  const { prayers, currentPrayer, nextPrayer, isLoading } = usePrayerStore();
+  const { prayers, currentPrayer, nextPrayer, isLoading } = usePrayerTimes();
   const { formatted } = useCountdown(nextPrayer?.dateTime ?? null);
   
   const [progress, setProgress] = useState<Partial<DailyProgress>>({
@@ -56,9 +56,24 @@ export function PrayerWidget({ className }: { className?: string }) {
 
   if (isLoading) {
     return (
-      <GlassCard className={cn("flex min-h-[16rem] items-center justify-center", className)}>
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
-      </GlassCard>
+      <div className={cn("relative overflow-hidden rounded-3xl border border-border bg-surface shadow-card p-6", className)}>
+        <div className="flex flex-col items-center justify-center gap-6">
+          <div className="flex w-full items-center justify-between">
+            <h2 className="text-sm font-semibold tracking-wider text-muted uppercase">Прогресс Намазов</h2>
+            <div className="h-6 w-16 bg-border rounded-full animate-pulse" />
+          </div>
+          <div className="h-36 w-36 rounded-full bg-border animate-pulse" />
+          <div className="h-4 w-24 bg-border rounded-full animate-pulse" />
+          <div className="flex w-full items-center justify-between gap-2 border-t border-border pt-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="flex flex-col items-center gap-1.5 p-2">
+                <div className="h-11 w-11 rounded-2xl bg-border animate-pulse" />
+                <div className="h-2 w-8 bg-border rounded-full animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     );
   }
 
