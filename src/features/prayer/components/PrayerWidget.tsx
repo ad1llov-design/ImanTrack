@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 import { cn } from "@shared/lib/utils";
 import { useCountdown } from "../hooks/useCountdown";
@@ -45,6 +46,10 @@ export function PrayerWidget({ className }: { className?: string }) {
     setProgress(prev => ({ ...prev, prayers: newPrayers }));
 
     await upsertDailyProgress(todayStr, { prayers: newPrayers });
+    
+    if (!isCompleted) {
+      toast.success("Намаз выполнен! Пусть Аллах примет.");
+    }
   };
 
   const addNafil = async () => {
@@ -52,6 +57,7 @@ export function PrayerWidget({ className }: { className?: string }) {
     const newCount = currentCount + 1;
     setProgress(prev => ({ ...prev, nafil_count: newCount }));
     await upsertDailyProgress(todayStr, { nafil_count: newCount });
+    toast.success("+1 Нафиль. МашаАллах!");
   };
 
   if (isLoading) {
@@ -66,8 +72,8 @@ export function PrayerWidget({ className }: { className?: string }) {
           <div className="h-4 w-24 bg-border rounded-full animate-pulse" />
           <div className="flex w-full items-center justify-between gap-2 border-t border-border pt-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-2">
-                <div className="h-11 w-11 rounded-2xl bg-border animate-pulse" />
+              <div key={i} className="flex flex-col items-center gap-1.5 p-2 gap-y-2">
+                <div className="h-12 w-12 rounded-2xl bg-border animate-pulse" />
                 <div className="h-2 w-8 bg-border rounded-full animate-pulse" />
               </div>
             ))}
@@ -141,7 +147,7 @@ export function PrayerWidget({ className }: { className?: string }) {
                 )}
               >
                 <div className={cn(
-                  "flex h-11 w-11 items-center justify-center rounded-2xl border bg-surface transition-colors shadow-sm",
+                  "flex h-12 w-12 items-center justify-center rounded-2xl border bg-surface transition-colors shadow-sm",
                   isCompleted ? "bg-primary-50 border-primary-500 text-primary-600 shadow-glow" : "border-border",
                   isActive && !isCompleted && "border-primary-400 text-primary-500 ring-2 ring-primary-100"
                 )}>

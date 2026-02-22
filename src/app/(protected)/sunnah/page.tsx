@@ -10,13 +10,13 @@ export default function SunnahPage() {
   return (
     <div className="mx-auto max-w-lg px-4 py-8 md:py-16">
       <div className="mb-12 text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted mb-2">
           Оживление Сунны
         </p>
-        <h1 className="text-display text-4xl font-bold text-neutral-100">
+        <h1 className="text-display text-4xl font-bold text-main">
           Благие Дела
         </h1>
-        <p className="mt-4 text-sm text-neutral-400 leading-relaxed">
+        <p className="mt-4 text-sm text-muted leading-relaxed">
           Простые действия Пророка (мир ему и благословение), которые меняют сердце и мир вокруг.
         </p>
       </div>

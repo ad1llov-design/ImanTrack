@@ -7,6 +7,7 @@ import { GlassCard } from "@shared/components/ui/GlassCard";
 import { cn } from "@shared/lib/utils";
 import { SUNNAH_ACTIONS } from "../services/sunnah.persistence";
 import { getDailyProgress, upsertDailyProgress } from "../../tracker/services/daily_progress.service";
+import { toast } from "sonner";
 
 export function SunnahGrid({ className }: { className?: string }) {
   const [completedActions, setCompletedActions] = useState<string[]>([]);
@@ -41,6 +42,11 @@ export function SunnahGrid({ className }: { className?: string }) {
 
     try {
       await upsertDailyProgress(todayStr, { sunnah_actions: newActions });
+      if (!isDone) {
+        toast.success("Сунна выполнена! Пусть Аллах примет.");
+      } else {
+        toast("Отметка убрана");
+      }
     } catch (e) {
       console.error("Failed to update daily progress:", e);
       // Revert optimism if failed

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
+import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 
 export function GlobalNavigation() {
   const pathname = usePathname();
@@ -39,6 +40,7 @@ export function GlobalNavigation() {
           items={navItems} 
           rightSlot={
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               <Link href="/profile" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <User className="h-5 w-5 text-neutral-400" />
               </Link>
@@ -71,6 +73,7 @@ export function GlobalNavigation() {
             <span className="text-display text-lg font-bold text-neutral-100">ImanTrack</span>
           </Link>
           <div className="flex items-center gap-3">
+             <ThemeToggle />
              <Link href="/assistant" className="text-neutral-400">🤖</Link>
              <Link href="/profile" className="text-neutral-400"><User className="h-5 w-5" /></Link>
           </div>

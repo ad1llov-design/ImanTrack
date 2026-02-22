@@ -6,6 +6,7 @@ import { upsertQuranLog } from "../services/quran.persistence";
 import { format } from "date-fns";
 import { cn } from "@shared/lib/utils";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 interface QuranReaderProps {
   surahId: number;
@@ -35,6 +36,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       surah: surahId,
       pages_read: 1, // Logic: 1 surah = 1 point/page for now
     });
+    toast.success("Чтение засчитано! Пусть Аллах примет.");
     onBack();
   };
 

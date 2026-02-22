@@ -1,14 +1,14 @@
-﻿/**
+/**
  * @page /adhkar
- * Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р° вЂ” СЃРїРёСЃРѕРє РєР°С‚РµРіРѕСЂРёР№ Р°Р·РєР°СЂРѕРІ
+ * Главная страница — список категорий азкаров
  */
 
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "РђР·РєР°СЂС‹ вЂ” ImanTrack",
-  description: "РЈС‚СЂРµРЅРЅРёРµ Рё РІРµС‡РµСЂРЅРёРµ Р°Р·РєР°СЂС‹, Р·РёРєСЂС‹ РїРѕСЃР»Рµ РЅР°РјР°Р·Р° Рё РґСѓР°",
+  title: "Азкары — ImanTrack",
+  description: "Утренние и вечерние азкары, зикры после намаза и дуа",
 };
 
 const AdhkarCategoriesPage = dynamic(

@@ -82,6 +82,7 @@ import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
 import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
 import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
 import { ThemeProvider } from "./providers";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -95,6 +96,7 @@ export default function RootLayout({
           <OfflineBanner />
           <GlobalNavigation />
           {children}
+          <Toaster position="bottom-center" richColors />
           <PWAInstallPrompt />
         </ThemeProvider>
       </body>

@@ -1,8 +1,8 @@
 /**
  * @page /design-system
  *
- * Демонстрационная страница всех UI компонентов.
- * Используйте эту страницу для визуальной проверки дизайн-системы.
+ * ���������������� �������� ���� UI �����������.
+ * ����������� ��� �������� ��� ���������� �������� ������-�������.
  */
 
 "use client";
@@ -27,7 +27,7 @@ import {
 } from "@shared/components/ui/Skeleton";
 import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 
-/* ── Section wrapper ────────────────────────────────────────────────── */
+/* ?? Section wrapper ?????????????????????????????????????????????????? */
 
 function Section({
   title,
@@ -48,13 +48,13 @@ function Section({
       </div>
       {children}
       <div className="divider-islamic mt-12">
-        <span>✦</span>
+        <span>?</span>
       </div>
     </section>
   );
 }
 
-/* ── Page ────────────────────────────────────────────────────────────── */
+/* ?? Page ?????????????????????????????????????????????????????????????? */
 
 export default function DesignSystemPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -66,16 +66,16 @@ export default function DesignSystemPage() {
       />
 
       <main className="min-h-screen bg-background text-main pt-20">
-        {/* ── Hero ─────────────────────────────── */}
+        {/* ?? Hero ??????????????????????????????? */}
         <div className="bg-gradient-primary py-20">
           <Container>
-            <p className="font-arabic text-3xl text-gold-300">بسم الله الرحمن الرحيم</p>
+            <p className="font-arabic text-3xl text-gold-300">??? ???? ?????? ??????</p>
             <h1 className="mt-4 text-display text-white">
               ImanTrack <span className="text-gold-300">Design System</span>
             </h1>
             <p className="mt-3 max-w-2xl text-body text-primary-200">
-              Полная дизайн-система с исламским стилем. Тёмно-зелёная палитра, золотые акценты,
-              мобильная типографика, анимации и полная доступность.
+              ������ ������-������� � ��������� ������. Ҹ���-������ �������, ������� �������,
+              ��������� �����������, �������� � ������ �����������.
             </p>
           </Container>
         </div>
@@ -83,16 +83,16 @@ export default function DesignSystemPage() {
         <Container paddingY="lg">
           <div className="space-y-16">
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* COLOR PALETTE */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Цветовая палитра"
-              description="Основной: тёмно-зелёный (цвет Ислама) · Акцент: золотистый · Тёплые нейтральные"
+              title="�������� �������"
+              description="��������: ����-������ (���� ������) � ������: ���������� � Ҹ���� �����������"
             >
               {/* Primary */}
               <div className="mb-6">
-                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">Primary (Зелёный)</h3>
+                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">Primary (������)</h3>
                 <div className="flex flex-wrap gap-2">
                   {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((shade) => (
                     <div key={shade} className="text-center">
@@ -107,7 +107,7 @@ export default function DesignSystemPage() {
 
               {/* Gold */}
               <div className="mb-6">
-                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">Gold (Золотой)</h3>
+                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">Gold (�������)</h3>
                 <div className="flex flex-wrap gap-2">
                   {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((shade) => (
                     <div key={shade} className="text-center">
@@ -122,7 +122,7 @@ export default function DesignSystemPage() {
 
               {/* Semantic */}
               <div>
-                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">Семантические</h3>
+                <h3 className="mb-3 text-h4 text-neutral-700 dark:text-neutral-300">�������������</h3>
                 <div className="flex flex-wrap gap-3">
                   <div className="flex items-center gap-2 rounded-xl bg-success-light px-4 py-2 dark:bg-success-dark">
                     <span className="h-3 w-3 rounded-full bg-success" />
@@ -144,63 +144,63 @@ export default function DesignSystemPage() {
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* TYPOGRAPHY */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Типографика"
-              description="Mobile-first размеры. Inter для латиницы, Amiri для арабского."
+              title="�����������"
+              description="Mobile-first �������. Inter ��� ��������, Amiri ��� ���������."
             >
               <div className="space-y-4">
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Display (3rem)</span>
-                  <p className="text-display text-neutral-900 dark:text-neutral-50">السلام عليكم — Мир вам</p>
+                  <p className="text-display text-neutral-900 dark:text-neutral-50">?????? ????? � ��� ���</p>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Display SM (2.25rem)</span>
-                  <p className="text-display-sm text-neutral-900 dark:text-neutral-50">Духовный рост</p>
+                  <p className="text-display-sm text-neutral-900 dark:text-neutral-50">�������� ����</p>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">H1 (1.875rem)</span>
-                  <h1>Трекер намазов</h1>
+                  <h1>������ �������</h1>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">H2 (1.5rem)</span>
-                  <h2>Сегодняшний прогресс</h2>
+                  <h2>����������� ��������</h2>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">H3 (1.25rem)</span>
-                  <h3>Привычки</h3>
+                  <h3>��������</h3>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Body (1rem)</span>
-                  <p>Основной текст для описаний и контента. Чистый и читаемый.</p>
+                  <p>�������� ����� ��� �������� � ��������. ������ � ��������.</p>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Body SM (0.875rem)</span>
-                  <p className="text-body-sm text-neutral-600 dark:text-neutral-400">Мелкий текст для подписей и вспомогательной информации.</p>
+                  <p className="text-body-sm text-neutral-600 dark:text-neutral-400">������ ����� ��� �������� � ��������������� ����������.</p>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Overline (0.6875rem)</span>
-                  <p className="text-overline uppercase tracking-wider text-neutral-500">Категория · Надпись</p>
+                  <p className="text-overline uppercase tracking-wider text-neutral-500">��������� � �������</p>
                 </div>
                 <div className="rounded-2xl border border-neutral-100 p-6 dark:border-neutral-800">
                   <span className="text-caption text-neutral-400">Arabic (Amiri)</span>
-                  <p className="font-arabic text-2xl text-gold-600 dark:text-gold-400">بسم الله الرحمن الرحيم</p>
+                  <p className="font-arabic text-2xl text-gold-600 dark:text-gold-400">??? ???? ?????? ??????</p>
                 </div>
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* BUTTONS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Кнопки"
-              description="5 вариантов × 5 размеров + загрузка, иконки, fullWidth"
+              title="������"
+              description="5 ��������� ? 5 �������� + ��������, ������, fullWidth"
             >
               {/* Variants */}
               <div className="mb-8">
-                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">Варианты</h3>
+                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">��������</h3>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button variant="primary">Primary</Button>
                   <Button variant="secondary">Secondary</Button>
@@ -212,7 +212,7 @@ export default function DesignSystemPage() {
 
               {/* Sizes */}
               <div className="mb-8">
-                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">Размеры</h3>
+                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">�������</h3>
                 <div className="flex flex-wrap items-end gap-3">
                   <Button size="xs">XS</Button>
                   <Button size="sm">Small</Button>
@@ -224,7 +224,7 @@ export default function DesignSystemPage() {
 
               {/* States */}
               <div className="mb-8">
-                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">Состояния</h3>
+                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">���������</h3>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button
                     isLoading={isLoading}
@@ -233,48 +233,48 @@ export default function DesignSystemPage() {
                       setTimeout(() => setIsLoading(false), 2000);
                     }}
                   >
-                    Нажми для загрузки
+                    ����� ��� ��������
                   </Button>
-                  <Button isLoading>Загрузка...</Button>
+                  <Button isLoading>��������...</Button>
                   <Button disabled>Disabled</Button>
                 </div>
               </div>
 
               {/* Icons */}
               <div className="mb-8">
-                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">С иконками</h3>
+                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">� ��������</h3>
                 <div className="flex flex-wrap items-center gap-3">
-                  <Button leftIcon={<span>🕌</span>}>Намаз</Button>
-                  <Button variant="gold" leftIcon={<span>📖</span>}>Коран</Button>
-                  <Button variant="secondary" rightIcon={<span>→</span>}>Далее</Button>
+                  <Button leftIcon={<span>??</span>}>�����</Button>
+                  <Button variant="gold" leftIcon={<span>??</span>}>�����</Button>
+                  <Button variant="secondary" rightIcon={<span>?</span>}>�����</Button>
                 </div>
               </div>
 
               {/* Full width */}
               <div>
-                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">Полная ширина</h3>
+                <h3 className="mb-4 text-h4 text-neutral-700 dark:text-neutral-300">������ ������</h3>
                 <div className="max-w-md space-y-3">
-                  <Button fullWidth>Начать путь</Button>
-                  <Button variant="secondary" fullWidth>Войти</Button>
+                  <Button fullWidth>������ ����</Button>
+                  <Button variant="secondary" fullWidth>�����</Button>
                 </div>
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* CARDS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Карточки"
-              description="4 варианта: default, outlined, elevated, glass. Опциональный hover-эффект."
+              title="��������"
+              description="4 ��������: default, outlined, elevated, glass. ������������ hover-������."
             >
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <Card variant="default" interactive>
                   <CardHeader>
                     <CardTitle>Default</CardTitle>
                   </CardHeader>
-                  <CardDescription>Стандартная карточка с тенью и бордером.</CardDescription>
+                  <CardDescription>����������� �������� � ����� � ��������.</CardDescription>
                   <CardFooter>
-                    <Button size="sm">Подробнее</Button>
+                    <Button size="sm">���������</Button>
                   </CardFooter>
                 </Card>
 
@@ -282,9 +282,9 @@ export default function DesignSystemPage() {
                   <CardHeader>
                     <CardTitle>Outlined</CardTitle>
                   </CardHeader>
-                  <CardDescription>Только бордер, без заливки и тени.</CardDescription>
+                  <CardDescription>������ ������, ��� ������� � ����.</CardDescription>
                   <CardFooter>
-                    <Button size="sm" variant="secondary">Открыть</Button>
+                    <Button size="sm" variant="secondary">�������</Button>
                   </CardFooter>
                 </Card>
 
@@ -292,9 +292,9 @@ export default function DesignSystemPage() {
                   <CardHeader>
                     <CardTitle>Elevated</CardTitle>
                   </CardHeader>
-                  <CardDescription>Усиленная тень для выделения.</CardDescription>
+                  <CardDescription>��������� ���� ��� ���������.</CardDescription>
                   <CardFooter>
-                    <Button size="sm" variant="gold">Золотой</Button>
+                    <Button size="sm" variant="gold">�������</Button>
                   </CardFooter>
                 </Card>
 
@@ -302,49 +302,49 @@ export default function DesignSystemPage() {
                   <CardHeader>
                     <CardTitle>Glass</CardTitle>
                   </CardHeader>
-                  <CardDescription>Glassmorphism для оверлеев.</CardDescription>
+                  <CardDescription>Glassmorphism ��� ��������.</CardDescription>
                   <CardFooter>
-                    <Button size="sm" variant="ghost">Закрыть</Button>
+                    <Button size="sm" variant="ghost">�������</Button>
                   </CardFooter>
                 </Card>
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* INPUTS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Поля ввода"
-              description="С label, подсказкой, ошибкой, иконками. Анимированный фокус."
+              title="���� �����"
+              description="� label, ����������, �������, ��������. ������������� �����."
             >
               <div className="grid max-w-lg gap-5">
-                <Input label="Имя" placeholder="Введите ваше имя" hint="Как к вам обращаться" />
-                <Input label="Email" type="email" placeholder="your@email.com" leftIcon={<span>✉</span>} />
-                <Input label="Пароль" type="password" placeholder="••••••••" error="Минимум 8 символов" />
-                <Input placeholder="Без label" />
+                <Input label="���" placeholder="������� ���� ���" hint="��� � ��� ����������" />
+                <Input label="Email" type="email" placeholder="your@email.com" leftIcon={<span>?</span>} />
+                <Input label="������" type="password" placeholder="��������" error="������� 8 ��������" />
+                <Input placeholder="��� label" />
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* BADGES */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Бейджи"
-              description="Статусы, теги и категории. 6 цветов × 3 размера + точка и иконка."
+              title="������"
+              description="�������, ���� � ���������. 6 ������ ? 3 ������� + ����� � ������."
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="default">Default</Badge>
-                  <Badge variant="success">Выполнен</Badge>
-                  <Badge variant="warning">В ожидании</Badge>
-                  <Badge variant="danger">Пропущен</Badge>
-                  <Badge variant="info">Информация</Badge>
-                  <Badge variant="gold">Премиум</Badge>
+                  <Badge variant="success">��������</Badge>
+                  <Badge variant="warning">� ��������</Badge>
+                  <Badge variant="danger">��������</Badge>
+                  <Badge variant="info">����������</Badge>
+                  <Badge variant="gold">�������</Badge>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="success" dot>Онлайн</Badge>
-                  <Badge variant="warning" dot>Оффлайн</Badge>
-                  <Badge variant="danger" dot>Ошибка</Badge>
+                  <Badge variant="success" dot>������</Badge>
+                  <Badge variant="warning" dot>�������</Badge>
+                  <Badge variant="danger" dot>������</Badge>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge size="sm">SM</Badge>
@@ -352,27 +352,27 @@ export default function DesignSystemPage() {
                   <Badge size="lg">LG</Badge>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="success" icon={<span>🕌</span>}>Ибадат</Badge>
-                  <Badge variant="warning" icon={<span>📖</span>}>Коран</Badge>
-                  <Badge variant="info" icon={<span>📿</span>}>Зикр</Badge>
+                  <Badge variant="success" icon={<span>??</span>}>������</Badge>
+                  <Badge variant="warning" icon={<span>??</span>}>�����</Badge>
+                  <Badge variant="info" icon={<span>??</span>}>����</Badge>
                 </div>
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* PROGRESS BARS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Прогресс-бар"
-              description="Анимация при scroll, 4 варианта цвета, shimmer на LG."
+              title="��������-���"
+              description="�������� ��� scroll, 4 �������� �����, shimmer �� LG."
             >
               <div className="max-w-lg space-y-6">
-                <ProgressBar value={80} label="Намазы за сегодня" showValue variant="primary" size="md" />
-                <ProgressBar value={45} label="Чтение Корана" showValue variant="gold" size="md" />
-                <ProgressBar value={20} label="Цель не достигнута" showValue variant="danger" size="md" />
-                <ProgressBar value={95} label="Общий прогресс" showValue variant="gradient" size="lg" />
+                <ProgressBar value={80} label="������ �� �������" showValue variant="primary" size="md" />
+                <ProgressBar value={45} label="������ ������" showValue variant="gold" size="md" />
+                <ProgressBar value={20} label="���� �� ����������" showValue variant="danger" size="md" />
+                <ProgressBar value={95} label="����� ��������" showValue variant="gradient" size="lg" />
                 <div className="mt-4">
-                  <p className="mb-2 text-body-sm text-neutral-500">Размеры:</p>
+                  <p className="mb-2 text-body-sm text-neutral-500">�������:</p>
                   <div className="space-y-3">
                     <ProgressBar value={60} size="sm" />
                     <ProgressBar value={60} size="md" />
@@ -382,19 +382,19 @@ export default function DesignSystemPage() {
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* COUNTERS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Счётчики"
-              description="Анимированный подсчёт от 0. Запускается при scroll. easeOutExpo."
+              title="��������"
+              description="������������� ������� �� 0. ����������� ��� scroll. easeOutExpo."
             >
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
                 <Card variant="default" padding="lg">
                   <Counter
                     value={1247}
-                    label="Намазов"
-                    arabicLabel="صلوات"
+                    label="�������"
+                    arabicLabel="?????"
                     color="primary"
                     size="lg"
                   />
@@ -402,9 +402,9 @@ export default function DesignSystemPage() {
                 <Card variant="default" padding="lg">
                   <Counter
                     value={42}
-                    label="Дней стрика"
-                    arabicLabel="أيام"
-                    suffix=" дн"
+                    label="���� ������"
+                    arabicLabel="????"
+                    suffix=" ��"
                     color="gold"
                     size="lg"
                   />
@@ -412,7 +412,7 @@ export default function DesignSystemPage() {
                 <Card variant="default" padding="lg">
                   <Counter
                     value={89}
-                    label="Прогресс"
+                    label="��������"
                     suffix="%"
                     color="primary"
                     size="lg"
@@ -421,8 +421,8 @@ export default function DesignSystemPage() {
                 <Card variant="default" padding="lg">
                   <Counter
                     value={7}
-                    label="Привычек"
-                    arabicLabel="عادات"
+                    label="��������"
+                    arabicLabel="?????"
                     color="neutral"
                     size="lg"
                   />
@@ -430,12 +430,12 @@ export default function DesignSystemPage() {
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* SKELETON LOADERS */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Скелетоны"
-              description="Заглушки для загрузки: карточка, текст, аватар, строка намаза."
+              title="���������"
+              description="�������� ��� ��������: ��������, �����, ������, ������ ������."
             >
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Card Skeleton */}
@@ -474,7 +474,7 @@ export default function DesignSystemPage() {
 
               {/* Raw shapes */}
               <div className="mt-8">
-                <p className="mb-3 text-body-sm font-medium text-neutral-500">Базовые формы</p>
+                <p className="mb-3 text-body-sm font-medium text-neutral-500">������� �����</p>
                 <div className="flex flex-wrap gap-4">
                   <Skeleton variant="rectangular" width={120} height={80} />
                   <Skeleton variant="circular" width={60} height={60} />
@@ -483,32 +483,32 @@ export default function DesignSystemPage() {
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* THEME TOGGLE */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
-              title="Тема"
-              description="Переключение light/dark с анимацией иконок. Сохраняется в localStorage."
+              title="����"
+              description="������������ light/dark � ��������� ������. ����������� � localStorage."
             >
               <div className="flex items-center gap-4">
                 <ThemeToggle />
-                <span className="text-body-sm text-neutral-500">← Нажмите для переключения</span>
+                <span className="text-body-sm text-neutral-500">? ������� ��� ������������</span>
               </div>
             </Section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             {/* CONTAINER */}
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* ?????????????????????????????????????????????????????????? */}
             <Section
               title="Container"
-              description="3 размера: narrow (max-w-3xl), default (max-w-7xl), wide (max-w-8xl)."
+              description="3 �������: narrow (max-w-3xl), default (max-w-7xl), wide (max-w-8xl)."
             >
               <div className="space-y-4">
                 <Container size="narrow" className="rounded-xl border-2 border-dashed border-primary-300 p-4 dark:border-primary-700">
                   <p className="text-center text-body-sm text-primary-600">Narrow (max-w-3xl)</p>
                 </Container>
                 <div className="rounded-xl border-2 border-dashed border-gold-300 p-4 dark:border-gold-700">
-                  <p className="text-center text-body-sm text-gold-600">Default (max-w-7xl) — текущий</p>
+                  <p className="text-center text-body-sm text-gold-600">Default (max-w-7xl) � �������</p>
                 </div>
               </div>
             </Section>
