@@ -6,6 +6,7 @@
  */
 
 import { createClient } from "@lib/supabase/server";
+import Link from "next/link";
 import { LogoutButton } from "@features/auth/components/LogoutButton";
 import { PrayerWidget } from "@features/prayer/components/PrayerWidget";
 import { HabitsWidget } from "@features/tracker/components/HabitsWidget";
@@ -59,6 +60,18 @@ export default async function DashboardPage() {
             </span>
           </div>
         </div>
+      </div>
+
+      {/* Deep Work Links */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <Link href="/reflection" className="group rounded-2xl border border-primary-500/20 bg-primary-950/20 p-6 backdrop-blur-md transition-all hover:bg-primary-900/30">
+          <h3 className="font-semibold text-primary-300">🌿 Зона Тафаккура</h3>
+          <p className="mt-2 text-sm text-primary-400">Глубокие размышления и фокус</p>
+        </Link>
+        <Link href="/quran" className="group rounded-2xl border border-gold-500/20 bg-gold-950/20 p-6 backdrop-blur-md transition-all hover:bg-gold-900/30">
+          <h3 className="font-semibold text-gold-300">📖 Коран Трекер</h3>
+          <p className="mt-2 text-sm text-gold-400">Прогресс чтения по джузам</p>
+        </Link>
       </div>
 
       {/* Core Tracker Widgets */}
