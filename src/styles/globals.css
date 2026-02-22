@@ -15,11 +15,11 @@
 }
 
 .dark {
-  --color-surface: #0f1a14;
-  --color-surface-secondary: #1a2b1f;
+  --color-surface: #06141B;
+  --color-surface-secondary: #0A1F29;
   --color-text-primary: #f0f9f4;
   --color-text-secondary: #aba08e;
-  --color-border: #2d3d35;
+  --color-border: #133345;
   --color-accent: #58b58c;
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(54, 153, 112, 0.08);
 }
