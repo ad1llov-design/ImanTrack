@@ -80,6 +80,7 @@ export const viewport: Viewport = {
 
 import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
 import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
+import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
 
 export default function RootLayout({
   children,
@@ -90,6 +91,7 @@ export default function RootLayout({
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <OfflineBanner />
+        <GlobalNavigation />
         {children}
         <PWAInstallPrompt />
       </body>
