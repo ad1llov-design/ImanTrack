@@ -2,11 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import { getSurahVerses, Verse } from "../services/quran_api.service";
-import { upsertQuranLog } from "../services/quran.persistence";
+import { upsertQuranLog, getQuranBookmarks, toggleQuranBookmark } from "../services/quran.persistence";
 import { format } from "date-fns";
 import { cn } from "@shared/lib/utils";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { Bookmark } from "lucide-react";
 
 interface QuranReaderProps {
   surahId: number;
@@ -15,6 +16,7 @@ interface QuranReaderProps {
 
 export function QuranReader({ surahId, onBack }: QuranReaderProps) {
   const [verses, setVerses] = useState<Verse[]>([]);
+  const [bookmarkedAyahs, setBookmarkedAyahs] = useState<number[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -22,12 +24,31 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
   useEffect(() => {
     async function fetch() {
       setLoading(true);
-      const data = await getSurahVerses(surahId);
+      const [data, bookmarks] = await Promise.all([
+        getSurahVerses(surahId),
+        getQuranBookmarks(surahId)
+      ]);
       setVerses(data);
+      setBookmarkedAyahs(bookmarks);
       setLoading(false);
     }
     fetch();
   }, [surahId]);
+
+  const handleToggleBookmark = async (verseNum: number) => {
+    try {
+      const isAdded = await toggleQuranBookmark(surahId, verseNum);
+      if (isAdded) {
+        setBookmarkedAyahs(prev => [...prev, verseNum]);
+        toast.success(`Аят ${verseNum} сохранен в закладки`);
+      } else {
+        setBookmarkedAyahs(prev => prev.filter(v => v !== verseNum));
+        toast("Закладка удалена");
+      }
+    } catch (e) {
+      toast.error("Не удалось обновить закладку");
+    }
+  };
 
   const handleMarkAsRead = async () => {
     // Each surah read counts as a "page" or just progress for the day
@@ -69,19 +90,36 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
         className="flex-1 overflow-y-auto space-y-12 px-2 py-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border"
       >
         {verses.map((verse, idx) => {
+          const verseNum = idx + 1;
           const isCurrent = idx === currentVerseIndex;
+          const isBookmarked = bookmarkedAyahs.includes(verseNum);
+
           return (
             <motion.div 
               key={verse.id}
               onClick={() => setCurrentVerseIndex(idx)}
               className={cn(
                 "group relative flex flex-col items-end gap-4 cursor-pointer transition-all duration-500 rounded-2xl p-4",
-                isCurrent ? "opacity-100 scale-100 bg-surface shadow-sm border border-border" : "opacity-60 hover:opacity-100 scale-[0.98] border border-transparent"
+                isCurrent ? "opacity-100 scale-100 bg-surface shadow-sm border border-border" : "opacity-60 hover:opacity-100 scale-[0.98] border border-transparent",
+                isBookmarked && !isCurrent && "border-primary-500/30 bg-primary-50/5"
               )}
             >
-               {/* Verse Number Indicator */}
-               <div className="absolute -left-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface text-[10px] font-bold text-muted shadow-sm">
-                  {idx + 1}
+               {/* Actions & Number Indicator */}
+               <div className="absolute -left-3 -top-3 flex items-center gap-1">
+                 <div className={cn(
+                   "flex h-8 w-8 items-center justify-center rounded-full border border-border text-[10px] font-bold shadow-sm transition-colors",
+                   isBookmarked ? "bg-primary-500 border-primary-500 text-white" : "bg-surface text-muted"
+                 )}>
+                    {verseNum}
+                 </div>
+                 {isCurrent && (
+                   <button 
+                     onClick={(e) => { e.stopPropagation(); handleToggleBookmark(verseNum); }}
+                     className="flex h-8 w-8 items-center justify-center rounded-full bg-surface border border-border text-muted hover:text-primary-500 transition-colors shadow-sm"
+                   >
+                     <Bookmark className={cn("h-4 w-4", isBookmarked && "fill-primary-500 text-primary-500")} />
+                   </button>
+                 )}
                </div>
 
                {/* Arabic Text */}

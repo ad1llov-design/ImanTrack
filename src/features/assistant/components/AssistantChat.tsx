@@ -43,13 +43,14 @@ export function AssistantChat({ className }: { className?: string }) {
     }
   }, [messages, isTyping]);
 
-  const handleSend = () => {
-    if (!inputValue.trim()) return;
+  const handleSend = async () => {
+    if (!inputValue.trim() || isTyping) return;
 
+    const userText = inputValue;
     const userMessage: Message = {
       id: Date.now().toString(),
       role: "user",
-      content: inputValue,
+      content: userText,
       timestamp: new Date(),
     };
 
@@ -57,23 +58,33 @@ export function AssistantChat({ className }: { className?: string }) {
     setInputValue("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      let contextMsg = "Бисмиллях. Я готов ответить на ваши вопросы.";
-      if (dailyProgress) {
-        const prayers = Object.values(dailyProgress.prayers || {}).filter(Boolean).length;
-        const sunnahs = (dailyProgress.sunnah_actions || []).length;
-        contextMsg = `Бисмиллях. Сегодня вы выполнили ${prayers} фарз-намазов и ${sunnahs} действий сунны. Пусть Аллах примет ваши старания! Чем я могу помочь?`;
-      }
-
+    try {
+      const res = await fetch("/api/assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText, context: dailyProgress }),
+      });
+      const data = await res.json();
+      
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: contextMsg,
+        content: data.reply || "Извините, произошла ошибка.",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, assistantMessage]);
+    } catch (e) {
+      console.error(e);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: "Произошла ошибка при соединении с помощником.",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   return (

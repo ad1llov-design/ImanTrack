@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlassCard } from "@shared/components/ui/GlassCard";
 import { cn } from "@shared/lib/utils";
-import { SUNNAH_ACTIONS } from "../services/sunnah.persistence";
+import { SUNNAH_ACTIONS, SUNNAH_CATEGORIES } from "../services/sunnah.persistence";
 import { getDailyProgress, upsertDailyProgress } from "../../tracker/services/daily_progress.service";
 import { toast } from "sonner";
 
@@ -66,39 +66,51 @@ export function SunnahGrid({ className }: { className?: string }) {
 
   return (
     <>
-      <div className={cn("grid grid-cols-3 gap-4 md:gap-6", className)}>
-        {SUNNAH_ACTIONS.map((action) => {
-          const isDone = completedActions.includes(action.id);
+      <div className={cn("flex flex-col gap-8", className)}>
+        {SUNNAH_CATEGORIES.map((cat) => {
+          const categoryActions = SUNNAH_ACTIONS.filter(a => a.category === cat.id);
+          if (categoryActions.length === 0) return null;
+
           return (
-            <motion.button
-              key={action.id}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedAction(action)}
-              className={cn(
-                "group relative flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border transition-all duration-300",
-                isDone 
-                  ? "border-primary-500 bg-primary-50 shadow-sm" 
-                  : "border-border bg-surface hover:border-primary-300 shadow-sm"
-              )}
-            >
-              <span className={cn(
-                "text-3xl transition-transform duration-300",
-                isDone ? "scale-110 drop-shadow-glow" : "group-hover:scale-110"
-              )}>
-                {action.icon}
-              </span>
-              <span className={cn(
-                "text-[0.65rem] font-bold uppercase tracking-wider text-center px-1",
-                isDone ? "text-primary-600" : "text-muted group-hover:text-main"
-              )}>
-                {action.label}
-              </span>
-              {isDone && (
-                <div className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary-500 text-[10px] text-white shadow-sm">
-                  ✓
-                </div>
-              )}
-            </motion.button>
+            <div key={cat.id} className="space-y-4">
+              <h2 className="text-sm font-bold tracking-wider text-muted uppercase px-1">{cat.title}</h2>
+              <div className="grid grid-cols-3 gap-4 md:gap-6">
+                {categoryActions.map((action) => {
+                  const isDone = completedActions.includes(action.id);
+                  return (
+                    <motion.button
+                      key={action.id}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setSelectedAction(action as any)}
+                      className={cn(
+                        "group relative flex aspect-square flex-col items-center justify-center gap-2 rounded-2xl border transition-all duration-300",
+                        isDone 
+                          ? "border-primary-500 bg-primary-50 shadow-sm" 
+                          : "border-border bg-surface hover:border-primary-300 shadow-sm"
+                      )}
+                    >
+                      <span className={cn(
+                        "text-3xl transition-transform duration-300",
+                        isDone ? "scale-110 drop-shadow-glow" : "group-hover:scale-110"
+                      )}>
+                        {action.icon}
+                      </span>
+                      <span className={cn(
+                        "text-[0.65rem] font-bold uppercase tracking-wider text-center px-1 leading-tight",
+                        isDone ? "text-primary-600" : "text-muted group-hover:text-main"
+                      )}>
+                        {action.label}
+                      </span>
+                      {isDone && (
+                        <div className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary-500 text-[10px] text-white shadow-sm">
+                          ✓
+                        </div>
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
           );
         })}
       </div>

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @layout Protected Layout
  *
  * Лейаут для защищённых страниц (dashboard, habits и т.д.).
@@ -26,7 +26,7 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background text-main">
+    <div className="min-h-screen overflow-y-auto bg-background text-main pb-20">
       {children}
     </div>
   );
