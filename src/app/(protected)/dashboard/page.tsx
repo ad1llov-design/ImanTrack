@@ -25,7 +25,7 @@ export default async function DashboardPage() {
           السلام عليكم
         </p>
         <h1 className="text-display text-4xl md:text-5xl font-bold text-main">
-          Добро пожаловать{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}
+          Ассаламу алейкум{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}
         </h1>
       </div>
 

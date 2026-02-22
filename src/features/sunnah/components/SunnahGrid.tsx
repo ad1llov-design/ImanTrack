@@ -132,9 +132,18 @@ export function SunnahGrid({ className }: { className?: string }) {
                 <h3 className="text-2xl font-display font-bold text-main mb-2">
                   {selectedAction.label}
                 </h3>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-sm text-muted leading-relaxed mb-4">
                   {selectedAction.description}
                 </p>
+                {/* @ts-ignore - added source property */}
+                {selectedAction.source && (
+                  <div className="bg-primary-50/50 dark:bg-primary-950/30 py-2 px-3 rounded-xl border border-primary-100/50 dark:border-primary-900/50 inline-block">
+                    <p className="text-xs text-primary-700 dark:text-primary-300 font-medium italic">
+                      {/* @ts-ignore */}
+                      {selectedAction.source}
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-col gap-3">
