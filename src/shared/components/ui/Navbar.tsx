@@ -75,31 +75,8 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ── Logo ─────────────────────────────── */}
-        <Link
-          href="/"
-          className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
-        >
-          {/* Minimalist Logo Box */}
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 dark:bg-primary-950/30 dark:text-primary-400 dark:group-hover:bg-primary-900/40">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className="h-5 w-5"
-            >
-              <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
-              <path d="M12 3a9 9 0 0 0 9 9" />
-              <path d="M12 21a9 9 0 0 0-9-9" />
-            </svg>
-          </div>
-          <span className="text-[1.1rem] font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-            Iman<span className="text-primary-500">Track</span>
-          </span>
-        </Link>
+        {/* ── Logo Removed for Minimalism ─────────────────────────────── */}
+        <div />
 
         {/* ── Desktop Nav ──────────────────────── */}
         <div className="hidden items-center gap-2 md:flex">

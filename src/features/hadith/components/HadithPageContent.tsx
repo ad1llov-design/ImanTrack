@@ -10,6 +10,8 @@
 import { useHadith } from "../hooks/useHadith";
 import { getFavoriteHadiths } from "../services/hadith.service";
 import { HadithCard } from "./HadithCard";
+import { HADITH_COLLECTIONS } from "../data/collections";
+import Link from "next/link";
 
 export function HadithPageContent() {
   const {
@@ -64,10 +66,46 @@ export function HadithPageContent() {
         onShowToday={showToday}
       />
 
+      {/* ── Collections section ────────────────── */}
+      <div className="mt-12">
+        <h2 className="mb-4 text-lg font-bold text-neutral-900 dark:text-neutral-50">
+          📚 Сборники Хадисов
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {HADITH_COLLECTIONS.map((collection) => (
+            <Link 
+              key={collection.id} 
+              href={`/hadith/${collection.id}`}
+              className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all hover:border-primary-500 hover:shadow-md h-full flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-display font-bold text-main group-hover:text-primary-500 transition-colors">
+                  {collection.name}
+                </h3>
+                <p className="mt-1 text-xs text-muted font-medium mb-3">
+                  {collection.author}
+                </p>
+                <p className="text-xs text-neutral-500 leading-relaxed mb-4">
+                  {collection.description}
+                </p>
+              </div>
+              <div className="flex items-center justify-between mt-auto">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-primary-500 bg-primary-500/10 px-2 py-1 rounded-md">
+                  {collection.count} Хадисов
+                </span>
+                <span className="text-muted group-hover:text-primary-500 transition-colors">
+                  →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* ── Favorites section ────────────────── */}
       {favHadiths.length > 0 && (
         <div className="mt-12">
-          <h2 className="mb-4 text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+          <h2 className="mb-4 text-lg font-bold text-neutral-800 dark:text-neutral-200">
             ❤️ Избранные хадисы
             <span className="ml-2 text-sm font-normal text-neutral-400">
               ({favHadiths.length})
