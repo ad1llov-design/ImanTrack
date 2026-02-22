@@ -49,7 +49,7 @@ export default function AdhkarCategoryPage({ params }: PageProps) {
   // Проверяем валидность категории
   if (!VALID_CATEGORIES.includes(categoryId)) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-surface-light dark:bg-surface-dark">
+      <div className="flex min-h-screen items-center justify-center bg-background text-main">
         <div className="text-center">
           <p className="text-4xl">🤔</p>
           <p className="mt-4 text-neutral-500">Категория не найдена</p>
@@ -59,7 +59,7 @@ export default function AdhkarCategoryPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-surface-light dark:bg-surface-dark">
+    <div className="min-h-screen bg-background text-main">
       <DhikrCategoryView categoryId={categoryId} />
     </div>
   );

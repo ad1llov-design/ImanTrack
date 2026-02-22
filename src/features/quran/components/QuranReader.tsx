@@ -64,7 +64,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
 
       <div 
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto space-y-12 px-2 py-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-white/10"
+        className="flex-1 overflow-y-auto space-y-12 px-2 py-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border"
       >
         {verses.map((verse, idx) => {
           const isCurrent = idx === currentVerseIndex;
@@ -73,24 +73,31 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
               key={verse.id}
               onClick={() => setCurrentVerseIndex(idx)}
               className={cn(
-                "group relative flex flex-col items-end gap-6 cursor-pointer transition-all duration-500",
-                isCurrent ? "opacity-100 scale-100" : "opacity-40 hover:opacity-70 scale-[0.98]"
+                "group relative flex flex-col items-end gap-4 cursor-pointer transition-all duration-500 rounded-2xl p-4",
+                isCurrent ? "opacity-100 scale-100 bg-surface shadow-sm border border-border" : "opacity-60 hover:opacity-100 scale-[0.98] border border-transparent"
               )}
             >
                {/* Verse Number Indicator */}
-               <div className="absolute -left-2 top-0 flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[10px] text-neutral-500">
+               <div className="absolute -left-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface text-[10px] font-bold text-muted shadow-sm">
                   {idx + 1}
                </div>
 
                {/* Arabic Text */}
-               <p className="text-display-arabic text-right text-3xl md:text-4xl text-neutral-100 leading-[2.5] tracking-wide dir-rtl">
+               <p className="text-display-arabic text-right text-3xl md:text-4xl text-main leading-[2.5] tracking-wide dir-rtl w-full">
                  {verse.text_uthmani}
                </p>
+               
+               {/* Translation */}
+               {verse.translation && (
+                 <p className="text-sm md:text-base text-muted leading-relaxed text-right md:text-left w-full border-t border-border pt-4">
+                   {verse.translation}
+                 </p>
+               )}
                
                {isCurrent && (
                  <motion.div 
                    layoutId="active-verse-indicator"
-                   className="absolute -right-4 top-0 h-full w-1 rounded-full bg-primary"
+                   className="absolute -right-1 top-1/2 -translate-y-1/2 h-1/2 w-1 rounded-full bg-primary-500"
                  />
                )}
             </motion.div>

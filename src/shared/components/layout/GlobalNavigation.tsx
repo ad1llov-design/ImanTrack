@@ -26,9 +26,8 @@ export function GlobalNavigation() {
 
   const navItems = [
     { label: "Дашборд", href: "/dashboard", icon: <Home className="h-5 w-5" /> },
-    { label: "Молитвы", href: "/prayer", icon: <Clock className="h-5 w-5" /> },
-    { label: "Развитие", href: "/stats", icon: <BarChart2 className="h-5 w-5" /> },
     { label: "Коран", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
+    { label: "Зикр", href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
     { label: "Сунна", href: "/sunnah", icon: <Library className="h-5 w-5" /> },
     { label: "Профиль", href: "/profile", icon: <User className="h-5 w-5" /> },
   ];

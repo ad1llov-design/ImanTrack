@@ -263,6 +263,57 @@ export interface Database {
           is_completed?: boolean;
         };
       };
+      daily_progress: {
+        Row: {
+          id: string;
+          user_id: string;
+          date: string;
+          prayers: Record<string, boolean>;
+          sunnah_actions: string[];
+          nafil_count: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          date: string;
+          prayers?: Record<string, boolean>;
+          sunnah_actions?: string[];
+          nafil_count?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          prayers?: Record<string, boolean>;
+          sunnah_actions?: string[];
+          nafil_count?: number;
+          updated_at?: string;
+        };
+      };
+      dhikr_logs: {
+        Row: {
+          id: string;
+          user_id: string;
+          dhikr_id: string;
+          count: number;
+          timestamp: string;
+          date: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          dhikr_id: string;
+          count?: number;
+          timestamp?: string;
+          date?: string;
+        };
+        Update: {
+          dhikr_id?: string;
+          count?: number;
+          date?: string;
+        };
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

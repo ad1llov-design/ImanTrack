@@ -1,9 +1,9 @@
-/**
+﻿/**
  * @layout Protected Layout
  *
- * Лейаут для защищённых страниц (dashboard, habits и т.д.).
- * Проверяет сессию на сервере — если нет, редиректит на /auth/login.
- * Передаёт данные пользователя в children через props.
+ * Р›РµР№Р°СѓС‚ РґР»СЏ Р·Р°С‰РёС‰С‘РЅРЅС‹С… СЃС‚СЂР°РЅРёС† (dashboard, habits Рё С‚.Рґ.).
+ * РџСЂРѕРІРµСЂСЏРµС‚ СЃРµСЃСЃРёСЋ РЅР° СЃРµСЂРІРµСЂРµ вЂ” РµСЃР»Рё РЅРµС‚, СЂРµРґРёСЂРµРєС‚РёС‚ РЅР° /auth/login.
+ * РџРµСЂРµРґР°С‘С‚ РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ children С‡РµСЂРµР· props.
  */
 
 import { redirect } from "next/navigation";
@@ -26,7 +26,7 @@ export default async function ProtectedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-surface-light dark:bg-surface-dark">
+    <div className="min-h-screen bg-background text-main">
       {children}
     </div>
   );

@@ -44,22 +44,22 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
             className={cn(
               "flex w-full items-center justify-between rounded-xl border p-4 transition-all",
               isActive 
-                ? "border-primary-500 bg-primary/10" 
-                : "border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/[0.08]"
+                ? "border-primary-500 bg-primary-50 shadow-sm" 
+                : "border-border bg-surface hover:border-primary-300 shadow-sm"
             )}
           >
             <div className="flex items-center gap-4">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-900 text-xs font-bold text-neutral-400">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface border border-border text-xs font-bold text-muted shadow-inner">
                 {surah.id}
               </span>
               <div className="text-left">
-                <h4 className="text-sm font-bold text-neutral-100">{surah.name_simple}</h4>
-                <p className="text-[10px] uppercase tracking-wider text-neutral-500">
+                <h4 className="text-sm font-bold text-main">{surah.name_simple}</h4>
+                <p className="text-[10px] uppercase tracking-wider text-muted">
                    {surah.translated_name.name} • {surah.verses_count} аятов
                 </p>
               </div>
             </div>
-            <span className="font-arabic text-xl text-primary-400">
+            <span className="font-arabic text-2xl text-primary-600">
               {surah.name_arabic}
             </span>
           </button>

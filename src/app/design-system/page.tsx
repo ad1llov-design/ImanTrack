@@ -65,7 +65,7 @@ export default function DesignSystemPage() {
         rightSlot={<ThemeToggle />}
       />
 
-      <main className="min-h-screen bg-surface-light pt-20 dark:bg-surface-dark">
+      <main className="min-h-screen bg-background text-main pt-20">
         {/* ── Hero ─────────────────────────────── */}
         <div className="bg-gradient-primary py-20">
           <Container>
