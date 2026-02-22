@@ -81,6 +81,7 @@ export const viewport: Viewport = {
 import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
 import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
 import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
+import { ThemeProvider } from "./providers";
 
 export default function RootLayout({
   children,
@@ -89,11 +90,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col bg-surface-background`}>
-        <OfflineBanner />
-        <GlobalNavigation />
-        {children}
-        <PWAInstallPrompt />
+      <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col bg-surface transition-colors duration-300`}>
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+          <OfflineBanner />
+          <GlobalNavigation />
+          {children}
+          <PWAInstallPrompt />
+        </ThemeProvider>
       </body>
     </html>
   );

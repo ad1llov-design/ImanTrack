@@ -33,51 +33,26 @@ export default async function DashboardPage() {
         {/* Core Progress Section */}
         <section className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-display text-2xl font-semibold text-white">Текущий прогресс</h2>
-            <Link href="/stats" className="text-sm text-primary-400 hover:text-primary-300 transition-colors">Подробная статистика →</Link>
+            <h2 className="text-display text-2xl font-semibold text-main">Ваш день</h2>
+            <Link href="/stats" className="text-sm text-primary-500 hover:text-primary-600 transition-colors">Статистика →</Link>
           </div>
           
-          <div className="grid gap-6">
+          <div className="grid gap-6 md:grid-cols-2">
             <PrayerWidget />
             <HabitsWidget />
           </div>
         </section>
 
-        {/* Quick Actions / Deep Work Links */}
-        <section className="space-y-6">
-          <h2 className="text-display text-2xl font-semibold text-white">Духовные практики</h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <Link href="/reflection" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-neutral-100 mb-2">🌿 Зона Тафаккура</h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">Глубокие размышления в тишине и поиск внутреннего покоя.</p>
-              </div>
-              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">🌿</div>
-            </Link>
-            
-            <Link href="/quran" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-neutral-100 mb-2">📖 Коран Трекер</h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">Следите за своим прогрессом чтения и изучения Священного Писания.</p>
-              </div>
-              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">📖</div>
-            </Link>
-
-            <Link href="/sunnah" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-neutral-100 mb-2">⚡ Сунна Действия</h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">9 благих дел на каждый день для оживления Сунны.</p>
-              </div>
-              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">⚡</div>
-            </Link>
-
-            <Link href="/assistant" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-neutral-100 mb-2">🤖 AI Ассистент</h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">Ваш персональный духовный наставник для анализа прогресса.</p>
-              </div>
-              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">🤖</div>
-            </Link>
+        {/* Quote of the Day Section */}
+        <section className="mt-4">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 text-center shadow-card">
+            <div className="absolute -top-6 -right-6 text-9xl text-primary-50 opacity-50">”</div>
+            <p className="relative z-10 text-lg md:text-xl font-display text-main italic leading-relaxed">
+              «Ищите милость Аллаха и поминайте Аллаха часто, — быть может, вы преуспеете.»
+            </p>
+            <p className="relative z-10 mt-4 text-sm font-medium text-muted uppercase tracking-widest">
+              Сура Аль-Джумуа, Аят 10
+            </p>
           </div>
         </section>
       </div>

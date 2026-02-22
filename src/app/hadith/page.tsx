@@ -1,14 +1,14 @@
-/**
+﻿/**
  * @page /hadith
- * Страница хадиса дня
+ * РЎС‚СЂР°РЅРёС†Р° С…Р°РґРёСЃР° РґРЅСЏ
  */
 
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Хадис дня — ImanTrack",
-  description: "Ежедневный хадис Пророка ﷺ с арабским текстом и русским переводом",
+  title: "РҐР°РґРёСЃ РґРЅСЏ вЂ” ImanTrack",
+  description: "Р•Р¶РµРґРЅРµРІРЅС‹Р№ С…Р°РґРёСЃ РџСЂРѕСЂРѕРєР° п·є СЃ Р°СЂР°Р±СЃРєРёРј С‚РµРєСЃС‚РѕРј Рё СЂСѓСЃСЃРєРёРј РїРµСЂРµРІРѕРґРѕРј",
 };
 
 const HadithPageContent = dynamic(
@@ -26,7 +26,7 @@ const HadithPageContent = dynamic(
 
 export default function HadithPage() {
   return (
-    <div className="min-h-screen bg-surface-light dark:bg-surface-dark">
+    <div className="min-h-screen bg-background text-main">
       <HadithPageContent />
     </div>
   );

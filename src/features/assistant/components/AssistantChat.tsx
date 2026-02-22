@@ -25,6 +25,18 @@ export function AssistantChat({ className }: { className?: string }) {
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const [dailyProgress, setDailyProgress] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchProgress() {
+      const { getDailyProgress } = await import("../../tracker/services/daily_progress.service");
+      const todayStr = new Date().toISOString().split('T')[0] as string;
+      const data = await getDailyProgress(todayStr);
+      if (data) setDailyProgress(data);
+    }
+    fetchProgress();
+  }, []);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -45,12 +57,18 @@ export function AssistantChat({ className }: { className?: string }) {
     setInputValue("");
     setIsTyping(true);
 
-    // Mock AI response
     setTimeout(() => {
+      let contextMsg = "Бисмиллях. Я готов ответить на ваши вопросы.";
+      if (dailyProgress) {
+        const prayers = Object.values(dailyProgress.prayers || {}).filter(Boolean).length;
+        const sunnahs = (dailyProgress.sunnah_actions || []).length;
+        contextMsg = `Бисмиллях. Сегодня вы выполнили ${prayers} фарз-намазов и ${sunnahs} действий сунны. Пусть Аллах примет ваши старания! Чем я могу помочь?`;
+      }
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "Бисмиллях. Я анализирую ваш прогресс... (Эта функция будет доступна после интеграции API)",
+        content: contextMsg,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, assistantMessage]);
@@ -61,11 +79,11 @@ export function AssistantChat({ className }: { className?: string }) {
   return (
     <div className={cn("mx-auto max-w-2xl px-4 py-8 md:py-16 flex flex-col h-[85vh]", className)}>
       <div className="mb-8 text-center">
-        <h1 className="text-display text-4xl font-bold text-neutral-100">Иман Помощник</h1>
-        <p className="text-neutral-500 text-sm mt-2">Духовные советы на основе вашего прогресса</p>
+        <h1 className="text-display text-4xl font-bold text-main">Иман Помощник</h1>
+        <p className="text-muted text-sm mt-2">Ваш контекстный духовный наставник</p>
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-6 pr-4 [&::-webkit-scrollbar]:w-1">
+      <div className="flex-1 overflow-y-auto space-y-6 pr-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border">
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -76,24 +94,24 @@ export function AssistantChat({ className }: { className?: string }) {
           >
             <div
               className={cn(
-                "rounded-2xl px-6 py-4 text-sm leading-relaxed",
+                "rounded-2xl px-6 py-4 text-sm leading-relaxed shadow-sm",
                 msg.role === "user"
-                  ? "bg-primary text-white"
-                  : "bg-surface-card border border-white/5 text-neutral-200"
+                  ? "bg-primary-500 text-white"
+                  : "bg-surface border border-border text-main"
               )}
             >
               {msg.content}
             </div>
-            <span className="mt-1 text-[10px] text-neutral-600 uppercase tracking-tighter px-2">
+            <span className="mt-1 text-[10px] text-muted uppercase tracking-tighter px-2">
               {msg.timestamp.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}
             </span>
           </div>
         ))}
         {isTyping && (
-          <div className="flex items-center gap-2 text-neutral-500 bg-surface-card border border-white/5 rounded-2xl px-6 py-3 mr-auto max-w-fit">
-            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary" />
-            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary delay-75" />
-            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary delay-150" />
+          <div className="flex items-center gap-2 text-muted bg-surface border border-border rounded-2xl px-6 py-3 mr-auto max-w-fit shadow-sm">
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary-400" />
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary-400 delay-75" />
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary-400 delay-150" />
           </div>
         )}
         <div ref={scrollRef} />
@@ -107,11 +125,11 @@ export function AssistantChat({ className }: { className?: string }) {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
           placeholder="Спросите о прогрессе или аятах..."
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-neutral-100 placeholder-neutral-600 focus:border-primary/50 focus:ring-0 outline-none transition-all"
+          className="w-full rounded-2xl border border-border bg-surface px-6 py-4 text-main placeholder-muted focus:border-primary-500 focus:ring-1 focus:ring-primary-500/50 outline-none transition-all shadow-sm"
         />
         <button
           onClick={handleSend}
-          className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-xl bg-primary text-white active:scale-90 transition-transform"
+          className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-xl bg-primary-500 text-white shadow-md active:scale-95 transition-transform hover:bg-primary-600"
         >
           →
         </button>

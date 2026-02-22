@@ -1,14 +1,14 @@
-/**
+﻿/**
  * @page /tracker
- * Страница прогресса и достижений.
+ * РЎС‚СЂР°РЅРёС†Р° РїСЂРѕРіСЂРµСЃСЃР° Рё РґРѕСЃС‚РёР¶РµРЅРёР№.
  */
 
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Прогресс — ImanTrack",
-  description: "Статистика твоих благих дел, серия дней и достижения",
+  title: "РџСЂРѕРіСЂРµСЃСЃ вЂ” ImanTrack",
+  description: "РЎС‚Р°С‚РёСЃС‚РёРєР° С‚РІРѕРёС… Р±Р»Р°РіРёС… РґРµР», СЃРµСЂРёСЏ РґРЅРµР№ Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ",
 };
 
 const TrackerPageContent = dynamic(
@@ -29,7 +29,7 @@ const TrackerPageContent = dynamic(
 
 export default function TrackerPage() {
   return (
-    <div className="min-h-screen bg-surface-light dark:bg-surface-dark">
+    <div className="min-h-screen bg-background text-main">
       <TrackerPageContent />
     </div>
   );

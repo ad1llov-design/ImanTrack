@@ -21,8 +21,8 @@ export function QuranTracker({ className }: { className?: string }) {
             className="space-y-6"
           >
             <div className="flex items-center justify-between">
-              <h2 className="text-display text-2xl font-bold text-neutral-100">Выберите Суру</h2>
-              <span className="text-[10px] uppercase tracking-widest text-neutral-500">114 глав</span>
+              <h2 className="text-display text-2xl font-bold text-main">Выберите Суру</h2>
+              <span className="text-[10px] uppercase tracking-widest text-muted">114 глав</span>
             </div>
             <SurahList onSelect={(id) => setSelectedSurahId(id)} />
           </motion.div>
