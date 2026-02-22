@@ -1,32 +1,27 @@
 import { Metadata } from "next";
-import { GlassCard } from "@shared/components/ui/GlassCard";
+import { SunnahGrid } from "@features/sunnah/components/SunnahGrid";
 
 export const metadata: Metadata = {
   title: "Сунна — ImanTrack",
-  description: "Раздел Сунны в разработке.",
+  description: "Оживление Сунны через благие дела.",
 };
 
 export default function SunnahPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            Раздел в разработке
-          </p>
-          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-            📖 Сунна
-          </h1>
-        </div>
+    <div className="mx-auto max-w-lg px-4 py-8 md:py-16">
+      <div className="mb-12 text-center">
+        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">
+          Оживление Сунны
+        </p>
+        <h1 className="text-display text-4xl font-bold text-neutral-100">
+          Благие Дела
+        </h1>
+        <p className="mt-4 text-sm text-neutral-400 leading-relaxed">
+          Простые действия Пророка (мир ему и благословение), которые меняют сердце и мир вокруг.
+        </p>
       </div>
 
-      <GlassCard className="flex flex-col items-center justify-center p-12 text-center min-h-[40vh]">
-        <span className="text-5xl mb-4">🚧</span>
-        <h2 className="text-xl font-bold text-white mb-2">Страница скоро появится</h2>
-        <p className="text-neutral-400 max-w-md mx-auto leading-relaxed">
-          Этот раздел находится на стадии проектирования. ИншаАллах, здесь будут добавлены трекеры постов по Сунне и дополнительные материалы.
-        </p>
-      </GlassCard>
+      <SunnahGrid />
     </div>
   );
 }

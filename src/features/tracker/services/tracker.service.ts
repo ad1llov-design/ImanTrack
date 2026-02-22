@@ -39,6 +39,26 @@ export async function getRecentActivity(days: number = 30): Promise<DailyActivit
 
   const typedAdhkarLogs = (adhkarLogs || []) as Array<{ date: string; is_completed: boolean }>;
 
+  // Fetch sunnah logs
+  const { data: sunnahLogs } = await supabase
+    .from("sunnah_logs")
+    .select("date, is_completed")
+    .eq("user_id", user.id)
+    .gte("date", format(startDate, "yyyy-MM-dd"))
+    .lte("date", format(endDate, "yyyy-MM-dd"));
+
+  const typedSunnahLogs = (sunnahLogs || []) as Array<{ date: string; is_completed: boolean }>;
+
+  // Fetch quran logs
+  const { data: quranLogs } = await supabase
+    .from("quran_logs")
+    .select("date, pages_read")
+    .eq("user_id", user.id)
+    .gte("date", format(startDate, "yyyy-MM-dd"))
+    .lte("date", format(endDate, "yyyy-MM-dd"));
+
+  const typedQuranLogs = (quranLogs || []) as Array<{ date: string; pages_read: number }>;
+
   // Map to DailyActivity
   const interval = eachDayOfInterval({ start: startDate, end: endDate });
   
@@ -47,12 +67,16 @@ export async function getRecentActivity(days: number = 30): Promise<DailyActivit
     
     const dayPrayers = typedPrayerLogs.filter(l => l.date === dateStr);
     const dayAdhkars = typedAdhkarLogs.filter(a => a.date === dateStr);
+    const daySunnah = typedSunnahLogs.filter(s => s.date === dateStr);
+    const dayQuran = typedQuranLogs.filter(q => q.date === dateStr);
     
     const completedPrayers = dayPrayers.filter(p => p.status === "completed").length;
     const completedAdhkars = dayAdhkars.filter(a => a.is_completed).length;
+    const completedSunnah = daySunnah.filter(s => s.is_completed).length;
+    const quranPages = dayQuran.reduce((acc, q) => acc + (q.pages_read || 0), 0);
     
     // Calculate a simple score for the heatmap
-    const score = (completedPrayers * 10) + (completedAdhkars * 5);
+    const score = (completedPrayers * 10) + (completedAdhkars * 5) + (completedSunnah * 3) + (quranPages * 2);
 
     return {
       date: dateStr,

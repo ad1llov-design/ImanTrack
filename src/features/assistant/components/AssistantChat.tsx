@@ -1,120 +1,120 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { GlassCard } from "@shared/components/ui/GlassCard";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@shared/lib/utils";
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
+  timestamp: Date;
 }
 
 const INITIAL_MESSAGES: Message[] = [
   {
     id: "1",
     role: "assistant",
-    content: "Ассаляму алейкум! Я ваш духовный наставник и помощник. Я вижу ваши успехи в трекере. Чем я могу помочь вам сегодня в вашем духовном росте?",
-  }
+    content: "Ас-саляму алейкум! Я ваш персональный духовный ассистент. Чем я могу помочь вам сегодня?",
+    timestamp: new Date(),
+  },
 ];
 
 export function AssistantChat({ className }: { className?: string }) {
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
-  const [input, setInput] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isTyping]);
 
   const handleSend = () => {
-    if (!input.trim()) return;
+    if (!inputValue.trim()) return;
 
-    const userMsg: Message = { id: Date.now().toString(), role: "user", content: input };
-    setMessages((prev) => [...prev, userMsg]);
-    setInput("");
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: "user",
+      content: inputValue,
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInputValue("");
     setIsTyping(true);
 
-    // Mock API response
+    // Mock AI response
     setTimeout(() => {
-      const gptMsg: Message = { 
-        id: (Date.now() + 1).toString(), 
-        role: "assistant", 
-        content: "ИншаАллах, это отличный план. Помните слова Пророка (мир ему и благословение): «Самые любимые дела для Аллаха — это те, которые совершаются постоянно, даже если они малы». Не усердствуйте сверх меры, чтобы не выгореть, двигайтесь маленькими, но стабильными шагами."
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: "Бисмиллях. Я анализирую ваш прогресс... (Эта функция будет доступна после интеграции API)",
+        timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, gptMsg]);
+      setMessages((prev) => [...prev, assistantMessage]);
       setIsTyping(false);
-    }, 2000);
+    }, 1500);
   };
 
   return (
-    <div className={cn("flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-6rem)] w-full max-w-3xl mx-auto", className)}>
-      
-      {/* Header Info */}
-      <GlassCard className="p-4 mb-4 flex items-center gap-4 bg-primary-950/20 border-primary-500/20 shrink-0">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-500/20 text-2xl shadow-glow">
-          🤖
-        </div>
-        <div>
-          <h2 className="text-lg font-bold text-white">Духовный Ментор (AI)</h2>
-          <p className="text-xs text-primary-400">Глубокий анализ данных трекера (Demo)</p>
-        </div>
-      </GlassCard>
+    <div className={cn("mx-auto max-w-2xl px-4 py-8 md:py-16 flex flex-col h-[85vh]", className)}>
+      <div className="mb-8 text-center">
+        <h1 className="text-display text-4xl font-bold text-neutral-100">Иман Помощник</h1>
+        <p className="text-neutral-500 text-sm mt-2">Духовные советы на основе вашего прогресса</p>
+      </div>
 
-      {/* Chat Messages */}
-      <GlassCard className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-6 space-y-2 !rounded-b-none border-b-0">
+      <div className="flex-1 overflow-y-auto space-y-6 pr-4 [&::-webkit-scrollbar]:w-1">
         {messages.map((msg) => (
-          <motion.div
+          <div
             key={msg.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
             className={cn(
-              "flex w-full",
-              msg.role === "user" ? "justify-end" : "justify-start"
+              "flex flex-col max-w-[85%]",
+              msg.role === "user" ? "ml-auto items-end" : "mr-auto items-start"
             )}
           >
-            <div 
+            <div
               className={cn(
-                "max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed",
-                msg.role === "user" 
-                  ? "bg-primary-600 text-white rounded-tr-sm" 
-                  : "bg-surface-dark-secondary/80 border border-white/5 text-neutral-200 rounded-tl-sm shadow-card"
+                "rounded-2xl px-6 py-4 text-sm leading-relaxed",
+                msg.role === "user"
+                  ? "bg-primary text-white"
+                  : "bg-surface-card border border-white/5 text-neutral-200"
               )}
             >
               {msg.content}
             </div>
-          </motion.div>
+            <span className="mt-1 text-[10px] text-neutral-600 uppercase tracking-tighter px-2">
+              {msg.timestamp.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}
+            </span>
+          </div>
         ))}
-
         {isTyping && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex w-full justify-start">
-            <div className="max-w-[85%] rounded-2xl p-4 bg-surface-dark-secondary/80 border border-white/5 rounded-tl-sm flex gap-1 items-center">
-              <span className="h-2 w-2 rounded-full bg-primary-500 animate-bounce" style={{ animationDelay: "0ms" }} />
-              <span className="h-2 w-2 rounded-full bg-primary-500 animate-bounce" style={{ animationDelay: "150ms" }} />
-              <span className="h-2 w-2 rounded-full bg-primary-500 animate-bounce" style={{ animationDelay: "300ms" }} />
-            </div>
-          </motion.div>
+          <div className="flex items-center gap-2 text-neutral-500 bg-surface-card border border-white/5 rounded-2xl px-6 py-3 mr-auto max-w-fit">
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary" />
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary delay-75" />
+            <span className="flex h-1.5 w-1.5 animate-bounce rounded-full bg-primary delay-150" />
+          </div>
         )}
-      </GlassCard>
+        <div ref={scrollRef} />
+      </div>
 
-      {/* Input Area */}
-      <div className="shrink-0 p-4 border-t border-white/10 bg-surface-dark-secondary/50 backdrop-blur-3xl rounded-b-3xl sm:rounded-b-[2rem]">
-        <div className="relative flex items-center w-full max-w-3xl mx-auto">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Спросите совета, поделитесь мыслями..."
-            className="w-full bg-neutral-900/50 border border-white/10 text-white rounded-full py-4 pl-6 pr-14 outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all font-medium placeholder-neutral-500"
-          />
-          <button 
-            onClick={handleSend}
-            disabled={!input.trim() || isTyping}
-            className="absolute right-2 flex items-center justify-center h-10 w-10 bg-primary-500 rounded-full text-white hover:bg-primary-400 transition-all disabled:opacity-50 disabled:hover:bg-primary-500 active:scale-95"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 -ml-0.5">
-              <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
-            </svg>
-          </button>
-        </div>
+      {/* Input */}
+      <div className="mt-8 relative">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          placeholder="Спросите о прогрессе или аятах..."
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-neutral-100 placeholder-neutral-600 focus:border-primary/50 focus:ring-0 outline-none transition-all"
+        />
+        <button
+          onClick={handleSend}
+          className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-xl bg-primary text-white active:scale-90 transition-transform"
+        >
+          →
+        </button>
       </div>
     </div>
   );
