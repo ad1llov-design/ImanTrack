@@ -1,14 +1,14 @@
-﻿/**
+/**
  * @page /tracker
- * РЎС‚СЂР°РЅРёС†Р° РїСЂРѕРіСЂРµСЃСЃР° Рё РґРѕСЃС‚РёР¶РµРЅРёР№.
+ * Страница прогресса и достижений.
  */
 
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "РџСЂРѕРіСЂРµСЃСЃ вЂ” ImanTrack",
-  description: "РЎС‚Р°С‚РёСЃС‚РёРєР° С‚РІРѕРёС… Р±Р»Р°РіРёС… РґРµР», СЃРµСЂРёСЏ РґРЅРµР№ Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ",
+  title: "Прогресс — ImanTrack",
+  description: "Статистика твоих благих дел, серия дней и достижения",
 };
 
 const TrackerPageContent = dynamic(
