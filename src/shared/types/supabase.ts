@@ -243,6 +243,26 @@ export interface Database {
           hadith_id?: string;
         };
       };
+      sunnah_logs: {
+        Row: {
+          id: string;
+          user_id: string;
+          date: string;
+          action_id: string;
+          is_completed: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          date: string;
+          action_id: string;
+          is_completed?: boolean;
+        };
+        Update: {
+          is_completed?: boolean;
+        };
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

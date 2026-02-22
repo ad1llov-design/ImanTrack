@@ -18,66 +18,68 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16">
+    <div className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            السلام عليكم
-          </p>
-          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-            Добро пожаловать{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""} 👋
-          </h1>
-        </div>
-
-        <LogoutButton className="rounded-xl border border-neutral-200 px-4 py-2 text-sm text-neutral-600 transition-all hover:border-red-300 hover:bg-red-50 hover:text-red-600 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-red-800 dark:hover:bg-red-950/30 dark:hover:text-red-400" />
+      <div className="mb-12">
+        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-2">
+          السلام عليكم
+        </p>
+        <h1 className="text-display text-4xl md:text-5xl font-bold text-neutral-100">
+          Добро пожаловать{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}
+        </h1>
       </div>
 
-      {/* User info card */}
-      <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-card dark:border-neutral-800 dark:bg-neutral-900">
-        <h2 className="mb-4 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
-          Данные профиля
-        </h2>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 rounded-xl bg-neutral-50 px-4 py-3 dark:bg-neutral-800">
-            <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 w-20">ID:</span>
-            <span className="text-sm font-mono text-neutral-900 dark:text-neutral-100">{user?.id}</span>
+      <div className="grid gap-8">
+        {/* Core Progress Section */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-display text-2xl font-semibold text-white">Текущий прогресс</h2>
+            <Link href="/stats" className="text-sm text-primary-400 hover:text-primary-300 transition-colors">Подробная статистика →</Link>
           </div>
-          <div className="flex items-center gap-3 rounded-xl bg-neutral-50 px-4 py-3 dark:bg-neutral-800">
-            <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 w-20">Email:</span>
-            <span className="text-sm text-neutral-900 dark:text-neutral-100">{user?.email}</span>
+          
+          <div className="grid gap-6">
+            <PrayerWidget />
+            <HabitsWidget />
           </div>
-          <div className="flex items-center gap-3 rounded-xl bg-neutral-50 px-4 py-3 dark:bg-neutral-800">
-            <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 w-20">Имя:</span>
-            <span className="text-sm text-neutral-900 dark:text-neutral-100">
-              {(user?.user_metadata?.full_name as string) ?? "Не указано"}
-            </span>
-          </div>
-          <div className="flex items-center gap-3 rounded-xl bg-neutral-50 px-4 py-3 dark:bg-neutral-800">
-            <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 w-20">Создан:</span>
-            <span className="text-sm text-neutral-900 dark:text-neutral-100">
-              {user?.created_at ? new Date(user.created_at).toLocaleDateString("ru-RU") : "—"}
-            </span>
-          </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Deep Work Links */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <Link href="/reflection" className="group rounded-2xl border border-primary-500/20 bg-primary-950/20 p-6 backdrop-blur-md transition-all hover:bg-primary-900/30">
-          <h3 className="font-semibold text-primary-300">🌿 Зона Тафаккура</h3>
-          <p className="mt-2 text-sm text-primary-400">Глубокие размышления и фокус</p>
-        </Link>
-        <Link href="/quran" className="group rounded-2xl border border-gold-500/20 bg-gold-950/20 p-6 backdrop-blur-md transition-all hover:bg-gold-900/30">
-          <h3 className="font-semibold text-gold-300">📖 Коран Трекер</h3>
-          <p className="mt-2 text-sm text-gold-400">Прогресс чтения по джузам</p>
-        </Link>
-      </div>
+        {/* Quick Actions / Deep Work Links */}
+        <section className="space-y-6">
+          <h2 className="text-display text-2xl font-semibold text-white">Духовные практики</h2>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Link href="/reflection" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-neutral-100 mb-2">🌿 Зона Тафаккура</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">Глубокие размышления в тишине и поиск внутреннего покоя.</p>
+              </div>
+              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">🌿</div>
+            </Link>
+            
+            <Link href="/quran" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-neutral-100 mb-2">📖 Коран Трекер</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">Следите за своим прогрессом чтения и изучения Священного Писания.</p>
+              </div>
+              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">📖</div>
+            </Link>
 
-      {/* Core Tracker Widgets */}
-      <div className="mt-8 flex flex-col gap-6">
-        <PrayerWidget />
-        <HabitsWidget />
+            <Link href="/sunnah" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-neutral-100 mb-2">⚡ Сунна Действия</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">9 благих дел на каждый день для оживления Сунны.</p>
+              </div>
+              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">⚡</div>
+            </Link>
+
+            <Link href="/assistant" className="group relative overflow-hidden rounded-2xl border border-white/10 bg-surface-card p-8 transition-all hover:border-primary-500/50 hover:bg-white/[0.02]">
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-neutral-100 mb-2">🤖 AI Ассистент</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">Ваш персональный духовный наставник для анализа прогресса.</p>
+              </div>
+              <div className="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] transition-transform group-hover:scale-110">🤖</div>
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

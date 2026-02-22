@@ -14,6 +14,8 @@ import {
   BarChart2
 } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 export function GlobalNavigation() {
   const pathname = usePathname();
 
@@ -23,11 +25,12 @@ export function GlobalNavigation() {
   }
 
   const navItems = [
-    { label: "Главная", href: "/dashboard", icon: <Home className="h-6 w-6" /> },
-    { label: "Намазы", href: "/prayer", icon: <Clock className="h-6 w-6" /> },
-    { label: "Анализ", href: "/analytics", icon: <BarChart2 className="h-6 w-6" /> },
-    { label: "Коран", href: "/quran", icon: <BookOpen className="h-6 w-6" /> },
-    { label: "Сунна", href: "/sunnah", icon: <Library className="h-6 w-6" /> },
+    { label: "Дашборд", href: "/dashboard", icon: <Home className="h-5 w-5" /> },
+    { label: "Молитвы", href: "/prayer", icon: <Clock className="h-5 w-5" /> },
+    { label: "Развитие", href: "/stats", icon: <BarChart2 className="h-5 w-5" /> },
+    { label: "Коран", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
+    { label: "Сунна", href: "/sunnah", icon: <Library className="h-5 w-5" /> },
+    { label: "Профиль", href: "/profile", icon: <User className="h-5 w-5" /> },
   ];
 
   return (
@@ -37,7 +40,9 @@ export function GlobalNavigation() {
           items={navItems} 
           rightSlot={
             <div className="flex items-center gap-2">
-              <LogoutButton className="rounded-xl border border-neutral-200 px-3 py-1.5 text-xs text-neutral-600 transition-all hover:border-red-300 hover:bg-red-50 hover:text-red-600 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-red-800 dark:hover:bg-red-950/30 dark:hover:text-red-400" />
+              <Link href="/profile" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                <User className="h-5 w-5 text-neutral-400" />
+              </Link>
             </div>
           }
         />
@@ -46,10 +51,9 @@ export function GlobalNavigation() {
 
       <div className="md:hidden">
         {/* Мобильная верхняя панель (Header) */}
-        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-neutral-200/50 bg-white/95 px-4 shadow-soft backdrop-blur-xl dark:border-neutral-800/50 dark:bg-surface-dark/95">
-          <Link href="/" className="group flex items-center gap-2 transition-opacity hover:opacity-80">
-            {/* Minimalist Logo Box Mobile */}
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 dark:bg-primary-950/30 dark:text-primary-400 dark:group-hover:bg-primary-900/40">
+        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-white/5 bg-surface-background/80 px-4 backdrop-blur-xl">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
@@ -65,18 +69,18 @@ export function GlobalNavigation() {
                 <path d="M12 21a9 9 0 0 0-9-9" />
               </svg>
             </div>
-            <span className="text-lg font-bold text-neutral-900 dark:text-neutral-50">
-              Iman<span className="text-primary-600 dark:text-primary-400">Track</span>
-            </span>
+            <span className="text-display text-lg font-bold text-neutral-100">ImanTrack</span>
           </Link>
-          <LogoutButton className="rounded-lg border border-neutral-200 px-2 py-1 text-xs text-neutral-600 transition-all hover:border-red-300 hover:bg-red-50 hover:text-red-600 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-red-800 dark:hover:bg-red-950/30 dark:hover:text-red-400" />
+          <div className="flex items-center gap-3">
+             <Link href="/assistant" className="text-neutral-400">🤖</Link>
+             <Link href="/profile" className="text-neutral-400"><User className="h-5 w-5" /></Link>
+          </div>
         </header>
         
-        {/* Спейсер для верхнего хедера */}
         <div className="h-14" />
 
-        {/* Мобильная нижняя навигация (Bottom Nav) */}
-        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-neutral-200/50 bg-white/95 px-2 pb-2 pt-1 shadow-[0_-4px_24px_-8px_rgba(0,0,0,0.1)] backdrop-blur-xl dark:border-neutral-800/50 dark:bg-surface-dark/95">
+        {/* Мобильная нижняя навигация (Tab Bar) */}
+        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-white/5 bg-surface-background/80 px-4 pb-safe backdrop-blur-xl">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -84,29 +88,24 @@ export function GlobalNavigation() {
                 key={item.href}
                 href={item.href as any}
                 className={cn(
-                  "flex flex-1 flex-col items-center justify-center gap-1 py-1 transition-all",
+                  "flex flex-col items-center justify-center transition-all",
                   isActive
-                    ? "text-primary-600 dark:text-primary-400"
-                    : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200",
+                    ? "text-primary scale-110"
+                    : "text-neutral-500 hover:text-neutral-200",
                 )}
               >
-                <div
-                  className={cn(
-                    "flex h-8 w-12 items-center justify-center rounded-full transition-all",
-                    isActive && "bg-primary-100 dark:bg-primary-900/40"
-                  )}
-                >
-                  {item.icon}
-                </div>
-                <span className="text-[10px] font-medium leading-none">
-                  {item.label}
-                </span>
+                {item.icon}
+                {isActive && (
+                   <motion.div 
+                     layoutId="nav-active" 
+                     className="mt-1 h-1 w-1 rounded-full bg-primary"
+                   />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Спейсер для нижнего TabBar (чтобы контент можно было доскроллить до конца) */}
         <div className="h-16" />
       </div>
     </>
