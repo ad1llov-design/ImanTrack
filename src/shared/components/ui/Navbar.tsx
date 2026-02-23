@@ -84,16 +84,11 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
+              fill="currentColor" 
               className="h-5 w-5"
             >
-              <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
-              <path d="M12 3a9 9 0 0 0 9 9" />
-              <path d="M12 21a9 9 0 0 0-9-9" />
+              <path d="M12 2.5c1.2 0 2.4.2 3.5.6a.5.5 0 0 1 .1.9 7 7 0 0 0 0 12.8.5.5 0 0 1-.1.9A9.5 9.5 0 1 1 12 2.5Z" />
+              <path d="M19.5 6l.5 1.5L21.5 8l-1.5.5L19.5 10l-.5-1.5L17.5 8l1.5-.5z" />
             </svg>
           </div>
           <span className="text-[1.1rem] font-bold tracking-tight text-neutral-900 dark:text-neutral-50">

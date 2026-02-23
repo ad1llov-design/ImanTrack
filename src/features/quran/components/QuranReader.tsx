@@ -26,12 +26,18 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     async function fetch() {
       setLoading(true);
       try {
-        const [data, bookmarks] = await Promise.all([
-          getSurahVerses(surahId),
-          getQuranBookmarks(surahId),
-        ]);
+        // Load verses first — this is the critical path
+        const data = await getSurahVerses(surahId);
         setVerses(data);
-        setBookmarkedAyahs(bookmarks);
+        
+        // Load bookmarks separately — non-critical, don't break if it fails
+        try {
+          const bookmarks = await getQuranBookmarks(surahId);
+          setBookmarkedAyahs(bookmarks);
+        } catch (bookmarkError) {
+          console.warn("Failed to load bookmarks (non-critical):", bookmarkError);
+          setBookmarkedAyahs([]);
+        }
       } catch (error) {
         console.error("Failed to load surah:", error);
         toast.error("Не удалось загрузить суру");
