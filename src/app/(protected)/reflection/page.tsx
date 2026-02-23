@@ -1,15 +1,30 @@
 import { Metadata } from "next";
-import { ReflectionZone } from "@features/reflection/components/ReflectionZone";
 
 export const metadata: Metadata = {
-  title: "Зона Тафаккура",
-  description: "Изолированное пространство для глубоких размышлений и дневника.",
+  title: "Тафаккур — ImanTrack",
+  description: "Пространство для размышлений.",
 };
 
 export default function ReflectionPage() {
   return (
-    <main className="min-h-screen bg-surface-dark bg-geometric-pattern mix-blend-overlay opacity-90 mx-auto w-full">
-      <ReflectionZone />
+    <main className="mx-auto max-w-lg px-4 pt-8 pb-24">
+      <div className="mb-8 mt-2 space-y-1 text-center">
+        <h1 className="text-display text-3xl font-bold text-main">
+          🧘 Тафаккур
+        </h1>
+        <p className="text-sm text-muted">
+          Пространство для размышлений — скоро.
+        </p>
+      </div>
+
+      <div className="rounded-3xl border border-border bg-surface p-8 text-center shadow-card">
+        <div className="text-6xl mb-4">🌿</div>
+        <h2 className="text-xl font-bold text-main mb-2">Скоро</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          В будущих обновлениях здесь появится дневник размышлений
+          и зона тафаккура для духовного самоанализа.
+        </p>
+      </div>
     </main>
   );
 }

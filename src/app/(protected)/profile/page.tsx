@@ -1,36 +1,37 @@
-import { createClient } from "@lib/supabase/server";
-import { LogoutButton } from "@features/auth/components/LogoutButton";
+/**
+ * @page /profile
+ * 
+ * Profile page — works with or without authentication.
+ * Shows user info if logged in, otherwise shows app info.
+ */
+
+import Link from "next/link";
 import { GlassCard } from "@shared/components/ui/GlassCard";
 
-export default async function ProfilePage() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+export default function ProfilePage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8">
         <h1 className="text-display text-4xl font-bold text-main">Профиль</h1>
-        <LogoutButton className="rounded-xl border border-border px-4 py-2 text-sm text-muted transition-all hover:bg-surface" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <GlassCard className="space-y-6">
-          <h2 className="text-xl font-bold text-main">Персональные данные</h2>
+          <h2 className="text-xl font-bold text-main">О приложении</h2>
           <div className="space-y-4">
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Email</span>
-              <span className="text-lg text-main">{user?.email}</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Название</span>
+              <span className="text-lg text-main">ImanTrack</span>
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Имя</span>
-              <span className="text-lg text-main">{(user?.user_metadata?.full_name as string) ?? "Не указано"}</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Версия</span>
+              <span className="text-lg text-main">1.0.0 MVP</span>
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Дата регистрации</span>
-              <span className="text-lg text-main">
-                {user?.created_at ? new Date(user.created_at).toLocaleDateString("ru-RU") : "—"}
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">Описание</span>
+              <span className="text-sm text-muted leading-relaxed">
+                Исламское приложение для чтения Корана, хадисов,
+                отслеживания намазов и поминания Аллаха.
               </span>
             </div>
           </div>
@@ -38,13 +39,33 @@ export default async function ProfilePage() {
 
         <div className="space-y-6">
           <GlassCard>
-            <h2 className="text-xl font-bold text-main mb-4">Настройки</h2>
-            <p className="text-muted text-sm">Настройки уведомлений и приватности (скоро).</p>
+            <h2 className="text-xl font-bold text-main mb-4">Разделы</h2>
+            <div className="space-y-2">
+              {[
+                { name: "Дашборд", href: "/dashboard", icon: "🏠" },
+                { name: "Коран", href: "/quran", icon: "📖" },
+                { name: "Хадисы", href: "/hadith", icon: "📚" },
+                { name: "Зикр", href: "/dhikr", icon: "📿" },
+                { name: "Сунна", href: "/sunnah", icon: "🌙" },
+                { name: "Азкары", href: "/adhkar", icon: "🤲" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-main hover:bg-primary-50 dark:hover:bg-primary-950/20 transition-colors"
+                >
+                  <span className="text-lg">{item.icon}</span>
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </GlassCard>
-          
+
           <GlassCard>
-            <h2 className="text-xl font-bold text-main mb-4">Цели</h2>
-            <p className="text-muted text-sm">Ваши духовные цели на месяц (скоро).</p>
+            <h2 className="text-xl font-bold text-main mb-4">Контакты</h2>
+            <p className="text-muted text-sm leading-relaxed">
+              Есть предложения или нашли ошибку? Свяжитесь с нами через Telegram.
+            </p>
           </GlassCard>
         </div>
       </div>

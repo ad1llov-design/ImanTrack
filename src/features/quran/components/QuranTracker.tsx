@@ -10,6 +10,10 @@ import { BookOpen, BookImage } from "lucide-react";
 
 type QuranMode = "text" | "mushaf";
 
+/**
+ * Quran Tracker — text reader + mushaf reader toggle.
+ * No auth, no progress tracking. Pure reading.
+ */
 export function QuranTracker({ className }: { className?: string }) {
   const [selectedSurahId, setSelectedSurahId] = useState<number | null>(null);
   const [mode, setMode] = useState<QuranMode>("text");
@@ -85,4 +89,3 @@ export function QuranTracker({ className }: { className?: string }) {
     </div>
   );
 }
-

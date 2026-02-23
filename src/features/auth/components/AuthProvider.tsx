@@ -1,17 +1,13 @@
 /**
  * @module features/auth/components/AuthProvider
  *
- * Client-side провайдер для инициализации auth-сессии.
- * Оборачивает приложение и инициализирует useAuth хук.
- * Показывает loading state пока сессия загружается.
+ * Client-side provider. Auth is optional — the app works without login.
+ * Just passes children through.
  */
 
 "use client";
 
-import { useAuth } from "@features/auth/hooks/useAuth";
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  // Инициализирует подписку на Supabase auth state
-  useAuth();
+  // Auth is optional in MVP — no blocking, no loading states
   return <>{children}</>;
 }

@@ -6,14 +6,12 @@
 
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect } from "react";
 
 import { getDhikrsByCategory } from "../data/adhkar.data";
 import {
-  loadProgressFromServer,
   loadProgressLocal,
   saveProgressLocal,
-  syncProgressToServer,
 } from "../services/adhkar.persistence";
 import { useAdhkarStore } from "../store/adhkarStore";
 import type { AdhkarCategory } from "../types/adhkar.types";
@@ -22,7 +20,6 @@ import type { AdhkarCategory } from "../types/adhkar.types";
 
 export function useAdhkar(categoryId?: AdhkarCategory) {
   const store = useAdhkarStore();
-  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const dhikrs = categoryId ? getDhikrsByCategory(categoryId) : [];
   const currentDhikr = dhikrs[store.activeDhikrIndex] ?? null;
@@ -36,18 +33,10 @@ export function useAdhkar(categoryId?: AdhkarCategory) {
   const loadProgress = useCallback(async () => {
     store.setLoading(true);
     try {
-      // Сначала из localStorage (мгновенно)
       const local = loadProgressLocal();
       store.setProgress(local);
-
-      // Потом merge с сервером (асинхронно)
-      const merged = await loadProgressFromServer();
-      if (Object.keys(merged).length > 0) {
-        store.setProgress(merged);
-        saveProgressLocal(merged); // Обновляем локальный кэш
-      }
     } catch {
-      // fallback — localStorage уже загружен
+      // fallback — empty progress
     } finally {
       store.setLoading(false);
     }
@@ -57,15 +46,9 @@ export function useAdhkar(categoryId?: AdhkarCategory) {
   /**
    * Автосохранение: debounce 2 сек → localStorage + сервер
    */
-  const debouncedSync = useCallback(() => {
-    if (syncTimeoutRef.current) {
-      clearTimeout(syncTimeoutRef.current);
-    }
-    syncTimeoutRef.current = setTimeout(() => {
-      const { progress } = useAdhkarStore.getState();
-      saveProgressLocal(progress);
-      void syncProgressToServer(progress);
-    }, 2000);
+  const saveLocally = useCallback(() => {
+    const { progress } = useAdhkarStore.getState();
+    saveProgressLocal(progress);
   }, []);
 
   /**
@@ -81,19 +64,19 @@ export function useAdhkar(categoryId?: AdhkarCategory) {
     if (count >= currentDhikr.targetCount) return;
 
     store.incrementCount(currentDhikr.id, currentDhikr.targetCount);
-    debouncedSync();
+    saveLocally();
 
     // Haptic vibration (mobile)
     if (typeof navigator !== "undefined" && navigator.vibrate) {
       const newCount = count + 1;
       if (newCount >= currentDhikr.targetCount) {
-        navigator.vibrate([100, 50, 100, 50, 200]); // Completion pattern
+        navigator.vibrate([100, 50, 100, 50, 200]);
       } else {
-        navigator.vibrate(30); // Light tap
+        navigator.vibrate(30);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentDhikr, debouncedSync]);
+  }, [currentDhikr, saveLocally]);
 
   /**
    * Сброс текущего зикра
@@ -101,9 +84,9 @@ export function useAdhkar(categoryId?: AdhkarCategory) {
   const resetCurrent = useCallback(() => {
     if (!currentDhikr) return;
     store.resetDhikr(currentDhikr.id, currentDhikr.targetCount);
-    debouncedSync();
+    saveLocally();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentDhikr, debouncedSync]);
+  }, [currentDhikr, saveLocally]);
 
   /**
    * Переход к следующему зикру
@@ -136,12 +119,7 @@ export function useAdhkar(categoryId?: AdhkarCategory) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 
-  // Cleanup timeout
-  useEffect(() => {
-    return () => {
-      if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
-    };
-  }, []);
+
 
   // ── Category progress calculation ─────────────────────────────────
 

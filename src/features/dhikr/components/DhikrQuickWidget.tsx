@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
-import { logDhikrSession, getDhikrLogsForDate } from "../services/dhikr.service";
 import { toast } from "sonner";
 
 const DHIKR_TYPES = [
@@ -15,85 +14,28 @@ const DHIKR_TYPES = [
   { id: "salawat", label: "Салават", arabic: "اللهم صل على محمد", target: 100 },
 ];
 
+/**
+ * Dhikr Widget — local counting, no database.
+ * Purely reading-focused with simple tap counter.
+ */
 export function DhikrQuickWidget({ className }: { className?: string }) {
   const [counts, setCounts] = useState<Record<string, number>>({});
-  const [isLoading, setIsLoading] = useState(true);
-  const saveTimerRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
-  const lastSavedRef = useRef<Record<string, number>>({});
-
-  // Load existing counts from DB on mount
-  useEffect(() => {
-    async function loadCounts() {
-      try {
-        const logs = await getDhikrLogsForDate();
-        const loadedCounts: Record<string, number> = {};
-        for (const log of logs) {
-          loadedCounts[log.dhikr_id] = (loadedCounts[log.dhikr_id] || 0) + log.count;
-        }
-        setCounts(loadedCounts);
-        lastSavedRef.current = { ...loadedCounts };
-      } catch (error) {
-        console.error("Failed to load dhikr counts:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadCounts();
-  }, []);
-
-  // Debounced save to Supabase
-  const debouncedSave = useCallback((dhikrId: string, newCount: number) => {
-    // Clear existing timer for this dhikr
-    if (saveTimerRef.current[dhikrId]) {
-      clearTimeout(saveTimerRef.current[dhikrId]);
-    }
-
-    saveTimerRef.current[dhikrId] = setTimeout(async () => {
-      const lastSaved = lastSavedRef.current[dhikrId] || 0;
-      const delta = newCount - lastSaved;
-      if (delta <= 0) return;
-
-      try {
-        await logDhikrSession(dhikrId, delta);
-        lastSavedRef.current[dhikrId] = newCount;
-      } catch (error) {
-        console.error("Failed to save dhikr:", error);
-      }
-    }, 1500);
-  }, []);
 
   const handleTap = (id: string) => {
     const newCount = (counts[id] || 0) + 1;
-    setCounts((prev) => ({
-      ...prev,
-      [id]: newCount,
-    }));
+    setCounts((prev) => ({ ...prev, [id]: newCount }));
 
-    // Check if target reached
     const dhikr = DHIKR_TYPES.find((d) => d.id === id);
     if (dhikr && newCount === dhikr.target) {
       toast.success(`${dhikr.label} — цель достигнута! МашаАллах!`);
     }
-
-    debouncedSave(id, newCount);
   };
-
-  if (isLoading) {
-    return (
-      <div className={cn("space-y-4", className)}>
-        <h2 className="text-xl font-semibold text-main">📿 Зикр</h2>
-        <div className="grid grid-cols-3 gap-3">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="animate-pulse rounded-2xl border border-border bg-surface min-h-[100px]" />
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={cn("space-y-4", className)}>
-      <h2 className="text-xl font-semibold text-main">📿 Зикр</h2>
+      <h2 className="text-xl font-semibold text-main flex items-center gap-2">
+        📿 Зикр
+      </h2>
       <div className="grid grid-cols-3 gap-3">
         {DHIKR_TYPES.map((dhikr) => {
           const count = counts[dhikr.id] || 0;

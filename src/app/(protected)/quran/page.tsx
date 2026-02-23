@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { QuranTracker } from "@features/quran/components/QuranTracker";
 
 export const metadata: Metadata = {
-  title: "Коран — Трекер Чтения",
-  description: "Отслеживайте свой прогресс чтения Священного Корана по джузам и страницам.",
+  title: "Коран — ImanTrack",
+  description: "Чтение Священного Корана с переводом на русский язык.",
 };
 
 export default function QuranPage() {
@@ -14,7 +14,7 @@ export default function QuranPage() {
           القرآن الكريم
         </h1>
         <p className="text-body-sm text-neutral-500 dark:text-neutral-400">
-          Священный Коран. Трекер вашего чтения и прогресса.
+          Священный Коран. Чтение с переводом.
         </p>
       </div>
 

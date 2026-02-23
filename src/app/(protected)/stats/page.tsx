@@ -1,27 +1,30 @@
 import { Metadata } from "next";
-import { ImanCalendar } from "@features/analytics/components/ImanCalendar";
-import { AnalyticsStatsGrid } from "@features/analytics/components/AnalyticsStatsGrid";
 
 export const metadata: Metadata = {
-  title: "Аналитика Имана",
-  description: "Анализ вашего духовного роста, намазов и сунны.",
+  title: "Статистика — ImanTrack",
+  description: "Статистика вашей духовной практики.",
 };
 
-export default function AnalyticsPage() {
+export default function StatsPage() {
   return (
-    <main className="mx-auto max-w-lg px-4 pt-4 pb-24 sm:max-w-xl sm:px-6 md:max-w-4xl lg:px-8 xl:max-w-5xl">
-      <div className="mb-8 mt-2 space-y-1">
-        <h1 className="font-arabic text-h4 text-neutral-800 dark:text-neutral-100 md:text-h3">
-          Анализ Имана
+    <main className="mx-auto max-w-lg px-4 pt-8 pb-24">
+      <div className="mb-8 mt-2 space-y-1 text-center">
+        <h1 className="text-display text-3xl font-bold text-main">
+          📊 Статистика
         </h1>
-        <p className="text-body-sm text-neutral-500 dark:text-neutral-400">
-          Ваш тепловой график выполнения сунны, намазов и сопротивления грехам.
+        <p className="text-sm text-muted">
+          Раздел статистики в разработке. Скоро здесь появится
+          аналитика вашего духовного прогресса.
         </p>
       </div>
 
-      <div className="space-y-6">
-        <AnalyticsStatsGrid />
-        <ImanCalendar />
+      <div className="rounded-3xl border border-border bg-surface p-8 text-center shadow-card">
+        <div className="text-6xl mb-4">🚧</div>
+        <h2 className="text-xl font-bold text-main mb-2">Скоро</h2>
+        <p className="text-sm text-muted leading-relaxed">
+          В будущих обновлениях здесь появятся графики намазов,
+          прогресс чтения Корана и статистика зикра.
+        </p>
       </div>
     </main>
   );

@@ -1,33 +1,14 @@
 ﻿/**
- * @layout Protected Layout
+ * @layout App Layout
  *
- * Лейаут для защищённых страниц (dashboard, habits и т.д.).
- * Проверяет сессию на сервере — если нет, редиректит на /auth/login.
- * Передаёт данные пользователя в children через props.
+ * Layout for main app pages. No auth required — app works without login.
  */
 
-import { redirect } from "next/navigation";
-
-import { createClient } from "@lib/supabase/server";
-
-// Force dynamic rendering — auth pages must never be cached
-export const dynamic = "force-dynamic";
-
-export default async function ProtectedLayout({
+export default function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/auth/login");
-  }
-
   return (
     <div className="min-h-screen overflow-y-auto bg-background text-main pb-20">
       {children}

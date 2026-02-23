@@ -1,36 +1,33 @@
 /**
  * @page /tracker
- * Страница прогресса и достижений.
+ * Placeholder — tracking removed in MVP refactor.
  */
 
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Прогресс — ImanTrack",
-  description: "Статистика твоих благих дел, серия дней и достижения",
+  description: "Статистика духовного роста",
 };
-
-const TrackerPageContent = dynamic(
-  () => import("@features/tracker/components/TrackerPageContent").then((m) => m.TrackerPageContent),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="mx-auto max-w-4xl space-y-8 px-4 py-12">
-        <div className="mx-auto h-40 w-full max-w-xl animate-pulse rounded-3xl bg-neutral-100 dark:bg-neutral-800" />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="h-64 animate-pulse rounded-3xl bg-neutral-100 dark:bg-neutral-800 md:col-span-2" />
-          <div className="h-64 animate-pulse rounded-3xl bg-neutral-100 dark:bg-neutral-800" />
-        </div>
-      </div>
-    ),
-  },
-);
 
 export default function TrackerPage() {
   return (
-    <div className="min-h-screen bg-background text-main">
-      <TrackerPageContent />
+    <div className="min-h-screen bg-background text-main pb-20">
+      <div className="mx-auto max-w-lg px-4 py-8 text-center">
+        <h1 className="text-display text-3xl font-bold text-main mb-4">
+          📊 Прогресс
+        </h1>
+        <p className="text-sm text-muted mb-8">
+          Раздел статистики появится в следующих обновлениях.
+        </p>
+        <Link
+          href="/dashboard"
+          className="px-6 py-3 rounded-2xl bg-primary-500 text-white font-bold text-sm hover:bg-primary-600 transition-colors"
+        >
+          ← На главную
+        </Link>
+      </div>
     </div>
   );
 }

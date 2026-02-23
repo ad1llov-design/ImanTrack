@@ -1,21 +1,17 @@
 /**
  * @module features/prayer/components/PrayerTimesList
  *
- * Полный список намазов на день с countdown hero, hijri датой,
- * геолокацией и skeleton-загрузкой.
+ * Full prayer times list — no auth, no database.
+ * Shows prayer times, countdown, hijri/gregorian dates, location.
  */
 
 "use client";
 
-import { useState, useEffect } from "react";
-import { format } from "date-fns";
 import { cn } from "@shared/lib/utils";
 import { CircularProgress } from "@shared/components/ui/CircularProgress";
 import { usePrayerTimes } from "../hooks/usePrayerTimes";
 import { CountdownDisplay } from "./CountdownDisplay";
 import { PrayerCard } from "./PrayerCard";
-import { PrayerLogModal } from "./PrayerLogModal";
-import { getPrayerLogs, upsertPrayerLog, type PrayerLog } from "../services/prayer.persistence";
 
 interface PrayerTimesListProps {
   className?: string;
@@ -88,46 +84,6 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
     refreshLocation,
   } = usePrayerTimes();
 
-  // Local state for interactive logs
-  const [logs, setLogs] = useState<Record<string, PrayerLog>>({});
-  const [selectedPrayer, setSelectedPrayer] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const todayStr = format(new Date(), "yyyy-MM-dd");
-
-  useEffect(() => {
-    async function fetchLogs() {
-      try {
-        const todayLogs = await getPrayerLogs(todayStr);
-        const logsMap = todayLogs.reduce((acc, log) => {
-          acc[log.prayerName] = log;
-          return acc;
-        }, {} as Record<string, PrayerLog>);
-        setLogs(logsMap);
-      } catch (e) {
-        console.error("Failed to load today's prayer logs:", e);
-      }
-    }
-    fetchLogs();
-  }, [todayStr]);
-
-  const handleSaveLog = async (logData: Partial<PrayerLog>) => {
-    if (!selectedPrayer) return;
-    const pName = selectedPrayer.name;
-    const newLog: PrayerLog = {
-      userId: "", // Handled by server/persistence layer
-      prayerName: pName,
-      date: todayStr,
-      status: logData.status as any,
-      onTime: logData.onTime || false,
-      concentrationLevel: logData.concentrationLevel,
-      location: logData.location,
-      emotionalState: logData.emotionalState,
-    };
-    
-    setLogs(prev => ({ ...prev, [pName]: newLog }));
-    await upsertPrayerLog(newLog);
-  };
-
   return (
     <div className={cn("w-full", className)}>
 
@@ -173,50 +129,24 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
         )}
       </div>
 
-      {/* ── Countdown Hero & Daily Stats ──────── */}
+      {/* ── Countdown Hero ──────── */}
       {!isLoading && !error && (
         <div className="mb-8 rounded-3xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50 p-6 shadow-card dark:border-neutral-800 dark:from-surface-dark-secondary dark:to-surface-dark sm:p-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex-1 w-full relative">
-              <CountdownDisplay nextPrayer={nextPrayer} />
-              
-              {/* Current prayer indicator */}
-              {currentPrayer && (
-                <div className="mt-6 flex items-center justify-center gap-2 border-t border-neutral-100 pt-4 dark:border-neutral-800">
-                  <span className="flex h-2 w-2">
-                    <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-primary-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-500" />
-                  </span>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                    Сейчас время <span className="font-semibold text-primary-600 dark:text-primary-400">{currentPrayer.info.nameRu}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Daily Progress & Streak */}
-            <div className="flex md:flex-col shrink-0 gap-6 mt-6 md:mt-0 w-full md:w-auto items-center justify-center md:border-l md:border-neutral-200 md:pl-8 dark:border-neutral-800 border-t pt-6 md:pt-0">
-              <div className="flex flex-col items-center">
-                <CircularProgress 
-                  value={(Object.values(logs).filter(l => l.status === "completed" || l.status === "qada").length / 5) * 100} 
-                  size={90} 
-                  strokeWidth={6}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-lg font-bold text-primary-600 dark:text-primary-400">
-                      {Object.values(logs).filter(l => l.status === "completed" || l.status === "qada").length}/5
-                    </span>
-                  </div>
-                </CircularProgress>
-                <span className="text-[0.6rem] text-neutral-400 mt-2 uppercase tracking-wide">Завершено</span>
+          <div className="flex flex-col items-center justify-center gap-6">
+            <CountdownDisplay nextPrayer={nextPrayer} />
+            
+            {/* Current prayer indicator */}
+            {currentPrayer && (
+              <div className="flex items-center justify-center gap-2 border-t border-neutral-100 pt-4 dark:border-neutral-800 w-full">
+                <span className="flex h-2 w-2">
+                  <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-primary-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-500" />
+                </span>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  Сейчас время <span className="font-semibold text-primary-600 dark:text-primary-400">{currentPrayer.info.nameRu}</span>
+                </p>
               </div>
-              
-              <div className="flex flex-col items-center justify-center min-w-[90px] bg-gold-50 dark:bg-gold-500/10 rounded-2xl p-3 border border-gold-200/50 dark:border-gold-500/20 shadow-glow">
-                <span className="text-xl">🔥</span>
-                <span className="text-sm font-bold text-gold-700 dark:text-gold-400 mt-1">12 Дней</span>
-                <span className="text-[0.55rem] font-bold text-gold-600/60 dark:text-gold-400/60 uppercase tracking-wider mt-0.5">Серия (Демо)</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}
@@ -229,25 +159,18 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
       {!isLoading && !error && (
         <div className="space-y-2.5">
           {prayers
-            .filter((p) => p.info.isFard) // Только 5 обязательных (без Sunrise)
+            .filter((p) => p.info.isFard)
             .map((prayer, index) => (
               <div
                 key={prayer.name}
                 className="animate-fade-in-up"
                 style={{ animationDelay: `${index * 80}ms`, animationFillMode: "both" }}
               >
-                <PrayerCard 
-                  prayer={prayer} 
-                  logStatus={logs[prayer.name]?.status}
-                  onClick={() => {
-                    setSelectedPrayer(prayer);
-                    setIsModalOpen(true);
-                  }}
-                />
+                <PrayerCard prayer={prayer} />
               </div>
             ))}
 
-          {/* Sunrise — отдельно, мелко */}
+          {/* Sunrise — small */}
           {prayers
             .filter((p) => !p.info.isFard)
             .map((prayer) => (

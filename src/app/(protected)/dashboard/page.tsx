@@ -1,32 +1,36 @@
 /**
- * @page /dashboard (protected)
+ * @page /dashboard
  *
- * Дашборд — главная защищённая страница.
- * 6 блоков: Приветствие, Намазы, Дневной прогресс, Коран, Зикр, Хадис дня.
+ * Main page — Prayer times + Hadith about prayer.
+ * No auth dependency. Fully static + client-side prayer API.
  */
 
-import { createClient } from "@lib/supabase/server";
 import Link from "next/link";
 import { PrayerWidget } from "@features/prayer/components/PrayerWidget";
-import { HabitsWidget } from "@features/tracker/components/HabitsWidget";
-import { DhikrQuickWidget } from "@features/dhikr/components/DhikrQuickWidget";
-import { BookOpen, Sparkles, BookMarked } from "lucide-react";
+import { BookOpen, Sparkles, BookMarked, MoonStar } from "lucide-react";
 
-// Disable Next.js aggressive caching — always render fresh
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+const PRAYER_HADITHS = [
+  {
+    id: 1,
+    arabic: "مَفْتَاحُ الْجَنَّةِ الصَّلَاةُ",
+    translation: "Ключ от Рая — это намаз.",
+    reference: "Ат-Тирмизи, 4",
+  },
+  {
+    id: 2,
+    arabic: "إِنَّ أَوَّلَ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلَاتُهُ",
+    translation: "Первое, за что будет спрошен раб в День Суда — это его намаз.",
+    reference: "Ат-Тирмизи, 413",
+  },
+  {
+    id: 3,
+    arabic: "الْعَهْدُ الَّذِي بَيْنَنَا وَبَيْنَهُمُ الصَّلَاةُ فَمَنْ تَرَكَهَا فَقَدْ كَفَرَ",
+    translation: "Между нами и ими — намаз. Кто оставил его — впал в неверие.",
+    reference: "Ат-Тирмизи, 2621",
+  },
+];
 
-export default async function DashboardPage() {
-  let userName = "";
-  
-  try {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    userName = user?.user_metadata?.full_name as string ?? "";
-  } catch (err) {
-    console.error("Dashboard: failed to get user", err);
-  }
-
+export default function DashboardPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">
       {/* 1️⃣ Greeting Block */}
@@ -35,60 +39,65 @@ export default async function DashboardPage() {
           السلام عليكم
         </p>
         <h1 className="text-display text-4xl md:text-5xl font-bold text-main">
-          Ассаламу алейкум{userName ? `, ${userName}` : ""}
+          Ассаламу алейкум
         </h1>
       </div>
 
-      {/* 2️⃣ Prayer Progress Block */}
+      {/* 2️⃣ Prayer Times Widget */}
       <section>
         <PrayerWidget />
       </section>
 
-      {/* 3️⃣ Daily Progress Summary */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-display text-xl font-semibold text-main">Ваш день</h2>
-          <Link href="/stats" className="text-sm text-primary-500 hover:text-primary-600 transition-colors">Статистика →</Link>
-        </div>
-        <HabitsWidget />
-      </section>
-
-      {/* 4️⃣ Quran Block */}
-      <section>
-        <div className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-display font-bold text-main flex items-center gap-2"><BookOpen className="h-5 w-5 text-primary-500" /> Коран</h3>
-              <p className="text-sm text-muted mt-1">Продолжите чтение Корана</p>
-            </div>
-            <Link 
-              href="/quran"
-              className="px-4 py-2 rounded-xl bg-primary-500 text-white text-sm font-bold hover:bg-primary-600 transition-all active:scale-95"
+      {/* 3️⃣ Hadiths about Prayer */}
+      <section className="space-y-4">
+        <h2 className="text-display text-xl font-semibold text-main flex items-center gap-2">
+          <BookMarked className="h-5 w-5 text-primary-500" />
+          Хадисы о Намазе
+        </h2>
+        <div className="space-y-3">
+          {PRAYER_HADITHS.map((hadith) => (
+            <div
+              key={hadith.id}
+              className="rounded-2xl border border-border bg-surface p-5 shadow-sm"
             >
-              Читать
-            </Link>
-          </div>
+              <p
+                className="text-right text-xl md:text-2xl text-main leading-[2] mb-3"
+                style={{ direction: "rtl", fontFamily: "var(--font-amiri, 'Amiri'), serif" }}
+              >
+                {hadith.arabic}
+              </p>
+              <p className="text-sm text-main leading-relaxed">
+                {hadith.translation}
+              </p>
+              <p className="mt-2 text-xs text-muted font-medium">
+                📜 {hadith.reference}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 5️⃣ Dhikr Block */}
-      <section>
-        <DhikrQuickWidget />
-      </section>
-
-      {/* 6️⃣ Quick Links */}
+      {/* 4️⃣ Quick Links */}
       <section className="grid grid-cols-2 gap-4">
-        <Link href="/dhikr" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
-          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Свободный Тасбих</span>
-          <Sparkles className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
+        <Link href="/quran" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
+          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Коран</span>
+          <BookOpen className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
         </Link>
         <Link href="/hadith" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
-          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Хадис Дня</span>
+          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Хадисы</span>
           <BookMarked className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
+        </Link>
+        <Link href="/adhkar" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
+          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Зикр</span>
+          <Sparkles className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
+        </Link>
+        <Link href="/sunnah" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
+          <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Сунна</span>
+          <MoonStar className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
         </Link>
       </section>
 
-      {/* 7️⃣ Quote of the Day */}
+      {/* 5️⃣ Quote of the Day */}
       <section>
         <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 text-center shadow-card">
           <div className="absolute -top-6 -right-6 text-9xl text-primary-50 opacity-50">&ldquo;</div>

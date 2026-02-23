@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { logDhikrSession } from "../services/dhikr.service";
 import { cn } from "@shared/lib/utils";
 
 const DHIKR_TYPES = [
@@ -12,19 +11,21 @@ const DHIKR_TYPES = [
   { id: "istighfar", arabic: "أَسْتَغْفِرُ ٱللَّٰهَ", russian: "Астагфируллах" },
 ];
 
+/**
+ * Dhikr Tasbih — local counter with haptic feedback.
+ * No auth, no database. Pure local counting.
+ */
 export function DhikrTasbih({ className }: { className?: string }) {
   const [activeDhikr, setActiveDhikr] = useState(DHIKR_TYPES[0]!);
   const [count, setCount] = useState(0);
   const [sessionCount, setSessionCount] = useState(0);
-  const pressTimer = useRef<NodeJS.Timeout | null>(null);
 
   const triggerVibration = useCallback(() => {
     if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
-      // 33 and 99 intervals often have stronger feedback
       if ((count + 1) % 33 === 0) {
-        window.navigator.vibrate([100, 50, 100]); // double pulse
+        window.navigator.vibrate([100, 50, 100]);
       } else {
-        window.navigator.vibrate(50); // tiny haptic tap
+        window.navigator.vibrate(50);
       }
     }
   }, [count]);
@@ -35,16 +36,9 @@ export function DhikrTasbih({ className }: { className?: string }) {
     setSessionCount((c) => c + 1);
   }, [triggerVibration]);
 
-  const handleEndSession = async () => {
-    if (sessionCount > 0) {
-      await logDhikrSession(activeDhikr.id, sessionCount);
-      setSessionCount(0);
-    }
-  };
-
   const handleReset = () => {
-    handleEndSession();
     setCount(0);
+    setSessionCount(0);
   };
 
   return (
@@ -56,12 +50,12 @@ export function DhikrTasbih({ className }: { className?: string }) {
           <button
             key={dhikr.id}
             onClick={() => {
-              handleEndSession();
               setActiveDhikr(dhikr);
               setCount(0);
+              setSessionCount(0);
             }}
             className={cn(
-              "px-5 py-2.5 rounded-2xl whitespace-nowrap text-sm font-bold transition-all whitespace-nowrap",
+              "px-5 py-2.5 rounded-2xl whitespace-nowrap text-sm font-bold transition-all",
               activeDhikr.id === dhikr.id
                 ? "bg-primary-500 text-white shadow-md shadow-primary-500/20"
                 : "bg-surface border border-border text-muted hover:text-main"
@@ -93,7 +87,6 @@ export function DhikrTasbih({ className }: { className?: string }) {
           onClick={handleTap}
           className="relative flex items-center justify-center w-64 h-64 rounded-full bg-surface border-4 border-border shadow-card overflow-hidden group outline-none"
         >
-          {/* Inner ripple active state */}
           <div className="absolute inset-0 bg-primary-500/5 opacity-0 group-active:opacity-100 transition-opacity duration-300 rounded-full" />
           
           <span className="text-7xl font-display font-bold text-main tabular-nums tracking-tighter drop-shadow-sm">
