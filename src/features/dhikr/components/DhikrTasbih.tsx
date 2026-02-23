@@ -18,7 +18,7 @@ export function DhikrTasbih({ className }: { className?: string }) {
   const [sessionCount, setSessionCount] = useState(0);
   const pressTimer = useRef<NodeJS.Timeout | null>(null);
 
-  const triggerVibration = () => {
+  const triggerVibration = useCallback(() => {
     if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
       // 33 and 99 intervals often have stronger feedback
       if ((count + 1) % 33 === 0) {
@@ -27,13 +27,13 @@ export function DhikrTasbih({ className }: { className?: string }) {
         window.navigator.vibrate(50); // tiny haptic tap
       }
     }
-  };
+  }, [count]);
 
   const handleTap = useCallback(() => {
     triggerVibration();
     setCount((c) => c + 1);
     setSessionCount((c) => c + 1);
-  }, [count]);
+  }, [triggerVibration]);
 
   const handleEndSession = async () => {
     if (sessionCount > 0) {

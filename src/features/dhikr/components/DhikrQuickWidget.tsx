@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
+import { logDhikrSession, getDhikrLogsForDate } from "../services/dhikr.service";
+import { toast } from "sonner";
 
 const DHIKR_TYPES = [
   { id: "subhanallah", label: "СубханАллах", arabic: "سبحان الله", target: 33 },
@@ -15,44 +17,117 @@ const DHIKR_TYPES = [
 
 export function DhikrQuickWidget({ className }: { className?: string }) {
   const [counts, setCounts] = useState<Record<string, number>>({});
+  const [isLoading, setIsLoading] = useState(true);
+  const saveTimerRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const lastSavedRef = useRef<Record<string, number>>({});
+
+  // Load existing counts from DB on mount
+  useEffect(() => {
+    async function loadCounts() {
+      try {
+        const logs = await getDhikrLogsForDate();
+        const loadedCounts: Record<string, number> = {};
+        for (const log of logs) {
+          loadedCounts[log.dhikr_id] = (loadedCounts[log.dhikr_id] || 0) + log.count;
+        }
+        setCounts(loadedCounts);
+        lastSavedRef.current = { ...loadedCounts };
+      } catch (error) {
+        console.error("Failed to load dhikr counts:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadCounts();
+  }, []);
+
+  // Debounced save to Supabase
+  const debouncedSave = useCallback((dhikrId: string, newCount: number) => {
+    // Clear existing timer for this dhikr
+    if (saveTimerRef.current[dhikrId]) {
+      clearTimeout(saveTimerRef.current[dhikrId]);
+    }
+
+    saveTimerRef.current[dhikrId] = setTimeout(async () => {
+      const lastSaved = lastSavedRef.current[dhikrId] || 0;
+      const delta = newCount - lastSaved;
+      if (delta <= 0) return;
+
+      try {
+        await logDhikrSession(dhikrId, delta);
+        lastSavedRef.current[dhikrId] = newCount;
+      } catch (error) {
+        console.error("Failed to save dhikr:", error);
+      }
+    }, 1500);
+  }, []);
 
   const handleTap = (id: string) => {
-    setCounts(prev => ({
+    const newCount = (counts[id] || 0) + 1;
+    setCounts((prev) => ({
       ...prev,
-      [id]: (prev[id] || 0) + 1,
+      [id]: newCount,
     }));
+
+    // Check if target reached
+    const dhikr = DHIKR_TYPES.find((d) => d.id === id);
+    if (dhikr && newCount === dhikr.target) {
+      toast.success(`${dhikr.label} — цель достигнута! МашаАллах!`);
+    }
+
+    debouncedSave(id, newCount);
   };
+
+  if (isLoading) {
+    return (
+      <div className={cn("space-y-4", className)}>
+        <h2 className="text-xl font-semibold text-main">📿 Зикр</h2>
+        <div className="grid grid-cols-3 gap-3">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="animate-pulse rounded-2xl border border-border bg-surface min-h-[100px]" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("space-y-4", className)}>
-      <h2 className="text-display text-xl font-semibold text-main">📿 Зикр</h2>
+      <h2 className="text-xl font-semibold text-main">📿 Зикр</h2>
       <div className="grid grid-cols-3 gap-3">
         {DHIKR_TYPES.map((dhikr) => {
           const count = counts[dhikr.id] || 0;
           const progress = Math.min((count / dhikr.target) * 100, 100);
-          
+          const isComplete = count >= dhikr.target;
+
           return (
             <motion.button
               key={dhikr.id}
               whileTap={{ scale: 0.92 }}
               onClick={() => handleTap(dhikr.id)}
-              className="relative overflow-hidden rounded-2xl border border-border bg-surface p-4 flex flex-col items-center gap-2 min-h-[100px] active:bg-primary-50/10 transition-colors"
+              className={cn(
+                "relative overflow-hidden rounded-2xl border bg-surface p-4 flex flex-col items-center gap-2 min-h-[100px] active:bg-primary-50/10 transition-colors",
+                isComplete ? "border-primary-500" : "border-border",
+              )}
             >
               <span className="font-arabic text-lg text-main leading-tight">{dhikr.arabic}</span>
               <span className="text-[9px] uppercase tracking-wider text-muted font-bold">{dhikr.label}</span>
-              
-              <motion.span 
+
+              <motion.span
                 key={count}
                 initial={{ scale: 1.4, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="text-lg font-bold tabular-nums text-primary-500"
+                className={cn(
+                  "text-lg font-bold tabular-nums",
+                  isComplete ? "text-primary-600 dark:text-primary-400" : "text-primary-500",
+                )}
               >
                 {count}
               </motion.span>
 
               {/* Progress bar */}
               <div className="absolute bottom-0 left-0 h-1 w-full bg-border">
-                <motion.div 
+                <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   className="h-full bg-primary-500"

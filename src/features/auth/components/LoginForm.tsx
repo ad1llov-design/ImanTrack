@@ -18,8 +18,6 @@ export function LoginForm() {
     setError(null);
     setIsLoading(true);
 
-    console.log("Submitting login", { email, password: "***" });
-
     try {
       const supabase = createClient();
 
@@ -27,9 +25,6 @@ export function LoginForm() {
         email: email.trim(),
         password,
       });
-
-      console.log("Supabase response data:", data);
-      console.log("Supabase response error:", authError);
 
       if (authError) {
         if (authError.message === "Invalid login credentials") {
@@ -41,12 +36,12 @@ export function LoginForm() {
       }
 
       if (data.session) {
-        router.push("/tracker");
         router.refresh();
+        router.push("/dashboard");
       }
-    } catch (err: any) {
-      console.error("Login error:", err);
-      setError(err?.message || "Произошла ошибка");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Произошла ошибка";
+      setError(message);
     } finally {
       setIsLoading(false);
     }

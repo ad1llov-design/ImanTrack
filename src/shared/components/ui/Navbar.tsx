@@ -69,7 +69,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-350",
         scrolled
-          ? "border-b border-neutral-200/50 bg-white/80 shadow-soft backdrop-blur-xl dark:border-neutral-800/50 dark:bg-surface-dark/80"
+          ? "border-b border-border bg-surface/80 shadow-soft backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
@@ -173,7 +173,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
       <div
         className={cn(
           "overflow-hidden transition-all duration-350 ease-bounce md:hidden",
-          isOpen ? "max-h-96 border-b border-neutral-200 bg-white/95 backdrop-blur-xl dark:border-neutral-800 dark:bg-surface-dark/95" : "max-h-0",
+          isOpen ? "max-h-96 border-b border-border bg-surface/95 backdrop-blur-xl" : "max-h-0",
         )}
       >
         <div className="space-y-1 px-4 pb-6 pt-2">

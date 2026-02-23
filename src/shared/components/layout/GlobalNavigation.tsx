@@ -3,15 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Navbar } from "@shared/components/ui/Navbar";
-import { LogoutButton } from "@features/auth/components/LogoutButton";
 import { cn } from "@shared/lib/utils";
-import { 
+import {
   Home,
   BookOpen,
   Clock,
   User,
   BookText,
-  CheckSquare
+  CheckSquare,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -37,13 +36,16 @@ export function GlobalNavigation() {
   return (
     <>
       <div className="hidden md:block">
-        <Navbar 
-          items={navItems} 
+        <Navbar
+          items={navItems}
           rightSlot={
             <div className="flex items-center gap-2">
               <ThemeToggle />
-              <Link href="/profile" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                <User className="h-5 w-5 text-neutral-400" />
+              <Link
+                href="/profile"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface hover:bg-background transition-colors"
+              >
+                <User className="h-5 w-5 text-muted" />
               </Link>
             </div>
           }
@@ -53,17 +55,17 @@ export function GlobalNavigation() {
 
       <div className="md:hidden">
         {/* Мобильная верхняя панель (Header) */}
-        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-white/5 bg-surface-background/80 px-4 backdrop-blur-xl">
+        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-surface/80 px-4 backdrop-blur-xl">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="h-4 w-4"
               >
                 <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
@@ -71,38 +73,40 @@ export function GlobalNavigation() {
                 <path d="M12 21a9 9 0 0 0-9-9" />
               </svg>
             </div>
-            <span className="text-display text-lg font-bold text-neutral-100">ImanTrack</span>
+            <span className="text-lg font-bold text-main">ImanTrack</span>
           </Link>
           <div className="flex items-center gap-3">
-             <ThemeToggle />
-             <Link href="/assistant" className="text-neutral-400">🤖</Link>
-             <Link href="/profile" className="text-neutral-400"><User className="h-5 w-5" /></Link>
+            <ThemeToggle />
+            <Link href="/assistant" className="text-muted hover:text-main transition-colors">🤖</Link>
+            <Link href="/profile" className="text-muted hover:text-main transition-colors">
+              <User className="h-5 w-5" />
+            </Link>
           </div>
         </header>
-        
+
         <div className="h-14" />
 
         {/* Мобильная нижняя навигация (Tab Bar) */}
-        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-white/5 bg-surface-background/80 px-2 pb-safe backdrop-blur-xl">
+        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-border bg-surface/80 px-2 pb-safe backdrop-blur-xl">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
-                href={item.href as any}
+                href={item.href as string}
                 className={cn(
                   "flex flex-col items-center justify-center transition-all",
                   isActive
-                    ? "text-primary scale-110"
-                    : "text-neutral-500 hover:text-neutral-200",
+                    ? "text-primary-500 scale-110"
+                    : "text-muted hover:text-main",
                 )}
               >
                 {item.icon}
                 {isActive && (
-                   <motion.div 
-                     layoutId="nav-active" 
-                     className="mt-1 h-1 w-1 rounded-full bg-primary"
-                   />
+                  <motion.div
+                    layoutId="nav-active"
+                    className="mt-1 h-1 w-1 rounded-full bg-primary-500"
+                  />
                 )}
               </Link>
             );
