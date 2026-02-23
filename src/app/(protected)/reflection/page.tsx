@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Тафаккур — ImanTrack",
+  title: "Тафаккур — MAZI",
   description: "Пространство для размышлений.",
 };
 

@@ -46,7 +46,7 @@ export function HadithPageContent() {
     const text = `${currentHadith.arabic}\n\n${currentHadith.translation}\n\n— ${currentHadith.narrator}`;
     if (navigator.share) {
       try {
-        await navigator.share({ text, title: "Хадис дня — ImanTrack" });
+        await navigator.share({ text, title: "Хадис дня — MAZI" });
       } catch { /* user cancelled */ }
     } else {
       await copy();

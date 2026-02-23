@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "gpt-4o-mini",
         messages: [
-          { role: "system", content: "Ты Исламский духовный ассистент ImanTrack. Будь мягким, используй исламские термины (иншаАллах, машаАллах). Давай короткие мотивационные советы." },
+          { role: "system", content: "Ты Исламский духовный ассистент MAZI. Будь мягким, используй исламские термины (иншаАллах, машаАллах). Давай короткие мотивационные советы." },
           { role: "system", content: `Текущий прогресс пользователя сегодня: ${JSON.stringify(context || {})}` },
           { role: "user", content: message },
         ],

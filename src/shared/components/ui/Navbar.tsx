@@ -33,10 +33,10 @@ interface NavbarProps {
 
 const defaultItems: NavItem[] = [
   { label: "Главная", href: "/" },
-  { label: "Дашборд", href: "/dashboard" },
-  { label: "Намаз",    href: "/prayer" },
-  { label: "Азкары",   href: "/adhkar" },
-  { label: "Прогресс", href: "/tracker" },
+  { label: "Коран",   href: "/quran" },
+  { label: "Хадисы",  href: "/hadith" },
+  { label: "Намаз",   href: "/prayer" },
+  { label: "Азкары",  href: "/adhkar" },
 ];
 
 /* ── Component ──────────────────────────────────────────────────────── */
@@ -77,7 +77,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
         {/* ── Logo ─────────────────────────────── */}
         {/* ── Logo ─────────────────────────────── */}
         <Link
-          href="/dashboard"
+          href="/"
           className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 dark:bg-primary-950/30 dark:text-primary-400 dark:group-hover:bg-primary-900/40">
@@ -92,7 +92,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
             </svg>
           </div>
           <span className="text-[1.1rem] font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-            Iman<span className="text-primary-500">Track</span>
+            MAZI
           </span>
         </Link>
 

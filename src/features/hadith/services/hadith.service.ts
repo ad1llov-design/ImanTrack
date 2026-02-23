@@ -151,7 +151,7 @@ export function formatHadithText(hadith: Hadith): string {
     `📖 ${hadith.collection === "nawawi" ? "40 хадисов ан-Навави" : ""} ${hadith.number ? `#${hadith.number}` : ""}`.trim(),
     hadith.grade ? `Степень: ${hadith.grade}` : "",
     "",
-    "🌙 ImanTrack",
+    "🌙 MAZI",
   ].filter(Boolean);
 
   return lines.join("\n");
@@ -194,7 +194,7 @@ export async function shareHadith(hadith: Hadith): Promise<boolean> {
   if (typeof navigator !== "undefined" && navigator.share) {
     try {
       await navigator.share({
-        title: "Хадис дня — ImanTrack",
+        title: "Хадис дня — MAZI",
         text,
       });
       return true;

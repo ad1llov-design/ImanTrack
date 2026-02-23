@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Время намазов — ImanTrack",
+  title: "Время намазов — MAZI",
   description: "Точное время всех пяти намазов для вашего местоположения",
 };
 

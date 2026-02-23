@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-  title: "Азкары — ImanTrack",
+  title: "Азкары — MAZI",
   description: "Утренние и вечерние азкары, зикры после намаза и дуа",
 };
 

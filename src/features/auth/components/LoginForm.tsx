@@ -37,7 +37,7 @@ export function LoginForm() {
 
       if (data.session) {
         router.refresh();
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Произошла ошибка";

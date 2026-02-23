@@ -1,15 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getSurahVerses, Verse } from "../services/quran_api.service";
+import { getSurahVerses, Verse, QuranScriptType } from "../services/quran_api.service";
 import { cn } from "@shared/lib/utils";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { Type } from "lucide-react";
 
 interface QuranReaderProps {
   surahId: number;
   onBack: () => void;
 }
+
+const SCRIPT_OPTIONS: { id: QuranScriptType; label: string }[] = [
+  { id: "quran-uthmani", label: "Усмани (Медина)" },
+  { id: "quran-indopak", label: "Индо-Пак" },
+  { id: "quran-simple", label: "Простой шрифт" },
+];
 
 /**
  * Quran Reader — fetches and displays surah text from API.
@@ -19,12 +26,14 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(0);
+  const [scriptType, setScriptType] = useState<QuranScriptType>("quran-uthmani");
+  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
     async function fetchVerses() {
       setLoading(true);
       try {
-        const data = await getSurahVerses(surahId);
+        const data = await getSurahVerses(surahId, scriptType);
         setVerses(data);
       } catch (error) {
         console.error("Failed to load surah:", error);
@@ -34,7 +43,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       }
     }
     fetchVerses();
-  }, [surahId]);
+  }, [surahId, scriptType]);
 
   if (loading) {
     return (
@@ -62,6 +71,10 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     );
   }
 
+  const fontFamily = scriptType === "quran-indopak" 
+    ? "var(--font-indopak), 'Scheherazade New', serif" 
+    : "var(--font-amiri), Amiri, serif";
+
   return (
     <div className="flex flex-col" style={{ height: "calc(100vh - 200px)" }}>
       <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
@@ -69,7 +82,42 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
           ← К списку
         </button>
         <span className="text-xs uppercase tracking-[0.2em] text-primary-500">Чтение</span>
-        <div className="w-16" /> {/* spacer for alignment */}
+        
+        <div className="relative">
+          <button 
+            onClick={() => setShowSettings(!showSettings)}
+            className="p-2 rounded-lg hover:bg-surface text-muted hover:text-main transition-colors"
+          >
+            <Type className="w-5 h-5" />
+          </button>
+          
+          {showSettings && (
+            <div className="absolute right-0 top-full mt-2 w-48 bg-surface border border-border rounded-xl shadow-card z-50 overflow-hidden">
+              <div className="p-2 border-b border-border bg-neutral-50 dark:bg-neutral-900/50">
+                <span className="text-xs font-bold text-muted uppercase tracking-wider px-2 block">Шрифт арабского</span>
+              </div>
+              <div className="p-1">
+                {SCRIPT_OPTIONS.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      setScriptType(option.id);
+                      setShowSettings(false);
+                    }}
+                    className={cn(
+                      "w-full text-left px-3 py-2 text-sm rounded-lg transition-colors",
+                      scriptType === option.id 
+                        ? "bg-primary-50 text-primary-600 dark:bg-primary-950/30 dark:text-primary-400 font-medium" 
+                        : "text-main hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    )}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       <div
@@ -96,8 +144,14 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
               </div>
 
               {/* Arabic Text */}
-              <p className="text-right text-3xl md:text-4xl text-main leading-[2.5] tracking-wide w-full" style={{ direction: "rtl", fontFamily: "var(--font-amiri), Amiri, serif" }}>
-                {verse.text_uthmani}
+              <p 
+                className={cn(
+                  "text-right text-main leading-[2.5] tracking-wide w-full",
+                  scriptType === "quran-indopak" ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
+                )} 
+                style={{ direction: "rtl", fontFamily }}
+              >
+                {verse.text_arabic}
               </p>
 
               {/* Translation */}

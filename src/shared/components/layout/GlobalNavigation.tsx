@@ -10,8 +10,7 @@ import {
   Clock,
   User,
   BookText,
-  CheckSquare,
-  Bot,
+  Heart,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -20,17 +19,17 @@ import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 export function GlobalNavigation() {
   const pathname = usePathname();
 
-  // Не показываем навигацию на страницах аутентификации и лендинге
-  if (pathname.startsWith("/auth") || pathname === "/") {
+  // Hide nav on auth pages
+  if (pathname.startsWith("/auth")) {
     return null;
   }
 
   const navItems = [
-    { label: "Дашборд", href: "/dashboard", icon: <Home className="h-5 w-5" /> },
+    { label: "Главная", href: "/", icon: <Home className="h-5 w-5" /> },
     { label: "Коран", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
     { label: "Зикр", href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
     { label: "Хадисы", href: "/hadith", icon: <BookText className="h-5 w-5" /> },
-    { label: "Сунна", href: "/sunnah", icon: <CheckSquare className="h-5 w-5" /> },
+    { label: "Сунна", href: "/sunnah", icon: <Heart className="h-5 w-5" /> },
     { label: "Профиль", href: "/profile", icon: <User className="h-5 w-5" /> },
   ];
 
@@ -55,9 +54,9 @@ export function GlobalNavigation() {
       </div>
 
       <div className="md:hidden">
-        {/* Мобильная верхняя панель (Header) */}
+        {/* Mobile header */}
         <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-surface/80 px-4 backdrop-blur-xl">
-          <Link href="/dashboard" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,13 +68,10 @@ export function GlobalNavigation() {
                 <path d="M19.5 6l.5 1.5L21.5 8l-1.5.5L19.5 10l-.5-1.5L17.5 8l1.5-.5z" />
               </svg>
             </div>
-            <span className="text-lg font-bold text-main">ImanTrack</span>
+            <span className="text-lg font-bold text-main">MAZI</span>
           </Link>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/assistant" className="text-muted hover:text-main transition-colors">
-              <Bot className="h-5 w-5" />
-            </Link>
             <Link href="/profile" className="text-muted hover:text-main transition-colors">
               <User className="h-5 w-5" />
             </Link>
@@ -84,7 +80,7 @@ export function GlobalNavigation() {
 
         <div className="h-14" />
 
-        {/* Мобильная нижняя навигация (Tab Bar) */}
+        {/* Mobile bottom tab bar */}
         <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-border bg-surface/80 px-2 pb-safe backdrop-blur-xl">
           {navItems.map((item) => {
             const isActive = pathname === item.href;

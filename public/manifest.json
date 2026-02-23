@@ -1,7 +1,7 @@
 {
-  "name": "ImanTrack",
-  "short_name": "ImanTrack",
-  "description": "Трекер духовного роста для мусульман",
+  "name": "MAZI",
+  "short_name": "MAZI",
+  "description": "Исламское приложение — Коран, хадисы, время намазов, зикр",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fdfcf8",
@@ -50,28 +50,19 @@
   ],
   "shortcuts": [
     {
-      "name": "Намазы сегодня",
-      "short_name": "Намазы",
-      "description": "Отметить намазы",
-      "url": "/dashboard/prayers",
+      "name": "Коран",
+      "short_name": "Коран",
+      "description": "Чтение Корана",
+      "url": "/quran",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Привычки",
-      "short_name": "Привычки",
-      "description": "Мои исламские привычки",
-      "url": "/habits",
+      "name": "Хадисы",
+      "short_name": "Хадисы",
+      "description": "Сборники хадисов",
+      "url": "/hadith",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
-  "categories": ["lifestyle", "health", "productivity"],
-  "screenshots": [
-    {
-      "src": "/screenshots/dashboard.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Главный экран ImanTrack"
-    }
-  ]
+  "categories": ["lifestyle", "education"]
 }

@@ -21,7 +21,7 @@ export default function ProfilePage() {
           <div className="space-y-4">
             <div className="flex flex-col gap-1">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted">Название</span>
-              <span className="text-lg text-main">ImanTrack</span>
+              <span className="text-lg text-main">MAZI</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted">Версия</span>
@@ -42,7 +42,7 @@ export default function ProfilePage() {
             <h2 className="text-xl font-bold text-main mb-4">Разделы</h2>
             <div className="space-y-2">
               {[
-                { name: "Дашборд", href: "/dashboard", icon: "🏠" },
+                { name: "Главная", href: "/", icon: "🏠" },
                 { name: "Коран", href: "/quran", icon: "📖" },
                 { name: "Хадисы", href: "/hadith", icon: "📚" },
                 { name: "Зикр", href: "/dhikr", icon: "📿" },

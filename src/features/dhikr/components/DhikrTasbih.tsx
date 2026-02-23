@@ -1,138 +1,107 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@shared/lib/utils";
 
-const DHIKR_TYPES = [
-  { id: "subhanallah", arabic: "سُبْحَانَ ٱللَّٰهِ", russian: "Субханаллах" },
-  { id: "alhamdulillah", arabic: "ٱلْحَمْدُ لِلَّٰهِ", russian: "Альхамдулиллах" },
-  { id: "allahuakbar", arabic: "ٱللَّٰهُ أَكْبَرُ", russian: "Аллаху Акбар" },
-  { id: "istighfar", arabic: "أَسْتَغْفِرُ ٱللَّٰهَ", russian: "Астагфируллах" },
+const DHIKR_LIST = [
+  {
+    id: "subhanallah",
+    arabic: "سُبْحَانَ ٱللَّٰهِ",
+    translation: "Субханаллах — Пречист Аллах",
+    description: "Произносится для прославления Аллаха и очищения Его от всего, что Ему не подобает. Рекомендуется произносить 33 раза после каждого намаза.",
+    reference: "Муслим, 597",
+  },
+  {
+    id: "alhamdulillah",
+    arabic: "ٱلْحَمْدُ لِلَّٰهِ",
+    translation: "Альхамдулиллах — Хвала Аллаху",
+    description: "Выражение благодарности Аллаху за все блага. Произносится 33 раза после каждого намаза. «Альхамдулиллах наполняет Весы».",
+    reference: "Муслим, 223",
+  },
+  {
+    id: "allahuakbar",
+    arabic: "ٱللَّٰهُ أَكْبَرُ",
+    translation: "Аллаху Акбар — Аллах Велик",
+    description: "Возвеличивание Аллаха. Произносится 34 раза после каждого намаза, завершая последовательность зикра (33+33+34 = 100).",
+    reference: "Муслим, 597",
+  },
+  {
+    id: "istighfar",
+    arabic: "أَسْتَغْفِرُ ٱللَّٰهَ",
+    translation: "Астагфируллах — Прошу прощения у Аллаха",
+    description: "Мольба о прощении грехов. Пророк ﷺ произносил истигфар более 70 раз в день. Рекомендуется произносить после каждого намаза.",
+    reference: "Бухари, 6307",
+  },
+  {
+    id: "lailaha",
+    arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
+    translation: "Ля иляха илля Ллах — Нет божества, кроме Аллаха",
+    description: "Слово единобожия (тавхид). Лучший зикр по хадису Пророка ﷺ. Основа веры мусульманина.",
+    reference: "Тирмизи, 3383",
+  },
+  {
+    id: "hawqala",
+    arabic: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّٰهِ",
+    translation: "Ля хавля ва ля куввата илля биЛлах",
+    description: "Нет мощи и силы ни у кого, кроме Аллаха. Это сокровище из сокровищ Рая. Произносится при затруднениях.",
+    reference: "Бухари, 4205",
+  },
+  {
+    id: "salawat",
+    arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+    translation: "Аллахумма салли аля Мухаммад — Саляват на Пророка ﷺ",
+    description: "Благословение Пророка ﷺ. Кто помолится за Пророка ﷺ один раз, за того Аллах помолится десять раз. Рекомендуется особенно в пятницу.",
+    reference: "Муслим, 384",
+  },
+  {
+    id: "subhanallahi_wabihamdihi",
+    arabic: "سُبْحَانَ ٱللَّٰهِ وَبِحَمْدِهِ",
+    translation: "Субханаллахи ва бихамдихи — Пречист Аллах и хвала Ему",
+    description: "Кто произнесёт эти слова 100 раз в день, тому будут прощены грехи, даже если их будет столько, сколько пены морской.",
+    reference: "Муслим, 2691",
+  },
+  {
+    id: "subhanallahi_azim",
+    arabic: "سُبْحَانَ ٱللَّٰهِ وَبِحَمْدِهِ سُبْحَانَ ٱللَّٰهِ ٱلْعَظِيمِ",
+    translation: "Субханаллахи ва бихамдихи, Субханаллахиль-Азым",
+    description: "Два слова, лёгкие на языке, тяжёлые на Весах и любимые Милостивым (ар-Рахман).",
+    reference: "Бухари, 6406",
+  },
+  {
+    id: "bismillah",
+    arabic: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+    translation: "Бисмиллахи Ррахмани Ррахим — Во имя Аллаха Милостивого, Милосердного",
+    description: "Произносится перед началом любого дела: едой, питьём, одеванием, входом в дом. Защищает от зла и привлекает благословение.",
+    reference: "Тирмизи, 3388",
+  },
 ];
 
 /**
- * Dhikr Tasbih — local counter with haptic feedback.
- * No auth, no database. Pure local counting.
+ * DhikrTasbih — reading-focused dhikr cards.
+ * No counters, no backend, no tracking.
+ * Styled exactly like hadith cards.
  */
 export function DhikrTasbih({ className }: { className?: string }) {
-  const [activeDhikr, setActiveDhikr] = useState(DHIKR_TYPES[0]!);
-  const [count, setCount] = useState(0);
-  const [sessionCount, setSessionCount] = useState(0);
-
-  const triggerVibration = useCallback(() => {
-    if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
-      if ((count + 1) % 33 === 0) {
-        window.navigator.vibrate([100, 50, 100]);
-      } else {
-        window.navigator.vibrate(50);
-      }
-    }
-  }, [count]);
-
-  const handleTap = useCallback(() => {
-    triggerVibration();
-    setCount((c) => c + 1);
-    setSessionCount((c) => c + 1);
-  }, [triggerVibration]);
-
-  const handleReset = () => {
-    setCount(0);
-    setSessionCount(0);
-  };
-
   return (
-    <div className={cn("flex flex-col items-center justify-center w-full max-w-md mx-auto space-y-12", className)}>
-      
-      {/* Dhikr Selector */}
-      <div className="flex w-full overflow-x-auto gap-3 pb-2 [&::-webkit-scrollbar]:hidden px-2">
-        {DHIKR_TYPES.map((dhikr) => (
-          <button
-            key={dhikr.id}
-            onClick={() => {
-              setActiveDhikr(dhikr);
-              setCount(0);
-              setSessionCount(0);
-            }}
-            className={cn(
-              "px-5 py-2.5 rounded-2xl whitespace-nowrap text-sm font-bold transition-all",
-              activeDhikr.id === dhikr.id
-                ? "bg-primary-500 text-white shadow-md shadow-primary-500/20"
-                : "bg-surface border border-border text-muted hover:text-main"
-            )}
-          >
-            {dhikr.russian}
-          </button>
-        ))}
-      </div>
-
-      {/* Main Tasbih Area */}
-      <div className="flex flex-col items-center justify-center w-full relative">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeDhikr.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="flex flex-col items-center mb-10 text-center"
-          >
-            <h2 className="text-display-arabic text-5xl md:text-6xl text-primary-500 mb-4">{activeDhikr.arabic}</h2>
-            <p className="text-lg font-medium text-muted uppercase tracking-widest">{activeDhikr.russian}</p>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* The Giant Button */}
-        <motion.button
-          whileTap={{ scale: 0.92 }}
-          onClick={handleTap}
-          className="relative flex items-center justify-center w-64 h-64 rounded-full bg-surface border-4 border-border shadow-card overflow-hidden group outline-none"
+    <div className={cn("space-y-4", className)}>
+      {DHIKR_LIST.map((dhikr) => (
+        <div
+          key={dhikr.id}
+          className="rounded-2xl border border-border bg-surface p-5 shadow-sm"
         >
-          <div className="absolute inset-0 bg-primary-500/5 opacity-0 group-active:opacity-100 transition-opacity duration-300 rounded-full" />
-          
-          <span className="text-7xl font-display font-bold text-main tabular-nums tracking-tighter drop-shadow-sm">
-            {count}
+          <p className="font-arabic text-2xl leading-loose text-main text-right mb-3" dir="rtl">
+            {dhikr.arabic}
+          </p>
+          <h3 className="text-base font-bold text-main mb-2">
+            {dhikr.translation}
+          </h3>
+          <p className="text-sm text-muted leading-relaxed mb-3">
+            {dhikr.description}
+          </p>
+          <span className="text-[10px] font-bold text-primary-500 bg-primary-500/10 px-2 py-0.5 rounded-md inline-block uppercase tracking-wider">
+            {dhikr.reference}
           </span>
-
-          <svg className="absolute inset-0 w-full h-full -rotate-90">
-             <circle 
-                cx="128" 
-                cy="128" 
-                r="124" 
-                stroke="currentColor" 
-                strokeWidth="8" 
-                fill="transparent"
-                className="text-primary-500/20"
-             />
-             <motion.circle 
-                cx="128" 
-                cy="128" 
-                r="124" 
-                stroke="currentColor" 
-                strokeWidth="8" 
-                fill="transparent"
-                className="text-primary-500"
-                strokeLinecap="round"
-                initial={{ strokeDasharray: 2 * Math.PI * 124, strokeDashoffset: 2 * Math.PI * 124 }}
-                animate={{ strokeDashoffset: (2 * Math.PI * 124) * (1 - ((count % 33) / 33)) }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-             />
-          </svg>
-        </motion.button>
-      </div>
-
-      {/* Actions */}
-      <div className="flex w-full max-w-xs items-center justify-between px-6 pt-4 border-t border-border">
-        <div className="flex flex-col">
-          <span className="text-xs font-bold uppercase tracking-widest text-muted">Сессия</span>
-          <span className="text-xl font-bold text-primary-500">+{sessionCount}</span>
         </div>
-        <button
-          onClick={handleReset}
-          className="px-6 py-2 rounded-xl border border-border bg-surface text-sm font-bold text-muted hover:text-red-400 hover:border-red-400/50 transition-colors"
-        >
-          Сбросить
-        </button>
-      </div>
+      ))}
     </div>
   );
 }

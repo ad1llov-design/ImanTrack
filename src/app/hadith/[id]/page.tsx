@@ -32,7 +32,7 @@ export default function HadithCollectionPage({ params }: PageProps) {
             {collection.author}
           </span>
           <span className="text-xs text-muted">
-            {hadiths.length} хадисов в этой подборке
+            {hadiths.length} хадисов
           </span>
         </div>
       </div>
@@ -51,18 +51,12 @@ export default function HadithCollectionPage({ params }: PageProps) {
             <p className="font-arabic text-xl leading-loose text-main text-right mb-6" dir="rtl">
               {hadith.arabic}
             </p>
-            <p className="text-sm leading-relaxed text-muted mb-4">
+            <p className="text-sm leading-relaxed text-muted">
               {hadith.translation}
             </p>
-            <div className="border-t border-border pt-4">
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
-                📜 {hadith.narrator}
-              </p>
-            </div>
           </div>
         ))}
       </div>
     </div>
   );
 }
-

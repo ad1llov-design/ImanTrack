@@ -1,41 +1,96 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 
-export default function HomePage() {
+const PrayerWidget = dynamic(
+  () => import("@features/prayer/components/PrayerWidget").then((m) => m.PrayerWidget),
+  { ssr: false, loading: () => <div className="h-48 animate-pulse rounded-2xl bg-neutral-100 dark:bg-neutral-800" /> }
+);
+
+const PRAYER_HADITHS = [
+  {
+    arabic: "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
+    translation: "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
+    reference: "Бухари, 574",
+  },
+  {
+    arabic: "الصَّلَوَاتُ الْخَمْسُ كَفَّارَاتٌ لِمَا بَيْنَهُنَّ",
+    translation: "Пять молитв — искупление за то, что между ними.",
+    reference: "Муслим, 233",
+  },
+  {
+    arabic: "أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ",
+    translation: "Ближе всего раб к своему Господу в земном поклоне.",
+    reference: "Муслим, 482",
+  },
+];
+
+export default function SiratPage() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-background text-main">
-      <div className="absolute right-4 top-4">
+    <main className="mx-auto max-w-lg px-4 pt-6 pb-28">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-main">
+            MAZI
+          </h1>
+          <p className="text-xs text-muted mt-0.5">بسم الله الرحمن الرحيم</p>
+        </div>
         <ThemeToggle />
       </div>
-      <div className="mx-auto max-w-2xl px-6 py-24 text-center">
-        {/* Arabic Bismillah */}
-        <p className="mb-8 font-arabic text-4xl text-primary-600 dark:text-primary-400">
-          بسم الله الرحمن الرحيم
-        </p>
 
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-          Iman<span className="text-primary-500">Track</span>
-        </h1>
+      {/* Prayer Times */}
+      <section className="mb-8">
+        <PrayerWidget />
+      </section>
 
-        <p className="mb-10 text-xl text-neutral-500 dark:text-neutral-400">
-          Трекер вашего духовного роста
-        </p>
-
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <Link
-            href="/dashboard"
-            className="rounded-2xl bg-primary-600 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-primary-700 active:scale-95"
-          >
-            Начать путь →
-          </Link>
-          <Link
-            href="/auth/login"
-            className="rounded-2xl border border-neutral-200 px-8 py-3.5 text-base font-semibold text-neutral-700 transition-all hover:border-primary-400 hover:text-primary-600 dark:border-neutral-700 dark:text-neutral-300"
-          >
-            Войти
-          </Link>
+      {/* Prayer Hadiths */}
+      <section className="mb-8">
+        <h2 className="text-lg font-bold text-main mb-4">О молитве</h2>
+        <div className="space-y-4">
+          {PRAYER_HADITHS.map((h, i) => (
+            <div key={i} className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+              <p className="font-arabic text-lg leading-loose text-main text-right mb-3" dir="rtl">
+                {h.arabic}
+              </p>
+              <p className="text-sm text-muted leading-relaxed mb-2">
+                {h.translation}
+              </p>
+              <p className="text-[10px] font-bold text-primary-500 bg-primary-500/10 px-2 py-0.5 rounded-md inline-block uppercase tracking-wider">
+                {h.reference}
+              </p>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
+
+      {/* Quick Links */}
+      <section>
+        <h2 className="text-lg font-bold text-main mb-4">Разделы</h2>
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { href: "/quran", label: "Коран", desc: "Чтение с переводом" },
+            { href: "/hadith", label: "Хадисы", desc: "200 хадисов" },
+            { href: "/dhikr", label: "Зикр", desc: "Поминание Аллаха" },
+            { href: "/sunnah", label: "Сунна", desc: "Ежедневные сунны" },
+            { href: "/adhkar", label: "Азкары", desc: "Утренние и вечерние" },
+            { href: "/prayer", label: "Намаз", desc: "Время молитв" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group rounded-2xl border border-border bg-surface p-4 transition-all hover:border-primary-300 hover:shadow-card dark:hover:border-primary-700"
+            >
+              <p className="text-sm font-bold text-main group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {item.label}
+              </p>
+              <p className="text-xs text-muted mt-0.5">{item.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

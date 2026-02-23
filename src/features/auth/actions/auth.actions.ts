@@ -67,7 +67,7 @@ export async function loginAction(
   }
 
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+  redirect("/");
 }
 
 /* ── Register ──────────────────────────────────────────────────────── */

@@ -38,7 +38,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const info = ADHKAR_CATEGORIES.find((c) => c.id === params.category);
   return {
-    title: info ? `${info.nameRu} — ImanTrack` : "Азкары — ImanTrack",
+    title: info ? `${info.nameRu} — MAZI` : "Азкары — MAZI",
     description: info?.description ?? "Зикры и дуа",
   };
 }

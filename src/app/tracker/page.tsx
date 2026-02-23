@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Прогресс — ImanTrack",
+  title: "Прогресс — MAZI",
   description: "Статистика духовного роста",
 };
 
@@ -22,7 +22,7 @@ export default function TrackerPage() {
           Раздел статистики появится в следующих обновлениях.
         </p>
         <Link
-          href="/dashboard"
+          href="/"
           className="px-6 py-3 rounded-2xl bg-primary-500 text-white font-bold text-sm hover:bg-primary-600 transition-colors"
         >
           ← На главную

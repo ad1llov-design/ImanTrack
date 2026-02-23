@@ -71,7 +71,7 @@ export default function DesignSystemPage() {
           <Container>
             <p className="font-arabic text-3xl text-gold-300">??? ???? ?????? ??????</p>
             <h1 className="mt-4 text-display text-white">
-              ImanTrack <span className="text-gold-300">Design System</span>
+              MAZI <span className="text-gold-300">Design System</span>
             </h1>
             <p className="mt-3 max-w-2xl text-body text-primary-200">
               ������ ������-������� � ��������� ������. Ҹ���-������ �������, ������� �������,

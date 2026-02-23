@@ -9,28 +9,28 @@ const inter = Inter({
   display: "swap",
 });
 
-const APP_NAME = "ImanTrack";
+const APP_NAME = "MAZI";
 const APP_DESCRIPTION =
-  "ImanTrack — приложение для отслеживания духовного роста, намазов, поста и благих дел для мусульман.";
+  "MAZI — исламское приложение для чтения Корана, хадисов, времени намазов и поминания Аллаха.";
 
 function getAppUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_APP_URL;
   if (envUrl && envUrl.startsWith("http")) {
     return envUrl;
   }
-  return "https://imantrack.vercel.app";
+  return "https://iman-tracko1.vercel.app";
 }
 
 export const metadata: Metadata = {
   metadataBase: new URL(getAppUrl()),
   title: {
-    default: `${APP_NAME} — Трекер духовного роста`,
+    default: `${APP_NAME} — Исламское приложение`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
   applicationName: APP_NAME,
-  keywords: ["ислам", "намаз", "ибадах", "духовный рост", "коран", "трекер"],
-  authors: [{ name: "ImanTrack Team" }],
+  keywords: ["ислам", "намаз", "коран", "хадис", "зикр", "сунна"],
+  authors: [{ name: "MAZI" }],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_RU",
     url: getAppUrl(),
-    title: `${APP_NAME} — Трекер духовного роста`,
+    title: `${APP_NAME} — Исламское приложение`,
     description: APP_DESCRIPTION,
     siteName: APP_NAME,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME} — Трекер духовного роста`,
+    title: `${APP_NAME} — Исламское приложение`,
     description: APP_DESCRIPTION,
   },
   robots: {

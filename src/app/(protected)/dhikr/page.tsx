@@ -1,7 +1,7 @@
 import { DhikrTasbih } from "@features/dhikr/components/DhikrTasbih";
 
 export const metadata = {
-  title: "Зикр | ImanTrack",
+  title: "Зикр | MAZI",
   description: "Электронный тасбих и учет поминания Аллаха.",
 };
 

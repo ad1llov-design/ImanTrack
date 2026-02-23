@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import { RegisterForm } from "@features/auth/components/RegisterForm";
 
 export const metadata: Metadata = {
-  title: "Регистрация — ImanTrack",
-  description: "Создайте аккаунт ImanTrack и начните свой духовный путь",
+  title: "Регистрация — MAZI",
+  description: "Создайте аккаунт MAZI и начните свой духовный путь",
 };
 
 export default function RegisterPage() {

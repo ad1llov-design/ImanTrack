@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { SunnahGrid } from "@features/sunnah/components/SunnahGrid";
 
 export const metadata: Metadata = {
-  title: "Сунна — ImanTrack",
+  title: "Сунна — MAZI",
   description: "Оживление Сунны через благие дела.",
 };
 

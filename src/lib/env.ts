@@ -34,7 +34,7 @@ export const clientEnv = {
   supabaseUrl: getRequiredEnv("NEXT_PUBLIC_SUPABASE_URL"),
   supabaseAnonKey: getRequiredEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
   appUrl: getOptionalEnv("NEXT_PUBLIC_APP_URL", "http://localhost:3000"),
-  appName: getOptionalEnv("NEXT_PUBLIC_APP_NAME", "ImanTrack"),
+  appName: getOptionalEnv("NEXT_PUBLIC_APP_NAME", "MAZI"),
   prayerApiUrl: getOptionalEnv(
     "NEXT_PUBLIC_PRAYER_API_URL",
     "https://api.aladhan.com/v1",

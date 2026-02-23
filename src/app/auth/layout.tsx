@@ -10,8 +10,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Авторизация — ImanTrack",
-  description: "Войдите или зарегистрируйтесь в ImanTrack",
+  title: "Авторизация — MAZI",
+  description: "Войдите или зарегистрируйтесь в MAZI",
 };
 
 export default function AuthLayout({

@@ -93,10 +93,6 @@ export function MushafReader({ className }: MushafReaderProps) {
 
   const toggleFullscreen = () => setIsFullscreen((f) => !f);
 
-  const handleBookmark = () => {
-    toast.success(`Страница ${currentPage} сохранена`);
-  };
-
   const content = (
     <div className={cn("flex flex-col items-center gap-4", className)}>
       {/* Controls */}
@@ -113,9 +109,6 @@ export function MushafReader({ className }: MushafReaderProps) {
           <span className="text-sm font-bold text-main tabular-nums">
             {currentPage} / {TOTAL_PAGES}
           </span>
-          <button onClick={handleBookmark} className="text-muted hover:text-primary-500 transition-colors">
-            <BookmarkPlus className="h-4 w-4" />
-          </button>
           <button onClick={toggleFullscreen} className="text-muted hover:text-main transition-colors">
             {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
           </button>

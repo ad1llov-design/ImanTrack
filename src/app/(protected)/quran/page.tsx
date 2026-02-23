@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { QuranTracker } from "@features/quran/components/QuranTracker";
 
 export const metadata: Metadata = {
-  title: "Коран — ImanTrack",
+  title: "Коран — MAZI",
   description: "Чтение Священного Корана с переводом на русский язык.",
 };
 

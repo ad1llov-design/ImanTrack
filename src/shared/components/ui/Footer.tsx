@@ -23,7 +23,7 @@ interface FooterProps {
 /* ── Data ───────────────────────────────────────────────────────────── */
 
 const navLinks: FooterLink[] = [
-  { label: "Дашборд",   href: "/dashboard" },
+  { label: "Главная",   href: "/" },
   { label: "Привычки",  href: "/habits" },
   { label: "Коран",     href: "/quran" },
   { label: "Настройки", href: "/settings" },
@@ -126,7 +126,7 @@ export function Footer({ className }: FooterProps) {
         {/* ── Bottom bar ──────────────────────── */}
         <div className="flex flex-col items-center justify-between gap-3 border-t border-neutral-200 py-6 dark:border-neutral-800 sm:flex-row">
           <p className="text-caption text-neutral-400">
-            © {year} ImanTrack. Все права защищены.
+            © {year} MAZI. Все права защищены.
           </p>
           <p className="text-caption text-neutral-400">
             Сделано с ❤️ и بسم الله

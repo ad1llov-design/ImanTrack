@@ -28,7 +28,7 @@ export function PWAInstallPrompt() {
               </div>
               <div>
                 <p className="text-sm font-bold text-neutral-900 dark:text-neutral-50">
-                  Установить ImanTrack
+                  Установить MAZI
                 </p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">
                   Добавьте на главный экран для быстрого доступа
