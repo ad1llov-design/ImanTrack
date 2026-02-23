@@ -81,6 +81,7 @@ export const viewport: Viewport = {
 import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
 import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
 import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
+import { AuthProvider } from "@features/auth/components/AuthProvider";
 import { ThemeProvider } from "./providers";
 import { Toaster } from "sonner";
 
@@ -93,13 +94,16 @@ export default function RootLayout({
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col bg-surface transition-colors duration-300`}>
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-          <OfflineBanner />
-          <GlobalNavigation />
-          {children}
-          <Toaster position="bottom-center" richColors />
-          <PWAInstallPrompt />
+          <AuthProvider>
+            <OfflineBanner />
+            <GlobalNavigation />
+            {children}
+            <Toaster position="bottom-center" richColors />
+            <PWAInstallPrompt />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

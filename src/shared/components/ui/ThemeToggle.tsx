@@ -1,42 +1,22 @@
-/**
- * @module shared/components/ui/ThemeToggle
- *
- * Кнопка переключения light/dark темы с плавной анимацией иконки.
- * Сохраняет выбор в localStorage, по умолчанию следует системе.
- */
-
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 import { cn } from "@shared/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const [isDark, setIsDark] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else if (stored === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      // System preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setIsDark(prefersDark);
-      if (prefersDark) document.documentElement.classList.add("dark");
-    }
   }, []);
 
+  const isDark = resolvedTheme === "dark";
+
   function toggle() {
-    const next = !isDark;
-    setIsDark(next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", next);
+    setTheme(isDark ? "light" : "dark");
   }
 
   // Prevent hydration mismatch

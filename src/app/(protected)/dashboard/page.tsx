@@ -81,7 +81,7 @@ export default async function DashboardPage() {
       {/* 7️⃣ Quote of the Day */}
       <section>
         <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 text-center shadow-card">
-          <div className="absolute -top-6 -right-6 text-9xl text-primary-50 opacity-50">"</div>
+          <div className="absolute -top-6 -right-6 text-9xl text-primary-50 opacity-50">&ldquo;</div>
           <p className="relative z-10 text-lg md:text-xl font-display text-main italic leading-relaxed">
             «Ищите милость Аллаха и поминайте Аллаха часто, — быть может, вы преуспеете.»
           </p>

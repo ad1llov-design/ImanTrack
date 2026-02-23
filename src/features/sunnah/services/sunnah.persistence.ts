@@ -1,7 +1,13 @@
 import { createClient } from "@lib/supabase/client";
-import type { Database } from "@shared/types/supabase";
 
-export type SunnahLog = Database["public"]["Tables"]["sunnah_logs"]["Row"];
+export interface SunnahLog {
+  id: string;
+  user_id: string;
+  date: string;
+  action_id: string;
+  is_completed: boolean;
+  created_at: string;
+}
 
 export const SUNNAH_CATEGORIES = [
   { id: "morning", title: "🌅 Утренние Сунны" },
@@ -21,7 +27,7 @@ export const SUNNAH_ACTIONS = [
   { id: "mosque", category: "prayer", label: "Идти в мечеть", icon: "🕌", description: "Идти в мечеть пешком для совершения джамаат-намаза.", source: "«Каждый шаг в мечеть стирает грех и поднимает степень»", narrator: "Абу Хурайра (р.а.)", collection: "Муслим" },
   { id: "post_prayer_dhikr", category: "prayer", label: "Зикр после намаза", icon: "✨", description: "СубханАллах 33, Альхамдулиллях 33, Аллаху Акбар 34 после каждого намаза.", source: "«Кто славит Аллаха после каждого намаза 33 раза...»", narrator: "Абу Хурайра (р.а.)", collection: "Муслим" },
 
-  // Night Sunnah  
+  // Night Sunnah
   { id: "wudu_sleep", category: "night", label: "Вуду перед сном", icon: "💧", description: "Совершить омовение (вуду) перед сном.", source: "«Когда ты ложишься спать, соверши вуду»", narrator: "Аль-Бара ибн Азиб (р.а.)", collection: "Аль-Бухари" },
   { id: "ayat_kursi", category: "night", label: "Аят аль-Курси", icon: "📖", description: "Чтение Аят аль-Курси (2:255) перед сном для защиты.", source: "«Кто читает Аят аль-Курси перед сном... его охраняет ангел»", narrator: "Абу Хурайра (р.а.)", collection: "Аль-Бухари" },
   { id: "right_side", category: "night", label: "Спать на правом боку", icon: "🛏️", description: "Ложиться на правый бок, подложив руку под щеку.", source: "«Когда ложишься — ложись на правый бок»", narrator: "Аль-Бара ибн Азиб (р.а.)", collection: "Аль-Бухари" },
@@ -32,40 +38,70 @@ export const SUNNAH_ACTIONS = [
   { id: "kindness", category: "character", label: "Доброта к соседям", icon: "🏠", description: "Проявлять доброту и уважение к своим соседям.", source: "«Джибриль не переставал мне завещать хорошее отношение к соседу»", narrator: "Аиша (р.а.)", collection: "Аль-Бухари" },
 ];
 
+/**
+ * Получить все логи сунн за указанную дату
+ */
 export async function getSunnahLogs(date: string): Promise<SunnahLog[]> {
   const supabase = createClient();
-  const { data: user } = await supabase.auth.getUser();
-  if (!user.user) return [];
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
 
   const { data, error } = await supabase
     .from("sunnah_logs")
     .select("*")
-    .eq("user_id", user.user.id)
+    .eq("user_id", user.id)
     .eq("date", date);
 
   if (error) {
     console.error("Error fetching sunnah logs:", error);
     return [];
   }
-  return data || [];
+  return (data as SunnahLog[]) || [];
 }
 
-export async function toggleSunnahAction(date: string, actionId: string, isCompleted: boolean): Promise<void> {
+/**
+ * Toggle сунны: если is_completed = true → upsert с is_completed=true
+ * если is_completed = false → upsert с is_completed=false (или delete)
+ */
+export async function toggleSunnahAction(
+  date: string,
+  actionId: string,
+  isCompleted: boolean,
+): Promise<void> {
   const supabase = createClient();
-  const { data: user } = await supabase.auth.getUser();
-  if (!user.user) throw new Error("User not authenticated");
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("User not authenticated");
 
-  const { error } = await supabase
-    .from("sunnah_logs")
-    .upsert({
-      user_id: user.user.id,
+  if (isCompleted) {
+    // Insert or update to completed
+    const payload = {
+      user_id: user.id,
       date,
       action_id: actionId,
-      is_completed: isCompleted,
-    } as any, { onConflict: "user_id,date,action_id" });
+      is_completed: true,
+    };
+    const { error } = await (supabase.from("sunnah_logs") as ReturnType<typeof supabase.from>)
+      .upsert(
+        payload as never,
+        { onConflict: "user_id,date,action_id" },
+      );
 
-  if (error) {
-    console.error("Error toggling sunnah action:", error);
-    throw error;
+    if (error) {
+      console.error("Error inserting sunnah log:", error);
+      throw error;
+    }
+  } else {
+    // Delete the record
+    const { error } = await supabase
+      .from("sunnah_logs")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("date", date)
+      .eq("action_id", actionId);
+
+    if (error) {
+      console.error("Error deleting sunnah log:", error);
+      throw error;
+    }
   }
 }

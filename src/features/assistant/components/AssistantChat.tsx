@@ -88,7 +88,7 @@ export function AssistantChat({ className }: { className?: string }) {
   };
 
   return (
-    <div className={cn("mx-auto max-w-2xl px-4 py-8 md:py-16 flex flex-col h-[85vh]", className)}>
+    <div className={cn("mx-auto max-w-2xl px-4 py-8 md:py-16 flex flex-col", className)} style={{ height: "calc(100vh - 180px)" }}>
       <div className="mb-8 text-center">
         <h1 className="text-display text-4xl font-bold text-main">Иман Помощник</h1>
         <p className="text-muted text-sm mt-2">Ваш контекстный духовный наставник</p>
