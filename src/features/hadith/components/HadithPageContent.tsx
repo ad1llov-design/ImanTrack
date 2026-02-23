@@ -29,12 +29,28 @@ export function HadithPageContent() {
     share,
   } = useHadith();
 
-  // Skeleton
-  if (isLoading || !currentHadith) {
+  // Skeleton — but only for a max of 3 seconds
+  if (isLoading) {
     return (
       <div className="mx-auto max-w-xl px-4 py-8">
         <div className="h-8 w-40 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />
         <div className="mt-8 h-96 w-full animate-pulse rounded-3xl bg-neutral-100 dark:bg-neutral-800" />
+      </div>
+    );
+  }
+
+  // If no hadith loaded for some reason, show a fallback message
+  if (!currentHadith) {
+    return (
+      <div className="mx-auto max-w-xl px-4 py-16 text-center">
+        <p className="text-lg font-semibold text-main">Не удалось загрузить хадис</p>
+        <p className="mt-2 text-sm text-muted">Попробуйте обновить страницу</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 rounded-xl bg-primary-500 px-6 py-2 text-sm font-bold text-white hover:bg-primary-600 transition-colors"
+        >
+          Обновить
+        </button>
       </div>
     );
   }

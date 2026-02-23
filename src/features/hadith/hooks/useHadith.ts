@@ -33,22 +33,28 @@ export function useHadith() {
     store.setLoading(true);
 
     try {
-      // 1. Хадис дня (детерминированный)
+      // 1. Хадис дня (детерминированный, из локальных данных — всегда работает)
       const hadith = getHadithOfTheDay();
       store.setCurrentHadith(hadith);
 
-      // 2. Избранные (local → merge с сервером)
+      // 2. Избранные (local — всегда работает)
       const localFavs = loadFavorites();
       store.setFavorites(localFavs);
 
-      // Async merge с сервером
-      const serverFavs = await loadFavoritesFromServer();
-      if (serverFavs.length > 0) {
-        const merged = Array.from(new Set([...localFavs, ...serverFavs]));
-        store.setFavorites(merged);
-        saveFavorites(merged);
+      // 3. Async merge с сервером (может упасть — не блокируем UI)
+      try {
+        const serverFavs = await loadFavoritesFromServer();
+        if (serverFavs.length > 0) {
+          const merged = Array.from(new Set([...localFavs, ...serverFavs]));
+          store.setFavorites(merged);
+          saveFavorites(merged);
+        }
+      } catch {
+        // Серверная синхронизация упала — ничего страшного, используем локальные данные
+        console.warn("Server favorites sync failed, using local data");
       }
-    } catch {
+    } catch (err) {
+      console.error("Failed to load hadith:", err);
       store.setError("Не удалось загрузить хадис");
     } finally {
       store.setLoading(false);

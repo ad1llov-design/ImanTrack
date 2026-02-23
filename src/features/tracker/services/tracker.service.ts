@@ -19,45 +19,55 @@ export async function getRecentActivity(days: number = 30): Promise<DailyActivit
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return [];
 
-  // Fetch prayer logs
-  const { data: prayerLogs } = await supabase
-    .from("prayer_logs")
-    .select("date, status")
-    .eq("user_id", user.id)
-    .gte("date", format(startDate, "yyyy-MM-dd"))
-    .lte("date", format(endDate, "yyyy-MM-dd"));
+  const dateRange = {
+    gte: format(startDate, "yyyy-MM-dd"),
+    lte: format(endDate, "yyyy-MM-dd"),
+  };
 
-  const typedPrayerLogs = (prayerLogs || []) as Array<{ date: string; status: string }>;
+  // Each query wrapped individually — if a table is missing, we don't crash
+  let typedPrayerLogs: Array<{ date: string; status: string }> = [];
+  try {
+    const { data: prayerLogs } = await supabase
+      .from("prayer_logs")
+      .select("date, status")
+      .eq("user_id", user.id)
+      .gte("date", dateRange.gte)
+      .lte("date", dateRange.lte);
+    typedPrayerLogs = (prayerLogs || []) as Array<{ date: string; status: string }>;
+  } catch { /* table may not exist yet */ }
 
-  // Fetch adhkar progress
-  const { data: adhkarLogs } = await supabase
-    .from("adhkar_progress")
-    .select("date, is_completed")
-    .eq("user_id", user.id)
-    .gte("date", format(startDate, "yyyy-MM-dd"))
-    .lte("date", format(endDate, "yyyy-MM-dd"));
+  let typedAdhkarLogs: Array<{ date: string; is_completed: boolean }> = [];
+  try {
+    const { data: adhkarLogs } = await supabase
+      .from("adhkar_progress")
+      .select("date, is_completed")
+      .eq("user_id", user.id)
+      .gte("date", dateRange.gte)
+      .lte("date", dateRange.lte);
+    typedAdhkarLogs = (adhkarLogs || []) as Array<{ date: string; is_completed: boolean }>;
+  } catch { /* table may not exist yet */ }
 
-  const typedAdhkarLogs = (adhkarLogs || []) as Array<{ date: string; is_completed: boolean }>;
+  let typedSunnahLogs: Array<{ date: string; is_completed: boolean }> = [];
+  try {
+    const { data: sunnahLogs } = await supabase
+      .from("sunnah_logs")
+      .select("date, is_completed")
+      .eq("user_id", user.id)
+      .gte("date", dateRange.gte)
+      .lte("date", dateRange.lte);
+    typedSunnahLogs = (sunnahLogs || []) as Array<{ date: string; is_completed: boolean }>;
+  } catch { /* table may not exist yet */ }
 
-  // Fetch sunnah logs
-  const { data: sunnahLogs } = await supabase
-    .from("sunnah_logs")
-    .select("date, is_completed")
-    .eq("user_id", user.id)
-    .gte("date", format(startDate, "yyyy-MM-dd"))
-    .lte("date", format(endDate, "yyyy-MM-dd"));
-
-  const typedSunnahLogs = (sunnahLogs || []) as Array<{ date: string; is_completed: boolean }>;
-
-  // Fetch quran logs
-  const { data: quranLogs } = await supabase
-    .from("quran_logs")
-    .select("date, pages_read")
-    .eq("user_id", user.id)
-    .gte("date", format(startDate, "yyyy-MM-dd"))
-    .lte("date", format(endDate, "yyyy-MM-dd"));
-
-  const typedQuranLogs = (quranLogs || []) as Array<{ date: string; pages_read: number }>;
+  let typedQuranLogs: Array<{ date: string; pages_read: number }> = [];
+  try {
+    const { data: quranLogs } = await supabase
+      .from("quran_logs")
+      .select("date, pages_read")
+      .eq("user_id", user.id)
+      .gte("date", dateRange.gte)
+      .lte("date", dateRange.lte);
+    typedQuranLogs = (quranLogs || []) as Array<{ date: string; pages_read: number }>;
+  } catch { /* table may not exist yet */ }
 
   // Map to DailyActivity
   const interval = eachDayOfInterval({ start: startDate, end: endDate });
