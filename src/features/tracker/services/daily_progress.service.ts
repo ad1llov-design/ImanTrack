@@ -29,7 +29,12 @@ export async function upsertDailyProgress(
   updates: Partial<Omit<DailyProgress, "id" | "user_id" | "date" | "created_at" | "updated_at">>
 ) {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  
+  if (authError) {
+    console.error("Auth error in upsertDailyProgress:", authError);
+    throw new Error("Auth failed: " + authError.message);
+  }
   if (!user) throw new Error("Unauthorized");
 
   // First fetch to merge jsonb correctly
@@ -44,12 +49,21 @@ export async function upsertDailyProgress(
     updated_at: new Date().toISOString()
   };
 
+  console.log("daily_progress upsert payload:", JSON.stringify(payload));
+
   const { error } = await supabase
     .from("daily_progress")
     .upsert(payload as any, { onConflict: "user_id,date" });
 
   if (error) {
-    console.error("Upsert failed", error);
+    console.error("daily_progress upsert FAILED:", {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
     throw error;
   }
+  
+  console.log("daily_progress upsert SUCCESS for", dateStr);
 }

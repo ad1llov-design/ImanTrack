@@ -87,7 +87,13 @@ export async function toggleSunnahAction(
       );
 
     if (error) {
-      console.error("Error inserting sunnah log:", error);
+      console.error("sunnah_logs upsert FAILED:", {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        payload: { user_id: user.id, date, action_id: actionId },
+      });
       throw error;
     }
   } else {

@@ -86,6 +86,23 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     );
   }
 
+  if (verses.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-12 space-y-4">
+        <p className="text-lg font-semibold text-main">Не удалось загрузить суру</p>
+        <p className="text-sm text-muted">Проверьте интернет-соединение</p>
+        <div className="flex gap-3">
+          <button onClick={onBack} className="px-4 py-2 rounded-xl border border-border text-sm font-bold text-muted hover:text-main transition-colors">
+            ← Назад
+          </button>
+          <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-xl bg-primary-500 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
+            Повторить
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col" style={{ height: "calc(100vh - 200px)" }}>
       <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
