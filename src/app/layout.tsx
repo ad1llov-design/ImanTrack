@@ -80,6 +80,7 @@ export const viewport: Viewport = {
 
 import { OfflineBanner } from "@shared/components/ui/OfflineBanner";
 import { PWAInstallPrompt } from "@shared/components/ui/PWAInstallPrompt";
+import { SWUpdatePrompt } from "@shared/components/ui/SWUpdatePrompt";
 import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
 import { AuthProvider } from "@features/auth/components/AuthProvider";
 import { ThemeProvider } from "./providers";
@@ -100,6 +101,7 @@ export default function RootLayout({
             {children}
             <Toaster position="bottom-center" richColors />
             <PWAInstallPrompt />
+            <SWUpdatePrompt />
           </AuthProvider>
         </ThemeProvider>
       </body>
