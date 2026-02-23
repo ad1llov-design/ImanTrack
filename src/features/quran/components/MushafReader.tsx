@@ -3,15 +3,27 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
-import { ChevronLeft, ChevronRight, Maximize2, Minimize2, BookmarkPlus, RefreshCw } from "lucide-react";
-import Image from "next/image";
+import { ChevronLeft, ChevronRight, Maximize2, Minimize2, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
 
-// Multiple CDN URLs for fallback
-const QURAN_PAGE_CDNS = [
-  "https://cdn.islamic.network/quran/images/",
-  "https://cdn.islamic.network/quran/images/high-resolution/",
-];
+interface QuranWord {
+  id: number;
+  position: number;
+  text_uthmani: string;
+  char_type_name: string;
+  line_number: number;
+  translation?: {
+    text: string;
+  };
+}
+
+interface QuranVerse {
+  id: number;
+  verse_number: number;
+  verse_key: string;
+  text_uthmani: string;
+  words: QuranWord[];
+}
 
 interface MushafReaderProps {
   className?: string;
@@ -24,11 +36,34 @@ export function MushafReader({ className }: MushafReaderProps) {
     }
     return 1;
   });
+  const [verses, setVerses] = useState<QuranVerse[]>([]);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [cdnIndex, setCdnIndex] = useState(0);
   const TOTAL_PAGES = 604;
+
+  // Загрузка аятов для текущей страницы
+  const fetchPage = useCallback(async (page: number) => {
+    setIsLoading(true);
+    setHasError(false);
+    try {
+      const res = await fetch(
+        `https://api.quran.com/api/v4/verses/by_page/${page}?language=ru&words=true&word_fields=text_uthmani&fields=text_uthmani&translation_fields=text&translations=45`
+      );
+      if (!res.ok) throw new Error("API error");
+      const data = await res.json();
+      setVerses(data.verses || []);
+    } catch (error) {
+      console.error("Failed to fetch mushaf page:", error);
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchPage(currentPage);
+  }, [currentPage, fetchPage]);
 
   // Auto-save last page
   useEffect(() => {
@@ -39,16 +74,10 @@ export function MushafReader({ className }: MushafReaderProps) {
 
   const goNext = useCallback(() => {
     setCurrentPage((p) => Math.min(p + 1, TOTAL_PAGES));
-    setIsLoading(true);
-    setHasError(false);
-    setCdnIndex(0);
   }, []);
 
   const goPrev = useCallback(() => {
     setCurrentPage((p) => Math.max(p - 1, 1));
-    setIsLoading(true);
-    setHasError(false);
-    setCdnIndex(0);
   }, []);
 
   // Keyboard navigation
@@ -68,28 +97,10 @@ export function MushafReader({ className }: MushafReaderProps) {
     toast.success(`Страница ${currentPage} сохранена`);
   };
 
-  const handleRetry = () => {
-    setHasError(false);
-    setIsLoading(true);
-    setCdnIndex(0);
-  };
-
-  const handleImageError = () => {
-    // Try next CDN
-    if (cdnIndex < QURAN_PAGE_CDNS.length - 1) {
-      setCdnIndex((prev) => prev + 1);
-    } else {
-      setIsLoading(false);
-      setHasError(true);
-    }
-  };
-
-  const pageImageUrl = `${QURAN_PAGE_CDNS[cdnIndex]}${currentPage}.png`;
-
   const content = (
     <div className={cn("flex flex-col items-center gap-4", className)}>
       {/* Controls */}
-      <div className="flex items-center justify-between w-full max-w-lg px-2">
+      <div className="flex items-center justify-between w-full max-w-2xl px-2">
         <button
           onClick={goPrev}
           disabled={currentPage <= 1}
@@ -119,42 +130,58 @@ export function MushafReader({ className }: MushafReaderProps) {
         </button>
       </div>
 
-      {/* Page Image */}
-      <div className="relative w-full max-w-lg rounded-2xl border border-border bg-white dark:bg-neutral-100 overflow-hidden shadow-card min-h-[500px] flex items-center justify-center">
-        {isLoading && !hasError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
+      {/* Page Content */}
+      <div className="relative w-full max-w-2xl rounded-2xl border border-border bg-white dark:bg-neutral-900 overflow-hidden shadow-card min-h-[500px] p-6 md:p-10">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-neutral-900/80 z-10">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
           </div>
         )}
 
         {hasError ? (
-          <div className="flex flex-col items-center justify-center gap-4 p-8 text-center">
+          <div className="flex flex-col items-center justify-center gap-4 p-8 text-center min-h-[400px]">
             <div className="text-6xl">📖</div>
             <p className="text-sm text-muted">Не удалось загрузить страницу Мусхафа</p>
             <p className="text-xs text-muted">Проверьте подключение к интернету</p>
             <button
-              onClick={handleRetry}
+              onClick={() => fetchPage(currentPage)}
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 text-white text-sm font-bold hover:bg-primary-600 transition-all"
             >
-              <RefreshCw className="h-4 w-4" />
               Повторить
             </button>
           </div>
         ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            key={`${currentPage}-${cdnIndex}`}
-            src={pageImageUrl}
-            alt={`Страница ${currentPage}`}
-            className="w-full h-auto"
-            onLoad={() => {
-              setIsLoading(false);
-              setHasError(false);
-            }}
-            onError={handleImageError}
-            draggable={false}
-            loading="lazy"
-          />
+          <div className="flex flex-col items-center" dir="rtl">
+            {/* Bismillah Header for page */}
+            {currentPage > 1 && verses.length > 0 && verses[0]?.verse_key?.endsWith(":1") && (
+              <div className="text-center mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-700 w-full">
+                <p className="text-2xl md:text-3xl text-neutral-800 dark:text-neutral-200 leading-loose" style={{ fontFamily: "var(--font-amiri, 'Amiri'), 'Traditional Arabic', serif" }}>
+                  بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
+                </p>
+              </div>
+            )}
+
+            {/* Verses */}
+            <div className="text-center leading-[3] md:leading-[3.5] space-y-1">
+              {verses.map((verse) => (
+                <span key={verse.id} className="inline">
+                  <span
+                    className="text-2xl md:text-3xl lg:text-4xl text-neutral-900 dark:text-neutral-100 tracking-wide"
+                    style={{
+                      fontFamily: "var(--font-amiri, 'Amiri'), 'Traditional Arabic', serif",
+                      wordSpacing: "0.15em",
+                    }}
+                  >
+                    {verse.text_uthmani}
+                  </span>
+                  {/* Verse number marker ۝ */}
+                  <span className="inline-flex items-center justify-center mx-1.5 text-primary-600 dark:text-primary-400 text-sm font-bold select-none">
+                    ﴿{verse.verse_number}﴾
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
         )}
       </div>
 
@@ -169,9 +196,6 @@ export function MushafReader({ className }: MushafReaderProps) {
             const v = parseInt(e.target.value, 10);
             if (v >= 1 && v <= TOTAL_PAGES) {
               setCurrentPage(v);
-              setIsLoading(true);
-              setHasError(false);
-              setCdnIndex(0);
             }
           }}
           className="w-20 rounded-xl border border-border bg-surface px-3 py-2 text-center text-sm font-bold text-main focus:border-primary-500 focus:outline-none"

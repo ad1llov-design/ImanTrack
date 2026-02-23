@@ -45,7 +45,7 @@ export function HadithCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-card transition-all dark:border-neutral-800 dark:bg-surface-dark-secondary",
+        "group relative overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition-all",
         className,
       )}
     >
@@ -133,7 +133,7 @@ export function HadithCard({
       </div>
 
       {/* ── Action buttons ────────────────────── */}
-      <div className="border-t border-neutral-100 px-4 py-3 dark:border-neutral-800">
+      <div className="border-t border-border px-4 py-3">
         <div className="flex items-center justify-center gap-1">
 
           {/* Favorite */}

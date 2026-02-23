@@ -116,7 +116,7 @@ export function HadithPageContent() {
             {favHadiths.map((hadith) => (
               <div
                 key={hadith.id}
-                className="rounded-2xl border border-neutral-100 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900"
+                className="rounded-2xl border border-border bg-surface p-5"
               >
                 {/* Arabic */}
                 <p className="line-clamp-2 font-arabic text-sm leading-loose text-neutral-800 dark:text-neutral-200">
@@ -150,7 +150,7 @@ export function HadithPageContent() {
       )}
 
       {/* ── Quran footer ─────────────────────── */}
-      <div className="mt-12 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50 to-white p-6 text-center dark:border-primary-800 dark:from-primary-950/20 dark:to-surface-dark">
+      <div className="mt-12 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50 to-white p-6 text-center dark:border-primary-800 dark:from-primary-950/20 dark:to-neutral-900">
         <p className="font-arabic text-lg leading-loose text-primary-700 dark:text-primary-300">
           وَمَا يَنطِقُ عَنِ الْهَوَىٰ ۝ إِنْ هُوَ إِلَّا وَحْيٌ يُوحَىٰ
         </p>
