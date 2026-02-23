@@ -1,0 +1,67 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@shared/lib/utils";
+
+const DHIKR_TYPES = [
+  { id: "subhanallah", label: "СубханАллах", arabic: "سبحان الله", target: 33 },
+  { id: "alhamdulillah", label: "Альхамдулиллях", arabic: "الحمد لله", target: 33 },
+  { id: "allahuakbar", label: "Аллаху Акбар", arabic: "الله أكبر", target: 33 },
+  { id: "astaghfirullah", label: "Астагфируллах", arabic: "أستغفر الله", target: 100 },
+  { id: "lailaha", label: "Ла иляха илля Ллах", arabic: "لا إله إلا الله", target: 100 },
+  { id: "salawat", label: "Салават", arabic: "اللهم صل على محمد", target: 100 },
+];
+
+export function DhikrQuickWidget({ className }: { className?: string }) {
+  const [counts, setCounts] = useState<Record<string, number>>({});
+
+  const handleTap = (id: string) => {
+    setCounts(prev => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
+  };
+
+  return (
+    <div className={cn("space-y-4", className)}>
+      <h2 className="text-display text-xl font-semibold text-main">📿 Зикр</h2>
+      <div className="grid grid-cols-3 gap-3">
+        {DHIKR_TYPES.map((dhikr) => {
+          const count = counts[dhikr.id] || 0;
+          const progress = Math.min((count / dhikr.target) * 100, 100);
+          
+          return (
+            <motion.button
+              key={dhikr.id}
+              whileTap={{ scale: 0.92 }}
+              onClick={() => handleTap(dhikr.id)}
+              className="relative overflow-hidden rounded-2xl border border-border bg-surface p-4 flex flex-col items-center gap-2 min-h-[100px] active:bg-primary-50/10 transition-colors"
+            >
+              <span className="font-arabic text-lg text-main leading-tight">{dhikr.arabic}</span>
+              <span className="text-[9px] uppercase tracking-wider text-muted font-bold">{dhikr.label}</span>
+              
+              <motion.span 
+                key={count}
+                initial={{ scale: 1.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="text-lg font-bold tabular-nums text-primary-500"
+              >
+                {count}
+              </motion.span>
+
+              {/* Progress bar */}
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-border">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  className="h-full bg-primary-500"
+                />
+              </div>
+            </motion.button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

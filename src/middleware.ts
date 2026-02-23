@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
 // Защищённые маршруты — требуют авторизации
-const PROTECTED_ROUTES = ["/dashboard", "/habits", "/quran", "/settings", "/profile"];
+const PROTECTED_ROUTES = ["/dashboard", "/habits", "/quran", "/settings", "/profile", "/sunnah", "/hadith", "/adhkar", "/stats", "/assistant", "/dhikr", "/reflection"];
 
 // Публичные auth маршруты — редирект если уже авторизован
 const AUTH_ROUTES = ["/auth/login", "/auth/register", "/auth/forgot-password"];
@@ -52,9 +52,14 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // Если auth маршрут и пользователь уже залогинен — на трекер
+  // Если auth маршрут и пользователь уже залогинен — на дашборд
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL("/tracker", request.url));
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Если на главной и пользователь залогинен — на дашборд
+  if (pathname === "/" && user) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return response;

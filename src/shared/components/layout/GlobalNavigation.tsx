@@ -8,7 +8,7 @@ import { cn } from "@shared/lib/utils";
 import { 
   Home,
   BookOpen,
-  Library,
+  Clock,
   User,
   BookText,
   CheckSquare
@@ -28,6 +28,7 @@ export function GlobalNavigation() {
   const navItems = [
     { label: "Дашборд", href: "/dashboard", icon: <Home className="h-5 w-5" /> },
     { label: "Коран", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
+    { label: "Зикр", href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
     { label: "Хадисы", href: "/hadith", icon: <BookText className="h-5 w-5" /> },
     { label: "Сунна", href: "/sunnah", icon: <CheckSquare className="h-5 w-5" /> },
     { label: "Профиль", href: "/profile", icon: <User className="h-5 w-5" /> },
@@ -52,7 +53,26 @@ export function GlobalNavigation() {
 
       <div className="md:hidden">
         {/* Мобильная верхняя панель (Header) */}
-        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-end border-b border-white/5 bg-surface-background/80 px-4 backdrop-blur-xl">
+        <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-white/5 bg-surface-background/80 px-4 backdrop-blur-xl">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className="h-4 w-4"
+              >
+                <path d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
+                <path d="M12 3a9 9 0 0 0 9 9" />
+                <path d="M12 21a9 9 0 0 0-9-9" />
+              </svg>
+            </div>
+            <span className="text-display text-lg font-bold text-neutral-100">ImanTrack</span>
+          </Link>
           <div className="flex items-center gap-3">
              <ThemeToggle />
              <Link href="/assistant" className="text-neutral-400">🤖</Link>
@@ -63,7 +83,7 @@ export function GlobalNavigation() {
         <div className="h-14" />
 
         {/* Мобильная нижняя навигация (Tab Bar) */}
-        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-white/5 bg-surface-background/80 px-4 pb-safe backdrop-blur-xl">
+        <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-white/5 bg-surface-background/80 px-2 pb-safe backdrop-blur-xl">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (

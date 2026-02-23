@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { HADITH_COLLECTIONS } from "@features/hadith/data/collections";
+import { HADITHS_DATA } from "@features/hadith/data/hadiths";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -9,25 +10,10 @@ interface PageProps {
   };
 }
 
-// Mock Hadiths for demonstration
-const MOCK_HADITHS = [
-  {
-    id: 1,
-    arabic: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
-    translation: "Поистине, дела (оцениваются) только по намерениям, и, поистине, каждому человеку (достанется) лишь то, что он намеревался (обрести).",
-    narrator: "Передал Умар ибн аль-Хаттаб (да будет доволен им Аллах)",
-  },
-  {
-    id: 2,
-    arabic: "المُسْلِمُ مَنْ سَلِمَ المُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
-    translation: "Мусульманин — это тот, от языка и рук которого находятся в безопасности другие мусульмане.",
-    narrator: "Передал Абдуллах ибн Амр (да будет доволен им Аллах)",
-  }
-];
-
 export default function HadithCollectionPage({ params }: PageProps) {
   const collectionId = params.id;
   const collection = HADITH_COLLECTIONS.find((c) => c.id === collectionId);
+  const hadiths = HADITHS_DATA[collectionId] || [];
 
   if (!collection) return notFound();
 
@@ -46,17 +32,20 @@ export default function HadithCollectionPage({ params }: PageProps) {
             {collection.author}
           </span>
           <span className="text-xs text-muted">
-            {collection.count} хадисов
+            {hadiths.length} хадисов в этой подборке
           </span>
         </div>
       </div>
 
       <div className="space-y-6">
-        {MOCK_HADITHS.map((hadith, index) => (
+        {hadiths.map((hadith) => (
           <div key={hadith.id} className="rounded-2xl border border-border bg-surface p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-bold text-muted">
-                 {index + 1}
+                 {hadith.id}
+               </span>
+               <span className="text-[10px] font-bold text-primary-500 bg-primary-500/10 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                 {hadith.reference}
                </span>
             </div>
             <p className="font-arabic text-xl leading-loose text-main text-right mb-6" dir="rtl">
@@ -66,17 +55,14 @@ export default function HadithCollectionPage({ params }: PageProps) {
               {hadith.translation}
             </p>
             <div className="border-t border-border pt-4">
-              <p className="text-xs text-neutral-500 font-medium">
-                {hadith.narrator} — {collection.name}
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
+                📜 {hadith.narrator}
               </p>
             </div>
           </div>
         ))}
       </div>
-      
-      <div className="mt-8 text-center">
-        <p className="text-xs text-muted">Остальные хадисы будут доступны в полной версии.</p>
-      </div>
     </div>
   );
 }
+
