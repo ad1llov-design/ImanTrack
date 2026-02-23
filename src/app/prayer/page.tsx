@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 // �?мпортируем динамически чтобы отключить SSR (geolocation только в браузере)
 import dynamic from "next/dynamic";
+import { Landmark } from "lucide-react";
 
 const PrayerTimesList = dynamic(
   () => import("@features/prayer/components/PrayerTimesList").then((m) => m.PrayerTimesList),
@@ -33,12 +34,12 @@ const PrayerTimesList = dynamic(
 
 export default function PrayerPage() {
   return (
-    <div className="min-h-screen bg-background text-main">
+    <div className="min-h-screen bg-background text-main pb-20">
       <div className="mx-auto max-w-lg px-4 py-8 sm:py-12">
         {/* Page header */}
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-            🕌 Время намазов
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 flex items-center justify-center gap-2">
+            <Landmark className="h-6 w-6 text-primary-500" /> Время намазов
           </h1>
           <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
             Точное время для вашего региона

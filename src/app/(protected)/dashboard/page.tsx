@@ -10,6 +10,7 @@ import Link from "next/link";
 import { PrayerWidget } from "@features/prayer/components/PrayerWidget";
 import { HabitsWidget } from "@features/tracker/components/HabitsWidget";
 import { DhikrQuickWidget } from "@features/dhikr/components/DhikrQuickWidget";
+import { BookOpen, Sparkles, BookMarked } from "lucide-react";
 
 export default async function DashboardPage() {
   const supabase = createClient();
@@ -48,7 +49,7 @@ export default async function DashboardPage() {
         <div className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-display font-bold text-main">📖 Коран</h3>
+              <h3 className="text-display font-bold text-main flex items-center gap-2"><BookOpen className="h-5 w-5 text-primary-500" /> Коран</h3>
               <p className="text-sm text-muted mt-1">Продолжите чтение Корана</p>
             </div>
             <Link 
@@ -70,11 +71,11 @@ export default async function DashboardPage() {
       <section className="grid grid-cols-2 gap-4">
         <Link href="/dhikr" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
           <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Свободный Тасбих</span>
-          <span className="text-xl">📿</span>
+          <Sparkles className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
         </Link>
         <Link href="/hadith" className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm border border-border hover:border-primary-500 transition-colors group">
           <span className="font-semibold text-main group-hover:text-primary-500 transition-colors">Хадис Дня</span>
-          <span className="text-xl">📖</span>
+          <BookMarked className="h-5 w-5 text-muted group-hover:text-primary-500 transition-colors" />
         </Link>
       </section>
 

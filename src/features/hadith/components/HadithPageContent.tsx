@@ -12,6 +12,7 @@ import { getFavoriteHadiths } from "../services/hadith.service";
 import { HadithCard } from "./HadithCard";
 import { HADITH_COLLECTIONS } from "../data/collections";
 import Link from "next/link";
+import { BookMarked, Library } from "lucide-react";
 
 export function HadithPageContent() {
   const {
@@ -45,8 +46,8 @@ export function HadithPageContent() {
 
       {/* ── Header ───────────────────────────── */}
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-          📖 Хадис дня
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 flex items-center justify-center gap-2">
+          <BookMarked className="h-6 w-6 text-primary-500" /> Хадис дня
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
           Мудрость Пророка ﷺ на каждый день
@@ -68,8 +69,8 @@ export function HadithPageContent() {
 
       {/* ── Collections section ────────────────── */}
       <div className="mt-12">
-        <h2 className="mb-4 text-lg font-bold text-neutral-900 dark:text-neutral-50">
-          📚 Сборники Хадисов
+        <h2 className="mb-4 text-lg font-bold text-neutral-900 dark:text-neutral-50 flex items-center gap-2">
+          <Library className="h-5 w-5 text-primary-500" /> Сборники Хадисов
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {HADITH_COLLECTIONS.map((collection) => (

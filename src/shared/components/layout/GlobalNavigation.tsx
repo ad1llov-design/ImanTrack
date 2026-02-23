@@ -11,6 +11,7 @@ import {
   User,
   BookText,
   CheckSquare,
+  Bot,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -77,7 +78,9 @@ export function GlobalNavigation() {
           </Link>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <Link href="/assistant" className="text-muted hover:text-main transition-colors">🤖</Link>
+            <Link href="/assistant" className="text-muted hover:text-main transition-colors">
+              <Bot className="h-5 w-5" />
+            </Link>
             <Link href="/profile" className="text-muted hover:text-main transition-colors">
               <User className="h-5 w-5" />
             </Link>

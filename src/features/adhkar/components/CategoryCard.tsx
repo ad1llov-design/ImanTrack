@@ -23,26 +23,26 @@ type ColorScheme = { bg: string; border: string; text: string; bar: string };
 
 const colorMap: Record<string, ColorScheme> = {
   gold: {
-    bg: "from-gold-50 to-white dark:from-gold-950/20 dark:to-surface-dark",
-    border: "border-gold-200 dark:border-gold-800",
-    text: "text-gold-700 dark:text-gold-300",
+    bg: "from-gold-50 to-white dark:from-neutral-800/60 dark:to-neutral-900",
+    border: "border-gold-200 dark:border-neutral-700",
+    text: "text-gold-700 dark:text-gold-400",
     bar: "bg-gold-500",
   },
   primary: {
-    bg: "from-primary-50 to-white dark:from-primary-950/20 dark:to-surface-dark",
-    border: "border-primary-200 dark:border-primary-800",
-    text: "text-primary-700 dark:text-primary-300",
+    bg: "from-primary-50 to-white dark:from-neutral-800/60 dark:to-neutral-900",
+    border: "border-primary-200 dark:border-neutral-700",
+    text: "text-primary-700 dark:text-primary-400",
     bar: "bg-primary-500",
   },
   secondary: {
-    bg: "from-secondary-50 to-white dark:from-secondary-950/20 dark:to-surface-dark",
-    border: "border-secondary-200 dark:border-secondary-800",
-    text: "text-secondary-700 dark:text-secondary-300",
+    bg: "from-secondary-50 to-white dark:from-neutral-800/60 dark:to-neutral-900",
+    border: "border-secondary-200 dark:border-neutral-700",
+    text: "text-secondary-700 dark:text-secondary-400",
     bar: "bg-secondary-500",
   },
   neutral: {
-    bg: "from-neutral-50 to-white dark:from-neutral-900/30 dark:to-surface-dark",
-    border: "border-neutral-200 dark:border-neutral-800",
+    bg: "from-neutral-50 to-white dark:from-neutral-800/60 dark:to-neutral-900",
+    border: "border-neutral-200 dark:border-neutral-700",
     text: "text-neutral-700 dark:text-neutral-300",
     bar: "bg-neutral-500",
   },

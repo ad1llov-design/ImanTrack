@@ -28,7 +28,7 @@ const AdhkarCategoriesPage = dynamic(
 
 export default function AdhkarPage() {
   return (
-    <div className="min-h-screen bg-background text-main">
+    <div className="min-h-screen bg-background text-main pb-20">
       <AdhkarCategoriesPage />
     </div>
   );

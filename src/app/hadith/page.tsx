@@ -26,7 +26,7 @@ const HadithPageContent = dynamic(
 
 export default function HadithPage() {
   return (
-    <div className="min-h-screen bg-background text-main">
+    <div className="min-h-screen bg-background text-main pb-20">
       <HadithPageContent />
     </div>
   );

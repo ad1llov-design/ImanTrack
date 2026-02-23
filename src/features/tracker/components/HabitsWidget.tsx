@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
 import { getRecentActivity } from "../services/tracker.service";
 import { DailyActivity } from "../types/tracker.types";
+import { Landmark, Sparkles, BookOpen } from "lucide-react";
 
 export function HabitsWidget({ className }: { className?: string }) {
   const [todayData, setTodayData] = useState<DailyActivity | null>(null);
@@ -14,23 +15,28 @@ export function HabitsWidget({ className }: { className?: string }) {
   useEffect(() => {
     async function fetch() {
       setLoading(true);
-      const activity = await getRecentActivity(1);
-      if (activity && activity.length > 0) {
-        setTodayData(activity[0] || null);
+      try {
+        const activity = await getRecentActivity(1);
+        if (activity && activity.length > 0) {
+          setTodayData(activity[0] || null);
+        }
+      } catch (err) {
+        console.error("Failed to load habits:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     fetch();
   }, []);
 
   if (loading) {
-     return <div className="h-24 w-full animate-pulse rounded-2xl bg-white/5" />;
+     return <div className="h-24 w-full animate-pulse rounded-2xl bg-neutral-100 dark:bg-neutral-800" />;
   }
 
   const items = [
-    { label: "Молитвы", value: todayData?.prayersCount || 0, target: 5, unit: "из 5", icon: "🕌" },
-    { label: "Азкар", value: todayData?.adhkarCount || 0, target: 1, unit: "заверш", icon: "📿" },
-    { label: "Коран", value: todayData?.score && todayData.score > 20 ? 1 : 0, target: 1, unit: "чтение", icon: "📖" },
+    { label: "Молитвы", value: todayData?.prayersCount || 0, target: 5, unit: "из 5", icon: <Landmark className="h-4 w-4 text-primary-500" /> },
+    { label: "Азкар", value: todayData?.adhkarCount || 0, target: 1, unit: "заверш", icon: <Sparkles className="h-4 w-4 text-gold-500" /> },
+    { label: "Коран", value: todayData?.score && todayData.score > 20 ? 1 : 0, target: 1, unit: "чтение", icon: <BookOpen className="h-4 w-4 text-secondary-500" /> },
   ];
 
   return (

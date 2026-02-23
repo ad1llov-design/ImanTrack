@@ -54,8 +54,12 @@ export function useAuth() {
         } else {
           setUser(null);
         }
-      } catch {
+      } catch (error) {
+        console.error("Auth session initialization error:", error);
+        // If the token is invalid (e.g. user deleted), we must clear the dead session
+        await supabase.auth.signOut();
         setUser(null);
+        logout(); // Force Zustand state wipe
       }
     };
 
