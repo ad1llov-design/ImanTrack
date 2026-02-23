@@ -10,6 +10,9 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@lib/supabase/server";
 
+// Force dynamic rendering — auth pages must never be cached
+export const dynamic = "force-dynamic";
+
 export default async function ProtectedLayout({
   children,
 }: {

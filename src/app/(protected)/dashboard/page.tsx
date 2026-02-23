@@ -12,11 +12,20 @@ import { HabitsWidget } from "@features/tracker/components/HabitsWidget";
 import { DhikrQuickWidget } from "@features/dhikr/components/DhikrQuickWidget";
 import { BookOpen, Sparkles, BookMarked } from "lucide-react";
 
+// Disable Next.js aggressive caching — always render fresh
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function DashboardPage() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let userName = "";
+  
+  try {
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    userName = user?.user_metadata?.full_name as string ?? "";
+  } catch (err) {
+    console.error("Dashboard: failed to get user", err);
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">
@@ -26,7 +35,7 @@ export default async function DashboardPage() {
           السلام عليكم
         </p>
         <h1 className="text-display text-4xl md:text-5xl font-bold text-main">
-          Ассаламу алейкум{user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}
+          Ассаламу алейкум{userName ? `, ${userName}` : ""}
         </h1>
       </div>
 
