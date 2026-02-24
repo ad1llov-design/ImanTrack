@@ -45,7 +45,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       }
     }
     fetchVerses();
-  }, [surahId, scriptType]);
+  }, [surahId, scriptType, language, t]);
 
   if (loading) {
     return (

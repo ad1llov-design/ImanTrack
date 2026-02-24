@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SurahList } from "./SurahList";
 import { QuranReader } from "./QuranReader";
 import { MushafReader } from "./MushafReader";
 import { cn } from "@shared/lib/utils";
