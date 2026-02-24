@@ -80,14 +80,16 @@ export function HadithPageContent() {
 
         {/* Translation */}
         <p className="text-sm md:text-base text-main leading-relaxed">
-          {currentHadith.translations?.[language] || currentHadith.translation}
+          {typeof currentHadith.translations?.[language as keyof typeof currentHadith.translations] === 'string'
+            ? currentHadith.translations[language as keyof typeof currentHadith.translations]
+            : (currentHadith.translations?.[language as keyof typeof currentHadith.translations] as any)?.text || currentHadith.translation}
         </p>
 
         {/* Narrator + Source */}
         <div className="flex items-center justify-between border-t border-border pt-4">
           <div>
             <p className="text-xs text-muted">
-              {currentHadith.narrator}
+              {(currentHadith.translations?.[language as keyof typeof currentHadith.translations] as any)?.narrator || currentHadith.narrator}
             </p>
             <p className="text-[10px] text-muted mt-0.5">
               {currentHadith.collection} {currentHadith.number && `• №${currentHadith.number}`}
@@ -95,7 +97,7 @@ export function HadithPageContent() {
           </div>
           {currentHadith.grade && (
             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md bg-primary-50 text-primary-600 dark:bg-primary-950/30 dark:text-primary-400">
-              {currentHadith.grade}
+              {(currentHadith.translations?.[language as keyof typeof currentHadith.translations] as any)?.grade || currentHadith.grade}
             </span>
           )}
         </div>

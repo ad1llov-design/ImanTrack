@@ -9,7 +9,6 @@
   "nav.tracker": "Treker",
   "nav.habits": "Odatlar",
   "nav.adhkar": "Azkarlar",
-
   "prayer.title": "Namoz haqida",
   "prayer.fajr": "Bomdod",
   "prayer.sunrise": "Quyosh",
@@ -20,16 +19,13 @@
   "prayer.until": "gacha",
   "prayer.well_done": "Barakalla",
   "prayer.left": "qoldi",
-
   "theme.light": "Yorug' mavzu",
   "theme.dark": "To'q mavzu",
   "theme.system": "Tizim",
-
   "common.loading": "Yuklanmoqda...",
   "common.error": "Xatolik yuz berdi",
   "common.save": "Saqlash",
   "common.back": "Orqaga",
-
   "dashboard.sections": "Bo'limlar",
   "dashboard.quran_desc": "Tarjimasi bilan o'qish",
   "dashboard.hadith_desc": "200 ta hadis",
@@ -37,20 +33,16 @@
   "dashboard.sunnah_desc": "Kundalik sunnatlar",
   "dashboard.adhkar_desc": "Tonggi va kechki",
   "dashboard.prayer_desc": "Namoz vaqtlari",
-
   "dhikr.goal": "Maqsad",
   "dhikr.reset": "Qayta o'rnatish",
-
   "quran.surahs": "Suralar",
   "quran.search": "Surani qidirish...",
   "quran.verses": "Oyatlar",
   "quran.script_simple": "Oddiy shrift",
   "quran.script_uthmani": "Usmoniy (Madina)",
   "quran.script_indopak": "Hind-Pok",
-
   "dhikr.title": "Zikr",
   "dhikr.subtitle": "Qalblar oromi",
-
   "hadith.daily": "Kun hadisi",
   "hadith.daily_desc": "Payg'ambarimiz ﷺ ning har kungi hikmatlari",
   "hadith.copied": "Hadis nusxalandi!",
@@ -59,7 +51,6 @@
   "hadith.share_title": "Kun hadisi — SIRAT",
   "hadith.quran_quote": "«U (hech narsani) o‘z havoyi xohishi bilan so‘zlamas. U (Qur’on) faqat (Alloh tomonidan) nozil qilinayotgan bir vahiydir» (53:3-4)",
   "hadith.count_label": "ta hadis",
-
   "footer.description": "Ma'naviy o'sish trekeri. Namozlarni kuzating, Qur'on o'qing va foydali odatlarni shakllantiring.",
   "footer.nav_title": "Navigatsiya",
   "footer.resources_title": "Resurslar",
@@ -67,15 +58,28 @@
   "footer.dua_quote": "«Rabbim, ilmimni ziyoda qil» (20:114)",
   "footer.copyright": "© {year} SIRAT. Barcha huquqlar himoyalangan.",
   "footer.made_with": "❤️ va بسم الله bilan yaratilgan",
-
   "resource.about": "Loyiha haqida",
   "resource.support": "Qo'llab-quvvatlash",
   "resource.privacy": "Maxfiylik",
-
   "home.hadith_0_translation": "Kim ikki sovuq namozni (Bomdod va Asr) o'qisa, u jannatga ko'radi.",
   "home.hadith_0_reference": "Buxoriy, 574",
   "home.hadith_1_translation": "Besh vaqt namoz ularning orasidagi gunohlarga kafforatdir.",
   "home.hadith_1_reference": "Muslim, 233",
   "home.hadith_2_translation": "Bandaning Parvardigoriga eng yaqin bo'lgan holati uning sajda qilgan paytidir.",
-  "home.hadith_2_reference": "Muslim, 482"
+  "home.hadith_2_reference": "Muslim, 482",
+  "profile.title": "Profil",
+  "profile.about_app": "Ilova haqida",
+  "profile.app_name": "Nomi",
+  "profile.version": "Versiyasi",
+  "profile.description": "Tavsifi",
+  "profile.sections": "Bo'limlar",
+  "profile.contacts": "Aloqa",
+  "profile.contact_prompt": "Takliflaringiz bormi yoki xato topdingizmi? Biz bilan Telegram orqali bog'laning.",
+  "sunnah.revival": "Sunnatni tiriltirish",
+  "sunnah.good_deeds": "Yaxshi amallar",
+  "sunnah.description": "Payg'ambarimiz (s.a.v.)ning qalbni va atrofni o'zgartiruvchi oddiy amallari.",
+  "adhkar.title": "Azkarlar va Zikrlar",
+  "adhkar.subtitle": "Allohni zikr qilish — qalb osoyishtaligidir",
+  "adhkar.quran_quote": "«Bilingki, Allohni zikr qilish bilan qalblar orom olur» (13:28)",
+  "adhkar.dua_quote": "«Rabbimiz! Bizdan qabul et, albatta, Sen Eshituvchi, Biluvchisan» (2:127)"
 }

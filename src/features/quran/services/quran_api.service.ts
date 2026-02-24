@@ -1,6 +1,28 @@
 const BASE_URL = "https://api.alquran.cloud/v1";
 import type { LanguageCode } from "@shared/i18n/LanguageContext";
 
+const cyrillicToLatinMap: Record<string, string> = {
+  'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e',
+  'ё': 'yo', 'ж': 'j', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k',
+  'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r',
+  'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'x', 'ц': 'ts',
+  'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '\'', 'ы': 'y', 'ь': '',
+  'э': 'e', 'ю': 'yu', 'я': 'ya',
+  'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E',
+  'Ё': 'Yo', 'Ж': 'J', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K',
+  'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R',
+  'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'X', 'Ц': 'Ts',
+  'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch', 'Ъ': '\'', 'Ы': 'Y', 'Ь': '',
+  'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',
+  'ғ': 'g\'', 'Ғ': 'G\'', 'қ': 'q', 'Қ': 'Q', 'ҳ': 'h', 'Ҳ': 'H',
+  'ў': 'o\'', 'Ў': 'O\''
+};
+
+function transliterateUzbek(text: string): string {
+  if (!text) return text;
+  return text.split('').map(char => cyrillicToLatinMap[char] || char).join('');
+}
+
 export interface Surah {
   id: number;
   name_simple: string;
@@ -52,12 +74,18 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
     const arabicAyahs = data.data[0].ayahs;
     const russianAyahs = data.data[1].ayahs;
 
-    return arabicAyahs.map((ayah: any, index: number) => ({
-      id: ayah.numberInSurah,
-      verse_key: `${chapterId}:${ayah.numberInSurah}`,
-      text_arabic: ayah.text,
-      translation: russianAyahs[index]?.text || ""
-    }));
+    return arabicAyahs.map((ayah: any, index: number) => {
+      let translationText = russianAyahs[index]?.text || "";
+      if (lang === "uz" && /[А-Яа-яЁёҚқҒғҲҳЎў]/.test(translationText)) {
+        translationText = transliterateUzbek(translationText);
+      }
+      return {
+        id: ayah.numberInSurah,
+        verse_key: `${chapterId}:${ayah.numberInSurah}`,
+        text_arabic: ayah.text,
+        translation: translationText
+      };
+    });
   } catch (error) {
     console.error(`Failed to fetch verses for surah ${chapterId} with script ${scriptType}:`, error);
     // Fallback to basic API if alquran.cloud fails (rare, but good for stability)
@@ -71,12 +99,18 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
         const verses = fallbackData.verses || [];
         const translations = translationData.translations || [];
         
-        return verses.map((v: any, i: number) => ({
-          id: i + 1,
-          verse_key: v.verse_key,
-          text_arabic: v.text_uthmani,
-          translation: translations[i]?.text || ""
-        }));
+        return verses.map((v: any, i: number) => {
+          let translationText = translations[i]?.text || "";
+          if (lang === "uz" && /[А-Яа-яЁёҚқҒғҲҳЎў]/.test(translationText)) {
+            translationText = transliterateUzbek(translationText);
+          }
+          return {
+            id: i + 1,
+            verse_key: v.verse_key,
+            text_arabic: v.text_uthmani,
+            translation: translationText
+          };
+        });
       }
     } catch (fallbackError) {
       console.error("Fallback API also failed:", fallbackError);

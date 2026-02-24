@@ -9,7 +9,6 @@
   "nav.tracker": "Tracker",
   "nav.habits": "Habits",
   "nav.adhkar": "Adhkar",
-
   "prayer.title": "About Prayer",
   "prayer.fajr": "Fajr",
   "prayer.sunrise": "Sunrise",
@@ -20,16 +19,13 @@
   "prayer.until": "until",
   "prayer.well_done": "Well done",
   "prayer.left": "left",
-
   "theme.light": "Light Theme",
   "theme.dark": "Dark Theme",
   "theme.system": "System",
-
   "common.loading": "Loading...",
   "common.error": "An error occurred",
   "common.save": "Save",
   "common.back": "Back",
-
   "dashboard.sections": "Sections",
   "dashboard.quran_desc": "Read with translation",
   "dashboard.hadith_desc": "200 hadiths",
@@ -37,20 +33,16 @@
   "dashboard.sunnah_desc": "Daily sunnahs",
   "dashboard.adhkar_desc": "Morning and evening",
   "dashboard.prayer_desc": "Prayer times",
-
   "dhikr.goal": "Goal",
   "dhikr.reset": "Reset",
-
   "quran.surahs": "Surahs",
   "quran.search": "Search surah...",
   "quran.verses": "Verses",
   "quran.script_simple": "Simple Script",
   "quran.script_uthmani": "Uthmani (Madinah)",
   "quran.script_indopak": "Indo-Pak",
-
   "dhikr.title": "Dhikr",
   "dhikr.subtitle": "Calming of hearts",
-
   "hadith.daily": "Hadith of the Day",
   "hadith.daily_desc": "Wisdom of the Prophet ﷺ for every day",
   "hadith.copied": "Hadith copied!",
@@ -59,7 +51,6 @@
   "hadith.share_title": "Hadith of the Day — SIRAT",
   "hadith.quran_quote": "\"Nor does he speak from [his own] inclination. It is not but a revelation revealed.\" (53:3-4)",
   "hadith.count_label": "hadiths",
-
   "footer.description": "Spiritual growth tracker. Track your prayers, read Quran, and build useful habits.",
   "footer.nav_title": "Navigation",
   "footer.resources_title": "Resources",
@@ -67,15 +58,28 @@
   "footer.dua_quote": "\"My Lord, increase me in knowledge\" (20:114)",
   "footer.copyright": "© {year} SIRAT. All rights reserved.",
   "footer.made_with": "Made with ❤️ and بسم الله",
-
   "resource.about": "About",
   "resource.support": "Support",
   "resource.privacy": "Privacy",
-
   "home.hadith_0_translation": "Whoever prays the two cool prayers (Asr and Fajr) will go to Paradise.",
   "home.hadith_0_reference": "Bukhari, 574",
   "home.hadith_1_translation": "The five daily prayers are an expiation for whatever sins occur between them.",
   "home.hadith_1_reference": "Muslim, 233",
   "home.hadith_2_translation": "The closest a servant gets to his Lord is when he is in prostration.",
-  "home.hadith_2_reference": "Muslim, 482"
+  "home.hadith_2_reference": "Muslim, 482",
+  "profile.title": "Profile",
+  "profile.about_app": "About App",
+  "profile.app_name": "Name",
+  "profile.version": "Version",
+  "profile.description": "Description",
+  "profile.sections": "Sections",
+  "profile.contacts": "Contacts",
+  "profile.contact_prompt": "Have suggestions or found a bug? Contact us via Telegram.",
+  "sunnah.revival": "Sunnah Revival",
+  "sunnah.good_deeds": "Good Deeds",
+  "sunnah.description": "Simple actions of the Prophet (peace be upon him) that change the heart and the world around.",
+  "adhkar.title": "Adhkars and Dhikrs",
+  "adhkar.subtitle": "Remembrance of Allah is peace for the heart",
+  "adhkar.quran_quote": "«Verily, in the remembrance of Allah do hearts find rest» (13:28)",
+  "adhkar.dua_quote": "«Our Lord! Accept from us, indeed You are the Hearing, the Knowing» (2:127)"
 }

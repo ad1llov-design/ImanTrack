@@ -9,7 +9,6 @@
   "nav.tracker": "Трекер",
   "nav.habits": "Адаттар",
   "nav.adhkar": "Азкарлар",
-
   "prayer.title": "Намаз жөнүндө",
   "prayer.fajr": "Багымдат",
   "prayer.sunrise": "Күн чыгуу",
@@ -20,16 +19,13 @@
   "prayer.until": "чейин",
   "prayer.well_done": "Бали",
   "prayer.left": "калды",
-
   "theme.light": "Жарык тема",
   "theme.dark": "Караңгы тема",
   "theme.system": "Система",
-
   "common.loading": "Жүктөлүүдө...",
   "common.error": "Ката кетти",
   "common.save": "Сактоо",
   "common.back": "Артка",
-
   "dashboard.sections": "Бөлүмдөр",
   "dashboard.quran_desc": "Котормосу менен окуу",
   "dashboard.hadith_desc": "200 хадис",
@@ -37,20 +33,16 @@
   "dashboard.sunnah_desc": "Күнүмдүк сүннөттөр",
   "dashboard.adhkar_desc": "Эртең мененки жана кечки",
   "dashboard.prayer_desc": "Намаз убакыттары",
-
   "dhikr.goal": "Максат",
   "dhikr.reset": "Калыбына келтирүү",
-
   "quran.surahs": "Сүрөлөр",
   "quran.search": "Сүрөнү издөө...",
   "quran.verses": "Аяттар",
   "quran.script_simple": "Жөнөкөй шрифт",
   "quran.script_uthmani": "Усмани (Медина)",
   "quran.script_indopak": "Индо-Пак",
-
   "dhikr.title": "Зикир",
   "dhikr.subtitle": "Жүрөктөрдүн тынчтыгы",
-
   "hadith.daily": "Күндүн хадиси",
   "hadith.daily_desc": "Пайгамбарыбыздын ﷺ ар күндүк даанышмандыгы",
   "hadith.copied": "Хадис көчүрүлдү!",
@@ -59,7 +51,6 @@
   "hadith.share_title": "Күндүн хадиси — SIRAT",
   "hadith.quran_quote": "«Ал өзүнүн каалоосу менен сүйлөбөйт. Ал (Куран) түшүрүлгөн гана бир вахый» (53:3-4)",
   "hadith.count_label": "хадис",
-
   "footer.description": "Рухий өсүү трекери. Намаздарды көзөмөлдөп, Куран окуп, пайдалуу адаттарды калыптандырыңыз.",
   "footer.nav_title": "Навигация",
   "footer.resources_title": "Ресурстар",
@@ -67,15 +58,28 @@
   "footer.dua_quote": "«Жаратканым, илимимди арттыр» (20:114)",
   "footer.copyright": "© {year} SIRAT. Бардык укуктар корголгон.",
   "footer.made_with": "❤️ жана بسم الله менен жасалган",
-
   "resource.about": "Долбоор жөнүндө",
   "resource.support": "Колдоо",
   "resource.privacy": "Купуялык",
-
   "home.hadith_0_translation": "Ким эки салкын намазды (Багымдат жана Аср) окуса, ал бейишке кирет.",
   "home.hadith_0_reference": "Бухари, 574",
   "home.hadith_1_translation": "Беш маал намаз алардын ортосундагы күнөөлөрдү жууп салат.",
   "home.hadith_1_reference": "Муслим, 233",
   "home.hadith_2_translation": "Пенденин Жаратканга эң жакын болгон учуру – ал сажда кылган учур.",
-  "home.hadith_2_reference": "Муслим, 482"
+  "home.hadith_2_reference": "Муслим, 482",
+  "profile.title": "Профиль",
+  "profile.about_app": "Тиркеме жөнүндө",
+  "profile.app_name": "Аталышы",
+  "profile.version": "Версиясы",
+  "profile.description": "Сүрөттөмөсү",
+  "profile.sections": "Бөлүмдөр",
+  "profile.contacts": "Байланыш",
+  "profile.contact_prompt": "Сунуштар барбы же ката таптыңызбы? Биз менен Telegram аркылуу байланышыңыз.",
+  "sunnah.revival": "Сүннөттү жандандыруу",
+  "sunnah.good_deeds": "Жакшы иштер",
+  "sunnah.description": "Пайгамбарыбыздын (с.а.в) жүрөктү жана айлананы өзгөрткөн жөнөкөй амалдары.",
+  "adhkar.title": "Азкарлар жана Зикирлер",
+  "adhkar.subtitle": "Аллахты эстөө — жүрөктүн тынчтыгы",
+  "adhkar.quran_quote": "«Чындыгында, Аллахты эстөө менен жүрөктөр тынчтанат» (13:28)",
+  "adhkar.dua_quote": "«Оо, Раббибиз! Бизден кабыл кыл, чындыгында, Сен Угуучу, Билүүчүсүң» (2:127)"
 }
