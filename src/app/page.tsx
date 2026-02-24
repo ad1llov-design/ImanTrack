@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 
 const PrayerWidget = dynamic(
   () => import("@features/prayer/components/PrayerWidget").then((m) => m.PrayerWidget),
@@ -34,11 +33,10 @@ export default function SiratPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-main">
-            MAZI
+            SIRAT
           </h1>
           <p className="text-xs text-muted mt-0.5">بسم الله الرحمن الرحيم</p>
         </div>
-        <ThemeToggle />
       </div>
 
       {/* Prayer Times */}

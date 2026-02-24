@@ -9,9 +9,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const APP_NAME = "MAZI";
+const APP_NAME = "SIRAT";
 const APP_DESCRIPTION =
-  "MAZI — исламское приложение для чтения Корана, хадисов, времени намазов и поминания Аллаха.";
+  "SIRAT — исламское приложение для чтения Корана, хадисов, времени намазов и поминания Аллаха.";
 
 function getAppUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_APP_URL;
@@ -84,6 +84,7 @@ import { SWUpdatePrompt } from "@shared/components/ui/SWUpdatePrompt";
 import { GlobalNavigation } from "@shared/components/layout/GlobalNavigation";
 import { AuthProvider } from "@features/auth/components/AuthProvider";
 import { ThemeProvider } from "./providers";
+import { LanguageProvider } from "@shared/i18n/LanguageContext";
 import { Toaster } from "sonner";
 
 export default function RootLayout({
@@ -95,14 +96,16 @@ export default function RootLayout({
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col bg-surface transition-colors duration-300`}>
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-          <AuthProvider>
-            <OfflineBanner />
-            <GlobalNavigation />
-            {children}
-            <Toaster position="bottom-center" richColors />
-            <PWAInstallPrompt />
-            <SWUpdatePrompt />
-          </AuthProvider>
+          <LanguageProvider>
+            <AuthProvider>
+              <OfflineBanner />
+              <GlobalNavigation />
+              {children}
+              <Toaster position="bottom-center" richColors />
+              <PWAInstallPrompt />
+              <SWUpdatePrompt />
+            </AuthProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

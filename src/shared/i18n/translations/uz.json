@@ -1,0 +1,30 @@
+{
+  "nav.home": "Asosiy",
+  "nav.quran": "Qur'on",
+  "nav.hadith": "Hadis",
+  "nav.dhikr": "Zikr",
+  "nav.sunnah": "Sunnat",
+  "nav.prayer": "Namoz",
+  "nav.settings": "Sozlamalar",
+  "nav.tracker": "Treker",
+  "nav.habits": "Odatlar",
+
+  "prayer.title": "Namoz vaqtlari",
+  "prayer.fajr": "Bomdod",
+  "prayer.sunrise": "Quyosh",
+  "prayer.dhuhr": "Peshin",
+  "prayer.asr": "Asr",
+  "prayer.maghrib": "Shom",
+  "prayer.isha": "Xufton",
+  "prayer.until": "gacha",
+  "prayer.well_done": "Barakalla",
+
+  "theme.light": "Yorug' mavzu",
+  "theme.dark": "Qorong'i mavzu",
+  "theme.system": "Tizim",
+
+  "common.loading": "Yuklanmoqda...",
+  "common.error": "Xatolik yuz berdi",
+  "common.save": "Saqlash",
+  "common.back": "Orqaga"
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@shared/lib/utils";
+import { DhikrCounter } from "./DhikrCounter";
 
 const DHIKR_LIST = [
   {
@@ -100,6 +101,9 @@ export function DhikrTasbih({ className }: { className?: string }) {
           <span className="text-[10px] font-bold text-primary-500 bg-primary-500/10 px-2 py-0.5 rounded-md inline-block uppercase tracking-wider">
             {dhikr.reference}
           </span>
+          <div className="mt-6 pt-6 border-t border-border flex justify-center">
+            <DhikrCounter dhikrId={dhikr.id} />
+          </div>
         </div>
       ))}
     </div>

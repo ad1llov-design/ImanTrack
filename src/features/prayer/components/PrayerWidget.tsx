@@ -4,6 +4,16 @@ import { usePrayerTimes } from "../hooks/usePrayerTimes";
 import { useCountdown } from "../hooks/useCountdown";
 import { CircularProgress } from "@shared/components/ui/CircularProgress";
 import { cn } from "@shared/lib/utils";
+import { Sunrise, Sun, SunMedium, Sunset, Moon } from "lucide-react";
+
+const PRAYER_ICONS: Record<string, React.ReactNode> = {
+  fajr: <Sunrise className="h-6 w-6" />,
+  sunrise: <Sunrise className="h-6 w-6" />,
+  dhuhr: <Sun className="h-6 w-6" />,
+  asr: <SunMedium className="h-6 w-6" />,
+  maghrib: <Sunset className="h-6 w-6" />,
+  isha: <Moon className="h-6 w-6" />,
+};
 
 /**
  * Prayer Widget — shows prayer times + countdown to next prayer.
@@ -88,7 +98,7 @@ export function PrayerWidget({ className }: { className?: string }) {
                     !isActive && "border-border",
                   )}
                 >
-                  <span className="text-xl mb-0.5">{prayer.info.icon}</span>
+                  <span className="flex items-center justify-center mb-0.5">{PRAYER_ICONS[prayer.name] || prayer.info.icon}</span>
                 </div>
                 <span className="text-[0.6rem] font-bold uppercase">{prayer.info.nameRu}</span>
                 <span className="text-[0.55rem] font-mono text-muted tabular-nums">{timeStr}</span>

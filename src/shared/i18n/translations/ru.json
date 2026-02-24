@@ -1,0 +1,30 @@
+{
+  "nav.home": "Главная",
+  "nav.quran": "Коран",
+  "nav.hadith": "Хадисы",
+  "nav.dhikr": "Зикр",
+  "nav.sunnah": "Сунна",
+  "nav.prayer": "Намаз",
+  "nav.settings": "Настройки",
+  "nav.tracker": "Трекер",
+  "nav.habits": "Привычки",
+
+  "prayer.title": "Время Намазов",
+  "prayer.fajr": "Фаджр",
+  "prayer.sunrise": "Восход",
+  "prayer.dhuhr": "Зухр",
+  "prayer.asr": "Аср",
+  "prayer.maghrib": "Магриб",
+  "prayer.isha": "Иша",
+  "prayer.until": "до",
+  "prayer.well_done": "Молодец",
+
+  "theme.light": "Светлая тема",
+  "theme.dark": "Тёмная тема",
+  "theme.system": "Систем",
+
+  "common.loading": "Загрузка...",
+  "common.error": "Произошла ошибка",
+  "common.save": "Сохранить",
+  "common.back": "Назад"
+}

@@ -92,7 +92,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
             </svg>
           </div>
           <span className="text-[1.1rem] font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-            MAZI
+            SIRAT
           </span>
         </Link>
 

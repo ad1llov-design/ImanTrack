@@ -1,7 +1,7 @@
 {
-  "name": "MAZI",
-  "short_name": "MAZI",
-  "description": "Исламское приложение — Коран, хадисы, время намазов, зикр",
+  "name": "SIRAT",
+  "short_name": "SIRAT",
+  "description": "Sirat — Spiritual Tracker",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fdfcf8",

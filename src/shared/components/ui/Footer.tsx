@@ -57,7 +57,7 @@ export function Footer({ className }: FooterProps) {
                 ☪
               </span>
               <span className="text-h4 text-neutral-900 dark:text-neutral-50">
-                Iman<span className="text-primary-600 dark:text-primary-400">Track</span>
+                SIRAT
               </span>
             </div>
             <p className="mt-3 text-body-sm text-neutral-500 dark:text-neutral-400">
@@ -126,7 +126,7 @@ export function Footer({ className }: FooterProps) {
         {/* ── Bottom bar ──────────────────────── */}
         <div className="flex flex-col items-center justify-between gap-3 border-t border-neutral-200 py-6 dark:border-neutral-800 sm:flex-row">
           <p className="text-caption text-neutral-400">
-            © {year} MAZI. Все права защищены.
+            © {year} SIRAT. Все права защищены.
           </p>
           <p className="text-caption text-neutral-400">
             Сделано с ❤️ и بسم الله

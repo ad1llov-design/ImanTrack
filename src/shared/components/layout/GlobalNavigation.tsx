@@ -15,9 +15,11 @@ import {
 
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
-
+import { useLanguage } from "@shared/i18n/LanguageContext";
+import { LanguageSwitcher } from "@shared/i18n/components/LanguageSwitcher";
 export function GlobalNavigation() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   // Hide nav on auth pages
   if (pathname.startsWith("/auth")) {
@@ -25,12 +27,12 @@ export function GlobalNavigation() {
   }
 
   const navItems = [
-    { label: "Главная", href: "/", icon: <Home className="h-5 w-5" /> },
-    { label: "Коран", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
-    { label: "Зикр", href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
-    { label: "Хадисы", href: "/hadith", icon: <BookText className="h-5 w-5" /> },
-    { label: "Сунна", href: "/sunnah", icon: <Heart className="h-5 w-5" /> },
-    { label: "Профиль", href: "/profile", icon: <User className="h-5 w-5" /> },
+    { label: t("nav.home"), href: "/", icon: <Home className="h-5 w-5" /> },
+    { label: t("nav.quran"), href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
+    { label: t("nav.dhikr"), href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
+    { label: t("nav.hadith"), href: "/hadith", icon: <BookText className="h-5 w-5" /> },
+    { label: t("nav.sunnah"), href: "/sunnah", icon: <Heart className="h-5 w-5" /> },
+    { label: t("nav.settings"), href: "/profile", icon: <User className="h-5 w-5" /> },
   ];
 
   return (
@@ -40,12 +42,14 @@ export function GlobalNavigation() {
           items={navItems}
           rightSlot={
             <div className="flex items-center gap-2">
+              <LanguageSwitcher />
               <ThemeToggle />
               <Link
                 href="/profile"
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface hover:bg-background transition-colors"
+                aria-label="Profile"
               >
-                <User className="h-5 w-5 text-muted" />
+                <User className="h-5 w-5 text-muted hover:text-primary-500 transition-colors" />
               </Link>
             </div>
           }
@@ -68,9 +72,10 @@ export function GlobalNavigation() {
                 <path d="M19.5 6l.5 1.5L21.5 8l-1.5.5L19.5 10l-.5-1.5L17.5 8l1.5-.5z" />
               </svg>
             </div>
-            <span className="text-lg font-bold text-main">MAZI</span>
+            <span className="text-lg font-bold text-main">SIRAT</span>
           </Link>
           <div className="flex items-center gap-3">
+            <LanguageSwitcher />
             <ThemeToggle />
             <Link href="/profile" className="text-muted hover:text-main transition-colors">
               <User className="h-5 w-5" />

@@ -1,0 +1,30 @@
+{
+  "nav.home": "Башкы",
+  "nav.quran": "Куран",
+  "nav.hadith": "Хадис",
+  "nav.dhikr": "Зикир",
+  "nav.sunnah": "Сүннөт",
+  "nav.prayer": "Намаз",
+  "nav.settings": "Ырастоолор",
+  "nav.tracker": "Трекер",
+  "nav.habits": "Адаттар",
+
+  "prayer.title": "Намаз убактылары",
+  "prayer.fajr": "Багымдат",
+  "prayer.sunrise": "Күн",
+  "prayer.dhuhr": "Бешим",
+  "prayer.asr": "Аср",
+  "prayer.maghrib": "Шам",
+  "prayer.isha": "Куптан",
+  "prayer.until": "чейин",
+  "prayer.well_done": "Азамат",
+
+  "theme.light": "Жарык темасы",
+  "theme.dark": "Караңгы темасы",
+  "theme.system": "Тутум",
+
+  "common.loading": "Жүктөлүүдө...",
+  "common.error": "Ката кетти",
+  "common.save": "Сактоо",
+  "common.back": "Артка"
+}
