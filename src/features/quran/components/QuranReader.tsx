@@ -6,6 +6,7 @@ import { cn } from "@shared/lib/utils";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Type } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface QuranReaderProps {
   surahId: number;
@@ -23,6 +24,7 @@ const SCRIPT_OPTIONS: { id: QuranScriptType; label: string }[] = [
  * No auth, no bookmarks, no progress saving.
  */
 export function QuranReader({ surahId, onBack }: QuranReaderProps) {
+  const { t, language } = useLanguage();
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(0);
@@ -33,11 +35,11 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     async function fetchVerses() {
       setLoading(true);
       try {
-        const data = await getSurahVerses(surahId, scriptType);
+        const data = await getSurahVerses(surahId, scriptType, language);
         setVerses(data);
       } catch (error) {
         console.error("Failed to load surah:", error);
-        toast.error("Не удалось загрузить суру");
+        toast.error(t("common.error"));
       } finally {
         setLoading(false);
       }
@@ -49,7 +51,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     return (
       <div className="flex flex-col items-center justify-center p-12 space-y-4">
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
-        <p className="text-sm text-muted animate-pulse">Загрузка откровений...</p>
+        <p className="text-sm text-muted animate-pulse">{t("common.loading")}</p>
       </div>
     );
   }
@@ -57,11 +59,10 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
   if (verses.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center p-12 space-y-4">
-        <p className="text-lg font-semibold text-main">Не удалось загрузить суру</p>
-        <p className="text-sm text-muted">Проверьте интернет-соединение</p>
+        <p className="text-lg font-semibold text-main">{t("common.error")}</p>
         <div className="flex gap-3">
           <button onClick={onBack} className="px-4 py-2 rounded-xl border border-border text-sm font-bold text-muted hover:text-main transition-colors">
-            ← Назад
+            ← {t("common.back")}
           </button>
           <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-xl bg-primary-500 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
             Повторить
@@ -79,9 +80,9 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     <div className="flex flex-col" style={{ height: "calc(100vh - 200px)" }}>
       <div className="mb-6 flex items-center justify-between border-b border-border pb-4">
         <button onClick={onBack} className="text-sm text-muted hover:text-main transition-colors flex items-center gap-2">
-          ← К списку
+          ← {t("quran.surahs")}
         </button>
-        <span className="text-xs uppercase tracking-[0.2em] text-primary-500">Чтение</span>
+        <span className="text-xs uppercase tracking-[0.2em] text-primary-500">{t("nav.quran")}</span>
         
         <div className="relative">
           <button 
@@ -111,7 +112,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
                         : "text-main hover:bg-neutral-100 dark:hover:bg-neutral-800"
                     )}
                   >
-                    {option.label}
+                    {t(`quran.${option.id.replace('-', '_')}`)}
                   </button>
                 ))}
               </div>

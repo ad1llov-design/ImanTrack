@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2, BookmarkPlus } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface QuranWord {
   id: number;
@@ -30,6 +31,7 @@ interface MushafReaderProps {
 }
 
 export function MushafReader({ className }: MushafReaderProps) {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window !== "undefined") {
       return parseInt(localStorage.getItem("mushaf_last_page") || "1", 10);
@@ -134,13 +136,12 @@ export function MushafReader({ className }: MushafReaderProps) {
         {hasError ? (
           <div className="flex flex-col items-center justify-center gap-4 p-8 text-center min-h-[400px]">
             <div className="text-6xl">📖</div>
-            <p className="text-sm text-muted">Не удалось загрузить страницу Мусхафа</p>
-            <p className="text-xs text-muted">Проверьте подключение к интернету</p>
+            <p className="text-sm text-muted">{t("common.error")}</p>
             <button
               onClick={() => fetchPage(currentPage)}
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 text-white text-sm font-bold hover:bg-primary-600 transition-all"
             >
-              Повторить
+              {t("common.back")}
             </button>
           </div>
         ) : (
@@ -193,7 +194,7 @@ export function MushafReader({ className }: MushafReaderProps) {
           }}
           className="w-20 rounded-xl border border-border bg-surface px-3 py-2 text-center text-sm font-bold text-main focus:border-primary-500 focus:outline-none"
         />
-        <span className="text-xs text-muted">из {TOTAL_PAGES}</span>
+        <span className="text-xs text-muted">/ {TOTAL_PAGES}</span>
       </div>
     </div>
   );

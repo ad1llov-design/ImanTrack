@@ -1,15 +1,16 @@
 {
   "nav.home": "Asosiy",
   "nav.quran": "Qur'on",
-  "nav.hadith": "Hadis",
+  "nav.hadith": "Hadislar",
   "nav.dhikr": "Zikr",
   "nav.sunnah": "Sunnat",
   "nav.prayer": "Namoz",
   "nav.settings": "Sozlamalar",
   "nav.tracker": "Treker",
   "nav.habits": "Odatlar",
+  "nav.adhkar": "Azkarlar",
 
-  "prayer.title": "Namoz vaqtlari",
+  "prayer.title": "Namoz haqida",
   "prayer.fajr": "Bomdod",
   "prayer.sunrise": "Quyosh",
   "prayer.dhuhr": "Peshin",
@@ -18,13 +19,32 @@
   "prayer.isha": "Xufton",
   "prayer.until": "gacha",
   "prayer.well_done": "Barakalla",
+  "prayer.left": "qoldi",
 
   "theme.light": "Yorug' mavzu",
-  "theme.dark": "Qorong'i mavzu",
+  "theme.dark": "To'q mavzu",
   "theme.system": "Tizim",
 
   "common.loading": "Yuklanmoqda...",
   "common.error": "Xatolik yuz berdi",
   "common.save": "Saqlash",
-  "common.back": "Orqaga"
+  "common.back": "Orqaga",
+
+  "dashboard.sections": "Bo'limlar",
+  "dashboard.quran_desc": "Tarjimasi bilan o'qish",
+  "dashboard.hadith_desc": "200 ta hadis",
+  "dashboard.dhikr_desc": "Allohni zikr qilish",
+  "dashboard.sunnah_desc": "Kundalik sunnatlar",
+  "dashboard.adhkar_desc": "Tonggi va kechki",
+  "dashboard.prayer_desc": "Namoz vaqtlari",
+
+  "dhikr.goal": "Maqsad",
+  "dhikr.reset": "Qayta o'rnatish",
+
+  "quran.surahs": "Suralar",
+  "quran.search": "Surani qidirish...",
+  "quran.verses": "Oyatlar",
+  "quran.script_simple": "Oddiy shrift",
+  "quran.script_uthmani": "Usmoniy (Madina)",
+  "quran.script_indopak": "Hind-Pok"
 }

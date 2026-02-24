@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { SurahList } from "./SurahList";
 import { QuranReader } from "./QuranReader";
 import { MushafReader } from "./MushafReader";
 import { cn } from "@shared/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, BookImage } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 type QuranMode = "text" | "mushaf";
 
@@ -15,6 +15,7 @@ type QuranMode = "text" | "mushaf";
  * No auth, no progress tracking. Pure reading.
  */
 export function QuranTracker({ className }: { className?: string }) {
+  const { t } = useLanguage();
   const [selectedSurahId, setSelectedSurahId] = useState<number | null>(null);
   const [mode, setMode] = useState<QuranMode>("text");
 
@@ -32,7 +33,7 @@ export function QuranTracker({ className }: { className?: string }) {
           )}
         >
           <BookOpen className="h-4 w-4" />
-          Текст
+          {t("quran.text")}
         </button>
         <button
           onClick={() => setMode("mushaf")}
@@ -44,7 +45,7 @@ export function QuranTracker({ className }: { className?: string }) {
           )}
         >
           <BookImage className="h-4 w-4" />
-          Мусхаф
+          {t("quran.mushaf")}
         </button>
       </div>
 
@@ -67,8 +68,8 @@ export function QuranTracker({ className }: { className?: string }) {
             className="space-y-6"
           >
             <div className="flex items-center justify-between">
-              <h2 className="text-display text-2xl font-bold text-main">Выберите Суру</h2>
-              <span className="text-[10px] uppercase tracking-widest text-muted">114 глав</span>
+              <h2 className="text-display text-2xl font-bold text-main">{t("quran.choose_surah")}</h2>
+              <span className="text-[10px] uppercase tracking-widest text-muted">{t("quran.chapters_count")}</span>
             </div>
             <SurahList onSelect={(id) => setSelectedSurahId(id)} />
           </motion.div>

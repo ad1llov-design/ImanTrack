@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.alquran.cloud/v1";
+import type { LanguageCode } from "@shared/i18n/LanguageContext";
 
 export interface Surah {
   id: number;
@@ -37,9 +38,12 @@ export async function getSurahList(): Promise<Surah[]> {
   }
 }
 
-export async function getSurahVerses(chapterId: number, scriptType: QuranScriptType = "quran-uthmani"): Promise<Verse[]> {
+export async function getSurahVerses(chapterId: number, scriptType: QuranScriptType = "quran-uthmani", lang: LanguageCode = "ru"): Promise<Verse[]> {
+  const ALQURAN_CLOUD_LANG_MAP: Record<LanguageCode, string> = { ru: "ru.kuliev", en: "en.sahih", uz: "uz.sodik", ky: "ru.kuliev" };
+  const QURAN_COM_LANG_MAP: Record<LanguageCode, number> = { ru: 79, en: 20, uz: 55, ky: 79 };
+
   try {
-    const res = await fetch(`${BASE_URL}/surah/${chapterId}/editions/${scriptType},ru.kuliev`);
+    const res = await fetch(`${BASE_URL}/surah/${chapterId}/editions/${scriptType},${ALQURAN_CLOUD_LANG_MAP[lang]}`);
     if (!res.ok) throw new Error("Failed to fetch verses");
     const data = await res.json();
     
@@ -61,7 +65,7 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
       if (scriptType === "quran-uthmani") {
         const fallbackRes = await fetch(`https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`);
         const fallbackData = await fallbackRes.json();
-        const translationRes = await fetch(`https://api.quran.com/api/v4/quran/translations/79?chapter_number=${chapterId}`); // 79 is Russian translations usually, or 45
+        const translationRes = await fetch(`https://api.quran.com/api/v4/quran/translations/${QURAN_COM_LANG_MAP[lang]}?chapter_number=${chapterId}`);
         const translationData = await translationRes.json();
         
         const verses = fallbackData.verses || [];

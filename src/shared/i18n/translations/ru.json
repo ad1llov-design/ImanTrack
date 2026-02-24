@@ -8,8 +8,9 @@
   "nav.settings": "Настройки",
   "nav.tracker": "Трекер",
   "nav.habits": "Привычки",
+  "nav.adhkar": "Азкары",
 
-  "prayer.title": "Время Намазов",
+  "prayer.title": "О молитве",
   "prayer.fajr": "Фаджр",
   "prayer.sunrise": "Восход",
   "prayer.dhuhr": "Зухр",
@@ -18,6 +19,7 @@
   "prayer.isha": "Иша",
   "prayer.until": "до",
   "prayer.well_done": "Молодец",
+  "prayer.left": "осталось",
 
   "theme.light": "Светлая тема",
   "theme.dark": "Тёмная тема",
@@ -26,5 +28,23 @@
   "common.loading": "Загрузка...",
   "common.error": "Произошла ошибка",
   "common.save": "Сохранить",
-  "common.back": "Назад"
+  "common.back": "Назад",
+
+  "dashboard.sections": "Разделы",
+  "dashboard.quran_desc": "Чтение с переводом",
+  "dashboard.hadith_desc": "200 хадисов",
+  "dashboard.dhikr_desc": "Поминание Аллаха",
+  "dashboard.sunnah_desc": "Ежедневные сунны",
+  "dashboard.adhkar_desc": "Утренние и вечерние",
+  "dashboard.prayer_desc": "Время молитв",
+
+  "dhikr.goal": "Цель",
+  "dhikr.reset": "Сбросить",
+
+  "quran.surahs": "Суры",
+  "quran.search": "Поиск суры...",
+  "quran.verses": "Аяты",
+  "quran.script_simple": "Простой шрифт",
+  "quran.script_uthmani": "Усмани (Медина)",
+  "quran.script_indopak": "Индо-Пак"
 }

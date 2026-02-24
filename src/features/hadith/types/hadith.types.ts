@@ -28,6 +28,12 @@ export interface Hadith {
   id: string;
   arabic: string;
   translation: string;       // Русский перевод
+  translations?: {
+    ru: string;
+    en: string;
+    uz: string;
+    ky: string;
+  };
   narrator: string;           // Передатчик (напр. «Абу Хурайра»)
   narratorAr?: string;       // Арабское имя передатчика
   collection: HadithCollection;

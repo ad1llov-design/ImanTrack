@@ -5,6 +5,7 @@ import { useCountdown } from "../hooks/useCountdown";
 import { CircularProgress } from "@shared/components/ui/CircularProgress";
 import { cn } from "@shared/lib/utils";
 import { Sunrise, Sun, SunMedium, Sunset, Moon } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 const PRAYER_ICONS: Record<string, React.ReactNode> = {
   fajr: <Sunrise className="h-6 w-6" />,
@@ -20,6 +21,7 @@ const PRAYER_ICONS: Record<string, React.ReactNode> = {
  * No auth, no database, no progress tracking.
  */
 export function PrayerWidget({ className }: { className?: string }) {
+  const { t } = useLanguage();
   const { prayers, currentPrayer, nextPrayer, isLoading } = usePrayerTimes();
   const { formatted } = useCountdown(nextPrayer?.dateTime ?? null);
 
@@ -30,7 +32,7 @@ export function PrayerWidget({ className }: { className?: string }) {
       <div className={cn("relative overflow-hidden rounded-3xl border border-border bg-surface shadow-card p-6", className)}>
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="flex w-full items-center justify-between">
-            <h2 className="text-sm font-semibold tracking-wider text-muted uppercase">Время Намазов</h2>
+            <h2 className="text-sm font-semibold tracking-wider text-muted uppercase">{t("dashboard.prayer_desc")}</h2>
             <div className="h-6 w-16 bg-border rounded-full animate-pulse" />
           </div>
           <div className="h-36 w-36 rounded-full bg-border animate-pulse" />
@@ -52,7 +54,7 @@ export function PrayerWidget({ className }: { className?: string }) {
       <div className="flex flex-col items-center justify-center gap-6">
         {/* Header */}
         <div className="flex w-full items-center justify-between">
-          <h2 className="text-sm font-semibold tracking-wider text-muted uppercase">Время Намазов</h2>
+          <h2 className="text-sm font-semibold tracking-wider text-muted uppercase">{t("dashboard.prayer_desc")}</h2>
         </div>
 
         {/* Countdown Circle */}
@@ -67,10 +69,10 @@ export function PrayerWidget({ className }: { className?: string }) {
             {nextPrayer ? (
               <>
                 <span className="text-2xl font-bold tabular-nums text-main">{formatted}</span>
-                <span className="text-[0.65rem] uppercase tracking-wider text-muted">до {nextPrayer.info.nameRu}</span>
+                <span className="text-[0.65rem] uppercase tracking-wider text-muted">{t("prayer.until")} {t(`prayer.${nextPrayer.name}`)}</span>
               </>
             ) : (
-              <span className="text-xl font-bold text-main">Молодец</span>
+              <span className="text-xl font-bold text-main">{t("prayer.well_done")}</span>
             )}
           </div>
         </CircularProgress>
@@ -100,7 +102,7 @@ export function PrayerWidget({ className }: { className?: string }) {
                 >
                   <span className="flex items-center justify-center mb-0.5">{PRAYER_ICONS[prayer.name] || prayer.info.icon}</span>
                 </div>
-                <span className="text-[0.6rem] font-bold uppercase">{prayer.info.nameRu}</span>
+                <span className="text-[0.6rem] font-bold uppercase">{t(`prayer.${prayer.name}`)}</span>
                 <span className="text-[0.55rem] font-mono text-muted tabular-nums">{timeStr}</span>
               </div>
             );

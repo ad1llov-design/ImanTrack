@@ -8,23 +8,43 @@
   "nav.settings": "Settings",
   "nav.tracker": "Tracker",
   "nav.habits": "Habits",
+  "nav.adhkar": "Adhkar",
 
-  "prayer.title": "Prayer Times",
+  "prayer.title": "About Prayer",
   "prayer.fajr": "Fajr",
   "prayer.sunrise": "Sunrise",
   "prayer.dhuhr": "Dhuhr",
   "prayer.asr": "Asr",
   "prayer.maghrib": "Maghrib",
   "prayer.isha": "Isha",
-  "prayer.until": "to",
+  "prayer.until": "until",
   "prayer.well_done": "Well done",
+  "prayer.left": "left",
 
-  "theme.light": "Light Mode",
-  "theme.dark": "Dark Mode",
+  "theme.light": "Light Theme",
+  "theme.dark": "Dark Theme",
   "theme.system": "System",
 
   "common.loading": "Loading...",
   "common.error": "An error occurred",
   "common.save": "Save",
-  "common.back": "Back"
+  "common.back": "Back",
+
+  "dashboard.sections": "Sections",
+  "dashboard.quran_desc": "Read with translation",
+  "dashboard.hadith_desc": "200 hadiths",
+  "dashboard.dhikr_desc": "Remembrance of Allah",
+  "dashboard.sunnah_desc": "Daily sunnahs",
+  "dashboard.adhkar_desc": "Morning and evening",
+  "dashboard.prayer_desc": "Prayer times",
+
+  "dhikr.goal": "Goal",
+  "dhikr.reset": "Reset",
+
+  "quran.surahs": "Surahs",
+  "quran.search": "Search surah...",
+  "quran.verses": "Verses",
+  "quran.script_simple": "Simple Script",
+  "quran.script_uthmani": "Uthmani (Madinah)",
+  "quran.script_indopak": "Indo-Pak"
 }

@@ -15,8 +15,10 @@ import type { Hadith } from "../types/hadith.types";
 import Link from "next/link";
 import { BookMarked, Library, ArrowRight, Copy, Share2 } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 export function HadithPageContent() {
+  const { t, language } = useLanguage();
   const todayHadith = useMemo(() => getHadithOfTheDay(), []);
   const [currentHadith, setCurrentHadith] = useState<Hadith>(todayHadith);
   const [isCopied, setIsCopied] = useState(false);
@@ -78,7 +80,7 @@ export function HadithPageContent() {
 
         {/* Translation */}
         <p className="text-sm md:text-base text-main leading-relaxed">
-          {currentHadith.translation}
+          {currentHadith.translations?.[language] || currentHadith.translation}
         </p>
 
         {/* Narrator + Source */}
@@ -134,7 +136,7 @@ export function HadithPageContent() {
       {/* ── Collections section */}
       <div className="mt-12">
         <h2 className="mb-4 text-lg font-bold text-neutral-900 dark:text-neutral-50 flex items-center gap-2">
-          <Library className="h-5 w-5 text-primary-500" /> Сборники Хадисов
+          <Library className="h-5 w-5 text-primary-500" /> {t("nav.hadith")}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {HADITH_COLLECTIONS.map((collection) => (
@@ -156,7 +158,7 @@ export function HadithPageContent() {
               </div>
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-[10px] uppercase font-bold tracking-widest text-primary-500 bg-primary-500/10 px-2 py-1 rounded-md">
-                  {collection.count} Хадисов
+                  {collection.count} {t("nav.hadith")}
                 </span>
                 <span className="text-muted group-hover:text-primary-500 transition-colors">
                   →

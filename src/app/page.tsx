@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 const PrayerWidget = dynamic(
   () => import("@features/prayer/components/PrayerWidget").then((m) => m.PrayerWidget),
@@ -27,6 +28,8 @@ const PRAYER_HADITHS = [
 ];
 
 export default function SiratPage() {
+  const { t } = useLanguage();
+
   return (
     <main className="mx-auto max-w-lg px-4 pt-6 pb-28">
       {/* Header */}
@@ -46,7 +49,7 @@ export default function SiratPage() {
 
       {/* Prayer Hadiths */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-main mb-4">О молитве</h2>
+        <h2 className="text-lg font-bold text-main mb-4">{t("prayer.title")}</h2>
         <div className="space-y-4">
           {PRAYER_HADITHS.map((h, i) => (
             <div key={i} className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
@@ -66,15 +69,15 @@ export default function SiratPage() {
 
       {/* Quick Links */}
       <section>
-        <h2 className="text-lg font-bold text-main mb-4">Разделы</h2>
+        <h2 className="text-lg font-bold text-main mb-4">{t("dashboard.sections")}</h2>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { href: "/quran", label: "Коран", desc: "Чтение с переводом" },
-            { href: "/hadith", label: "Хадисы", desc: "200 хадисов" },
-            { href: "/dhikr", label: "Зикр", desc: "Поминание Аллаха" },
-            { href: "/sunnah", label: "Сунна", desc: "Ежедневные сунны" },
-            { href: "/adhkar", label: "Азкары", desc: "Утренние и вечерние" },
-            { href: "/prayer", label: "Намаз", desc: "Время молитв" },
+            { href: "/quran", label: t("nav.quran"), desc: t("dashboard.quran_desc") },
+            { href: "/hadith", label: t("nav.hadith"), desc: t("dashboard.hadith_desc") },
+            { href: "/dhikr", label: t("nav.dhikr"), desc: t("dashboard.dhikr_desc") },
+            { href: "/sunnah", label: t("nav.sunnah"), desc: t("dashboard.sunnah_desc") },
+            { href: "/adhkar", label: t("nav.adhkar"), desc: t("dashboard.adhkar_desc") },
+            { href: "/prayer", label: t("nav.prayer"), desc: t("dashboard.prayer_desc") },
           ].map((item) => (
             <Link
               key={item.href}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getSurahList, Surah } from "../services/quran_api.service";
 import { cn } from "@shared/lib/utils";
 import { Search } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface SurahListProps {
   onSelect: (surahId: number) => void;
@@ -11,6 +12,7 @@ interface SurahListProps {
 }
 
 export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
+  const { t } = useLanguage();
   const [surahs, setSurahs] = useState<Surah[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,7 +56,7 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted pointer-events-none" />
         <input 
           type="text" 
-          placeholder="Поиск суры (напр. Фатиха)..."
+          placeholder={t("quran.search")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full rounded-xl border border-border bg-surface pl-12 pr-4 py-3 text-sm text-main placeholder-muted focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors shadow-sm"
@@ -82,7 +84,7 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
                 <div className="text-left">
                   <h4 className="text-sm font-bold text-main">{surah.name_simple}</h4>
                   <p className="text-[10px] uppercase tracking-wider text-muted line-clamp-1">
-                     {surah.translated_name.name} • {surah.verses_count} аятов
+                     {surah.translated_name.name} • {surah.verses_count} {t("quran.ayahs")}
                   </p>
                 </div>
               </div>
@@ -94,7 +96,7 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
         })}
         {filteredSurahs.length === 0 && (
           <div className="text-center py-8 text-neutral-500 text-sm">
-            Сура не найдена.
+            {t("quran.not_found")}
           </div>
         )}
       </div>

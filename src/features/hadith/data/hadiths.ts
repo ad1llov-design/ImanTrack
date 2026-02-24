@@ -7,6 +7,12 @@ export interface HadithItem {
   id: number;
   arabic: string;
   translation: string;
+  translations?: {
+    ru: string;
+    en: string;
+    uz: string;
+    ky: string;
+  };
   reference: string;
 }
 

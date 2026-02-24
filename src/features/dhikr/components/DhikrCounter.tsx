@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@shared/lib/utils";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface DhikrCounterProps {
   dhikrId: string;
@@ -12,6 +13,7 @@ interface DhikrCounterProps {
 }
 
 export function DhikrCounter({ dhikrId, className, goal = 33 }: DhikrCounterProps) {
+  const { t } = useLanguage();
   const [count, setCount] = useState(0);
 
   // Load from localStorage on mount
@@ -98,14 +100,14 @@ export function DhikrCounter({ dhikrId, className, goal = 33 }: DhikrCounterProp
       </motion.button>
 
       <div className="flex items-center gap-4">
-        <span className="text-sm font-medium text-muted">Цель: {goal}</span>
+        <span className="text-sm font-medium text-muted">{t("dhikr.goal")}: {goal}</span>
         {count > 0 && (
           <button
             onClick={handleReset}
             className="flex items-center gap-1 rounded-full bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-muted hover:bg-neutral-200 hover:text-main dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
           >
             <RotateCcw className="h-3 w-3" />
-            Сбросить
+            {t("dhikr.reset")}
           </button>
         )}
       </div>
