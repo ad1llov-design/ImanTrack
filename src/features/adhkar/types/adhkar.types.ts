@@ -36,6 +36,7 @@ export interface Dhikr {
   reference: string;      // Источник (хадис)
   targetCount: number;    // Сколько раз надо прочитать
   virtue?: string;        // Достоинство (фадл) зикра
+  virtueTranslations?: { ru: string, en: string, uz: string, ky: string };
 }
 
 /* ── Progress ───────────────────────────────────────────────────────── */

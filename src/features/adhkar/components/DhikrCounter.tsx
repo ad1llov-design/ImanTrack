@@ -195,7 +195,7 @@ export function DhikrCounter({
         {dhikr.virtue && (
           <div className="mt-4 rounded-xl bg-gold-50 px-4 py-2 dark:bg-gold-950/20">
             <p className="text-xs text-gold-700 dark:text-gold-300">
-              ✨ {dhikr.virtue}
+              ✨ {dhikr.virtueTranslations?.[language as keyof typeof dhikr.virtueTranslations] || dhikr.virtue}
             </p>
           </div>
         )}
