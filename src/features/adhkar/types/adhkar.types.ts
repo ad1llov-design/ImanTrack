@@ -22,6 +22,7 @@ export interface CategoryInfo {
   icon: string;
   color: string; // Tailwind color class prefix
   description: string;
+  descriptionTranslations?: { ru: string, en: string, uz: string, ky: string };
 }
 
 /* ── Dhikr item ─────────────────────────────────────────────────────── */

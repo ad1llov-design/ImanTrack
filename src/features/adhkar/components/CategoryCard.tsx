@@ -110,7 +110,7 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
 
       {/* ── Description ──────────────────────── */}
       <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-400">
-        {category.description}
+        {category.descriptionTranslations?.[language as keyof typeof category.descriptionTranslations] || category.description}
       </p>
 
       {/* ── Progress ─────────────────────────── */}
