@@ -1,8 +1,11 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import { HADITH_COLLECTIONS } from "@features/hadith/data/collections";
 import { HADITHS_DATA } from "@features/hadith/data/hadiths";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface PageProps {
   params: {
@@ -11,17 +14,24 @@ interface PageProps {
 }
 
 export default function HadithCollectionPage({ params }: PageProps) {
+  const { t, language } = useLanguage();
   const collectionId = params.id;
-  const collection = HADITH_COLLECTIONS.find((c) => c.id === collectionId);
+  const collectionRaw = HADITH_COLLECTIONS.find((c) => c.id === collectionId);
   const hadiths = HADITHS_DATA[collectionId] || [];
 
-  if (!collection) return notFound();
+  if (!collectionRaw) return notFound();
+
+  const collection = {
+    name: collectionRaw.translations?.[language]?.name || collectionRaw.translations?.ru?.name,
+    author: collectionRaw.translations?.[language]?.author || collectionRaw.translations?.ru?.author,
+    description: collectionRaw.translations?.[language]?.description || collectionRaw.translations?.ru?.description,
+  };
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 pb-32">
       <Link href="/hadith" className="inline-flex items-center text-sm font-medium text-muted hover:text-main mb-6 transition-colors">
         <ArrowLeft className="mr-2 h-4 w-4" />
-        Назад к сборникам
+        {t("common.back")}
       </Link>
 
       <div className="mb-8">
@@ -32,7 +42,7 @@ export default function HadithCollectionPage({ params }: PageProps) {
             {collection.author}
           </span>
           <span className="text-xs text-muted">
-            {hadiths.length} хадисов
+             {hadiths.length} {t("hadith.count_label")}
           </span>
         </div>
       </div>
@@ -52,7 +62,7 @@ export default function HadithCollectionPage({ params }: PageProps) {
               {hadith.arabic}
             </p>
             <p className="text-sm leading-relaxed text-muted">
-              {hadith.translation}
+              {hadith.translations?.[language] || hadith.translation}
             </p>
           </div>
         ))}

@@ -100,10 +100,14 @@ const DHIKR_LIST = [
  * Native multi-language support.
  */
 export function DhikrTasbih({ className }: { className?: string }) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   return (
     <div className={cn("space-y-4", className)}>
+      <div className="mb-10 text-center">
+        <h1 className="text-display text-3xl font-bold text-main mb-2">{t("dhikr.title")}</h1>
+        <p className="text-sm tracking-wider text-muted">{t("dhikr.subtitle")}</p>
+      </div>
       {DHIKR_LIST.map((dhikr) => {
         const t = dhikr.translations[language] || dhikr.translations["ru"];
 

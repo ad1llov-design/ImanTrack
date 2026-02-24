@@ -46,5 +46,24 @@
   "quran.verses": "Oyatlar",
   "quran.script_simple": "Oddiy shrift",
   "quran.script_uthmani": "Usmoniy (Madina)",
-  "quran.script_indopak": "Hind-Pok"
+  "quran.script_indopak": "Hind-Pok",
+
+  "dhikr.title": "Zikr",
+  "dhikr.subtitle": "Qalblar oromi",
+
+  "hadith.daily": "Kun hadisi",
+  "hadith.daily_desc": "Payg'ambarimiz ﷺ ning har kungi hikmatlari",
+  "hadith.copied": "Hadis nusxalandi!",
+  "hadith.today": "Bugun",
+  "hadith.next": "Keyingisi",
+  "hadith.share_title": "Kun hadisi — SIRAT",
+  "hadith.quran_quote": "«U (hech narsani) o‘z havoyi xohishi bilan so‘zlamas. U (Qur’on) faqat (Alloh tomonidan) nozil qilinayotgan bir vahiydir» (53:3-4)",
+  "hadith.count_label": "ta hadis",
+
+  "home.hadith_0_translation": "Kim ikki sovuq namozni (Bomdod va Asr) o'qisa, u jannatga ko'radi.",
+  "home.hadith_0_reference": "Buxoriy, 574",
+  "home.hadith_1_translation": "Besh vaqt namoz ularning orasidagi gunohlarga kafforatdir.",
+  "home.hadith_1_reference": "Muslim, 233",
+  "home.hadith_2_translation": "Bandaning Parvardigoriga eng yaqin bo'lgan holati uning sajda qilgan paytidir.",
+  "home.hadith_2_reference": "Muslim, 482"
 }

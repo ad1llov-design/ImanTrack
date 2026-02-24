@@ -46,5 +46,24 @@
   "quran.verses": "Аяты",
   "quran.script_simple": "Простой шрифт",
   "quran.script_uthmani": "Усмани (Медина)",
-  "quran.script_indopak": "Индо-Пак"
+  "quran.script_indopak": "Индо-Пак",
+
+  "dhikr.title": "Зикр",
+  "dhikr.subtitle": "Успокоение сердец",
+
+  "hadith.daily": "Хадис дня",
+  "hadith.daily_desc": "Мудрость Пророка ﷺ на каждый день",
+  "hadith.copied": "Хадис скопирован!",
+  "hadith.today": "Сегодня",
+  "hadith.next": "Следующий",
+  "hadith.share_title": "Хадис дня — SIRAT",
+  "hadith.quran_quote": "«И он не говорит от себя. Это — лишь откровение, которое ниспосылается» (53:3-4)",
+  "hadith.count_label": "хадисов",
+
+  "home.hadith_0_translation": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
+  "home.hadith_0_reference": "Бухари, 574",
+  "home.hadith_1_translation": "Пять молитв — искупление за то, что между ними.",
+  "home.hadith_1_reference": "Муслим, 233",
+  "home.hadith_2_translation": "Ближе всего раб к своему Господу в земном поклоне.",
+  "home.hadith_2_reference": "Муслим, 482"
 }

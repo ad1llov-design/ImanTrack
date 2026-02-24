@@ -46,5 +46,24 @@
   "quran.verses": "Verses",
   "quran.script_simple": "Simple Script",
   "quran.script_uthmani": "Uthmani (Madinah)",
-  "quran.script_indopak": "Indo-Pak"
+  "quran.script_indopak": "Indo-Pak",
+
+  "dhikr.title": "Dhikr",
+  "dhikr.subtitle": "Calming of hearts",
+
+  "hadith.daily": "Hadith of the Day",
+  "hadith.daily_desc": "Wisdom of the Prophet ﷺ for every day",
+  "hadith.copied": "Hadith copied!",
+  "hadith.today": "Today",
+  "hadith.next": "Next",
+  "hadith.share_title": "Hadith of the Day — SIRAT",
+  "hadith.quran_quote": "\"Nor does he speak from [his own] inclination. It is not but a revelation revealed.\" (53:3-4)",
+  "hadith.count_label": "hadiths",
+
+  "home.hadith_0_translation": "Whoever prays the two cool prayers (Asr and Fajr) will go to Paradise.",
+  "home.hadith_0_reference": "Bukhari, 574",
+  "home.hadith_1_translation": "The five daily prayers are an expiation for whatever sins occur between them.",
+  "home.hadith_1_reference": "Muslim, 233",
+  "home.hadith_2_translation": "The closest a servant gets to his Lord is when he is in prostration.",
+  "home.hadith_2_reference": "Muslim, 482"
 }

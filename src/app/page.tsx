@@ -12,18 +12,18 @@ const PrayerWidget = dynamic(
 const PRAYER_HADITHS = [
   {
     arabic: "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
-    translation: "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
-    reference: "Бухари, 574",
+    translationKey: "home.hadith_0_translation",
+    referenceKey: "home.hadith_0_reference",
   },
   {
     arabic: "الصَّلَوَاتُ الْخَمْسُ كَفَّارَاتٌ لِمَا بَيْنَهُنَّ",
-    translation: "Пять молитв — искупление за то, что между ними.",
-    reference: "Муслим, 233",
+    translationKey: "home.hadith_1_translation",
+    referenceKey: "home.hadith_1_reference",
   },
   {
     arabic: "أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ",
-    translation: "Ближе всего раб к своему Господу в земном поклоне.",
-    reference: "Муслим, 482",
+    translationKey: "home.hadith_2_translation",
+    referenceKey: "home.hadith_2_reference",
   },
 ];
 
@@ -57,10 +57,10 @@ export default function SiratPage() {
                 {h.arabic}
               </p>
               <p className="text-sm text-muted leading-relaxed mb-2">
-                {h.translation}
+                {t(h.translationKey as any)}
               </p>
               <p className="text-[10px] font-bold text-primary-500 bg-primary-500/10 px-2 py-0.5 rounded-md inline-block uppercase tracking-wider">
-                {h.reference}
+                {t(h.referenceKey as any)}
               </p>
             </div>
           ))}

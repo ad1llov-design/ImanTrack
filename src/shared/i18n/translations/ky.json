@@ -46,5 +46,24 @@
   "quran.verses": "Аяттар",
   "quran.script_simple": "Жөнөкөй шрифт",
   "quran.script_uthmani": "Усмани (Медина)",
-  "quran.script_indopak": "Индо-Пак"
+  "quran.script_indopak": "Индо-Пак",
+
+  "dhikr.title": "Зикир",
+  "dhikr.subtitle": "Жүрөктөрдүн тынчтыгы",
+
+  "hadith.daily": "Күндүн хадиси",
+  "hadith.daily_desc": "Пайгамбарыбыздын ﷺ ар күндүк даанышмандыгы",
+  "hadith.copied": "Хадис көчүрүлдү!",
+  "hadith.today": "Бүгүн",
+  "hadith.next": "Кийинкиси",
+  "hadith.share_title": "Күндүн хадиси — SIRAT",
+  "hadith.quran_quote": "«Ал өзүнүн каалоосу менен сүйлөбөйт. Ал (Куран) түшүрүлгөн гана бир вахый» (53:3-4)",
+  "hadith.count_label": "хадис",
+
+  "home.hadith_0_translation": "Ким эки салкын намазды (Багымдат жана Аср) окуса, ал бейишке кирет.",
+  "home.hadith_0_reference": "Бухари, 574",
+  "home.hadith_1_translation": "Беш маал намаз алардын ортосундагы күнөөлөрдү жууп салат.",
+  "home.hadith_1_reference": "Муслим, 233",
+  "home.hadith_2_translation": "Пенденин Жаратканга эң жакын болгон учуру – ал сажда кылган учур.",
+  "home.hadith_2_reference": "Муслим, 482"
 }

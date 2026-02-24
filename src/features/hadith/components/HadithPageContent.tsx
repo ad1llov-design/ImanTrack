@@ -37,10 +37,10 @@ export function HadithPageContent() {
     try {
       await navigator.clipboard.writeText(text);
       setIsCopied(true);
-      toast.success("Хадис скопирован!");
+      toast.success(t("hadith.copied"));
       setTimeout(() => setIsCopied(false), 2000);
     } catch {
-      toast.error("Не удалось скопировать");
+      toast.error(t("common.error"));
     }
   };
 
@@ -48,7 +48,7 @@ export function HadithPageContent() {
     const text = `${currentHadith.arabic}\n\n${currentHadith.translation}\n\n— ${currentHadith.narrator}`;
     if (navigator.share) {
       try {
-        await navigator.share({ text, title: "Хадис дня — MAZI" });
+        await navigator.share({ text, title: t("hadith.share_title") });
       } catch { /* user cancelled */ }
     } else {
       await copy();
@@ -61,10 +61,10 @@ export function HadithPageContent() {
       {/* ── Header */}
       <div className="mb-8 text-center">
         <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 flex items-center justify-center gap-2">
-          <BookMarked className="h-6 w-6 text-primary-500" /> Хадис дня
+          <BookMarked className="h-6 w-6 text-primary-500" /> {t("hadith.daily")}
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          Мудрость Пророка ﷺ на каждый день
+          {t("hadith.daily_desc")}
         </p>
       </div>
 
@@ -121,13 +121,13 @@ export function HadithPageContent() {
               onClick={showToday}
               className="px-3 py-1.5 text-xs font-bold text-muted hover:text-main border border-border rounded-xl transition-colors"
             >
-              Сегодня
+              {t("hadith.today")}
             </button>
             <button
               onClick={showNext}
               className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-primary-500 bg-primary-50 dark:bg-primary-950/30 rounded-xl hover:bg-primary-100 dark:hover:bg-primary-950/50 transition-colors"
             >
-              Следующий <ArrowRight className="h-3 w-3" />
+              {t("hadith.next")} <ArrowRight className="h-3 w-3" />
             </button>
           </div>
         </div>
@@ -147,13 +147,13 @@ export function HadithPageContent() {
             >
               <div>
                 <h3 className="text-display font-bold text-main group-hover:text-primary-500 transition-colors">
-                  {collection.name}
+                  {collection.translations?.[language]?.name || collection.translations?.ru?.name}
                 </h3>
                 <p className="mt-1 text-xs text-muted font-medium mb-3">
-                  {collection.author}
+                  {collection.translations?.[language]?.author || collection.translations?.ru?.author}
                 </p>
                 <p className="text-xs text-neutral-500 leading-relaxed mb-4">
-                  {collection.description}
+                  {collection.translations?.[language]?.description || collection.translations?.ru?.description}
                 </p>
               </div>
               <div className="flex items-center justify-between mt-auto">
@@ -175,7 +175,7 @@ export function HadithPageContent() {
           وَمَا يَنطِقُ عَنِ الْهَوَىٰ ۝ إِنْ هُوَ إِلَّا وَحْيٌ يُوحَىٰ
         </p>
         <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-          «И он не говорит от себя. Это — лишь откровение, которое ниспосылается» (53:3-4)
+          {t("hadith.quran_quote")}
         </p>
       </div>
     </div>
