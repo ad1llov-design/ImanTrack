@@ -60,6 +60,18 @@
   "hadith.quran_quote": "«U (hech narsani) o‘z havoyi xohishi bilan so‘zlamas. U (Qur’on) faqat (Alloh tomonidan) nozil qilinayotgan bir vahiydir» (53:3-4)",
   "hadith.count_label": "ta hadis",
 
+  "footer.description": "Ma'naviy o'sish trekeri. Namozlarni kuzating, Qur'on o'qing va foydali odatlarni shakllantiring.",
+  "footer.nav_title": "Navigatsiya",
+  "footer.resources_title": "Resurslar",
+  "footer.dua_title": "Duo",
+  "footer.dua_quote": "«Rabbim, ilmimni ziyoda qil» (20:114)",
+  "footer.copyright": "© {year} SIRAT. Barcha huquqlar himoyalangan.",
+  "footer.made_with": "❤️ va بسم الله bilan yaratilgan",
+
+  "resource.about": "Loyiha haqida",
+  "resource.support": "Qo'llab-quvvatlash",
+  "resource.privacy": "Maxfiylik",
+
   "home.hadith_0_translation": "Kim ikki sovuq namozni (Bomdod va Asr) o'qisa, u jannatga ko'radi.",
   "home.hadith_0_reference": "Buxoriy, 574",
   "home.hadith_1_translation": "Besh vaqt namoz ularning orasidagi gunohlarga kafforatdir.",

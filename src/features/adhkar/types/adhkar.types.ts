@@ -18,6 +18,7 @@ export interface CategoryInfo {
   id: AdhkarCategory;
   nameRu: string;
   nameAr: string;
+  translations?: { ru: string, en: string, uz: string, ky: string };
   icon: string;
   color: string; // Tailwind color class prefix
   description: string;
@@ -31,6 +32,7 @@ export interface Dhikr {
   arabic: string;
   transliteration: string;
   translation: string;
+  translations?: { ru: string, en: string, uz: string, ky: string };
   reference: string;      // Источник (хадис)
   targetCount: number;    // Сколько раз надо прочитать
   virtue?: string;        // Достоинство (фадл) зикра

@@ -14,6 +14,7 @@ import { getCategoryInfo } from "../data/adhkar.data";
 import { useAdhkar } from "../hooks/useAdhkar";
 import type { AdhkarCategory } from "../types/adhkar.types";
 import { DhikrCounter } from "./DhikrCounter";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface DhikrCategoryViewProps {
   categoryId: AdhkarCategory;
@@ -34,13 +35,14 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
     goPrev,
     setDhikrIndex,
   } = useAdhkar(categoryId);
+  const { t, language } = useLanguage();
 
   const category = getCategoryInfo(categoryId);
 
   if (!category) {
     return (
       <div className="py-20 text-center">
-        <p className="text-neutral-500">Категория не найдена</p>
+        <p className="text-neutral-500">{t("common.error")}</p>
       </div>
     );
   }
@@ -59,7 +61,7 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
   if (!currentDhikr) {
     return (
       <div className="py-20 text-center">
-        <p className="text-neutral-500">В этой категории нет зикров</p>
+        <p className="text-neutral-500">{t("common.error")}</p>
       </div>
     );
   }
@@ -78,14 +80,14 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-          Назад
+          {t("common.back")}
         </Link>
 
         {/* Category info */}
         <div className="flex items-center gap-2">
           <span className="text-lg">{category.icon}</span>
           <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">
-            {category.nameRu}
+            {category.translations?.[language as keyof typeof category.translations] || category.nameRu}
           </span>
         </div>
       </div>
@@ -95,7 +97,7 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
         <div className="mb-8 rounded-2xl border border-neutral-100 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
           <div className="flex items-center justify-between text-xs">
             <span className="text-neutral-500 dark:text-neutral-400">
-              Прогресс: {categoryProgress.completedDhikrs} из {categoryProgress.totalDhikrs}
+              {categoryProgress.completedDhikrs} / {categoryProgress.totalDhikrs}
             </span>
             <span className={cn(
               "font-semibold",
@@ -157,14 +159,11 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
           <p className="mt-2 font-arabic text-xl text-gold-600 dark:text-gold-400">
             ماشاء الله تبارك الله
           </p>
-          <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-            Вы завершили все зикры этой категории!
-          </p>
           <Link
             href="/adhkar"
             className="mt-4 inline-block rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-700 dark:bg-primary-500"
           >
-            К категориям
+            {t("common.back")}
           </Link>
         </div>
       )}

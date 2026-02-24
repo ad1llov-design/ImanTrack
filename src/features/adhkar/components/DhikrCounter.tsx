@@ -19,6 +19,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@shared/lib/utils";
 import { getMotivationMessage } from "../data/adhkar.data";
 import type { Dhikr, DhikrProgress } from "../types/adhkar.types";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface DhikrCounterProps {
   dhikr: Dhikr;
@@ -103,6 +104,7 @@ export function DhikrCounter({
   currentIndex,
   totalCount,
 }: DhikrCounterProps) {
+  const { t, language } = useLanguage();
   const currentCount = progress?.currentCount ?? 0;
   const isComplete = currentCount >= dhikr.targetCount;
   const percentage = Math.round(
@@ -181,7 +183,7 @@ export function DhikrCounter({
 
         {/* Translation */}
         <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-          {dhikr.translation}
+          {dhikr.translations?.[language as keyof typeof dhikr.translations] || dhikr.translation}
         </p>
 
         {/* Reference */}
@@ -228,7 +230,7 @@ export function DhikrCounter({
             <>
               <span className="text-4xl">✓</span>
               <span className="mt-1 text-sm font-semibold text-gold-600 dark:text-gold-400">
-                Завершено!
+                {t("common.save")}
               </span>
             </>
           ) : (
@@ -237,7 +239,7 @@ export function DhikrCounter({
                 {currentCount}
               </span>
               <span className="mt-1 text-xs text-neutral-400">
-                из {dhikr.targetCount}
+                / {dhikr.targetCount}
               </span>
             </>
           )}
@@ -300,7 +302,7 @@ export function DhikrCounter({
             onClick={onNext}
             className="rounded-xl bg-primary-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-700 active:scale-[0.97] dark:bg-primary-500"
           >
-            Следующий →
+             {t("hadith.next")} →
           </button>
         )}
 
@@ -319,7 +321,7 @@ export function DhikrCounter({
       {/* ── Tap hint ─────────────────────────── */}
       {!isComplete && currentCount === 0 && (
         <p className="mt-6 animate-pulse text-xs text-neutral-400 dark:text-neutral-600">
-          Нажмите на круг для подсчёта • Пробел / Enter
+          Space / Enter
         </p>
       )}
     </div>

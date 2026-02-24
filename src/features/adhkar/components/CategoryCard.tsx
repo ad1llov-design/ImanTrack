@@ -13,6 +13,7 @@ import { cn } from "@shared/lib/utils";
 import { getDhikrsByCategory } from "../data/adhkar.data";
 import { useAdhkarStore } from "../store/adhkarStore";
 import type { CategoryInfo } from "../types/adhkar.types";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface CategoryCardProps {
   category: CategoryInfo;
@@ -50,6 +51,7 @@ const colorMap: Record<string, ColorScheme> = {
 
 export function CategoryCard({ category, index }: CategoryCardProps) {
   const { progress } = useAdhkarStore();
+  const { t, language } = useLanguage();
 
   const dhikrs = getDhikrsByCategory(category.id);
   const completedCount = dhikrs.filter(
@@ -90,7 +92,7 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
           </span>
           <div>
             <h3 className={cn("font-semibold", colors.text)}>
-              {category.nameRu}
+              {category.translations?.[language as keyof typeof category.translations] || category.nameRu}
             </h3>
             <p className="font-arabic text-xs text-neutral-400 dark:text-neutral-500">
               {category.nameAr}
@@ -115,7 +117,7 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
       <div className="mt-4">
         <div className="flex items-center justify-between text-[0.65rem]">
           <span className="text-neutral-400">
-            {completedCount} из {dhikrs.length} зикров
+            {completedCount} / {dhikrs.length}
           </span>
           <span className={cn("font-semibold", colors.text)}>
             {percentage}%

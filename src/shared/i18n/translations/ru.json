@@ -60,6 +60,18 @@
   "hadith.quran_quote": "«И он не говорит от себя. Это — лишь откровение, которое ниспосылается» (53:3-4)",
   "hadith.count_label": "хадисов",
 
+  "footer.description": "Трекер духовного роста. Отслеживайте намазы, читайте Коран и формируйте полезные привычки.",
+  "footer.nav_title": "Навигация",
+  "footer.resources_title": "Ресурсы",
+  "footer.dua_title": "Дуа",
+  "footer.dua_quote": "«Господь мой, приумножь мне знание» (20:114)",
+  "footer.copyright": "© {year} SIRAT. Все права защищены.",
+  "footer.made_with": "Сделано с ❤️ и بسم الله",
+
+  "resource.about": "О проекте",
+  "resource.support": "Поддержка",
+  "resource.privacy": "Приватность",
+
   "home.hadith_0_translation": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
   "home.hadith_0_reference": "Бухари, 574",
   "home.hadith_1_translation": "Пять молитв — искупление за то, что между ними.",

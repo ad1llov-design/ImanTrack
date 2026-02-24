@@ -11,13 +11,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 import { cn } from "@shared/lib/utils";
 
 /* ── Types ──────────────────────────────────────────────────────────── */
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   href: string;
   icon?: React.ReactNode;
 }
@@ -32,11 +33,11 @@ interface NavbarProps {
 /* ── Default items ─────────────────────────────────────────────────── */
 
 const defaultItems: NavItem[] = [
-  { label: "Главная", href: "/" },
-  { label: "Коран",   href: "/quran" },
-  { label: "Хадисы",  href: "/hadith" },
-  { label: "Намаз",   href: "/prayer" },
-  { label: "Азкары",  href: "/adhkar" },
+  { labelKey: "nav.home", href: "/" },
+  { labelKey: "nav.quran",   href: "/quran" },
+  { labelKey: "nav.hadith",  href: "/hadith" },
+  { labelKey: "nav.prayer",   href: "/prayer" },
+  { labelKey: "nav.adhkar",  href: "/adhkar" },
 ];
 
 /* ── Component ──────────────────────────────────────────────────────── */
@@ -45,6 +46,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useLanguage();
 
   // Отслеживаем скролл для glass-эффекта
   useEffect(() => {
@@ -119,7 +121,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
                     {item.icon}
                   </span>
                 )}
-                <span>{item.label}</span>
+                <span>{item.labelKey ? t(item.labelKey as any) : (item as any).label}</span>
                 {/* Minimalist Active indicator */}
                 {isActive && (
                   <span className="absolute bottom-1 left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full bg-primary-500" />
@@ -186,7 +188,7 @@ export function Navbar({ items = defaultItems, rightSlot }: NavbarProps) {
                 )}
               >
                 {item.icon && <span>{item.icon}</span>}
-                {item.label}
+                {item.labelKey ? t(item.labelKey as any) : (item as any).label}
                 {isActive && (
                   <span className="ml-auto h-2 w-2 rounded-full bg-primary-500" />
                 )}

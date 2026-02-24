@@ -60,6 +60,18 @@
   "hadith.quran_quote": "\"Nor does he speak from [his own] inclination. It is not but a revelation revealed.\" (53:3-4)",
   "hadith.count_label": "hadiths",
 
+  "footer.description": "Spiritual growth tracker. Track your prayers, read Quran, and build useful habits.",
+  "footer.nav_title": "Navigation",
+  "footer.resources_title": "Resources",
+  "footer.dua_title": "Dua",
+  "footer.dua_quote": "\"My Lord, increase me in knowledge\" (20:114)",
+  "footer.copyright": "© {year} SIRAT. All rights reserved.",
+  "footer.made_with": "Made with ❤️ and بسم الله",
+
+  "resource.about": "About",
+  "resource.support": "Support",
+  "resource.privacy": "Privacy",
+
   "home.hadith_0_translation": "Whoever prays the two cool prayers (Asr and Fajr) will go to Paradise.",
   "home.hadith_0_reference": "Bukhari, 574",
   "home.hadith_1_translation": "The five daily prayers are an expiation for whatever sins occur between them.",

@@ -6,13 +6,13 @@
  */
 
 import Link from "next/link";
-
 import { cn } from "@shared/lib/utils";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 /* ── Types ──────────────────────────────────────────────────────────── */
 
 interface FooterLink {
-  label: string;
+  labelKey: string;
   href: string;
 }
 
@@ -23,22 +23,23 @@ interface FooterProps {
 /* ── Data ───────────────────────────────────────────────────────────── */
 
 const navLinks: FooterLink[] = [
-  { label: "Главная",   href: "/" },
-  { label: "Привычки",  href: "/habits" },
-  { label: "Коран",     href: "/quran" },
-  { label: "Настройки", href: "/settings" },
+  { labelKey: "nav.home",   href: "/" },
+  { labelKey: "nav.habits",  href: "/habits" },
+  { labelKey: "nav.quran",     href: "/quran" },
+  { labelKey: "nav.settings", href: "/settings" },
 ];
 
 const resourceLinks: FooterLink[] = [
-  { label: "О проекте", href: "/about" },
-  { label: "Поддержка", href: "/support" },
-  { label: "Приватность", href: "/privacy" },
+  { labelKey: "resource.about", href: "/about" },
+  { labelKey: "resource.support", href: "/support" },
+  { labelKey: "resource.privacy", href: "/privacy" },
 ];
 
 /* ── Component ──────────────────────────────────────────────────────── */
 
 export function Footer({ className }: FooterProps) {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer
@@ -61,7 +62,7 @@ export function Footer({ className }: FooterProps) {
               </span>
             </div>
             <p className="mt-3 text-body-sm text-neutral-500 dark:text-neutral-400">
-              Трекер духовного роста. Отслеживайте намазы, читайте Коран и формируйте полезные привычки.
+              {t("footer.description")}
             </p>
             {/* Bismillah */}
             <p className="mt-4 font-arabic text-lg text-gold-500">
@@ -72,7 +73,7 @@ export function Footer({ className }: FooterProps) {
           {/* Navigation */}
           <div>
             <h4 className="mb-4 text-overline uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-              Навигация
+              {t("footer.nav_title")}
             </h4>
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
@@ -81,7 +82,7 @@ export function Footer({ className }: FooterProps) {
                     href={link.href as any}
                     className="text-body-sm text-neutral-600 transition-colors duration-250 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400"
                   >
-                    {link.label}
+                    {t(link.labelKey as any)}
                   </Link>
                 </li>
               ))}
@@ -91,7 +92,7 @@ export function Footer({ className }: FooterProps) {
           {/* Resources */}
           <div>
             <h4 className="mb-4 text-overline uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-              Ресурсы
+              {t("footer.resources_title")}
             </h4>
             <ul className="space-y-2.5">
               {resourceLinks.map((link) => (
@@ -100,7 +101,7 @@ export function Footer({ className }: FooterProps) {
                     href={link.href as any}
                     className="text-body-sm text-neutral-600 transition-colors duration-250 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400"
                   >
-                    {link.label}
+                    {t(link.labelKey as any)}
                   </Link>
                 </li>
               ))}
@@ -110,14 +111,14 @@ export function Footer({ className }: FooterProps) {
           {/* Dua */}
           <div>
             <h4 className="mb-4 text-overline uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-              Дуа
+              {t("footer.dua_title")}
             </h4>
             <div className="rounded-2xl border border-neutral-200 bg-white/50 p-4 dark:border-neutral-700 dark:bg-neutral-800/50">
               <p className="text-right font-arabic text-body leading-loose text-neutral-800 dark:text-neutral-200">
                 رَبِّ زِدْنِي عِلْمًا
               </p>
               <p className="mt-2 text-caption text-neutral-500 dark:text-neutral-400">
-                «Господь мой, приумножь мне знание» (20:114)
+                {t("footer.dua_quote")}
               </p>
             </div>
           </div>
@@ -126,10 +127,10 @@ export function Footer({ className }: FooterProps) {
         {/* ── Bottom bar ──────────────────────── */}
         <div className="flex flex-col items-center justify-between gap-3 border-t border-neutral-200 py-6 dark:border-neutral-800 sm:flex-row">
           <p className="text-caption text-neutral-400">
-            © {year} SIRAT. Все права защищены.
+            {t("footer.copyright").replace("{year}", year.toString())}
           </p>
           <p className="text-caption text-neutral-400">
-            Сделано с ❤️ и بسم الله
+            {t("footer.made_with")}
           </p>
         </div>
       </div>

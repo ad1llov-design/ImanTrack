@@ -13,10 +13,10 @@ export function SunnahGrid({ className }: { className?: string }) {
   const categories = [...new Set(SUNNAH_ACTIONS.map((s) => s.category))];
 
   const categoryTitles: Record<string, string> = {
-    morning: "Утренние Сунны",
-    prayer: "Сунны Намаза",
-    night: "Сунны Перед Сном",
-    character: "Сунны Характера"
+    morning: t("sunnah.cat_morning" as any) || "Утренние Сунны",
+    prayer: t("sunnah.cat_prayer" as any) || "Сунны Намаза",
+    night: t("sunnah.cat_night" as any) || "Сунны Перед Сном",
+    character: t("sunnah.cat_character" as any) || "Сунны Характера"
   };
 
   return (

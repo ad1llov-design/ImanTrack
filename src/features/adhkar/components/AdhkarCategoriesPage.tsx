@@ -9,8 +9,10 @@
 import { ADHKAR_CATEGORIES } from "../data/adhkar.data";
 import { useAdhkar } from "../hooks/useAdhkar";
 import { CategoryCard } from "./CategoryCard";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 export function AdhkarCategoriesPage() {
+  const { t } = useLanguage();
   // Инициализируем прогресс
   useAdhkar();
 
@@ -19,16 +21,16 @@ export function AdhkarCategoriesPage() {
       {/* Header */}
       <div className="mb-8 text-center">
         <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-          📿 Азкары и Зикры
+          {t("adhkar.title" as any) || "📿 Азкары и Зикры"}
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          Поминание Аллаха — покой для сердца
+          {t("adhkar.subtitle" as any) || "Поминание Аллаха — покой для сердца"}
         </p>
         <p className="mt-2 font-arabic text-base text-gold-600 dark:text-gold-400">
           أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ
         </p>
         <p className="mt-0.5 text-xs text-neutral-400">
-          «Поистине, поминанием Аллаха утешаются сердца» (13:28)
+          {t("adhkar.quran_quote" as any) || "«Поистине, поминанием Аллаха утешаются сердца» (13:28)"}
         </p>
       </div>
 
@@ -49,7 +51,7 @@ export function AdhkarCategoriesPage() {
           رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ
         </p>
         <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-          «Господь наш! Прими от нас, ведь Ты — Слышащий, Знающий» (2:127)
+          {t("adhkar.dua_quote" as any) || "«Господь наш! Прими от нас, ведь Ты — Слышащий, Знающий» (2:127)"}
         </p>
       </div>
     </div>

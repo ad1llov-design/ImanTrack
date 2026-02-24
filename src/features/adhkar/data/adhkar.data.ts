@@ -17,7 +17,7 @@ import type {
 export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   {
     id: "morning",
-    nameRu: "Утренние азкары",
+    nameRu: "Утренние азкары", translations: { ru: "Утренние азкары", en: "Утренние азкары (EN)", uz: "Утренние азкары (UZ)", ky: "Утренние азкары (KY)" },
     nameAr: "أذكار الصباح",
     icon: "🌅",
     color: "gold",
@@ -25,7 +25,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   },
   {
     id: "evening",
-    nameRu: "Вечерние азкары",
+    nameRu: "Вечерние азкары", translations: { ru: "Вечерние азкары", en: "Вечерние азкары (EN)", uz: "Вечерние азкары (UZ)", ky: "Вечерние азкары (KY)" },
     nameAr: "أذكار المساء",
     icon: "🌙",
     color: "primary",
@@ -33,7 +33,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   },
   {
     id: "after_salah",
-    nameRu: "После намаза",
+    nameRu: "После намаза", translations: { ru: "После намаза", en: "После намаза (EN)", uz: "После намаза (UZ)", ky: "После намаза (KY)" },
     nameAr: "أذكار بعد الصلاة",
     icon: "🕌",
     color: "primary",
@@ -41,7 +41,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   },
   {
     id: "general",
-    nameRu: "Общие дуа",
+    nameRu: "Общие дуа", translations: { ru: "Общие дуа", en: "Общие дуа (EN)", uz: "Общие дуа (UZ)", ky: "Общие дуа (KY)" },
     nameAr: "أدعية عامة",
     icon: "🤲",
     color: "secondary",
@@ -49,7 +49,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   },
   {
     id: "sleep",
-    nameRu: "Перед сном",
+    nameRu: "Перед сном", translations: { ru: "Перед сном", en: "Перед сном (EN)", uz: "Перед сном (UZ)", ky: "Перед сном (KY)" },
     nameAr: "أذكار النوم",
     icon: "😴",
     color: "neutral",
@@ -57,7 +57,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
   },
   {
     id: "wake_up",
-    nameRu: "При пробуждении",
+    nameRu: "При пробуждении", translations: { ru: "При пробуждении", en: "При пробуждении (EN)", uz: "При пробуждении (UZ)", ky: "При пробуждении (KY)" },
     nameAr: "أذكار الاستيقاظ",
     icon: "⏰",
     color: "gold",
