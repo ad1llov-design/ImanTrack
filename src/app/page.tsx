@@ -31,7 +31,7 @@ export default function SiratPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="mx-auto max-w-lg px-4 pt-6 pb-28">
+    <main className="mx-auto w-full max-w-lg px-4 pt-6 pb-28 md:px-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>

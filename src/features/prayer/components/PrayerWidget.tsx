@@ -36,10 +36,10 @@ export function PrayerWidget({ className }: { className?: string }) {
             <div className="h-6 w-16 bg-border rounded-full animate-pulse" />
           </div>
           <div className="h-36 w-36 rounded-full bg-border animate-pulse" />
-          <div className="flex w-full items-center justify-between gap-2 overflow-x-auto border-t border-border pt-4">
+          <div className="flex w-full items-center justify-between gap-1 overflow-x-auto pb-2 border-t border-border pt-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex flex-col items-center gap-1.5 p-2 flex-shrink-0">
-                <div className="h-12 w-12 rounded-2xl bg-border animate-pulse" />
+              <div key={i} className="flex flex-col items-center gap-1.5 p-1 flex-shrink-0">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-border animate-pulse" />
                 <div className="h-2 w-8 bg-border rounded-full animate-pulse" />
               </div>
             ))}
@@ -78,7 +78,7 @@ export function PrayerWidget({ className }: { className?: string }) {
         </CircularProgress>
 
         {/* Prayer Times List */}
-        <div className="flex w-full items-center justify-between gap-2 overflow-x-auto border-t border-border pt-4">
+        <div className="flex w-full items-center justify-between gap-1 overflow-x-auto pb-2 border-t border-border pt-4">
           {fardhPrayers.map((prayer) => {
             const isActive = currentPrayer?.name === prayer.name;
             const timeStr = prayer.dateTime
@@ -89,21 +89,21 @@ export function PrayerWidget({ className }: { className?: string }) {
               <div
                 key={prayer.name}
                 className={cn(
-                  "relative flex flex-col items-center justify-center gap-1.5 p-2 transition-all flex-shrink-0",
+                  "relative flex flex-col items-center justify-center gap-1.5 p-1 transition-all flex-shrink-0 min-w-[3rem]",
                   isActive ? "text-primary-600 dark:text-primary-400" : "text-muted",
                 )}
               >
                 <div
                   className={cn(
-                    "flex h-12 w-12 items-center justify-center rounded-2xl border bg-surface transition-colors shadow-sm",
+                    "flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl border bg-surface transition-colors shadow-sm",
                     isActive && "border-primary-400 text-primary-500 ring-2 ring-primary-100 dark:ring-primary-900",
                     !isActive && "border-border",
                   )}
                 >
-                  <span className="flex items-center justify-center mb-0.5">{PRAYER_ICONS[prayer.name] || prayer.info.icon}</span>
+                  <span className="flex items-center justify-center mb-0.5 scale-90 sm:scale-100">{PRAYER_ICONS[prayer.name] || prayer.info.icon}</span>
                 </div>
-                <span className="text-[0.6rem] font-bold uppercase">{t(`prayer.${prayer.name}`)}</span>
-                <span className="text-[0.55rem] font-mono text-muted tabular-nums">{timeStr}</span>
+                <span className="text-[0.55rem] sm:text-[0.6rem] font-bold uppercase">{t(`prayer.${prayer.name}`)}</span>
+                <span className="text-[0.5rem] sm:text-[0.55rem] font-mono text-muted tabular-nums">{timeStr}</span>
               </div>
             );
           })}
