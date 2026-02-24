@@ -22,6 +22,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "🌅",
     color: "gold",
     description: "Читаются после утреннего намаза до восхода солнца",
+    descriptionTranslations: { ru: "Читаются после утреннего намаза до восхода солнца", en: "Recited after the morning prayer until sunrise", uz: "Quyosh chiqqunga qadar bomdod namozidan keyin o'qiladi", ky: "Багымдат намазынан кийин күн чыкканга чейин окулат" },
   },
   {
     id: "evening",
@@ -30,6 +31,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "🌙",
     color: "primary",
     description: "Читаются после намаза Аср до заката",
+    descriptionTranslations: { ru: "Читаются после намаза Аср до заката", en: "Recited after Asr prayer until sunset", uz: "Asr namozidan keyin quyosh botguncha o'qiladi", ky: "Аср намазынан кийин күн батканга чейин окулат" },
   },
   {
     id: "after_salah",
@@ -38,6 +40,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "🕌",
     color: "primary",
     description: "Зикры после каждого обязательного намаза",
+    descriptionTranslations: { ru: "Зикры после каждого обязательного намаза", en: "Dhikrs after every obligatory prayer", uz: "Har bir farz namozidan keyin zikrlar", ky: "Ар бир парз намаздан кийинки зикирлер" },
   },
   {
     id: "general",
@@ -46,6 +49,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "🤲",
     color: "secondary",
     description: "Дуа на разные случаи жизни",
+    descriptionTranslations: { ru: "Дуа на разные случаи жизни", en: "Duas for various life situations", uz: "Turli hayotiy vaziyatlar uchun duolar", ky: "Ар кандай турмуштук кырдаалдарга дуалар" },
   },
   {
     id: "sleep",
@@ -54,6 +58,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "😴",
     color: "neutral",
     description: "Зикры и дуа перед сном",
+    descriptionTranslations: { ru: "Зикры и дуа перед сном", en: "Dhikrs and duas before bed", uz: "Yotishdan oldin zikr va duolar", ky: "Жатар алдында зикирлер жана дуалар" },
   },
   {
     id: "wake_up",
@@ -62,6 +67,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     icon: "⏰",
     color: "gold",
     description: "Дуа при пробуждении ото сна",
+    descriptionTranslations: { ru: "Дуа при пробуждении ото сна", en: "Dua upon waking from sleep", uz: "Uyqudan uyg'onganda o'qiladigan duo", ky: "Уйкудан ойгонгондо окула турган дуба" },
   },
 ];
 
