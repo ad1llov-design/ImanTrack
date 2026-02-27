@@ -17,7 +17,8 @@ interface AudioFile {
 
 interface QuranReaderProps {
   initialVerses: Verse[];
-  pageNumber: number;
+  sourceId: number;
+  sourceType: "page" | "chapter";
 }
 
 const RECITERS = [
@@ -26,7 +27,7 @@ const RECITERS = [
   { id: 4, name: "Saad Al-Ghamdi" },
 ];
 
-export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
+export function QuranReader({ initialVerses, sourceId, sourceType }: QuranReaderProps) {
   const router = useRouter();
   
   const [reciterId, setReciterId] = useState<number>(7);
@@ -41,11 +42,15 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("quran_last_page", String(pageNumber));
+      if (sourceType === "page") {
+        localStorage.setItem("quran_last_page", String(sourceId));
+      } else {
+        localStorage.setItem("quran_last_surah", String(sourceId));
+      }
       const savedReciter = localStorage.getItem("quran_reciter");
       if (savedReciter) setReciterId(Number(savedReciter));
     }
-  }, [pageNumber]);
+  }, [sourceId, sourceType]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -56,7 +61,7 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
   useEffect(() => {
     const fetchAudio = async () => {
       try {
-        const res = await fetch(`https://api.quran.com/api/v4/recitations/${reciterId}/by_page/${pageNumber}`);
+        const res = await fetch(`https://api.quran.com/api/v4/recitations/${reciterId}/by_${sourceType}/${sourceId}`);
         const data = await res.json();
         if (data.audio_files) {
           setAudioFiles(data.audio_files);
@@ -66,7 +71,7 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
       }
     };
     fetchAudio();
-  }, [reciterId, pageNumber]);
+  }, [reciterId, sourceId, sourceType]);
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -133,12 +138,15 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
     }
   };
 
+  const maxId = sourceType === "page" ? 604 : 114;
+  const baseUrl = sourceType === "page" ? "/quran/page" : "/quran/surah";
+
   const handlePrev = () => {
-    if (pageNumber > 1) router.push(`/quran/${pageNumber - 1}`);
+    if (sourceId > 1) router.push(`${baseUrl}/${sourceId - 1}`);
   };
 
   const handleNext = () => {
-    if (pageNumber < 604) router.push(`/quran/${pageNumber + 1}`);
+    if (sourceId < maxId) router.push(`${baseUrl}/${sourceId + 1}`);
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -151,15 +159,15 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
     const diff = touchStartRef.current - touchEnd;
     
     // Swipe left (next page in Arabic RTL naturally, or just advancing)
-    if (diff > 50 && pageNumber < 604) handleNext();
+    if (diff > 50 && sourceId < maxId) handleNext();
     // Swipe right (previous page)
-    if (diff < -50 && pageNumber > 1) handlePrev();
+    if (diff < -50 && sourceId > 1) handlePrev();
     
     touchStartRef.current = null;
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 pt-4 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-12 md:pt-8 overflow-x-hidden w-full">
+    <div className="mx-auto max-w-4xl px-4 pt-4 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-12 md:pt-4 overflow-x-hidden w-full">
       <div className="mb-6 flex items-center justify-between rounded-3xl border border-border bg-surface p-4 shadow-sm md:p-5">
         <div className="flex items-center gap-4">
           <button
@@ -171,7 +179,7 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
           </button>
           <div>
             <div className="text-base font-bold text-main">
-              Страница {pageNumber}
+              {sourceType === "page" ? `Страница ${sourceId}` : `Сура ${sourceId}`}
             </div>
             <div className="text-xs text-muted">
               {audioFiles.length === 0 ? "Загрузка аудио..." : "Коран"}
@@ -217,7 +225,7 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
       </div>
 
       <div 
-        className="min-h-[65vh] rounded-[2rem] border border-border bg-surface p-5 shadow-card md:p-12 w-full touch-pan-y select-none"
+        className="min-h-[65vh] rounded-[2rem] border border-border bg-surface p-5 shadow-card md:p-12 w-full touch-pan-y select-none relative"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -250,19 +258,21 @@ export function QuranReader({ initialVerses, pageNumber }: QuranReaderProps) {
       <div className="mt-8 flex items-center justify-between gap-4">
         <button
           onClick={handlePrev}
-          disabled={pageNumber <= 1}
+          disabled={sourceId <= 1}
           className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-4 py-4 text-sm font-semibold text-main transition-all hover:border-primary-300 hover:shadow-sm active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 dark:hover:border-primary-700"
         >
           <ChevronLeft className="h-5 w-5" />
           <span className="hidden sm:inline">Предыдущая</span>
         </button>
         <div className="flex flex-col items-center justify-center px-4">
-          <span className="text-sm font-bold text-main">{pageNumber}</span>
-          <span className="text-[10px] font-medium tracking-wider text-muted uppercase">Стр</span>
+          <span className="text-sm font-bold text-main">{sourceId}</span>
+          <span className="text-[10px] font-medium tracking-wider text-muted uppercase">
+            {sourceType === "page" ? "Стр" : "Сура"}
+          </span>
         </div>
         <button
           onClick={handleNext}
-          disabled={pageNumber >= 604}
+          disabled={sourceId >= maxId}
           className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-4 py-4 text-sm font-semibold text-main transition-all hover:border-primary-300 hover:shadow-sm active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 dark:hover:border-primary-700"
         >
           <span className="hidden sm:inline">Следующая</span>
