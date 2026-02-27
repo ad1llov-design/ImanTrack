@@ -69,7 +69,7 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
   const allComplete = categoryProgress?.percentage === 100;
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-6 sm:py-10">
+    <div className="mx-auto max-w-lg px-4 pt-6 pb-[calc(4rem+env(safe-area-inset-bottom)+2rem)] md:py-10">
 
       {/* ── Header ───────────────────────────── */}
       <div className="mb-6 flex items-center justify-between">
