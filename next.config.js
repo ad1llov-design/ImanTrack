@@ -73,7 +73,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "quran.com",
+        hostname: "images.quran.com",
       }
     ],
     formats: ["image/avif", "image/webp"],
