@@ -67,6 +67,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.supabase.co",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.quran.com",
+      },
+      {
+        protocol: "https",
+        hostname: "quran.com",
+      }
     ],
     formats: ["image/avif", "image/webp"],
   },

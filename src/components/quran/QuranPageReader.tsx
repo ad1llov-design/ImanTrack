@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight, Play, Pause, Settings2, ArrowLeft } from "lucide-react";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 
 interface AudioFile {
   verse_key: string;
@@ -19,6 +20,7 @@ const RECITERS = [
 export function QuranPageReader() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useLanguage();
   
   const [page, setPage] = useState<number>(() => {
     const q = searchParams.get("page");
@@ -150,7 +152,7 @@ export function QuranPageReader() {
         </div>
 
         <div className="text-center font-bold text-main">
-          Страница {page}
+          {t("quran.page_number").replace("{number}", String(page))}
         </div>
         
         <div className="relative">
@@ -163,7 +165,7 @@ export function QuranPageReader() {
           
           {showSettings && (
             <div className="absolute right-0 top-12 z-20 w-56 animate-fade-in-up rounded-2xl border border-border bg-surface p-2 shadow-card">
-              <div className="mb-2 px-3 pt-2 text-xs font-bold uppercase tracking-wider text-muted">Выбор чтеца</div>
+              <div className="mb-2 px-3 pt-2 text-xs font-bold uppercase tracking-wider text-muted">{t("quran.select_reciter")}</div>
               <div className="flex flex-col gap-1">
                 {RECITERS.map((r) => (
                   <button
@@ -211,12 +213,12 @@ export function QuranPageReader() {
           className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-4 py-4 text-sm font-semibold text-main transition-all hover:border-primary-300 hover:shadow-sm active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40"
         >
           <ChevronLeft className="h-5 w-5" />
-          <span className="hidden sm:inline">Следующая</span>
+          <span className="hidden sm:inline">{t("quran.next_page")}</span>
         </button>
         
         <div className="flex flex-col items-center justify-center px-4">
            <span className="text-sm font-bold text-main">{page}</span>
-           <span className="text-[10px] font-medium tracking-wider text-muted uppercase">Стр</span>
+           <span className="text-[10px] font-medium tracking-wider text-muted uppercase">{t("quran.page_short")}</span>
         </div>
 
         <button
@@ -224,7 +226,7 @@ export function QuranPageReader() {
           disabled={page <= 1}
           className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-4 py-4 text-sm font-semibold text-main transition-all hover:border-primary-300 hover:shadow-sm active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40"
         >
-          <span className="hidden sm:inline">Предыдущая</span>
+          <span className="hidden sm:inline">{t("quran.prev_page")}</span>
           <ChevronRight className="h-5 w-5" />
         </button>
       </div>
