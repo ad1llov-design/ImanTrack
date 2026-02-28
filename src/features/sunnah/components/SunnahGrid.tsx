@@ -6,128 +6,7 @@ import { SUNNAH_ACTIONS } from "../services/sunnah.persistence";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const SUNNAH_DETAILS_DB: Record<string, any> = {
-  miswak: {
-    ru: {
-      what: "Очищение полости рта специальной палочкой из корня арак.",
-      history: "Мисвак был важнейшей практикой в жизни Пророка ﷺ, он использовал его после пробуждения, перед омовением, молитвой и входом в дом.",
-      why: "Пророк ﷺ говорил, что это очищение для рта и средство достижения довольства Господа.",
-      spiritual: "Следование Сунне Пророка ﷺ, повышение степени молитвы, очищение души и тела перед стоянием перед Аллахом.",
-      health: "Укрепляет десны, убивает вредные бактерии в полости рта, устраняет запах изо рта, предотвращает кариес.",
-      hadith: "«Если бы я не боялся обременить мою общину, то обязательно велел бы прикасаться к мисваку перед каждой молитвой» (Бухари)."
-    }
-  },
-  morning_dua: {
-    ru: {
-      what: "Мольба, которая произносится сразу после пробуждения ото сна.",
-      history: "Это дуа было постоянной практикой посланника Аллаха ﷺ каждый раз, когда он открывал глаза навстречу новому дню.",
-      why: "Сон с точки зрения Ислама подобен 'малой смерти'. Пробуждение — великая милость Аллаха, требующая благодарности.",
-      spiritual: "Осознание того, что жизнь и смерть (даже временная) в руках Творца. Это настраивает на духовность с первой секунды дня.",
-      health: null,
-      hadith: "«Хвала Аллаху, который оживил нас после того, как умертвил, и к Нему предстоит воскрешение!» (Бухари)."
-    }
-  },
-  fajr_sunnah: {
-    ru: {
-      what: "Два коротких ирекета сунны-намаза перед обязательным утренним Фаджр-намазом.",
-      history: "Аиша передавала, что Пророк ﷺ ни за какими добровольными молитвами не следил так строго, как за этой.",
-      why: "Молитва Фаджр — тяжестейшее время для пробуждения. Эти два ирекета служат ценнейшей наградой для верующего.",
-      spiritual: "Эти 2 ракаата лучше этого мира и всего, что есть в нем. Они защищают в этот день от лицемерия.",
-      health: null,
-      hadith: "«Два ракаата Фаджра лучше этого мира и того, что есть в нём» (Муслим, 725)."
-    }
-  },
-  rawatib: {
-    ru: {
-      what: "Добровольные 12 ирекетов в сутки, которые привязаны к обязательным намазам (фардам).",
-      history: "Сподвижники замечали строгое постоянство Пророка ﷺ в их совершении: 2 до фаджра, 4 до зухра и 2 после, 2 после магриба, 2 после иша.",
-      why: "Суннан-раватиб исправляют и перекрывают недостатки, совершённые человеком в обязательных молитвах.",
-      spiritual: "Строит дом в Раю. Создает защитный вакуум для самого важного столпа веры — намаза.",
-      health: null,
-      hadith: "«Кто совершит 12 ирекетов в день и ночь, тому Аллах построит дом в Раю» (Муслим, 728)."
-    }
-  },
-  mosque: {
-    ru: {
-      what: "Выход из дома в состоянии омовения и пеший поход в мечеть на коллективную молитву.",
-      history: "В эпоху посланника Аллаха ﷺ все мусульмане (за исключением больных) всегда собирались в мечети по 5 раз в день.",
-      why: "Шаги стирают грехи и возвышают статус верующего в иерархии праведников.",
-      spiritual: "Коллективный намаз в 27 раз превосходит индивидуальный. Пешие шаги в мечеть — одни из тяжелейших наград на чаше весов.",
-      health: "Физическая активность не менее 5 раз в день, улучшение кровеносной и кардио системы.",
-      hadith: "«Поистине, самая большая награда за молитву ждет того, кому пришлось идти дальше всех» (Муслим)."
-    }
-  },
-  post_prayer_dhikr: {
-    ru: {
-      what: "Специальные слова поминания Аллаха, произносимые сразу после обязательного (фард) намаза.",
-      history: "Пророк ﷺ обучил этому зикру бедняков Медины, чтобы те смогли опередить богатых мусульман по награде.",
-      why: "Для очищения грехов даже если они подобны пене морской, закрепления завершения молитвы с правильным умонастроением.",
-      spiritual: "Заполняет чашу деяний светом. Дарит спокойствие и чувство безопасности до следующего намаза.",
-      health: "Психологическая выгрузка, стабилизация дыхания и пульса после движений в молитве.",
-      hadith: "«Тот, кто после каждой молитвы произносит [этот зикр], простятся его грехи, даже если их как пены морской» (Муслим)."
-    }
-  },
-  wudu_sleep: {
-    ru: {
-      what: "Совершение малого омовения (вуду) непосредственно перед тем, как лечь спать.",
-      history: "Сподвижникам было заповедано поддерживать состояние ритуальной безупречной чистоты, особенно перед сном.",
-      why: "Защита от зла. За того, кто уснул с омовением, ангел делает за него дуа всю ночь.",
-      spiritual: "Если человек умрет во сне (сон — малая смерть), он умрет на врождённой вере (фитре) и в состоянии чистоты.",
-      health: "Доказанное расслабление: вода снимает физическую утомляемость и стресс от прошедшего дня.",
-      hadith: "«Если ты отправился ко сну, соверши омовение подобно омовению для намаза...» (Аль-Бухари)."
-    }
-  },
-  ayat_kursi: {
-    ru: {
-      what: "Прочтение величайшего аята Корана (Аль-Бакара, 255-й аят) при подготовке ко сну.",
-      history: "Однажды сам Шайтан, пойманный Абу Хурайрой, обучил его этому правилу в надежде спастись, и Пророк ﷺ подтвердил это.",
-      why: "Беспроигрышная защита от любого вида шайтанов и джиннов на всю предстоящую ночь.",
-      spiritual: "Верующий получает сильного ангела-охранника от Господа миров. Дарит истинный покой и упование.",
-      health: "Избавляет от ночных кошмаров, панических настроений и бессонницы.",
-      hadith: "«С тобой будет ангел-хранитель от Аллаха, и сатана не сможет приблизиться к тебе до самого утра» (Аль-Бухари)."
-    }
-  },
-  right_side: {
-    ru: {
-      what: "Положение тела для сна — на правом боку, подложив правую ладонь под щеку.",
-      history: "Абсолютная постоянная и непрерываемая привычка благородного посланника Аллаха ﷺ.",
-      why: "Уважение к правой стороне, защита органов и лучшая физиология для сна.",
-      spiritual: "Это проявление сунны физиологически. Формирует дисциплину даже тогда, когда человек спит.",
-      health: "Медицински доказано, что сон на левом сдавливает сердце. На правом — желудок освобождается, сердце и легкие функционируют идеально.",
-      hadith: "«Затем ложись на правый бок и произнеси...» (Аль-Бухари, Муслим)."
-    }
-  },
-  smile: {
-    ru: {
-      what: "Искренняя улыбка людям на улице и домашним, независимо от внешних обстоятельств.",
-      history: "Сподвижники признаются, что они никогда не видели никого, кто улыбался бы больше, чем Мухаммад ﷺ.",
-      why: "Улыбка стирает враждебность, снимает агрессию у собеседника, объединяет сердца между верующими разных племен.",
-      spiritual: "Улыбнуться брату — это милостыня (садака). Она записывается на весы хороших дел так же, как потраченное имущество!",
-      health: "Снижает частоту сердечных сокращений, улучшает настроение, выделяет дофамин и серотонин.",
-      hadith: "«Твоя улыбка в лицо твоему брату — это садака (милостыня)!» (Ат-Тирмизи)."
-    }
-  },
-  patience: {
-    ru: {
-      what: "Терпение (сабр) — стойкость переносить все трудности не жалуясь никому, кроме Аллаха.",
-      history: "Пророки Всевышнего подвергались самым тяжелым испытаниям в истории, подавая великий пример сабра.",
-      why: "Беды очищают верующего. Проявление терпения в самом начале потрясения демонстрирует степень веры (Имана).",
-      spiritual: "Безграничная награда: 'Воистину, терпеливым их награда воздастся полностью без счета' (Коран 39:10).",
-      health: "Мгновенное принятие негативной реальности предохраняет от нервных срывов, депрессий и инфарктов.",
-      hadith: "«Настоящее терпение (Сабр) — это терпение в первый момент потрясения» (Аль-Бухари)."
-    }
-  },
-  kindness: {
-    ru: {
-      what: "Забота, уважение и помощь тем, кто живет с тобой по соседству.",
-      history: "В исламском обществе статус соседа приравнивался по важности к дальним родственникам.",
-      why: "Аллах строго обязал беречь соседей. Защита их чести, помощь едой и тишиной — долг каждого мусульманина.",
-      spiritual: "Тот, чей сосед не находится в безопасности от его зла — не войдет в Рай, согласно хадисам.",
-      health: "Формирует крепкое, безопасное и психологически здоровое общество-утопию.",
-      hadith: "«Джибриль столько раз завещал мне хорошее отношение к соседу, что я подумал, что он его сделает моим наследником» (Аль-Бухари)."
-    }
-  }
-};
+// SUNNAH_DETAILS_DB removed in favor of i18n translations
 
 /**
  * Sunnah Grid — clean card layout like hadith cards.
@@ -160,7 +39,22 @@ export function SunnahGrid({ className }: { className?: string }) {
                 const translation = sunnah.translations[language] || sunnah.translations["ru"];
                 
                 const isExpanded = expandedId === sunnah.id;
-                const details = SUNNAH_DETAILS_DB[sunnah.id]?.ru || null;
+
+                const whatKey = `sunnah_details.${sunnah.id}.what`;
+                const historyKey = `sunnah_details.${sunnah.id}.history`;
+                const whyKey = `sunnah_details.${sunnah.id}.why`;
+                const spiritualKey = `sunnah_details.${sunnah.id}.spiritual`;
+                const healthKey = `sunnah_details.${sunnah.id}.health`;
+                const hadithKey = `sunnah_details.${sunnah.id}.hadith`;
+
+                const dWhat = t(whatKey) !== whatKey ? t(whatKey) : null;
+                const dHistory = t(historyKey) !== historyKey ? t(historyKey) : null;
+                const dWhy = t(whyKey) !== whyKey ? t(whyKey) : null;
+                const dSpiritual = t(spiritualKey) !== spiritualKey ? t(spiritualKey) : null;
+                const dHealth = t(healthKey) !== healthKey ? t(healthKey) : null;
+                const dHadith = t(hadithKey) !== hadithKey ? t(hadithKey) : null;
+
+                const hasDetails = dWhat || dHistory || dWhy || dSpiritual || dHealth || dHadith;
 
                 return (
                   <div
@@ -182,7 +76,7 @@ export function SunnahGrid({ className }: { className?: string }) {
                         onClick={() => setExpandedId(isExpanded ? null : sunnah.id)}
                         className="flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-wider"
                       >
-                        {isExpanded ? "Свернуть" : "Подробности"}
+                        {isExpanded ? (t("sunnah_details.btn_collapse") !== "sunnah_details.btn_collapse" ? t("sunnah_details.btn_collapse") : "Свернуть") : (t("sunnah_details.btn_expand") !== "sunnah_details.btn_expand" ? t("sunnah_details.btn_expand") : "Подробности")}
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>
 
@@ -191,42 +85,42 @@ export function SunnahGrid({ className }: { className?: string }) {
                       </p>
                     </div>
 
-                    {isExpanded && details && (
+                    {isExpanded && hasDetails && (
                       <div className="mt-4 pt-4 border-t border-border space-y-4 animate-fade-in text-sm text-muted">
-                        {details.what && (
+                        {dWhat && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">Суть сунны:</span>
-                            <p>{details.what}</p>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_what") !== "sunnah_details.label_what" ? t("sunnah_details.label_what") : "Суть сунны:"}</span>
+                            <p>{dWhat}</p>
                           </div>
                         )}
-                        {details.history && (
+                        {dHistory && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">Исторический контекст:</span>
-                            <p>{details.history}</p>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_history") !== "sunnah_details.label_history" ? t("sunnah_details.label_history") : "Исторический контекст:"}</span>
+                            <p>{dHistory}</p>
                           </div>
                         )}
-                        {details.why && (
+                        {dWhy && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">Почему это сунна:</span>
-                            <p>{details.why}</p>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_why") !== "sunnah_details.label_why" ? t("sunnah_details.label_why") : "Почему это сунна:"}</span>
+                            <p>{dWhy}</p>
                           </div>
                         )}
-                        {details.spiritual && (
+                        {dSpiritual && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">Духовная польза:</span>
-                            <p>{details.spiritual}</p>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_spiritual") !== "sunnah_details.label_spiritual" ? t("sunnah_details.label_spiritual") : "Духовная польза:"}</span>
+                            <p>{dSpiritual}</p>
                           </div>
                         )}
-                        {details.health && (
+                        {dHealth && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">Влияние на здоровье:</span>
-                            <p>{details.health}</p>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_health") !== "sunnah_details.label_health" ? t("sunnah_details.label_health") : "Влияние на здоровье:"}</span>
+                            <p>{dHealth}</p>
                           </div>
                         )}
-                        {details.hadith && (
+                        {dHadith && (
                           <div className="bg-neutral-50 dark:bg-neutral-900/40 p-3 rounded-xl border border-border italic">
-                            <span className="font-bold text-main not-italic block mb-1">Краткий хадис:</span>
-                            {details.hadith}
+                            <span className="font-bold text-main not-italic block mb-1">{t("sunnah_details.label_hadith") !== "sunnah_details.label_hadith" ? t("sunnah_details.label_hadith") : "Краткий хадис:"}</span>
+                            {dHadith}
                           </div>
                         )}
                       </div>
