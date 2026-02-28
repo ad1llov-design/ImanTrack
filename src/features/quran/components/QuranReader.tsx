@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getSurahVerses, Verse, QuranScriptType } from "../services/quran_api.service";
+import { getSurahVerses, Verse, QuranScriptType, Translator, getTranslators } from "../services/quran_api.service";
 import { cn } from "@shared/lib/utils";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -30,12 +30,35 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
   const [currentVerseIndex, setCurrentVerseIndex] = useState(0);
   const [scriptType, setScriptType] = useState<QuranScriptType>("quran-uthmani");
   const [showSettings, setShowSettings] = useState(false);
+  
+  const [translators, setTranslators] = useState<Translator[]>([]);
+  const [selectedTranslatorId, setSelectedTranslatorId] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Load translators dynamically when language changes
+    getTranslators(language).then(data => {
+      setTranslators(data);
+    });
+
+    // Check localStorage for saved translator
+    const savedId = localStorage.getItem(`quran_translator_${language}`);
+    if (savedId) {
+      setSelectedTranslatorId(Number(savedId));
+    } else {
+      setSelectedTranslatorId(null);
+    }
+  }, [language]);
+
+  const handleTranslatorSelect = (id: number) => {
+    setSelectedTranslatorId(id);
+    localStorage.setItem(`quran_translator_${language}`, String(id));
+  };
 
   useEffect(() => {
     async function fetchVerses() {
       setLoading(true);
       try {
-        const data = await getSurahVerses(surahId, scriptType, language);
+        const data = await getSurahVerses(surahId, scriptType, language, selectedTranslatorId);
         setVerses(data);
       } catch (error) {
         console.error("Failed to load surah:", error);
@@ -45,7 +68,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       }
     }
     fetchVerses();
-  }, [surahId, scriptType, language, t]);
+  }, [surahId, scriptType, language, t, selectedTranslatorId]);
 
   if (loading) {
     return (
@@ -103,7 +126,6 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
                     key={option.id}
                     onClick={() => {
                       setScriptType(option.id);
-                      setShowSettings(false);
                     }}
                     className={cn(
                       "w-full text-left px-3 py-2 text-sm rounded-lg transition-colors",
@@ -112,10 +134,47 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
                         : "text-main hover:bg-neutral-100 dark:hover:bg-neutral-800"
                     )}
                   >
-                    {t(`quran.${option.id.replace('-', '_')}`)}
+                    {t(`quran.${option.id.replace('-', '_')}` as any)}
                   </button>
                 ))}
               </div>
+
+              {translators.length > 0 && (
+                <>
+                  <div className="p-2 border-y border-border bg-neutral-50 dark:bg-neutral-900/50 mt-1">
+                    <span className="text-xs font-bold text-muted uppercase tracking-wider px-2 block">
+                      {t("quran.choose_translator" as any) || "Выберите переводчика"}
+                    </span>
+                  </div>
+                  <div className="p-1 max-h-48 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border">
+                    <button
+                      onClick={() => handleTranslatorSelect(0)}
+                      className={cn(
+                        "w-full text-left px-3 py-2 text-sm rounded-lg transition-colors",
+                        selectedTranslatorId === null || selectedTranslatorId === 0
+                          ? "bg-primary-50 text-primary-600 dark:bg-primary-950/30 dark:text-primary-400 font-medium" 
+                          : "text-main hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                      )}
+                    >
+                      По умолчанию (Стандарт)
+                    </button>
+                    {translators.map((tItem) => (
+                      <button
+                        key={tItem.id}
+                        onClick={() => handleTranslatorSelect(tItem.id)}
+                        className={cn(
+                          "w-full text-left px-3 py-2 text-sm rounded-lg transition-colors",
+                          selectedTranslatorId === tItem.id 
+                            ? "bg-primary-50 text-primary-600 dark:bg-primary-950/30 dark:text-primary-400 font-medium" 
+                            : "text-main hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                        )}
+                      >
+                        {tItem.name}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>

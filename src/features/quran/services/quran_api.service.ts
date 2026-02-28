@@ -42,6 +42,26 @@ export interface Verse {
 
 export type QuranScriptType = "quran-uthmani" | "quran-simple" | "quran-indopak";
 
+export interface Translator {
+  id: number;
+  name: string;
+  author_name: string;
+  language_name: string;
+}
+
+export async function getTranslators(languageCode: string): Promise<Translator[]> {
+  try {
+    const lang = languageCode === "ky" ? "ru" : languageCode;
+    const res = await fetch(`https://api.quran.com/api/v4/resources/translations?language=${lang}`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.translations || [];
+  } catch (error) {
+    console.error("Failed to fetch translators", error);
+    return [];
+  }
+}
+
 export async function getSurahList(): Promise<Surah[]> {
   try {
     const res = await fetch(`${BASE_URL}/surah`);
@@ -60,7 +80,7 @@ export async function getSurahList(): Promise<Surah[]> {
   }
 }
 
-export async function getSurahVerses(chapterId: number, scriptType: QuranScriptType = "quran-uthmani", lang: LanguageCode = "ru"): Promise<Verse[]> {
+export async function getSurahVerses(chapterId: number, scriptType: QuranScriptType = "quran-uthmani", lang: LanguageCode = "ru", translatorId?: number | null): Promise<Verse[]> {
   const ALQURAN_CLOUD_LANG_MAP: Record<LanguageCode, string> = { ru: "ru.kuliev", en: "en.sahih", uz: "uz.sodik", ky: "ru.kuliev" };
   const QURAN_COM_LANG_MAP: Record<LanguageCode, number> = { ru: 79, en: 20, uz: 55, ky: 79 };
 
@@ -72,10 +92,28 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
     if (!data.data || data.data.length < 2) return [];
 
     const arabicAyahs = data.data[0].ayahs;
-    const russianAyahs = data.data[1].ayahs;
+    let fallbackTranslations = data.data[1].ayahs;
+
+    if (translatorId) {
+      try {
+        const transRes = await fetch(`https://api.quran.com/api/v4/quran/translations/${translatorId}?chapter_number=${chapterId}`);
+        if (transRes.ok) {
+          const transData = await transRes.json();
+          if (transData.translations && transData.translations.length > 0) {
+            // Quran.com API format [{ text: "xyz" }, ...]
+            fallbackTranslations = transData.translations;
+          }
+        }
+      } catch (e) {
+        console.error("Failed to fetch custom translation", e);
+      }
+    }
 
     return arabicAyahs.map((ayah: any, index: number) => {
-      let translationText = russianAyahs[index]?.text || "";
+      let translationText = fallbackTranslations[index]?.text || fallbackTranslations[index]?.translation || "";
+      // Clean HTML tags from API (like <sup foot_note=123>)
+      translationText = translationText.replace(/<[^>]*>?/gm, '');
+
       if (lang === "uz" && /[А-Яа-яЁёҚқҒғҲҳЎў]/.test(translationText)) {
         translationText = transliterateUzbek(translationText);
       }

@@ -29,9 +29,9 @@ export default function MushafReader({ initialPage }: { initialPage: number }) {
       <div className="w-full max-w-3xl bg-neutral-100 dark:bg-black rounded-xl overflow-hidden shadow-card border border-border p-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/quran-pages/${page}.png`}
+          src={`https://raw.githubusercontent.com/arman088/quranPNG/main/png/${page}.png`}
           alt={`Quran Page ${page}`}
-          className="w-full h-auto object-contain"
+          className="w-full h-auto object-contain bg-white"
         />
       </div>
 

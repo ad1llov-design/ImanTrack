@@ -53,12 +53,15 @@ export async function fetchPrayerTimes(
   date?: Date,
   method: number = DEFAULT_METHOD,
 ): Promise<AladhanResponse> {
-  const d = date ?? new Date();
-  const day = d.getDate();
-  const month = d.getMonth() + 1;
-  const year = d.getFullYear();
+  let path = "timings";
+  if (date) {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    path = `timings/${day}-${month}-${year}`;
+  }
 
-  const url = `${ALADHAN_BASE_URL}/timings/${day}-${month}-${year}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}`;
+  const url = `${ALADHAN_BASE_URL}/${path}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}`;
 
   const response = await fetch(url, {
     next: { revalidate: 3600 }, // Cache for 1 hour
@@ -79,14 +82,19 @@ export async function fetchPrayerTimes(
 
 /* ── Parse ──────────────────────────────────────────────────────────── */
 
-/**
- * Парсит строковое время "HH:mm (TZ)" в Date объект для текущего дня
- */
-function parseTimeString(timeStr: string, baseDate?: Date): Date {
+function parseTimeString(timeStr: string, baseDateStr: string): Date {
   const cleanTime = timeStr.replace(/\s*\(.*\)/, "").trim();
   const [hours, minutes] = cleanTime.split(":").map(Number);
+  
+  if (baseDateStr) {
+    const parts = baseDateStr.split("-").map(Number);
+    const day = parts[0] ?? 1;
+    const month = parts[1] ?? 1;
+    const year = parts[2] ?? 2024;
+    return new Date(year, month - 1, day, hours ?? 0, minutes ?? 0, 0, 0);
+  }
 
-  const date = baseDate ? new Date(baseDate) : new Date();
+  const date = new Date();
   date.setHours(hours ?? 0, minutes ?? 0, 0, 0);
   return date;
 }
@@ -100,11 +108,12 @@ export function parsePrayerTimes(
 ): PrayerTime[] {
   const currentTime = now ?? new Date();
   const timings = apiResponse.data.timings;
+  const gregorianDate = apiResponse.data.date.gregorian.date;
 
   // Создаём массив PrayerTime
   const prayers: PrayerTime[] = API_PRAYER_KEYS.map((apiKey) => {
     const timeStr = timings[apiKey];
-    const dateTime = parseTimeString(timeStr);
+    const dateTime = parseTimeString(timeStr, gregorianDate);
     const internalId = API_TO_INTERNAL_MAP[apiKey]!;
     const info = PRAYER_LIST.find((p) => p.name === internalId)!;
 
