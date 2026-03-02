@@ -1,8 +1,8 @@
 /**
  * @page /prayer
  *
- * Страница времён намазов.
- * �?спользует PrayerTimesList (client component) для всей логики.
+ * Страница времён намазов и обучения намазу.
+ * Использует PrayerTimesList (client component) для всей логики.
  */
 
 import type { Metadata } from "next";
@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "Точное время всех пяти намазов для вашего местоположения",
 };
 
-// �?мпортируем динамически чтобы отключить SSR (geolocation только в браузере)
 import dynamic from "next/dynamic";
 import { Landmark } from "lucide-react";
 
@@ -32,6 +31,21 @@ const PrayerTimesList = dynamic(
   },
 );
 
+const PrayerStructure = dynamic(
+  () => import("@features/prayer/components/PrayerStructure"),
+  { ssr: false },
+);
+
+const SalahSteps = dynamic(
+  () => import("@features/prayer/components/SalahSteps"),
+  { ssr: false },
+);
+
+const VideoTutorial = dynamic(
+  () => import("@features/prayer/components/VideoTutorial"),
+  { ssr: false },
+);
+
 export default function PrayerPage() {
   return (
     <div className="min-h-screen bg-background text-main pb-20">
@@ -47,6 +61,10 @@ export default function PrayerPage() {
         </div>
 
         <PrayerTimesList />
+
+        <PrayerStructure />
+        <SalahSteps />
+        <VideoTutorial />
 
         {/* Dua footer */}
         <div className="mt-12 rounded-2xl border border-gold-200 bg-gradient-to-br from-gold-50 to-white p-6 text-center dark:border-gold-800 dark:from-gold-950/20 dark:to-surface-dark">
