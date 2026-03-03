@@ -11,7 +11,7 @@ const inter = Inter({
 
 const APP_NAME = "SIRAT";
 const APP_DESCRIPTION =
-  "SIRAT — исламское приложение для чтения Корана, хадисов, времени намазов и поминания Аллаха.";
+  "SIRAT — исламское приложение: точное время намаза (ханафитский мазхаб), чтение Корана с переводами, достоверные хадисы, утренние и вечерние азкары, сунна.";
 
 function getAppUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_APP_URL;
@@ -29,8 +29,12 @@ export const metadata: Metadata = {
   },
   description: APP_DESCRIPTION,
   applicationName: APP_NAME,
-  keywords: ["ислам", "намаз", "коран", "хадис", "зикр", "сунна"],
-  authors: [{ name: "MAZI" }],
+  keywords: [
+    "исламское приложение", "время намаза", "Коран онлайн", "хадисы", "зикр", 
+    "намаз убактысы", "namoz vaqtlari", "SIRAT", "Sirat app", "Коран на русском",
+    "ислам", "намаз", "коран", "хадис", "сунна", "рамадан", "орозо"
+  ],
+  authors: [{ name: "SIRAT Team" }],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -38,6 +42,8 @@ export const metadata: Metadata = {
     title: APP_NAME,
   },
   icons: {
+    icon: "/icons/icon-192x192.png",
+    shortcut: "/icons/icon-192x192.png",
     apple: [
       { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
