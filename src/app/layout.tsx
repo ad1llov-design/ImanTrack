@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 import "@styles/globals.css";
 
@@ -102,6 +103,19 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased relative min-h-screen flex flex-col w-full overflow-x-hidden bg-surface transition-colors duration-300`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CXQD6L1TWH"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CXQD6L1TWH');
+          `}
+        </Script>
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <LanguageProvider>
             <AuthProvider>
