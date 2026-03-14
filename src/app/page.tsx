@@ -60,7 +60,7 @@ export default function SiratPage() {
           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">بسم الله الرحمن الرحيم</p>
         </div>
         <div className="relative z-50">
-          <NamazBurgerMenu />
+          {/* <NamazBurgerMenu /> */}
         </div>
       </div>
 

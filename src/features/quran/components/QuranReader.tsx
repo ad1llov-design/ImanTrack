@@ -60,6 +60,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       try {
         const data = await getSurahVerses(surahId, scriptType, language, selectedTranslatorId);
         setVerses(data);
+        setCurrentVerseIndex(0);
       } catch (error) {
         console.error("Failed to load surah:", error);
         toast.error(t("common.error"));
@@ -69,6 +70,15 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
     }
     fetchVerses();
   }, [surahId, scriptType, language, t, selectedTranslatorId]);
+
+  useEffect(() => {
+    if (verses.length > 0 && currentVerseIndex >= 0) {
+      const el = document.getElementById(`verse-${currentVerseIndex}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [currentVerseIndex, verses.length]);
 
   if (loading) {
     return (
@@ -181,7 +191,7 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
       </div>
 
       <div
-        className="flex-1 overflow-y-auto space-y-12 px-2 py-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border"
+        className="flex-1 overflow-y-auto space-y-12 px-2 py-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-border pb-32"
       >
         {verses.map((verse, idx) => {
           const verseNum = idx + 1;
@@ -190,33 +200,38 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
           return (
             <motion.div
               key={verse.id}
+              id={`verse-${idx}`}
               onClick={() => setCurrentVerseIndex(idx)}
               className={cn(
                 "group relative flex flex-col items-end gap-4 cursor-pointer transition-all duration-500 rounded-2xl p-4",
-                isCurrent ? "opacity-100 scale-100 bg-surface shadow-sm border border-border" : "opacity-60 hover:opacity-100 scale-[0.98] border border-transparent",
+                isCurrent ? "opacity-100 scale-100 bg-surface shadow-sm border border-primary-500 dark:border-primary-500" : "opacity-60 hover:opacity-100 scale-[0.98] border border-transparent",
               )}
             >
-              {/* Verse Number */}
               <div className="absolute -left-3 -top-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border bg-surface border-border text-[10px] font-bold shadow-sm text-muted">
+                <div className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full border text-[10px] font-bold shadow-sm transition-colors",
+                  isCurrent ? "bg-primary-500 text-white border-primary-500" : "bg-surface border-border text-muted"
+                )}>
                   {verseNum}
                 </div>
               </div>
 
-              {/* Arabic Text */}
               <p 
                 className={cn(
-                  "text-right text-main leading-[2.5] tracking-wide w-full",
-                  scriptType === "quran-indopak" ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
+                  "text-right text-main leading-[2.5] tracking-wide w-full transition-colors",
+                  scriptType === "quran-indopak" ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl",
+                  isCurrent ? "text-primary-600 dark:text-primary-400 font-bold" : ""
                 )} 
                 style={{ direction: "rtl", fontFamily }}
               >
                 {verse.text_arabic}
               </p>
 
-              {/* Translation */}
               {verse.translation && (
-                <p className="text-sm md:text-base text-muted leading-relaxed text-right md:text-left w-full border-t border-border pt-4">
+                <p className={cn(
+                  "text-sm md:text-base leading-relaxed text-right md:text-left w-full border-t border-border pt-4 transition-colors",
+                  isCurrent ? "text-main font-semibold" : "text-muted"
+                )}>
                   {verse.translation}
                 </p>
               )}
@@ -230,6 +245,31 @@ export function QuranReader({ surahId, onBack }: QuranReaderProps) {
             </motion.div>
           );
         })}
+      </div>
+
+      {/* Audio Player Footer for Ayah-by-Ayah Sync */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-t border-border p-4 shadow-lg safe-area-bottom">
+        <div className="mx-auto max-w-lg sm:max-w-xl md:max-w-4xl lg:max-w-5xl flex items-center justify-between gap-4">
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-muted uppercase tracking-wider">{t("quran.ayahs")} {currentVerseIndex + 1} / {verses.length}</span>
+            <span className="text-sm font-semibold text-main">Аудио синхронизация</span>
+          </div>
+          
+          <audio 
+            key={`${surahId}-${currentVerseIndex}`}
+            controls 
+            autoPlay={currentVerseIndex > 0} // Auto-play next verse if it advanced
+            onEnded={() => {
+              if (currentVerseIndex < verses.length - 1) {
+                setCurrentVerseIndex(currentVerseIndex + 1);
+              }
+            }}
+            className="h-10 hover:scale-[1.02] transition-transform outline-none"
+            src={`https://everyayah.com/data/Alafasy_128kbps/${String(surahId).padStart(3, '0')}${String(currentVerseIndex + 1).padStart(3, '0')}.mp3`}
+          >
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
     </div>
   );
