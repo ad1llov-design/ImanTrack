@@ -74,10 +74,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن أعرابيا بال في المسجد، فقام إليه الناس ليقعوا به، فقال رسول الله ﷺ: «دعوه وأريقوا على بوله سجلا من ماء، أو ذنوبا من ماء، فإنما بعثتم ميسرين، ولم تبعثوا معسرين»",
     transliterations: {
-      ru: "Анна а'рабиййан баля филь-масджид...",
-      en: "Anna a'rabiyyan bala fil-masjid...",
-      uz: "Anna a'robiyyan bala fil-masjid...",
-      ky: "Анна а'рабиййан баля филь-масджид..."
+      ru: "Анна а'рабиййан баля филь-масджиди, фа-кама иляйхи-н-насу ли-яка'у бихи, фа-каля расулю-Ллахи салля-Ллаху 'аляйхи ва саллям: Да'уху ва арику 'аля баулихи сиджиллян мин ма'ин.",
+      en: "Anna a'rabiyyan bala fil-masjidi, fa-qama ilayhin-nasu li-yaqa'u bihi, fa-qala Rasulu-Llah salla-Llahu 'alayhi wa sallam: Da'uhu wa ariqu 'ala bawlihi sijillan min ma'in.",
+      uz: "Anna a'robiyyan bala fil-masjidi, fa-qoma ilayxin-nasu li-yaqa'u bixi, fa-qola Rasululloh salla-Llohu 'alayxi va sallam: Da'uxu va ariqu 'ala bavlixi sijillan min ma'in.",
+      ky: "Анна а'рабиййан баля филь-масджиди, фа-кама иляйхи-н-насу ли-яка'у бихи, фа-каля расулю-Ллахи салля-Ллаху 'аляйхи ва саллям: Да'уху ва арику 'аля баулихи сиджиллян мин ма'ин."
     },
     translations: {
       ru: "Один бедуин начал мочиться прямо в мечети. Люди вскочили, чтобы наказать его, но Посланник Аллаха ﷺ сказал: 'Оставьте его и просто вылейте на это место ведро воды. Поистине, вы посланы, чтобы облегчать, а не чтобы создавать трудности'.",
@@ -105,10 +105,10 @@ export const STORIES: Story[] = [
     },
     arabic: "مرت به جنازة فقام، فقيل له: إنها جنازة يهودي، فقال: «أليست نفسا؟»",
     transliterations: {
-      ru: "Маррат бихи джаназатун фа-кама...",
-      en: "Marrat bihi janazatun fa-qama...",
-      uz: "Morrot bihi janazatun fa-qoma...",
-      ky: "Маррат бихи джаназатун фа-кама..."
+      ru: "Маррат бихи джаназатун фа-кама, фа-киля ляху: иннаха джаназату яхудиййин, фа-каля: А-ляйсат нафсан?",
+      en: "Marrat bihi janazatun fa-qama, fa-qila lahu: innaha janazatu yahudiyyin, fa-qala: Alaysat nafsan?",
+      uz: "Morrot bixi janazatun fa-qoma, fa-qila laxu: innaxa janazatu yaxudiyyin, fa-qola: Alaysat nafsan?",
+      ky: "Маррат бихи джаназатун фа-кама, фа-киля ляху: иннаха джаназату яхудиййин, фа-каля: А-ляйсат нафсан?"
     },
     translations: {
       ru: "Мимо Пророка ﷺ проносили носилки с покойным, и он встал в знак уважения. Ему сказали: 'Это похороны иудея'. Он ответил: 'А разве это не человеческая душа?'.",
@@ -136,10 +136,10 @@ export const STORIES: Story[] = [
     },
     arabic: "بينما رجل يمشي بطريق اشتد عليه العطش، فوجد بئرا، فنزل فيها فشرب، ثم خرج فإذا كلب يلهث يأكل الثرى من العطش، فقال الرجل: لقد بلغ هذا الكلب من العطش مثل الذي كان بلغ مني، فنزل البئر فملأ خفه ماء، ثم أمسكه بوفيه حتى رقي فسقى الكلب، فشكر الله له فغفر له. قالوا: يا رسول الله، وإن لنا في هذه البهائم لأجرا؟ فقال: «في كل كبد رطبة أجر»",
     transliterations: {
-      ru: "Байнама раджулюн ямши би-тарик...",
-      en: "Baynama rajulun yamshi bi-tariq...",
-      uz: "Baynama rojulin yamshi bi-tariq...",
-      ky: "Байнама раджулюн ямши би-тарик..."
+      ru: "Байнама раджулюн ямши би-тарик-ин иштадда 'аляйхи-ль-'аташу, фа-ваджада би'ран, фа-назаля фиха фа-шариба... фа-сака-ль-кяльба, фа-шакяра-Ллаху ляху фа-гафара ляху.",
+      en: "Baynama rajulun yamshi bi-tariqin ishtadda 'alayhil-'atashu, fa-wajada bi'ran, fa-nazala fiha fa-shariba... fa-saqal-kalba, fa-shakarallahu lahu fa-ghafara lahu.",
+      uz: "Baynama rojulin yamshi bi-toriqin ishtadda 'alayxil-'atashu, fa-vajada bi'ran, fa-nazala fixa fa-shoriba... fa-saqal-kalba, fa-shakaralloxu laxu fa-g'afara laxu.",
+      ky: "Байнама раджулюн ямши би-тарик-ин иштадда 'аляйхи-ль-'аташу, фа-ваджада би'ран, фа-назаля фиха фа-шариба... фа-сака-ль-кяльба, фа-шакяра-Ллаху ляху фа-гафара ляху."
     },
     translations: {
       ru: "Один человек шел по дороге, его замучила сильная жажда. Наткнувшись на колодец, он спустился в него, напился и вылез. У колодца он увидел собаку, которая от жажды лизала влажную землю. Он подумал: 'Эту собаку мучает такая же жажда, как и меня недавно'. Он снова спустился, набрал воды в свой башмак и напоил ее. Аллах отблагодарил его за это и простил ему грехи. Сподвижники спросили: 'О Посланник Аллаха, неужели нам полагается награда и за животных?'. Он ответил: 'Награда полагается за помощь любому живому существу'.",
@@ -167,10 +167,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أتت عجوز إلى النبي ﷺ فقالت: يا رسول الله ادع الله أن يدخلني الجنة، فقال: «يا أم فلان، إن الجنة لا تدخلها عجوز»، فولت تبكي، فقال: «أخبروها أنها لا تدخلها وهي عجوز، إن الله تعالى يقول: {إنا أنشأناهن إنشاء فجعلناهن أبكارا عربا أترابا}»",
     transliterations: {
-      ru: "Атат 'аджузун иля-н-набиййи...",
-      en: "Atat 'ajuzun ilan-nabiyyi...",
-      uz: "Atat 'ajuzun ilan-nabiyyi...",
-      ky: "Атат 'аджузун иля-н-набиййи..."
+      ru: "Атат 'аджузун иля-н-набиййи салля-Ллаху 'аляйхи ва саллям, фа-калят: Я расуля-Ллах, ид'у-Ллаха ан юдхиляни-ль-джанната. Фа-каля: Инна-ль-джанната ля тадхулюха 'аджузун.",
+      en: "Atat 'ajuzun ilan-nabiyyi salla-Llahu 'alayhi wa sallam, fa-qalat: Ya Rasula-Llah, id'u-Llah an yudkhilanil-jannata. Fa-qala: Innal-jannata la tadkhuluha 'ajuzun.",
+      uz: "Atat 'ajuzun ilan-nabiyyi salla-Llohu 'alayxi va sallam, fa-qolat: Ya Rasulolloh, id'u-Lloha an yudxilanil-jannata. Fa-qola: Innal-jannata la tadxuluxa 'ajuzun.",
+      ky: "Атат 'аджузун иля-н-набиййи салля-Ллаху 'аляйхи ва саллям, фа-калят: Я расуля-Ллах, ид'у-Ллаха ан юдхиляни-ль-джанната. Фа-каля: Инна-ль-джанната ля тадхулюха 'аджузун."
     },
     translations: {
       ru: "Одна пожилая женщина пришла к Пророку ﷺ и попросила: 'О Посланник Аллаха, помолись Аллаху, чтобы Он ввел меня в Рай'. Он ответил: 'О мать такого-то, поистине, старухи не входят в Рай'. Женщина ушла плача. Тогда он сказал своим сподвижникам: 'Скажите ей, что она не войдет в Рай будучи старухой, ведь Аллах говорит: «Мы сотворим их заново и сделаем их девственницами, любящими и равными по возрасту»'.",
@@ -229,10 +229,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن امرأة سوداء كانت تقم المسجد، ففقدها رسول الله ﷺ، فسأل عنها، فقالوا: ماتت، قال: «أفلا كنتم آذنتموني؟» فكأنهم صغروا أمرها، فقال: «دلونني على قبرها»، فدلوه، فصلى عليها.",
     transliterations: {
-      ru: "Анна-мра'атан сауда'а кянат такумму-ль-масджид...",
-      en: "Anna-mra'atan sawda'a kanat taqummul-masjid...",
-      uz: "Anna-mro'atan savda'a kanat taqummul-masjid...",
-      ky: "Анна-мра'атан сауда'а кянат такумму-ль-масджид..."
+      ru: "Анна-мра'атан сауда'а кянат такумму-ль-масджида, фа-факадаха расулю-Ллахи салля-Ллаху 'аляйхи ва саллям, фа-са'аля 'анха, фа-калю: мятат.",
+      en: "Anna-mra'atan sawda'a kanat taqummul-masjida, fa-faqadaha Rasulu-Llah salla-Llahu 'alayhi wa sallam, fa-sa'ala 'anha, fa-qalu: matat.",
+      uz: "Anna-mro'atan savda'a kanat taqummul-masjida, fa-faqadaxa Rasululloh salla-Llohu 'alayxi va sallam, fa-sa'ala 'anxa, fa-qalu: matat.",
+      ky: "Анна-мра'атан сауда'а кянат такумму-ль-масджида, фа-факадаха расулю-Ллахи салля-Ллаху 'аляйхи ва саллям, фа-са'аля 'анха, фа-калю: мятат."
     },
     translations: {
       ru: "В мечети была темнокожая женщина, которая добровольно убирала ее. Однажды Пророк ﷺ заметил ее отсутствие и спросил о ней. Ему ответили: 'Она умерла'. Пророк сказал: 'Почему же вы не сообщили мне?'. Люди, казалось, сочли ее жизнь незначительной, но он потребовал: 'Покажите мне ее могилу'. Придя к могиле, он совершил по ней заупокойную молитву.",
@@ -260,10 +260,10 @@ export const STORIES: Story[] = [
     },
     arabic: "لما كذبه أهل الطائف، أتاه ملك الجبال فقال: يا محمد، إن شئت أن أطبق عليهم الأخشبين، فقال النبي ﷺ: «بل أرجو أن يخرج الله من أصلابهم من يعبد الله وحده لا يشرك به شيئا»",
     transliterations: {
-      ru: "Лямма кяззабаху ахлю-т-таифи...",
-      en: "Lamma kadhabahu ahlut-Ta'ifi...",
-      uz: "Lamma kazzabahu ahlut-Toyifi...",
-      ky: "Лямма кяззабаху ахлю-т-таифи..."
+      ru: "Лямма кяззабаху ахлю-т-таифи, атаху маляку-ль-джибали фа-каля: Я Мухаммад, ин ши'та ан утика 'аляйхиму-ль-ахшабайн.",
+      en: "Lamma kadhabahu ahlut-Ta'ifi, atahu malakul-jibali fa-qala: Ya Muhammad, in shi'ta an utbiqa 'alayhimul-akhshabayn.",
+      uz: "Lamma kazzabahu ahlut-Toyifi, atahu malakul-jibali fa-qola: Ya Muhammad, in shi'ta an utbiqa 'alayhimul-axshabayn.",
+      ky: "Лямма кяззабаху ахлю-т-таифи, атаху маляку-ль-джибали фа-каля: Я Мухаммад, ин ши'та ан утика 'аляйхиму-ль-ахшабайн."
     },
     translations: {
       ru: "Когда жители Таифа отвергли Пророка ﷺ и забросали его камнями, к нему явился ангел гор и сказал: 'О Мухаммад, если ты пожелаешь, я обрушу на этих людей две горы'. Но Пророк ﷺ ответил: 'Нет, я надеюсь, что Аллах выведет из их потомства тех, кто будет поклоняться только Ему Одному'.",
@@ -291,10 +291,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن رجلا كان يقرأ: {قل هو الله أحد} في كل ركعة، فسأله النبي ﷺ عن ذلك، فقال: إني أحبها، فقال النبي ﷺ: «حبك إياها أدخلك الجنة»",
     transliterations: {
-      ru: "Анна раджулян кяна якра'у...",
-      en: "Anna rajulan kana yaqra'u...",
-      uz: "Anna rojulan kana yaqro'u...",
-      ky: "Анна раджулян кяна якра'у..."
+      ru: "Анна раджулян кяна якра'у: Куль хува-Ллаху ахад фи кулли рак'атин, фа-са'аляху-н-набиййу салля-Ллаху 'аляйхи ва саллям 'ан залика, фа-каля: Инни ухиббуха.",
+      en: "Anna rajulan kana yaqra'u: Qul huwal-Lahu ahad fi kulli raka'atin, fa-sa'alahun-nabiyyu salla-Llahu 'alayhi wa sallam 'an dhalika, fa-qala: Inni uhibbuha.",
+      uz: "Anna rojulan kana yaqro'u: Qul xuva-Lloxu axad fi kulli rak'atin, fa-sa'alaxun-nabiyyu salla-Llohu 'alayxi va sallam 'an zalika, fa-qola: Inni uxibbuxa.",
+      ky: "Анна раджулян кяна якра'у: Куль хува-Ллаху ахад фи кулли рак'атин, фа-са'аляху-н-набиййу салля-Ллаху 'аляйхи ва саллям 'ан залика, фа-каля: Инни ухиббуха."
     },
     translations: {
       ru: "Один человек постоянно читал суру «Аль-Ихлас» в каждом ракаате молитвы. Когда Пророк ﷺ спросил его об этом, он ответил: 'Я очень люблю ее'. Тогда Пророк ﷺ сказал: 'Твоя любовь к ней введет тебя в Рай'.",
@@ -322,10 +322,10 @@ export const STORIES: Story[] = [
     },
     arabic: "كنا مع رسول الله ﷺ في سفر، فرأينا حمرة معها فرخان، فأخذنا فرخيها، فجاءت الحمرة فجعلت تفرش، فجاء النبي ﷺ فقال: «من فجع هذه بولدها؟ ردوا ولدها إليها»",
     transliterations: {
-      ru: "Кунна ма'а расули-Ллахи салля-Ллаху 'аляйхи ва саллям...",
-      en: "Kunna ma'a Rasuli-Llah salla-Llahu 'alayhi wa sallam...",
-      uz: "Kunna ma'a Rasululloh salla-Llohu 'alayhi va sallam...",
-      ky: "Кунна ма'а расули-Ллахи салля-Ллаху 'аляйхи ва саллям..."
+      ru: "Кунна ма'а расули-Ллахи салля-Ллаху 'аляйхи ва саллям фи сафарин, фа-ра'айна хуммаратан ма'аха фархан, фа-ахазна фархайха.",
+      en: "Kunna ma'a Rasuli-Llah salla-Llahu 'alayhi wa sallam fi safarin, fa-ra'ayna hummaratan ma'aha farkhan, fa-akhadhna farkhayha.",
+      uz: "Kunna ma'a Rasululloh salla-Llohu 'alayxi va sallam fi safarin, fa-ro'ayna xummaratan ma'axa farxan, fa-axazna farxayxa.",
+      ky: "Кунна ма'а расули-Ллахи салля-Ллаху 'аляйхи ва саллям фи сафарин, фа-ра'айна хуммаратан ма'аха фархан, фа-ахазна фархайха."
     },
     translations: {
       ru: "Мы были в пути с Посланником Аллаха ﷺ и увидели птицу с двумя птенцами. Мы забрали птенцов, и птица начала в отчаянии кружить над нами, хлопая крыльями. Когда пришел Пророк ﷺ, он сказал: 'Кто причинил страдание этой птице, забрав ее детей? Верните их ей!'.",
@@ -353,10 +353,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن عائشة - رضي الله عنها - كسرت قصعة فيها طعام أرسلتها إحدى زوجات النبي ﷺ، فجعل النبي ﷺ يجمع بين فلقتي القصعة، ثم يقول: «غارت أمكم»",
     transliterations: {
-      ru: "Анна 'Аишата радыйа-Ллаху 'анха касарат кас'атан...",
-      en: "Anna 'Aishata radiya-Llahu 'anha kasarat qas'atan...",
-      uz: "Anna 'Oishata roziyalloho 'anho kasarat qas'atan...",
-      ky: "Анна 'Аишата радыйа-Ллаху 'анха касарат кас'атан..."
+      ru: "Анна 'Аишата радыйа-Ллаху 'анха касарат кас'атан фиха та'амун арсалятха ихда зауджати-н-набиййи салля-Ллаху 'аляйхи ва саллям.",
+      en: "Anna 'Aishata radiya-Llahu 'anha kasarat qas'atan fiha ta'amun arsalatha ihda zawjatin-nabiyyi salla-Llahu 'alayhi wa sallam.",
+      uz: "Anna 'Oishata roziyalloho 'anho kasarat qas'atan fixa ta'omun arsalatxa ixda zavjatin-nabiyyi salla-Llohu 'alayxi va sallam.",
+      ky: "Анна 'Аишата радыйа-Ллаху 'анха касарат кас'атан фиха та'амун арсалятха ихда зауджати-н-набиййи салля-Ллаху 'аляйхи ва саллям."
     },
     translations: {
       ru: "Однажды, когда Пророк ﷺ был у Аиши, одна из его жен прислала ему блюдо с едой. Аиша в порыве ревности ударила по руке слугу, и тарелка разбилась. Пророк ﷺ молча собрал осколки и еду, улыбнулся и сказал гостям: 'Ваша мать просто приревновала'.",
@@ -663,10 +663,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن قريشا أهمهم شأن المرأة المخزومية التي سرقت، فقالوا: من يكلم فيها رسول الله ﷺ؟ فقال النبي ﷺ: «والله لو أن فاطمة بنت محمد سرقت لقطعت يدها»",
     transliterations: {
-      ru: "Анна Курайшан ахаммяхум ша'ну-ль-маръати...",
-      en: "Anna Qurayshan ahammahum sha'nul-mar'ati...",
-      uz: "Anna Qurayshan ahammuhum sha'nul-mar'ati...",
-      ky: "Анна Курайшан ахаммяхум ша'ну-ль-маръати..."
+      ru: "Анна Курайшан ахаммяхум ша'ну-ль-маръати-ль-махзумияти-лляти саракат. Ва-Ллахи ляу анна Фатимата бинта Мухаммадин саракат ля-ката'ту ядаха.",
+      en: "Anna Qurayshan ahammahum sha'nul-mar'atil-makhzumiyyatil-lati saraqat. Wa-Llahu law anna Fatimata binta Muhammadin saraqat la-qata'tu yadaha.",
+      uz: "Anna Qurayshan ahammuhum sha'nul-mar'atil-maxzumiyyatil-lati saroqat. Va-Llohu lav anna Fotimata binta Muhammadin saroqat la-qota'tu yadaha.",
+      ky: "Анна Курайшан ахаммяхум ша'ну-ль-маръати-ль-махзумияти-лляти саракат. Ва-Ллахи ляу анна Фатимата бинта Мухаммадин саракат ля-ката'ту ядаха."
     },
     translations: {
       ru: "Когда знатная женщина из племени Махзум совершила кражу, люди пытались заступиться за нее, чтобы спасти от наказания. Они просили Усаму ибн Зейда поговорить с Пророком ﷺ. Но Пророк ﷺ разгневался и сказал: 'Клянусь Аллахом, если бы даже моя дочь Фатима совершила кражу, я бы применил закон к ней так же, как и к остальным'.",
@@ -694,10 +694,10 @@ export const STORIES: Story[] = [
     },
     arabic: "دخل عمر بن الخطاب على النبي ﷺ وهو على حصير قد أثر في جنبه، فبكى عمر، فقال النبي ﷺ: «أما ترضى أن تكون لهم الدنيا ولنا الآخرة؟»",
     transliterations: {
-      ru: "Дахаля 'Умару-бну-ль-Хаттаби 'аля-н-набиййи...",
-      en: "Dakhala 'Umarubnul-Khattabi 'alan-nabiyyi...",
-      uz: "Dakhal 'Umar ibnul-Xattob 'alan-nabiyyi...",
-      ky: "Дахаля 'Умару-бну-ль-Хаттаби 'аля-н-набиййи..."
+      ru: "Дахаля 'Умару-бну-ль-Хаттаби 'аля-н-набиййи салля-Ллаху 'аляйхи ва саллям... А-мя тарда ан такюна ляхуму-д-дунья ва ляна-ль-ахира?",
+      en: "Dakhala 'Umarubnul-Khattabi 'alan-nabiyyi salla-Llahu 'alayhi wa sallam... Ama tarda an takuna lahumud-dunya wa lanal-akhira?",
+      uz: "Dakhal 'Umar ibnul-Xattob 'alan-nabiyyi salla-Llohu 'alayhi va sallam... Ama tardo an takuna lahumud-dunya va lanal-oxiro?",
+      ky: "Дахаля 'Умару-бну-ль-Хаттаби 'аля-н-набиййи салля-Ллаху 'аляйхи ва саллям... А-мя тарда ан такюна ляхуму-д-дунья ва ляна-ль-ахира?"
     },
     translations: {
       ru: "Умар ибн аль-Хаттаб зашел к Пророку ﷺ и увидел, что тот спит на простой циновке, которая оставила след на его боку. В доме почти не было мебели. Умар заплакал и сказал: 'О Посланник Аллаха, цари Персии и Рима живут в роскоши, а ты — в такой бедности!'. Пророк ﷺ ответил: 'Разве ты не доволен тем, что им достанется этот мир, а нам — мир вечный?'.",
@@ -725,10 +725,10 @@ export const STORIES: Story[] = [
     },
     arabic: "قال النبي ﷺ ونظر إلى جبل أحد: «أحد جبل يحبنا ونحبه»",
     transliterations: {
-      ru: "Каля-н-набиййу салля-Ллаху 'аляйхи ва саллям... Ухудун джабалюн юхиббуна ва нухиббуху",
-      en: "Qalan-nabiyyu salla-Llahu 'alayhi wa sallam... Uhudun jabalun yuhibbuna wa nuhibbuhu",
-      uz: "Qalan-nabiyyu salla-Llohu 'alayhi va sallam... Uhudun jabalun yuhibbuna va nuhibbuhu",
-      ky: "Каля-н-набиййу салля-Ллаху 'аляйхи ва саллям... Ухудун джабалюн юхиббуна ва нухиббуху"
+      ru: "Каля-н-набиййу салля-Ллаху 'аляйхи ва саллям: Ухудун джабалюн юхиббуна ва нухиббуху.",
+      en: "Qalan-nabiyyu salla-Llahu 'alayhi wa sallam: Uhudun jabalun yuhibbuna wa nuhibbuhu.",
+      uz: "Qalan-nabiyyu salla-Llohu 'alayhi va sallam: Uhudun jabalun yuhibbuna va nuhibbuhu.",
+      ky: "Каля-н-набиййу салля-Ллаху 'аляйхи ва саллям: Ухудун джабалюн юхиббуна ва нухиббуху."
     },
     translations: {
       ru: "Возвращаясь из похода, Пророк ﷺ посмотрел на гору Ухуд и сказал со всей искренностью: 'Ухуд — это гора, которая любит нас, и которую любим мы'. Он видел душу и связь даже в камнях и горах своей земли.",
@@ -756,10 +756,10 @@ export const STORIES: Story[] = [
     },
     arabic: "أن رجلا كان يسمى زاهرا، كان النبي ﷺ يحبه، فآتاه النبي ﷺ وهو يبيع متاعه، فاحتضنه من خلفه، فقال: من هذا؟ فالتفت فعرف النبي ﷺ، فجعل لا يألو ما ألصق ظهره بصدر النبي ﷺ، فقال النبي ﷺ: «من يشتري هذا العبد؟»",
     transliterations: {
-      ru: "Анна раджулян кяна юсамма Захиран...",
-      en: "Anna rajulan kana yusamma Zahiran...",
-      uz: "Anna rojulan kana yusamma Zohiron...",
-      ky: "Анна раджулян кяна юсамма Захиран..."
+      ru: "Анна раджулян кяна юсамма Захиран... Ман яштари хаза-ль-'абда? Ва лякиннака 'инда-Ллахи галин.",
+      en: "Anna rajulan kana yusamma Zahiran... Man yashtari hadhal-'abda? Wa lakinnaka 'indal-Lahi ghalin.",
+      uz: "Anna rojulan kana yusamma Zohiron... Man yashtari hazal-'abda? Va lakinnaka 'indal-Lahi g'olin.",
+      ky: "Анна раджулян кяна юсамма Захиран... Ман яштари хаза-ль-'абда? Ва лякиннака 'инда-Ллахи галин."
     },
     translations: {
       ru: "Был один бедный человек по имени Захир. Пророк ﷺ очень любил его. Однажды, когда Захир торговал на рынке, Пророк ﷺ незаметно подошел сзади и обнял его. Захир спросил: 'Кто это?', и, узнав Пророка ﷺ, прижался к нему еще сильнее. Пророк ﷺ шутливо крикнул людям: 'Кто купит этого раба?'. Захир опечалился: 'О Посланник Аллаха, клянусь, я — дешевый товар'. Но Пророк ﷺ ответил: 'Но у Аллаха ты — очень дорогой товар!'.",
@@ -787,10 +787,10 @@ export const STORIES: Story[] = [
     },
     arabic: "مر النبي ﷺ ببعير قد لحق ظهره ببطنه، فقال: «اتقوا الله في هذه البهائم المعجمة، فاركبوها صالحة، وكلوها صالحة»",
     transliterations: {
-      ru: "Марра-н-набиййу салля-Ллаху 'аляйхи ва саллям би-ба'ирин...",
-      en: "Marran-nabiyyu salla-Llahu 'alayhi wa sallam bi-ba'irin...",
-      uz: "Morro-n-nabiyyu salla-Llohu 'alayhi va sallam bi-ba'irin...",
-      ky: "Марра-н-набиййу салля-Ллаху 'аляйхи ва саллям би-ба'ирин..."
+      ru: "Марра-н-набиййу салля-Ллаху 'аляйхи ва саллям би-ба'ирин кад ляхика шахруху би-батнихи. Иттаки-Лляха фи хазихи-ль-баха'им.",
+      en: "Marran-nabiyyu salla-Llahu 'alayhi wa sallam bi-ba'irin qad lahiqa dhahruhu bi-batnihi. Ittaqillaha fi hadhihil-baha'im.",
+      uz: "Morro-n-nabiyyu salla-Llohu 'alayhi va sallam bi-ba'irin qod laxika zahruxu bi-batnixi. Ittoqilloxa fi hazixil-baxaim.",
+      ky: "Марра-н-набиййу салля-Ллаху 'аляйхи ва саллям би-ба'ирин кад ляхика шахруху би-батнихи. Иттаки-Лляха фи хазихи-ль-баха'им."
     },
     translations: {
       ru: "Пророк ﷺ проходил мимо верблюда, чей живот прилип к спине от голода. Он строго сказал: 'Бойтесь Аллаха в отношении этих бессловесных животных! Ездите на них, когда они здоровы, и ешьте их мясо, когда они ухожены'.",

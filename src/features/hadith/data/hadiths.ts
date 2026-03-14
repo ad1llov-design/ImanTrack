@@ -14,6 +14,12 @@ export interface HadithItem {
     ky: string;
   };
   reference: string;
+  transliterations?: {
+    ru?: string;
+    en?: string;
+    uz?: string;
+    ky?: string;
+  };
 }
 
 export const HADITHS_DATA: Record<string, HadithItem[]> = {

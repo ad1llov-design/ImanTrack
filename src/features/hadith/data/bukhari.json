@@ -4,9 +4,15 @@
     "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
     "translations": {
       "ru": "Поистине, дела оцениваются только по намерениям, и каждому человеку достанется лишь то, что он намеревался обрести.",
-      "en": "Поистине, дела оцениваются только по намерениям, и каждому человеку достанется лишь то, что он намеревался обрести. (EN)",
-      "uz": "Поистине, дела оцениваются только по намерениям, и каждому человеку достанется лишь то, что он намеревался обрести. (UZ)",
-      "ky": "Поистине, дела оцениваются только по намерениям, и каждому человеку достанется лишь то, что он намеревался обрести. (KY)"
+      "en": "Actions are judged by intentions, and every person will get only what they intended.",
+      "uz": "Amallar niyatga qarab baholanadi va har bir kishi niyat qilganiga erishadi.",
+      "ky": "Амалдар ниетке жараша бааланат жана ар бир киши эмнени ниет кылса, ошого жетет."
+    },
+    "transliterations": {
+      "ru": "Иннамаль-а'малю бин-нийят, ва иннама ликулли-мри'ин ма нава",
+      "en": "Innamal-a'malu bin-niyyat, wa innama likulli-mri'in ma nawa",
+      "uz": "Innamal-a'malu bin-niyyat, va innama likulli-mri'in ma nava",
+      "ky": "Иннамаль-а'малю бин-нийят, ва иннама ликулли-мри'ин ма нава"
     },
     "reference": "Бухари, 1"
   },
@@ -15,9 +21,15 @@
     "arabic": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
     "translations": {
       "ru": "Лучший из вас тот, кто изучил Коран и обучил ему других.",
-      "en": "Лучший из вас тот, кто изучил Коран и обучил ему других. (EN)",
-      "uz": "Лучший из вас тот, кто изучил Коран и обучил ему других. (UZ)",
-      "ky": "Лучший из вас тот, кто изучил Коран и обучил ему других. (KY)"
+      "en": "The best among you are those who learn the Quran and teach it to others.",
+      "uz": "Sizlarning yaxshilaringiz Qur'onni o'rganib, uni boshqalarga o'rgatganlaringizdir.",
+      "ky": "Силердин эң жакшыңар - Куранды үйрөнүп, аны башкаларга үйрөткөнүңөр."
+    },
+    "transliterations": {
+      "ru": "Хайрукум ман та'алляма-ль-Кур'ана ва 'аллямаху",
+      "en": "Khayrukum man ta'allamal-Qur'ana wa 'allamahu",
+      "uz": "Xayrukum man ta'allamal-Qur'ona va 'allamahu",
+      "ky": "Хайрукум ман та'алляма-ль-Кур'ана ва 'аллямаху"
     },
     "reference": "Бухари, 5027"
   },
@@ -26,9 +38,15 @@
     "arabic": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
     "translations": {
       "ru": "Мусульманин — тот, от языка и рук которого другие мусульмане в безопасности.",
-      "en": "Мусульманин — тот, от языка и рук которого другие мусульмане в безопасности. (EN)",
-      "uz": "Мусульманин — тот, от языка и рук которого другие мусульмане в безопасности. (UZ)",
-      "ky": "Мусульманин — тот, от языка и рук которого другие мусульмане в безопасности. (KY)"
+      "en": "A Muslim is the one from whose tongue and hands other Muslims are safe.",
+      "uz": "Musulmon — tili va qo'lidan boshqa musulmonlar omonlikda bo'lgan kishidir.",
+      "ky": "Мусулман - бул анын тилинен жана колунан башка мусулмандар аман болгон адам."
+    },
+    "transliterations": {
+      "ru": "Аль-муслиму ман салима-ль-муслимуна мин лисанихи ва ядихи",
+      "en": "Al-muslimu man salimal-muslimuna min lisanihi wa yadihi",
+      "uz": "Al-muslimu man salimal-muslimuna min lisonixi va yadixi",
+      "ky": "Аль-муслиму ман салима-ль-муслимуна мин лисанихи ва ядихи"
     },
     "reference": "Бухари, 10"
   },
@@ -37,9 +55,15 @@
     "arabic": "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
     "translations": {
       "ru": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
-      "en": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай. (EN)",
-      "uz": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай. (UZ)",
-      "ky": "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай. (KY)"
+      "en": "Whoever performs the two cool prayers (Fajr and Asr) will enter Paradise.",
+      "uz": "Kim ikki salqin namozni (Bomdod va Asr) o'qisa, Jannatga kiradi.",
+      "ky": "Ким эки салкын намазды (Багымдат жана Аср) окуса, Бейишке кирет."
+    },
+    "transliterations": {
+      "ru": "Ман салля-ль-бардайн дахаля-ль-джанната",
+      "en": "Man salla-l-bardayn dakhalal-jannata",
+      "uz": "Man salla-l-bardayn daxalil-jannata",
+      "ky": "Ман салля-ль-бардайн дахаля-ль-джанната"
     },
     "reference": "Бухари, 574"
   },
@@ -48,9 +72,15 @@
     "arabic": "مَا مِنْ مُسْلِمٍ يَغْرِسُ غَرْسًا أَوْ يَزْرَعُ زَرْعًا فَيَأْكُلُ مِنْهُ طَيْرٌ أَوْ إِنْسَانٌ أَوْ بَهِيمَةٌ إِلَّا كَانَ لَهُ بِهِ صَدَقَةٌ",
     "translations": {
       "ru": "Если мусульманин посадит дерево или посеет что-либо, а затем птица, человек или животное поест с этого, то это будет для него милостыней.",
-      "en": "Если мусульманин посадит дерево или посеет что-либо, а затем птица, человек или животное поест с этого, то это будет для него милостыней. (EN)",
-      "uz": "Если мусульманин посадит дерево или посеет что-либо, а затем птица, человек или животное поест с этого, то это будет для него милостыней. (UZ)",
-      "ky": "Если мусульманин посадит дерево или посеет что-либо, а затем птица, человек или животное поест с этого, то это будет для него милостыней. (KY)"
+      "en": "No Muslim plants a tree or sows a seed and then a bird, or a person, or an animal eats from it, but is regarded as a charity for him.",
+      "uz": "Agar biror musulmon bir ko'chat eksa yoki ekin eksa-yu, undan qush, inson yoki hayvon yesa, u kishi uchun sadaqa bo'ladi.",
+      "ky": "Эгерде кайсы бир мусулман бир көчөт тиксе же эгин эксе, анан андан канаттуу, адам же айбан жесе, ал үчүн садака болуп эсептелет."
+    },
+    "transliterations": {
+      "ru": "Ма мин муслимин ягрису гарсан ау язра'у зар'ан фа-йа'кулю минху тайрун ау инсанун ау бахиматун илля кяна ляху бихи садакатун",
+      "en": "Ma min muslimin yaghrisu gharsan aw yazra'u zar'an fa-ya'kulu minhu tayrun aw insanun aw bahimatun illa kana lahu bihi sadaqatun",
+      "uz": "Ma min muslimin yag'risu g'orsan av yazro'u zar'an fa-yakulu minxu tayrun av insonun av baximatun illa kana laxu bixi sadaqatun",
+      "ky": "Ма мин муслимин ягрису гарсан ау язра'у зар'ан фа-йа'кулю минху тайрун ау инсанун ау бахиматун илля кяна ляху бихи садакатун"
     },
     "reference": "Бухари, 2320"
   },
@@ -59,9 +89,15 @@
     "arabic": "أَحَبُّ الأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ",
     "translations": {
       "ru": "Самые любимые дела Аллахом — постоянные, даже если они малы.",
-      "en": "Самые любимые дела Аллахом — постоянные, даже если они малы. (EN)",
-      "uz": "Самые любимые дела Аллахом — постоянные, даже если они малы. (UZ)",
-      "ky": "Самые любимые дела Аллахом — постоянные, даже если они малы. (KY)"
+      "en": "The most beloved deeds to Allah are those which are consistent, even if they are small.",
+      "uz": "Allohga eng yoqimli amallar — oz bo'lsa-da, davomli bo'lganlaridir.",
+      "ky": "Аллахка эң сүйкүмдүү амалдар - аз болсо да, туруктуу болгондору."
+    },
+    "transliterations": {
+      "ru": "Ахаббу-ль-а'мали иля-Ллахи адвамуха ва ин калль",
+      "en": "Ahabbu-l-a'mali ilal-Lahi adwamuha wa in qall",
+      "uz": "Axabbu-l-a'mali ilal-Lohi advamuxa va in qall",
+      "ky": "Ахаббу-ль-а'мали иля-Ллахи адвамуха ва ин калль"
     },
     "reference": "Бухари, 6464"
   },
@@ -70,9 +106,15 @@
     "arabic": "مَنْ لَا يَرْحَمُ لَا يُرْحَمُ",
     "translations": {
       "ru": "Кто не проявляет милосердие — к тому не будет проявлено милосердие.",
-      "en": "Кто не проявляет милосердие — к тому не будет проявлено милосердие. (EN)",
-      "uz": "Кто не проявляет милосердие — к тому не будет проявлено милосердие. (UZ)",
-      "ky": "Кто не проявляет милосердие — к тому не будет проявлено милосердие. (KY)"
+      "en": "He who is not merciful will not be shown mercy.",
+      "uz": "Kim rahm qilmasa, unga ham rahm qilinmaydi.",
+      "ky": "Ким ырайым кылбаса, ага да ырайым кылынбайт."
+    },
+    "transliterations": {
+      "ru": "Ман ля ярхам ля йурхам",
+      "en": "Man la yarham la yurham",
+      "uz": "Man la yarxam la yurxam",
+      "ky": "Ман ля ярхам ля йурхам"
     },
     "reference": "Бухари, 7376"
   },
@@ -81,9 +123,15 @@
     "arabic": "مَا أَكَلَ أَحَدٌ طَعَامًا قَطُّ خَيْرًا مِنْ أَنْ يَأْكُلَ مِنْ عَمَلِ يَدِهِ",
     "translations": {
       "ru": "Никто не ел ничего лучше, чем то, что заработал своими руками.",
-      "en": "Никто не ел ничего лучше, чем то, что заработал своими руками. (EN)",
-      "uz": "Никто не ел ничего лучше, чем то, что заработал своими руками. (UZ)",
-      "ky": "Никто не ел ничего лучше, чем то, что заработал своими руками. (KY)"
+      "en": "Nobody has ever eaten a better meal than that which they earned through the work of their own hands.",
+      "uz": "Hech kim o'z qo'l mehnati bilan topgan taomidan yaxshirog'ini yemagan.",
+      "ky": "Эч бир адам өз колу менен иштеп тапканынан жакшыраак тамак жеген эмес."
+    },
+    "transliterations": {
+      "ru": "Ма акяля ахадун та'аман катту хайран мин ан йа'куля мин 'амали ядихи",
+      "en": "Ma akala ahadun ta'aman qattu khayran min an ya'kula min 'amali yadihi",
+      "uz": "Ma akala axadun ta'oman qattu xoyran min an yakula min amali yadixi",
+      "ky": "Ма акяля ахадун та'аман катту хайран мин ан йа'куля мин 'амали ядихи"
     },
     "reference": "Бухари, 2072"
   },
@@ -92,9 +140,15 @@
     "arabic": "اتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ",
     "translations": {
       "ru": "Остерегайтесь Огня, хотя бы раздав половинку финика.",
-      "en": "Остерегайтесь Огня, хотя бы раздав половинку финика. (EN)",
-      "uz": "Остерегайтесь Огня, хотя бы раздав половинку финика. (UZ)",
-      "ky": "Остерегайтесь Огня, хотя бы раздав половинку финика. (KY)"
+      "en": "Save yourself from the Fire, even if by giving half a date in charity.",
+      "uz": "Do'zaxdan saqlaninglar, hatto yarimta xurmo bilan bo'lsa ham.",
+      "ky": "Тозок отунан сактангыла, жарым курма берип болсо да."
+    },
+    "transliterations": {
+      "ru": "Иттаку-н-нара ва ляу би-шикки тамратин",
+      "en": "Ittaqu-n-nara wa law bi-shiqqi tamratin",
+      "uz": "Ittoqu-n-nara va lav bi-shiqqi tamratin",
+      "ky": "Иттаку-н-нара ва ляу би-шикки тамратин"
     },
     "reference": "Бухари, 1417"
   },
@@ -103,9 +157,15 @@
     "arabic": "إِنَّمَا بُعِثْتُ لِأُتَمِّمَ مَكَارِمَ الْأَخْلَاقِ",
     "translations": {
       "ru": "Поистине, я был послан лишь для того, чтобы усовершенствовать благой нрав.",
-      "en": "Поистине, я был послан лишь для того, чтобы усовершенствовать благой нрав. (EN)",
-      "uz": "Поистине, я был послан лишь для того, чтобы усовершенствовать благой нрав. (UZ)",
-      "ky": "Поистине, я был послан лишь для того, чтобы усовершенствовать благой нрав. (KY)"
+      "en": "Indeed, I was sent only to perfect good character.",
+      "uz": "Men faqat go'zal xulqlarni kamoliga yetkazish uchun yuborildim.",
+      "ky": "Мен жакшы кулк-мүнөздү толуктоо үчүн гана жиберилдим."
+    },
+    "transliterations": {
+      "ru": "Иннама бу'ис-ту ли-утаммима мякарима-ль-ахляк",
+      "en": "Innama bu'ithtu li-utammima makarimal-akhlaq",
+      "uz": "Innama bu'is-tu li-utammima makarimal-axloq",
+      "ky": "Иннама бу'ис-ту ли-утаммима мякарима-ль-ахляк"
     },
     "reference": "Бухари, аль-Адаб аль-Муфрад"
   },
@@ -114,9 +174,15 @@
     "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
     "translations": {
       "ru": "Кто верует в Аллаха и в Последний день, пусть говорит благое или молчит.",
-      "en": "Кто верует в Аллаха и в Последний день, пусть говорит благое или молчит. (EN)",
-      "uz": "Кто верует в Аллаха и в Последний день, пусть говорит благое или молчит. (UZ)",
-      "ky": "Кто верует в Аллаха и в Последний день, пусть говорит благое или молчит. (KY)"
+      "en": "Whoever believes in Allah and the Last Day should talk what is good or keep quiet.",
+      "uz": "Kim Allohga va oxirat kuniga ishonsa, yaxshi gap aytsin yoki sukut saqlasin.",
+      "ky": "Ким Аллахка жана Акырет күнүнө ишенсе, жакшы сөз сүйлөсүн же унчукпасын."
+    },
+    "transliterations": {
+      "ru": "Ман кяна ю'мину билляхи ва-ль-йауми-ль-ахири фа-ль-йакуль хайран ау ли-йасмут",
+      "en": "Man kana yu'minu billahi wal-yawmil-akhiri fal-yaqul khayran aw li-yasmut",
+      "uz": "Man kana yu'minu billahi val-yavmil-oxiri fal-yaqul xoyron av li-yasmut",
+      "ky": "Ман кяна ю'мину билляхи ва-ль-йауми-ль-ахири фа-ль-йакуль хайран ау ли-йасмут"
     },
     "reference": "Бухари, 6018"
   },
@@ -125,9 +191,15 @@
     "arabic": "الْحَيَاءُ مِنَ الإِيمَانِ",
     "translations": {
       "ru": "Стыдливость — часть веры.",
-      "en": "Стыдливость — часть веры. (EN)",
-      "uz": "Стыдливость — часть веры. (UZ)",
-      "ky": "Стыдливость — часть веры. (KY)"
+      "en": "Haya (modesty/shyness) is a part of faith.",
+      "uz": "Hayo iymonning bir bo'lagidir.",
+      "ky": "Уяттуулук - ыймандын бир бөлүгү."
+    },
+    "transliterations": {
+      "ru": "Аль-хая'у мина-ль-иман",
+      "en": "Al-haya'u minal-iman",
+      "uz": "Al-hayo'u minal-iymon",
+      "ky": "Аль-хая'у мина-ль-иман"
     },
     "reference": "Бухари, 9"
   },
@@ -136,9 +208,15 @@
     "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
     "translations": {
       "ru": "Не уверует никто из вас до тех пор, пока не станет желать своему брату того же, чего желает самому себе.",
-      "en": "Не уверует никто из вас до тех пор, пока не станет желать своему брату того же, чего желает самому себе. (EN)",
-      "uz": "Не уверует никто из вас до тех пор, пока не станет желать своему брату того же, чего желает самому себе. (UZ)",
-      "ky": "Не уверует никто из вас до тех пор, пока не станет желать своему брату того же, чего желает самому себе. (KY)"
+      "en": "None of you will have faith until he wishes for his brother what he likes for himself.",
+      "uz": "Sizlardan birortangiz o'zi uchun yaxshi ko'rgan narsani birodari uchun ham sog'inmaguncha komil mo'min bo'lolmaydi.",
+      "ky": "Силердин кимиңер болбосун, өзүңөр үчүн каалаган нерсени бир тууганыңар үчүн да кааламайынча, чыныгы момун боло албайсыңар."
+    },
+    "transliterations": {
+      "ru": "Ля ю'мину ахадукум хатта юхибба ли-ахихи ма юхиббу ли-нафсихи",
+      "en": "La yu'minu ahadukum hatta yuhibba li-akhihi ma yuhibbu li-nafsihi",
+      "uz": "La yu'minu ahadukum hatta yuhibba li-axixi ma yuhibbu li-nafsixi",
+      "ky": "Ля ю'мину ахадукум хатта юхибба ли-ахихи ма юхиббу ли-нафсихи"
     },
     "reference": "Бухари, 13"
   },
@@ -147,9 +225,15 @@
     "arabic": "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
     "translations": {
       "ru": "Тому, кто постился в Рамадан с верой и надеждой на награду, будут прощены его прежние грехи.",
-      "en": "Тому, кто постился в Рамадан с верой и надеждой на награду, будут прощены его прежние грехи. (EN)",
-      "uz": "Тому, кто постился в Рамадан с верой и надеждой на награду, будут прощены его прежние грехи. (UZ)",
-      "ky": "Тому, кто постился в Рамадан с верой и надеждой на награду, будут прощены его прежние грехи. (KY)"
+      "en": "Whoever observes fasts during the month of Ramadan out of sincere faith, and hoping to attain Allah's rewards, then all his past sins will be forgiven.",
+      "uz": "Kim Ramazon ro'zasini iymon bilan va savob umidida tutsa, uning o'tgan gunohlari mag'firat qilinadi.",
+      "ky": "Ким Рамазан орозосун ыйман менен жана сооп үмүтүндө кармаса, анын мурунку күнөөлөрү кечирилет."
+    },
+    "transliterations": {
+      "ru": "Ман сама Рамадана иманан ва-хтисабан гуфира ляху ма такаддама мин занбихи",
+      "en": "Man sama Ramadana imanan wahtisaban ghufira lahu ma taqaddama min dhanbihi",
+      "uz": "Man sama Ramadana imanan vaxtisaban g'ufira laxu ma taqaddama min zanbixi",
+      "ky": "Ман сама Рамадана иманан ва-хтисабан гуфира ляху ма такаддама мин занбихи"
     },
     "reference": "Бухари, 38"
   },
@@ -169,9 +253,15 @@
     "arabic": "خَيْرُ الصَّدَقَةِ مَا كَانَ عَنْ ظَهْرِ غِنًى",
     "translations": {
       "ru": "Лучшая милостыня — та, что дана при достатке.",
-      "en": "Лучшая милостыня — та, что дана при достатке. (EN)",
-      "uz": "Лучшая милостыня — та, что дана при достатке. (UZ)",
-      "ky": "Лучшая милостыня — та, что дана при достатке. (KY)"
+      "en": "The best charity is that which is practiced by a wealthy person.",
+      "uz": "Sadaqaning eng yaxshisi — ehtiyojdan tashqari (boylikdan) berilganidir.",
+      "ky": "Садаканын эң жакшысы - муктаждыктан ашыкча (байлыктан) берилгени."
+    },
+    "transliterations": {
+      "ru": "Хайру-с-садакати ма кяна 'ан захри гына",
+      "en": "Khayru-s-sadaqati ma kana 'an dhahri ghina",
+      "uz": "Xayru-s-sadaqati ma kana an zahri g'ina",
+      "ky": "Хайру-с-садакати ма кяна 'ан захри гына"
     },
     "reference": "Бухари, 1426"
   },
@@ -180,9 +270,15 @@
     "arabic": "الصَّلَاةُ عَلَى وَقْتِهَا",
     "translations": {
       "ru": "Молитва в своё установленное время.",
-      "en": "Молитва в своё установленное время. (EN)",
-      "uz": "Молитва в своё установленное время. (UZ)",
-      "ky": "Молитва в своё установленное время. (KY)"
+      "en": "To offer the prayers at their early fixed stated times.",
+      "uz": "Namozni o'z vaqtida ado etish.",
+      "ky": "Намазды өз убактысында окуу."
+    },
+    "transliterations": {
+      "ru": "Ас-саляту 'аля вактиха",
+      "en": "As-salatu 'ala waqtiha",
+      "uz": "As-salatu ala vaqtiha",
+      "ky": "Ас-саляту 'аля вактиха"
     },
     "reference": "Бухари, 527"
   },
@@ -191,9 +287,15 @@
     "arabic": "إِنَّ اللَّهَ لَا يَنْظُرُ إِلَى أَجْسَادِكُمْ وَلَا إِلَى صُوَرِكُمْ وَلَكِنْ يَنْظُرُ إِلَى قُلُوبِكُمْ",
     "translations": {
       "ru": "Поистине, Аллах не смотрит на ваши тела и лица, но смотрит на ваши сердца.",
-      "en": "Поистине, Аллах не смотрит на ваши тела и лица, но смотрит на ваши сердца. (EN)",
-      "uz": "Поистине, Аллах не смотрит на ваши тела и лица, но смотрит на ваши сердца. (UZ)",
-      "ky": "Поистине, Аллах не смотрит на ваши тела и лица, но смотрит на ваши сердца. (KY)"
+      "en": "Allah does not look at your outward appearance and your wealth, but He looks at your hearts and your deeds.",
+      "uz": "Alloh sizlarning suratingizga va boyligingizga emas, qalbingizga va amalingizga qaraydi.",
+      "ky": "Аллах силердин сырткы көрүнүшүңөргө жана байлыгыңарга эмес, жүрөгүңөргө жана амалыңарга карайт."
+    },
+    "transliterations": {
+      "ru": "Инна-Ллаха ля янзуру иля аджсадикум ва ля иля суварикум ва лякин янзуру иля кулюбикум",
+      "en": "Innal-Laha la yanzuru ila ajsadikum wa la ila suwarikum wa lakin yanzuru ila qulubikum",
+      "uz": "Innal-Loxa la yanzuru ila ajsadikum va la ila suvarikum va lakin yanzuru ila qulubikum",
+      "ky": "Инна-Ллаха ля янзуру иля аджсадикум ва ля иля суварикум ва лякин янзуру иля кулюбикум"
     },
     "reference": "Бухари, 2564 (через Муслим)"
   },
@@ -202,9 +304,15 @@
     "arabic": "الدِّينُ النَّصِيحَةُ",
     "translations": {
       "ru": "Религия — это искренний совет.",
-      "en": "Религия — это искренний совет. (EN)",
-      "uz": "Религия — это искренний совет. (UZ)",
-      "ky": "Религия — это искренний совет. (KY)"
+      "en": "The religion is Nasihah (sincere advice).",
+      "uz": "Din — bu nasihatdir (xolislikdir).",
+      "ky": "Дин - бул насаат (чын ыкластуулук)."
+    },
+    "transliterations": {
+      "ru": "Ад-дину-н-насиха",
+      "en": "Ad-dinu-n-nasihah",
+      "uz": "Ad-dinu-n-nasiha",
+      "ky": "Ад-дину-н-насиха"
     },
     "reference": "Бухари (через Муслим, 55)"
   },

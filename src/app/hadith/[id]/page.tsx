@@ -58,11 +58,16 @@ export default function HadithCollectionPage({ params }: PageProps) {
                  {hadith.reference}
                </span>
             </div>
-            <p className="font-arabic text-xl leading-loose text-main text-right mb-6" dir="rtl">
+            <p className="font-arabic text-xl leading-loose text-main text-right mb-4" dir="rtl">
               {hadith.arabic}
             </p>
+            {hadith.transliterations?.[language as keyof typeof hadith.transliterations] && (
+              <p className="mt-2 text-sm italic text-primary-600/80 dark:text-primary-400/80 font-medium mb-4">
+                {hadith.transliterations[language as keyof typeof hadith.transliterations]}
+              </p>
+            )}
             <p className="text-sm leading-relaxed text-muted">
-              {hadith.translations?.[language] || hadith.translation}
+              {hadith.translations?.[language as keyof typeof hadith.translations] || hadith.translation}
             </p>
           </div>
         ))}

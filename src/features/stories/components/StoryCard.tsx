@@ -62,7 +62,7 @@ export function StoryCard({
       <div className="flex flex-1 flex-col p-6 sm:p-10">
         
         {/* ── Header: Icon & Source ────────────── */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="relative z-40 mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 text-primary-600 shadow-sm dark:bg-primary-900/30 dark:text-primary-400">
               <BookOpen className="h-6 w-6" />
@@ -77,20 +77,20 @@ export function StoryCard({
             </div>
           </div>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 relative z-50">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onToggleFavorite();
               }}
               className={cn(
-                "flex h-12 w-12 items-center justify-center rounded-2xl transition-all active:scale-90",
+                "flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 active:scale-90 hover:scale-110",
                 isFavorite 
-                  ? "bg-red-50 text-red-500 shadow-md dark:bg-red-950/40" 
-                  : "bg-surface border border-border text-neutral-400 hover:bg-neutral-50 hover:text-red-400 dark:hover:bg-neutral-800"
+                  ? "bg-red-50 text-red-500 shadow-sm dark:bg-red-950/40" 
+                  : "bg-neutral-50/80 backdrop-blur-sm border border-border text-neutral-400 hover:bg-white hover:text-red-500 hover:border-red-100 dark:bg-neutral-800/80 dark:hover:bg-neutral-700"
               )}
             >
-              <Heart className={cn("h-6 w-6 transition-transform", isFavorite && "fill-current scale-110")} />
+              <Heart className={cn("h-6 w-6 transition-all duration-300", isFavorite ? "fill-current scale-110" : "scale-100")} />
             </button>
           </div>
         </div>
