@@ -35,9 +35,10 @@ interface NavbarProps {
 const defaultItems: NavItem[] = [
   { labelKey: "nav.home", href: "/" },
   { labelKey: "nav.quran",   href: "/quran" },
+  { labelKey: "nav.stories", href: "/stories" },
+  { labelKey: "nav.adhkar",  href: "/adhkar" },
   { labelKey: "nav.hadith",  href: "/hadith" },
   { labelKey: "nav.prayer",   href: "/prayer" },
-  { labelKey: "nav.adhkar",  href: "/adhkar" },
 ];
 
 /* ── Component ──────────────────────────────────────────────────────── */

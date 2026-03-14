@@ -28,10 +28,6 @@ const NamazBurgerMenu = dynamic(
   { ssr: false }
 );
 
-const StoryWidget = dynamic(
-  () => import("@features/stories/components/StoryWidget").then(m => m.StoryWidget),
-  { ssr: false, loading: () => <div className="h-32 animate-pulse rounded-2xl bg-neutral-100 dark:bg-neutral-800" /> }
-);
 
 
 const PRAYER_HADITHS = [
@@ -89,11 +85,6 @@ export default function SiratPage() {
       {/* 2. Prayer Times */}
       <section>
         <PrayerWidget />
-      </section>
-
-      {/* 3. Story of the Day */}
-      <section>
-        <StoryWidget />
       </section>
 
       {/* Prayer Hadiths */}
