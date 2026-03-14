@@ -103,8 +103,8 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
                     className={cn(
                       "flex w-full items-center justify-between rounded-xl p-4 transition",
                       isActive 
-                        ? "bg-neutral-800 border border-neutral-700 text-neutral-100" 
-                        : "bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-100"
+                        ? "bg-neutral-800 border border-neutral-700 text-neutral-100 shadow-lg" 
+                        : "bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
                     )}
                   >
                     <div className="flex items-center gap-4">

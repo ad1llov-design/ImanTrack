@@ -22,7 +22,7 @@ export function TranslationClient() {
       
       <div className="mb-6 mt-2 space-y-1">
         <h1 className="font-arabic text-h4 text-neutral-800 dark:text-neutral-100 md:text-h3">
-          القرآن الكريم
+          {t("quran.title_main")}
         </h1>
         <p className="text-body-sm text-neutral-500 dark:text-neutral-400">
           {t("quran.translation_desc")}
