@@ -92,7 +92,7 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
           return (
             <div key={juz} className="w-full space-y-2">
               <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-widest px-1">
-                Джуз {juz}
+                {t("quran.juz")} {juz}
               </h2>
               {surahsInJuz.map((surah) => {
                 const isActive = surah.id === selectedSurahId;

@@ -35,9 +35,9 @@ export default function QuranHubPage() {
 
         <Link 
           href="/quran/translation"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-50 px-5 py-3 text-sm font-semibold text-primary-600 transition-all hover:bg-primary-100 hover:scale-[1.02] active:scale-95 dark:bg-primary-900/30 dark:text-primary-400 shrink-0 border border-transparent dark:border-primary-900/50"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-main transition-all hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.02] active:scale-95 shrink-0"
         >
-          <BookOpen className="h-4 w-4" />
+          <BookOpen className="h-4 w-4 text-primary-600 dark:text-primary-400" />
           {t("quran.translation_mode")}
         </Link>
       </div>
@@ -56,7 +56,7 @@ export default function QuranHubPage() {
               className="inline-flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 font-semibold hover:underline bg-primary-50 dark:bg-primary-900/40 px-4 py-2 rounded-xl transition-colors active:scale-95"
             >
               <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
-              К списку сур
+              {t("quran.back_to_surahs")}
             </button>
           </div>
 

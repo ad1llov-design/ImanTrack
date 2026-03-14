@@ -1,6 +1,7 @@
 "use client"
 
 import { surahStartPage } from "../data/surahStartPage"
+import { useLanguage } from "@shared/i18n/LanguageContext"
 
 const SURAH_NAMES: Record<number, string> = {
   1: "Аль-Фатиха", 2: "Аль-Бакара", 3: "Али 'Имран", 4: "Ан-Ниса",
@@ -53,6 +54,7 @@ const surahJuzMap: Record<number, number> = {
 };
 
 export default function SurahList({ onSelect }: { onSelect: (s: number) => void }) {
+  const { t } = useLanguage();
   const juzKeys = Array.from({ length: 30 }, (_, i) => i + 1);
 
   return (
@@ -67,7 +69,7 @@ export default function SurahList({ onSelect }: { onSelect: (s: number) => void 
         return (
           <div key={juz} className="w-full">
             <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200 mb-4 px-1 border-b border-neutral-200 dark:border-neutral-800 pb-2">
-              Джуз {juz}
+              {t("quran.juz")} {juz}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full">
               {surahsInJuz.map((num) => (
@@ -85,7 +87,7 @@ export default function SurahList({ onSelect }: { onSelect: (s: number) => void 
                     </span>
                   </div>
                   <span className="text-[10px] text-neutral-400 uppercase tracking-wider whitespace-nowrap ml-2">
-                    Стр {surahStartPage[num]}
+                    {t("quran.page_short")} {surahStartPage[num]}
                   </span>
                 </button>
               ))}
