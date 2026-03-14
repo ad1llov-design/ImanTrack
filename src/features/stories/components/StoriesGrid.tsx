@@ -14,9 +14,10 @@ import { BookOpen } from "lucide-react";
 
 interface StoriesGridProps {
   stories: Story[];
+  onSelect: (story: Story) => void;
 }
 
-export function StoriesGrid({ stories }: StoriesGridProps) {
+export function StoriesGrid({ stories, onSelect }: StoriesGridProps) {
   const { language, t } = useLanguage();
 
   return (
@@ -24,7 +25,7 @@ export function StoriesGrid({ stories }: StoriesGridProps) {
       {stories.map((story) => (
         <div 
           key={story.id}
-          className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-sm transition-all hover:border-primary-400 hover:shadow-md dark:bg-surface/50"
+          className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-sm transition-all hover:border-primary-400 dark:bg-surface/50"
         >
           <div>
             <div className="mb-4 flex items-center justify-between">
@@ -51,12 +52,10 @@ export function StoriesGrid({ stories }: StoriesGridProps) {
               {story.id.toUpperCase()}
             </span>
             <button 
-              className="text-xs font-bold text-primary-500 transition-colors group-hover:text-primary-600"
+              className="text-xs font-bold text-primary-500 transition-colors hover:text-primary-600 px-2 py-1 -mr-2"
               onClick={() => {
-                // In a real app we might navigate to a detail page, 
-                // but here we toggle the main daily story to this one
+                onSelect(story);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                // We'll handle the selection in the parent component
               }}
             >
               {language === 'ru' ? 'Читать полностью' : language === 'uz' ? 'To\'liq o\'qish' : language === 'ky' ? 'Толук окуу' : 'Read more'} →

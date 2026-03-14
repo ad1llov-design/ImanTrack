@@ -57,7 +57,7 @@ export function StoryCard({
       <div className="h-2 w-full bg-gradient-to-r from-primary-400 via-gold-400 to-primary-600" />
 
       {/* ── Floating Ornament ─────────────────── */}
-      <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary-50/30 blur-3xl transition-all group-hover:bg-primary-100/40 dark:bg-primary-900/10" />
+      <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary-100/5 blur-3xl transition-all" />
 
       <div className="flex flex-1 flex-col p-6 sm:p-10">
         
@@ -79,15 +79,18 @@ export function StoryCard({
           
           <div className="flex gap-2">
             <button
-              onClick={onToggleFavorite}
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleFavorite();
+              }}
               className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-xl transition-all active:scale-95",
+                "flex h-12 w-12 items-center justify-center rounded-2xl transition-all active:scale-90",
                 isFavorite 
-                  ? "bg-red-50 text-red-500 shadow-sm dark:bg-red-950/20" 
-                  : "bg-surface text-neutral-400 hover:bg-neutral-50 hover:text-neutral-600 dark:hover:bg-neutral-800"
+                  ? "bg-red-50 text-red-500 shadow-md dark:bg-red-950/40" 
+                  : "bg-surface border border-border text-neutral-400 hover:bg-neutral-50 hover:text-red-400 dark:hover:bg-neutral-800"
               )}
             >
-              <Heart className={cn("h-5 w-5", isFavorite && "fill-current")} />
+              <Heart className={cn("h-6 w-6 transition-transform", isFavorite && "fill-current scale-110")} />
             </button>
           </div>
         </div>
@@ -107,22 +110,24 @@ export function StoryCard({
 
         {/* ── Story Content ────────────────────── */}
         <div className="flex-1 space-y-8">
-          {/* Arabic Text */}
+          {/* Arabic Text & Transliteration */}
           <div className="relative">
             <Quote className="absolute -left-4 -top-4 h-8 w-8 text-primary-100/50 dark:text-primary-900/20" />
-            <p className="relative z-10 text-right font-arabic text-2xl leading-[2.2] text-neutral-900 dark:text-neutral-50 sm:text-3xl sm:leading-[2.4]">
-              {story.arabic}
-            </p>
-          </div>
-
-          {/* Transliteration */}
-          {story.transliterations[language] && (
-            <div className="rounded-2xl bg-primary-50/30 p-4 dark:bg-primary-950/10">
-              <p className="text-sm italic leading-relaxed text-primary-700/80 dark:text-primary-400/80">
-                {story.transliterations[language]}
+            <div className="relative z-10 text-right">
+              <p className="font-arabic text-2xl leading-[2.2] text-neutral-900 dark:text-neutral-50 sm:text-3xl sm:leading-[2.4]">
+                {story.arabic}
               </p>
+              
+              {/* Transliteration - now right after Arabic */}
+              {story.transliterations[language] && (
+                <div className="mt-4 text-center">
+                  <p className="text-sm italic leading-relaxed text-primary-600/70 dark:text-primary-400/70">
+                    {story.transliterations[language].replace(/\.\.\.$/, '')}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
           {/* Translation */}
           <div className="relative pt-2">

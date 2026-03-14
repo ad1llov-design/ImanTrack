@@ -12,10 +12,10 @@ export const STORIES: Story[] = [
     },
     arabic: "دخل النبي ﷺ حائطا لرجل من الأنصار، فإذا جمل، فلما رأى النبي ﷺ حنّ وذرفت عيناه، فأتاه النبي ﷺ فمسح ذفراه فسكت، فقال: من رب هذا الجمل؟ فجاء فتى من الأنصار فقال: لي يا رسول الله. فقال: أفلا تتقي الله في هذه البهيمة التي ملكك الله إياها؟ فإنه شكا إلي أنك تجيعه وتدئبه.",
     transliterations: {
-      ru: "Дахаля-н-набиййу салля-Ллаху 'аляйхи ва саллям хаитан ли-раджулин мина-ль-ансари, фа-иза джамалюн...",
-      en: "Dakhalan-nabiyyu salla-Llahu 'alayhi wa sallam ha'itan li-rajulin minal-ansari, fa-idha jamalun...",
-      uz: "Dakhalan-nabiyyu salla-Llohu 'alayhi va sallam ha'itan li-rojulin minal-ansari, fa-iza jamalun...",
-      ky: "Дахаля-н-набиййу салля-Ллаху 'аляйхи ва саллям хаитан ли-раджулин мина-ль-ансари, фа-иза джамалюн..."
+      ru: "Дахаля-н-набиййу салля-Ллаху 'аляйхи ва саллям хаитан ли-раджулин мина-ль-ансари, фа-иза джамалюн, фа-лям-ма ра'а-н-набиййа салля-Ллаху 'аляйхи ва саллям ханна ва зарафат 'айнаху, фа-атаху-н-набиййу салля-Ллаху 'аляйхи ва саллям фа-масаха зифраху фа-сакат.",
+      en: "Dakhalan-nabiyyu salla-Llahu 'alayhi wa sallam ha'itan li-rajulin minal-ansari, fa-idha jamalun, fa-lamma ra'an-nabiyya salla-Llahu 'alayhi wa sallam hanna wa darafat aynahu, fa-atahun-nabiyyu salla-Llahu 'alayhi wa sallam fa-masaha dhifrahu fa-sakat.",
+      uz: "Dakhalan-nabiyyu salla-Llohu 'alayhi va sallam ha'itan li-rojulin minal-ansari, fa-iza jamalun, fa-lamma ro'an-nabiyya salla-Llohu 'alayhi va sallam hanna va zorafat aynahu, fa-atahun-nabiyyu salla-Llohu 'alayhi va sallam fa-masaha zifrohu fa-sakat.",
+      ky: "Дахаля-н-набиййу салля-Ллаху 'аляйхи ва саллям хаитан ли-раджулин мина-ль-ансари, фа-иза джамалюн, фа-лям-ма ра'а-н-набиййа салля-Ллаху 'аляйхи ва саллям ханна ва зарафат 'айнаху, фа-атаху-н-набиййу салля-Ллаху 'аляйхи ва саллям фа-масаха зифраху фа-сакат."
     },
     translations: {
       ru: "Пророк ﷺ зашел в сад одного из ансаров и увидел там верблюда. Когда верблюд увидел Пророка ﷺ, он застонал, и из его глаз потекли слезы. Пророк ﷺ подошел к нему, погладил его за ушами, и тот успокоился. Пророк ﷺ спросил: 'Кто хозяин этого верблюда?'. Появился юноша и сказал: 'Я, о Посланник Аллаха'. Пророк ﷺ сказал: 'Неужели ты не боишься Аллаха в отношении этого животного, которым Он тебя наделил? Оно пожаловалось мне, что ты моришь его голодом и изнуряешь непосильным трудом'.",
@@ -43,10 +43,10 @@ export const STORIES: Story[] = [
     },
     arabic: "كان النبي ﷺ يخطب إلى جذع نخلة، فلما صنع له منبر، فاستوى عليه النبي ﷺ، صاح الجذع صياح الصبي، حتى نزل النبي ﷺ فمسحه، فسكت.",
     transliterations: {
-      ru: "Кяна-н-набиййу салля-Ллаху 'аляйхи ва саллям яхтубу иля джиз'и нахлятин...",
-      en: "Kanan-nabiyyu salla-Llahu 'alayhi wa sallam yakhtubu ila jidh'i nahlatin...",
-      uz: "Kanan-nabiyyu salla-Llohu 'alayhi va sallam yaxtubu ila jiz'i nahlatin...",
-      ky: "Кяна-н-набиййу салля-Ллаху 'аляйхи ва саллям яхтубу иля джиз'и нахлятин..."
+      ru: "Кяна-н-набиййу салля-Ллаху 'аляйхи ва саллям яхтубу иля джиз'и нахлятин, фа-лям-ма суни'а ляху минбарун, фастауа 'аляйхи-н-набиййу салля-Ллаху 'аляйхи ва саллям, саха-ль-джиз'у сийаха-с-сабиййи.",
+      en: "Kanan-nabiyyu salla-Llahu 'alayhi wa sallam yakhtubu ila jidh'i nahlatin, fa-lamma suni'a lahu minbarun, fastawa 'alayhin-nabiyyu salla-Llahu 'alayhi wa sallam, sahal-jidh'u siyahas-sabiyyi.",
+      uz: "Kanan-nabiyyu salla-Llohu 'alayhi va sallam yaxtubu ila jiz'i nahlatin, fa-lamma suni'a lahu minbarun, fastava 'alayhin-nabiyyu salla-Llohu 'alayhi va sallam, sohal-jiz'u siyohas-sabiyyi.",
+      ky: "Кяна-н-набиййу салля-Ллаху 'аляйхи ва саллям яхтубу иля джиз'и нахлятин, фа-лям-ма суни'а ляху минбарун, фастауа 'аляйхи-н-набиййу салля-Ллаху 'аляйхи ва саллям, саха-ль-джиз'у сийаха-с-сабиййи."
     },
     translations: {
       ru: "Раньше Пророк ﷺ во время проповедей опирался на ствол пальмы. Когда для него изготовили минбар (кафедру) и он взошел на него, ствол пальмы начал издавать звуки, подобные плачу ребенка, из-за тоски по Проповеднику. Пророк ﷺ спустился, обнял ствол, и тот успокоился.",

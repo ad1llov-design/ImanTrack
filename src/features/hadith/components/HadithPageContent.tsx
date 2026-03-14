@@ -12,8 +12,9 @@ import { getHadithOfTheDay, getRandomHadith } from "../services/hadith.service";
 import { HADITH_COLLECTIONS } from "../data/collections";
 import { HADITH_LIST } from "../data/hadith.collection";
 import type { Hadith } from "../types/hadith.types";
+import { cn } from "@shared/lib/utils";
 import Link from "next/link";
-import { BookMarked, Library, ArrowRight, Copy, Share2 } from "lucide-react";
+import { BookMarked, Library, ArrowRight, Copy, Share2, Heart } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "@shared/i18n/LanguageContext";
 
@@ -22,6 +23,19 @@ export function HadithPageContent() {
   const todayHadith = useMemo(() => getHadithOfTheDay(), []);
   const [currentHadith, setCurrentHadith] = useState<Hadith>(todayHadith);
   const [isCopied, setIsCopied] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("iman_hadith_favorites");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
+  useMemo(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("iman_hadith_favorites", JSON.stringify(favorites));
+    }
+  }, [favorites]);
 
   const showNext = () => {
     const next = getRandomHadith();
@@ -41,6 +55,17 @@ export function HadithPageContent() {
       setTimeout(() => setIsCopied(false), 2000);
     } catch {
       toast.error(t("common.error"));
+    }
+  };
+
+  const toggleFavorite = () => {
+    const isFav = favorites.includes(currentHadith.id);
+    if (isFav) {
+      setFavorites(favorites.filter((id) => id !== currentHadith.id));
+      toast.success(language === "ru" ? "Удалено из избранного" : "Removed from favorites");
+    } else {
+      setFavorites([...favorites, currentHadith.id]);
+      toast.success(language === "ru" ? "Добавлено в избранное" : "Added to favorites");
     }
   };
 
@@ -112,6 +137,17 @@ export function HadithPageContent() {
         {/* Actions */}
         <div className="flex items-center justify-between border-t border-border pt-4">
           <div className="flex items-center gap-2">
+            <button
+              onClick={toggleFavorite}
+              className={cn(
+                "flex h-9 w-9 items-center justify-center rounded-xl border border-border transition-colors",
+                favorites.includes(currentHadith.id)
+                  ? "bg-red-50 text-red-500 border-red-100 dark:bg-red-950/20 dark:border-red-900/30"
+                  : "text-muted hover:text-red-500 hover:border-red-100"
+              )}
+            >
+              <Heart className={cn("h-4 w-4", favorites.includes(currentHadith.id) && "fill-current")} />
+            </button>
             <button
               onClick={copy}
               className="flex h-9 w-9 items-center justify-center rounded-xl border border-border text-muted hover:text-main hover:border-primary-300 transition-colors"

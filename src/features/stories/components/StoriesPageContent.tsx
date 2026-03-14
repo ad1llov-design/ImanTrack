@@ -9,6 +9,7 @@
 import React, { useState, useMemo } from "react";
 import { useLanguage } from "@shared/i18n/LanguageContext";
 import { getStoryOfTheDay, getRandomStory, getAllStories } from "../services/stories.service";
+import { Story } from "../types/stories.types";
 import { StoryCard } from "./StoryCard";
 import { StoriesGrid } from "./StoriesGrid";
 import { Sparkles, Library, History } from "lucide-react";
@@ -19,15 +20,30 @@ export function StoriesPageContent() {
   const storyOfTheDay = useMemo(() => getStoryOfTheDay(), []);
   const allStories = useMemo(() => getAllStories(), []);
   
-  const [currentStory, setCurrentStory] = useState(storyOfTheDay);
+  const [currentStory, setCurrentStory] = useState<Story>(storyOfTheDay);
   const [isCopied, setIsCopied] = useState(false);
   const [isShared, setIsShared] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('iman_stories_favorites');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem('iman_stories_favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const handleNext = () => {
     const next = getRandomStory();
     setCurrentStory(next);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelect = (story: Story) => {
+    setCurrentStory(story);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top when a new story is selected
   };
 
   const handleFavorite = () => {
@@ -119,7 +135,7 @@ export function StoriesPageContent() {
           </div>
         </div>
 
-        <StoriesGrid stories={allStories} />
+        <StoriesGrid stories={allStories} onSelect={handleSelect} />
       </div>
 
       {/* ── Quote / Insight Footer ──────────── */}
