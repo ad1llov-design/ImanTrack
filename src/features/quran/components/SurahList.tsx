@@ -71,24 +71,24 @@ export function SurahList({ onSelect, selectedSurahId }: SurahListProps) {
               key={surah.id}
               onClick={() => onSelect(surah.id)}
               className={cn(
-                "flex w-full items-center justify-between rounded-xl border p-4 transition-all",
+                "flex w-full items-center justify-between rounded-xl p-4 transition",
                 isActive 
-                  ? "border-primary-500 bg-primary-50 shadow-sm" 
-                  : "border-border bg-surface hover:border-primary-300 shadow-sm"
+                  ? "bg-neutral-800 border border-neutral-700 text-neutral-100" 
+                  : "bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-100"
               )}
             >
               <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 min-w-10 items-center justify-center rounded-xl bg-surface border border-border text-xs font-bold text-muted shadow-inner">
+                <span className="flex h-10 w-10 min-w-10 items-center justify-center rounded-full bg-green-600 text-white text-xs font-bold shadow-sm">
                   {surah.id}
                 </span>
                 <div className="text-left">
-                  <h4 className="text-sm font-bold text-main">{surah.name_simple}</h4>
-                  <p className="text-[10px] uppercase tracking-wider text-muted line-clamp-1">
+                  <h4 className="text-sm font-bold">{surah.name_simple}</h4>
+                  <p className="text-[10px] uppercase tracking-wider text-neutral-400 line-clamp-1">
                      {surah.translated_name.name} • {surah.verses_count} {t("quran.ayahs")}
                   </p>
                 </div>
               </div>
-              <span className="font-arabic text-2xl text-primary-600">
+              <span className="font-arabic text-2xl text-green-500">
                 {surah.name_arabic}
               </span>
             </button>

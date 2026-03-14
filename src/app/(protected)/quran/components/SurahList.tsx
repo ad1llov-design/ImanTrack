@@ -43,17 +43,17 @@ export default function SurahList({ onSelect }: { onSelect: (s: number) => void 
           <button
             key={num}
             onClick={() => onSelect(num)}
-            className="flex items-center justify-between bg-surface-light dark:bg-surface-dark hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-border p-3.5 rounded-xl transition-all active:scale-95 text-neutral-900 dark:text-neutral-50 font-semibold group hover:border-primary-500 shadow-sm"
+            className="flex items-center justify-between rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 transition p-4 text-neutral-100 font-semibold group w-full"
           >
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold shrink-0 border border-transparent group-hover:border-primary-200 dark:group-hover:border-primary-800 transition-colors">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-green-600 text-white text-xs font-bold shrink-0 shadow-sm">
                 {num}
               </span>
-              <span className="text-sm font-bold opacity-90 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors text-left line-clamp-1">
+              <span className="text-sm font-bold transition-colors text-left line-clamp-1">
                 {SURAH_NAMES[num]}
               </span>
             </div>
-            <span className="text-[10px] text-neutral-400 dark:text-neutral-500 uppercase tracking-wider whitespace-nowrap ml-2">
+            <span className="text-[10px] text-neutral-400 uppercase tracking-wider whitespace-nowrap ml-2">
               Стр {surahStartPage[num]}
             </span>
           </button>
