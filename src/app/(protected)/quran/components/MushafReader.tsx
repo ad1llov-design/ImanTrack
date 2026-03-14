@@ -11,15 +11,18 @@ import {
 
 const TOTAL_PAGES = 604;
 
-// Calibrated Y-offset (%) for each line in the standard 15-line Madani Mushaf (quranPNG images)
-// Pages 1-2 (Fatiha/start of Baqara) have a special layout with header decorations.
-// Pages 3-604 follow the standard 15-line grid.
-const LINE_Y_PCT: Record<number, number> = {
-  1:  4.5,  2: 11.0, 3: 17.5, 4: 24.0, 5: 30.5,
-  6: 37.0,  7: 43.5, 8: 50.0, 9: 56.5, 10: 63.0,
-  11: 69.5, 12: 76.0, 13: 82.5, 14: 89.0, 15: 95.5,
-};
-const LINE_HEIGHT_PCT = 6.2; // height of each line highlight strip (% of image height)
+// ─── Calibration for standard 15-line Madani Mushaf (quranPNG scans) ───────
+// Text content area: starts at ~9% from top, ends at ~87% from top.
+// 15 lines are evenly distributed in that 78% content window.
+// Each line occupies 78/15 ≈ 5.2% of image height.
+const TEXT_TOP_PCT    = 9.0;   // top edge of line 1
+const LINE_HEIGHT_PCT = 5.15;  // height of each line in % of full image
+const LINE_GAP_PCT    = 0.2;   // small gap between lines
+
+// Returns the TOP % position of a given line (1-indexed)
+function lineTopPct(line: number): number {
+  return TEXT_TOP_PCT + (line - 1) * (LINE_HEIGHT_PCT + LINE_GAP_PCT);
+}
 
 interface VerseLineInfo {
   surah: number;
@@ -84,13 +87,16 @@ export default function MushafReader({ initialPage, externalPage, activeVerseKey
   const nextPage = () => { if (page < TOTAL_PAGES) setPage((p) => p + 1); };
   const prevPage = () => { if (page > 1) setPage((p) => p - 1); };
 
-  // Determine lines to highlight for the active ayah
-  const highlightLines: number[] = [];
+  // Determine highlight block for the active ayah:
+  // Instead of per-line strips → one unified rectangle from top-of-minLine to bottom-of-maxLine
+  let highlightBlock: { top: number; height: number } | null = null;
   if (activeVerseKey) {
     const [hS, hA] = activeVerseKey.split(":").map(Number);
     const entry = pageLayout.find((e) => e.surah === hS && e.ayah === hA);
     if (entry && entry.minLine > 0) {
-      for (let l = entry.minLine; l <= entry.maxLine; l++) highlightLines.push(l);
+      const top    = lineTopPct(entry.minLine);
+      const bottom = lineTopPct(entry.maxLine) + LINE_HEIGHT_PCT;
+      highlightBlock = { top, height: bottom - top };
     }
   }
 
@@ -123,30 +129,25 @@ export default function MushafReader({ initialPage, externalPage, activeVerseKey
               draggable={false}
             />
 
-            {/* ───────────── AYAH HIGHLIGHT BANDS ───────────── */}
-            {highlightLines.map((line) => {
-              const topPct = LINE_Y_PCT[line];
-              if (topPct === undefined) return null;
-              return (
-                <div
-                  key={`hl-${line}`}
-                  aria-hidden="true"
-                  style={{
-                    position: "absolute",
-                    inset: "auto",
-                    top: `${topPct}%`,
-                    left: "3%",
-                    width: "94%",
-                    height: `${LINE_HEIGHT_PCT}%`,
-                    background: "rgba(34, 197, 94, 0.30)",
-                    borderRadius: "5px",
-                    pointerEvents: "none",
-                    transition: "opacity 0.35s ease",
-                    border: "1px solid rgba(34,197,94,0.50)",
-                  }}
-                />
-              );
-            })}
+            {/* ─── SINGLE UNIFIED AYAH HIGHLIGHT BLOCK ─── */}
+            {highlightBlock && (
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  top: `${highlightBlock.top}%`,
+                  left: "11%",
+                  width: "78%",
+                  height: `${highlightBlock.height}%`,
+                  background: "rgba(34, 197, 94, 0.22)",
+                  borderRadius: "6px",
+                  pointerEvents: "none",
+                  transition: "top 0.4s ease, height 0.4s ease, opacity 0.3s ease",
+                  border: "1.5px solid rgba(34,197,94,0.50)",
+                  boxShadow: "0 0 10px rgba(34,197,94,0.18)",
+                }}
+              />
+            )}
           </TransformComponent>
         </TransformWrapper>
       </div>
