@@ -20,7 +20,7 @@ export function AdhkarCategoriesPage() {
     <div className="mx-auto max-w-2xl px-4 pt-8 pb-[calc(4rem+env(safe-area-inset-bottom)+2rem)] sm:pt-12 md:pb-12">
       {/* Header */}
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+        <h1 className="text-2xl font-bold text-primary-600 dark:text-primary-400">
           {t("adhkar.title" as any) || "📿 Азкары и Зикры"}
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">

@@ -79,13 +79,8 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
     dhikrs.length > 0 ? Math.round((completedCount / dhikrs.length) * 100) : 0;
   const isAllDone = percentage === 100;
 
-  // Безопасное получение цветов с гарантированным fallback
-  const colors: ColorScheme = colorMap[category.color] || colorMap.primary || {
-    bg: "from-primary-50 to-white",
-    border: "border-primary-200",
-    text: "text-primary-700",
-    bar: "bg-primary-500"
-  };
+  // Force all cards to use the same green (primary) style as requested
+  const colors: ColorScheme = colorMap.primary!;
 
   return (
     <Link
@@ -116,7 +111,7 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
             })()}
           </span>
           <div>
-            <h3 className={cn("font-semibold", colors.text)}>
+            <h3 className="font-semibold text-primary-600 dark:text-primary-400">
               {category.translations?.[language as keyof typeof category.translations] || category.nameRu}
             </h3>
             <p className="font-arabic text-xs text-neutral-400 dark:text-neutral-500">
@@ -144,7 +139,7 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
           <span className="text-neutral-400">
             {completedCount} / {dhikrs.length}
           </span>
-          <span className={cn("font-semibold", colors.text)}>
+          <span className="font-semibold text-primary-600 dark:text-primary-400">
             {percentage}%
           </span>
         </div>

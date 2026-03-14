@@ -109,7 +109,7 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
               <IconComp className="h-5 w-5 text-neutral-400 dark:text-neutral-500" strokeWidth={2} />
             ) : null;
           })()}
-          <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">
+          <span className="text-sm font-semibold text-primary-600 dark:text-primary-400">
             {category.translations?.[language as keyof typeof category.translations] || category.nameRu}
           </span>
         </div>
