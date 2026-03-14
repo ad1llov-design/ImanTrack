@@ -11,12 +11,14 @@ import {
   User,
   BookText,
   Heart,
+  Sparkles,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@shared/components/ui/ThemeToggle";
 import { useLanguage } from "@shared/i18n/LanguageContext";
 import { LanguageSwitcher } from "@shared/i18n/components/LanguageSwitcher";
+
 export function GlobalNavigation() {
   const pathname = usePathname();
   const { t } = useLanguage();
@@ -27,12 +29,12 @@ export function GlobalNavigation() {
   }
 
   const navItems = [
-    { label: t("nav.home"), href: "/", icon: <Home className="h-5 w-5" /> },
-    { label: t("nav.quran"), href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
-    { label: t("nav.dhikr"), href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
-    { label: t("nav.hadith"), href: "/hadith", icon: <BookText className="h-5 w-5" /> },
-    { label: t("nav.sunnah"), href: "/sunnah", icon: <Heart className="h-5 w-5" /> },
-    { label: t("nav.settings"), href: "/profile", icon: <User className="h-5 w-5" /> },
+    { labelKey: "nav.home", href: "/", icon: <Home className="h-5 w-5" /> },
+    { labelKey: "nav.quran", href: "/quran", icon: <BookOpen className="h-5 w-5" /> },
+    { labelKey: "nav.dhikr", href: "/adhkar", icon: <Clock className="h-5 w-5" /> },
+    { labelKey: "nav.stories", href: "/stories", icon: <Sparkles className="h-5 w-5" /> },
+    { labelKey: "nav.hadith", href: "/hadith", icon: <BookText className="h-5 w-5" /> },
+    { labelKey: "nav.sunnah", href: "/sunnah", icon: <Heart className="h-5 w-5" /> },
   ];
 
   return (

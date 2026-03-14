@@ -1,6 +1,10 @@
 {
   "nav.home": "Home",
   "nav.quran": "Quran",
+  "nav.stories": "Stories",
+  "stories.moral": "Moral",
+  "stories.daily": "Story of the Day",
+  "stories.read_more": "Read more",
   "nav.hadith": "Hadith",
   "nav.dhikr": "Dhikr",
   "nav.sunnah": "Sunnah",
