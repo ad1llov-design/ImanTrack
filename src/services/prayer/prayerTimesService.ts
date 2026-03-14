@@ -49,7 +49,7 @@ export async function getPrayerTimes({
   latitude,
   longitude,
   date = new Date(),
-  method = 4, // Umm Al-Qura по умолчанию
+  method = 1, // Method 1: Karachi (best for Central Asia 18/18)
 }: GetPrayerTimesParams): Promise<PrayerTimesResponse> {
   const dateStr = date.toISOString().split("T")[0]!;
   const url = new URL(
@@ -59,6 +59,7 @@ export async function getPrayerTimes({
   url.searchParams.set("latitude", latitude.toString());
   url.searchParams.set("longitude", longitude.toString());
   url.searchParams.set("method", method.toString());
+  url.searchParams.set("school", "1"); // Hanafi Asr ratio (2x)
 
   const response = await fetch(url.toString(), {
     next: { revalidate: 3600 }, // Кэш на 1 час
@@ -88,7 +89,8 @@ export async function getMonthlyPrayerTimes(
 
   url.searchParams.set("latitude", params.latitude.toString());
   url.searchParams.set("longitude", params.longitude.toString());
-  url.searchParams.set("method", (params.method ?? 4).toString());
+  url.searchParams.set("method", (params.method ?? 1).toString());
+  url.searchParams.set("school", "1"); // Hanafi Asr ratio (2x)
 
   const response = await fetch(url.toString(), {
     next: { revalidate: 86400 }, // Кэш на 24 часа

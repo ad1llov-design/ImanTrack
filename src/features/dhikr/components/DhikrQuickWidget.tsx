@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@shared/lib/utils";
 import { toast } from "sonner";
+import { Sparkles } from "lucide-react";
 
 const DHIKR_TYPES = [
   { id: "subhanallah", label: "СубханАллах", arabic: "سبحان الله", target: 33 },
@@ -34,7 +35,7 @@ export function DhikrQuickWidget({ className }: { className?: string }) {
   return (
     <div className={cn("space-y-4", className)}>
       <h2 className="text-xl font-semibold text-main flex items-center gap-2">
-        📿 Зикр
+        <Sparkles className="h-5 w-5 text-primary-500" /> Зикр
       </h2>
       <div className="grid grid-cols-3 gap-3">
         {DHIKR_TYPES.map((dhikr) => {

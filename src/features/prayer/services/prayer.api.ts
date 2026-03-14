@@ -24,8 +24,14 @@ import {
 
 const ALADHAN_BASE_URL = "https://api.aladhan.com/v1";
 
-/** Метод расчёта (2 = ISNA, 3 = Muslim World League, etc.) */
-const DEFAULT_METHOD = 2;
+/**
+ * Метод расчёта: 1 = University of Islamic Sciences, Karachi
+ * Этот метод использует углы 18°/18°, что наиболее точно соответствует 
+ * стандартам Муфтията Кыргызстана, Узбекистана и стран СНГ.
+ * Параметр school=1 (Ханафи) — Аср наступает по второму тени (2× высота).
+ */
+const DEFAULT_METHOD = 1;  // University of Islamic Sciences, Karachi (18°/18°)
+const DEFAULT_SCHOOL = 1;  // Hanafi madhab — for Asr
 
 /** Названия намазов для извлечения из API (с большой буквы) */
 const API_PRAYER_KEYS = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"] as const;
@@ -61,7 +67,7 @@ export async function fetchPrayerTimes(
     path = `timings/${day}-${month}-${year}`;
   }
 
-  const url = `${ALADHAN_BASE_URL}/${path}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}`;
+  const url = `${ALADHAN_BASE_URL}/${path}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}&school=${DEFAULT_SCHOOL}&midnightMode=0&timezonestring=auto`;
 
   const response = await fetch(url, {
     next: { revalidate: 3600 }, // Cache for 1 hour

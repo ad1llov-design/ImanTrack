@@ -14,6 +14,24 @@ import { getDhikrsByCategory } from "../data/adhkar.data";
 import { useAdhkarStore } from "../store/adhkarStore";
 import type { CategoryInfo } from "../types/adhkar.types";
 import { useLanguage } from "@shared/i18n/LanguageContext";
+import { 
+  Sunrise, 
+  Moon, 
+  Heart, 
+  Sun, 
+  MoonStar,
+  Sparkles,
+  LucideIcon
+} from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  "sunrise": Sunrise,
+  "moon": Moon,
+  "sparkles": Sparkles,
+  "heart": Heart,
+  "moon-star": MoonStar,
+  "sun": Sun,
+};
 
 interface CategoryCardProps {
   category: CategoryInfo;
@@ -87,8 +105,15 @@ export function CategoryCard({ category, index }: CategoryCardProps) {
       {/* ── Top: Icon + Info ──────────────────── */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/60 text-2xl shadow-sm backdrop-blur-sm dark:bg-neutral-800/60">
-            {category.icon}
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100/50 dark:bg-neutral-800/40 transition-colors group-hover:bg-white/80 dark:group-hover:bg-neutral-800/80">
+            {(() => {
+              const IconComp = iconMap[category.icon];
+              return IconComp ? (
+                <IconComp className="h-6 w-6 text-neutral-500 dark:text-neutral-400" strokeWidth={1.5} />
+              ) : (
+                <span className="text-xl">✨</span>
+              );
+            })()}
           </span>
           <div>
             <h3 className={cn("font-semibold", colors.text)}>

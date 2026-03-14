@@ -15,6 +15,24 @@ import { useAdhkar } from "../hooks/useAdhkar";
 import type { AdhkarCategory } from "../types/adhkar.types";
 import { DhikrCounter } from "./DhikrCounter";
 import { useLanguage } from "@shared/i18n/LanguageContext";
+import { 
+  Sunrise, 
+  Moon, 
+  Heart, 
+  Sun, 
+  MoonStar,
+  Sparkles,
+  LucideIcon
+} from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  "sunrise": Sunrise,
+  "moon": Moon,
+  "sparkles": Sparkles,
+  "heart": Heart,
+  "moon-star": MoonStar,
+  "sun": Sun,
+};
 
 interface DhikrCategoryViewProps {
   categoryId: AdhkarCategory;
@@ -85,7 +103,12 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
 
         {/* Category info */}
         <div className="flex items-center gap-2">
-          <span className="text-lg">{category.icon}</span>
+          {(() => {
+            const IconComp = iconMap[category.icon];
+            return IconComp ? (
+              <IconComp className="h-5 w-5 text-neutral-400 dark:text-neutral-500" strokeWidth={2} />
+            ) : null;
+          })()}
           <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">
             {category.translations?.[language as keyof typeof category.translations] || category.nameRu}
           </span>
@@ -155,9 +178,11 @@ export function DhikrCategoryView({ categoryId }: DhikrCategoryViewProps) {
       {/* ── All complete celebration ─────────── */}
       {allComplete && (
         <div className="mt-8 animate-fade-in rounded-2xl border border-gold-200 bg-gradient-to-br from-gold-50 to-white p-6 text-center dark:border-gold-800 dark:from-gold-950/20 dark:to-surface-dark">
-          <span className="text-4xl">🎉</span>
-          <p className="mt-2 font-arabic text-xl text-gold-600 dark:text-gold-400">
-            ماشاء الله تبارك الله
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-100/50 dark:bg-gold-900/30">
+            <Sparkles className="h-8 w-8 text-gold-600 dark:text-gold-400" />
+          </div>
+          <p className="mt-4 font-arabic text-xl text-gold-600 dark:text-gold-400">
+            ماشاء الله तبارك الله
           </p>
           <Link
             href="/adhkar"
