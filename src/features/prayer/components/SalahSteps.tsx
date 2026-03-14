@@ -62,7 +62,7 @@ export default function SalahSteps() {
           return (
             <div
               key={step.id}
-              className="rounded-xl border border-border bg-surface-light dark:bg-surface-dark overflow-hidden"
+              className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden"
             >
               <button
                 onClick={() => toggle(step.id)}

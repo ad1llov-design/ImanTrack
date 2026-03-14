@@ -74,7 +74,7 @@ export default function PrayerStructure() {
         {PRAYERS.map((prayer) => (
           <div
             key={prayer.nameKey}
-            className="rounded-xl border border-border bg-surface-light dark:bg-surface-dark p-4"
+            className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4"
           >
             <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
               {t(prayer.nameKey)}

@@ -23,6 +23,11 @@ const VideoTutorial = dynamic(
   { ssr: false }
 );
 
+const NamazBurgerMenu = dynamic(
+  () => import("@features/prayer/components/NamazBurgerMenu").then(m => m.NamazBurgerMenu),
+  { ssr: false }
+);
+
 const PRAYER_HADITHS = [
   {
     arabic: "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
@@ -54,6 +59,9 @@ export default function SiratPage() {
           </h1>
           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">بسم الله الرحمن الرحيم</p>
         </div>
+        <div className="relative z-50">
+          <NamazBurgerMenu />
+        </div>
       </div>
 
       {/* 1. Namaz Hero */}
@@ -79,7 +87,7 @@ export default function SiratPage() {
         <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-4">{t("prayer.title")}</h2>
         <div className="space-y-4">
           {PRAYER_HADITHS.map((h, i) => (
-            <div key={i} className="rounded-2xl border border-border bg-surface-light dark:bg-surface-dark p-5 shadow-sm">
+            <div key={i} className="rounded-2xl border border-border bg-surface-light dark:bg-neutral-900 p-5 shadow-sm border-neutral-200 dark:border-neutral-800">
               <p className="font-arabic text-lg leading-loose text-neutral-900 dark:text-neutral-50 text-right mb-3" dir="rtl">
                 {h.arabic}
               </p>
@@ -93,15 +101,6 @@ export default function SiratPage() {
           ))}
         </div>
       </section>
-
-      {/* 3. Prayer Structure */}
-      <PrayerStructure />
-
-      {/* 4. Step-by-step Salah Guide */}
-      <SalahSteps />
-
-      {/* 5. Video Tutorial */}
-      <VideoTutorial />
     </main>
   );
 }
