@@ -67,10 +67,12 @@ export async function fetchPrayerTimes(
     path = `timings/${day}-${month}-${year}`;
   }
 
-  const url = `${ALADHAN_BASE_URL}/${path}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}&school=${DEFAULT_SCHOOL}&midnightMode=0&timezonestring=auto`;
+  const url = `${ALADHAN_BASE_URL}/${path}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}&school=${DEFAULT_SCHOOL}`;
+  
+  console.log(`[PrayerAPI] Fetching: ${url}`);
 
   const response = await fetch(url, {
-    next: { revalidate: 3600 }, // Cache for 1 hour
+    next: { revalidate: 600 }, // 10 minutes cache for better responsiveness during fixes
   });
 
   if (!response.ok) {
@@ -88,7 +90,9 @@ export async function fetchPrayerTimes(
 
 /* ── Parse ──────────────────────────────────────────────────────────── */
 
-function parseTimeString(timeStr: string, baseDateStr: string): Date {
+function parseTimeString(timeStr: string | undefined, baseDateStr: string): Date {
+  if (!timeStr) return new Date(0); // Fallback for missing time
+
   const cleanTime = timeStr.replace(/\s*\(.*\)/, "").trim();
   const [hours, minutes] = cleanTime.split(":").map(Number);
   
@@ -113,19 +117,27 @@ export function parsePrayerTimes(
   now?: Date,
 ): PrayerTime[] {
   const currentTime = now ?? new Date();
-  const timings = apiResponse.data.timings;
-  const gregorianDate = apiResponse.data.date.gregorian.date;
+  const timings = apiResponse?.data?.timings;
+  const gregorianDate = apiResponse?.data?.date?.gregorian?.date;
+
+  if (!timings) {
+    console.error("[PrayerAPI] No timings in response", apiResponse);
+    return [];
+  }
 
   // Создаём массив PrayerTime
   const prayers: PrayerTime[] = API_PRAYER_KEYS.map((apiKey) => {
     const timeStr = timings[apiKey];
+    if (!timeStr) {
+      console.warn(`[PrayerAPI] Missing timing for ${apiKey}`);
+    }
     const dateTime = parseTimeString(timeStr, gregorianDate);
     const internalId = API_TO_INTERNAL_MAP[apiKey]!;
     const info = PRAYER_LIST.find((p) => p.name === internalId)!;
 
     return {
       name: internalId,
-      time: timeStr.replace(/\s*\(.*\)/, "").trim(),
+      time: (timeStr || "--:--").replace(/\s*\(.*\)/, "").trim(),
       dateTime,
       status: "upcoming" as PrayerStatus,
       info,

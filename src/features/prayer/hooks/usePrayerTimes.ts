@@ -42,18 +42,22 @@ export function usePrayerTimes() {
 
     try {
       // 1. Получаем геолокацию (cached → browser → IP → fallback)
+      console.log("[usePrayerTimes] Loading location...");
       let location = loadSavedLocation();
       if (!location) {
+        console.log("[usePrayerTimes] No saved location, requesting fresh...");
         location = await getLocation();
         saveLocation(location);
       }
       store.setLocation(location);
 
       // 2. Запрашиваем API
+      console.log("[usePrayerTimes] Fetching times for", location.coords);
       const apiResponse = await fetchPrayerTimes(location.coords);
 
       // 3. Парсим времена
       const prayers = parsePrayerTimes(apiResponse);
+      if (prayers.length === 0) throw new Error("API вернул пустой список времен");
 
       // 4. Обновляем store
       store.setPrayers(prayers);
@@ -67,11 +71,13 @@ export function usePrayerTimes() {
       );
       store.setGregorianDate(apiResponse.data.date.readable);
 
-      store.setLoading(false);
     } catch (err) {
+      console.error("[usePrayerTimes] Error loading prayer times:", err);
       const message =
         err instanceof Error ? err.message : "Не удалось загрузить намазы";
       store.setError(message);
+    } finally {
+      store.setLoading(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -59,7 +59,7 @@ export async function getPrayerTimes({
   url.searchParams.set("latitude", latitude.toString());
   url.searchParams.set("longitude", longitude.toString());
   url.searchParams.set("method", method.toString());
-  url.searchParams.set("school", "1"); // Hanafi Asr ratio (2x)
+  url.searchParams.set("school", "1");
 
   const response = await fetch(url.toString(), {
     next: { revalidate: 3600 }, // Кэш на 1 час
@@ -90,7 +90,7 @@ export async function getMonthlyPrayerTimes(
   url.searchParams.set("latitude", params.latitude.toString());
   url.searchParams.set("longitude", params.longitude.toString());
   url.searchParams.set("method", (params.method ?? 1).toString());
-  url.searchParams.set("school", "1"); // Hanafi Asr ratio (2x)
+  url.searchParams.set("school", "1");
 
   const response = await fetch(url.toString(), {
     next: { revalidate: 86400 }, // Кэш на 24 часа

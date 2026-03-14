@@ -116,15 +116,15 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
         {location && (
           <button
             onClick={refreshLocation}
-            className="group flex items-center gap-1.5 rounded-xl border border-neutral-200 px-3 py-1.5 text-xs text-neutral-500 transition-all hover:border-primary-300 hover:text-primary-600 dark:border-neutral-700 dark:hover:border-primary-700 dark:hover:text-primary-400"
+            className="group flex items-center gap-1.5 rounded-xl border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-medium text-primary-700 transition-all hover:bg-primary-100 dark:border-primary-800 dark:bg-primary-950/30 dark:text-primary-300"
             title="Нажмите чтобы обновить геолокацию"
           >
             <svg className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            {location.city ?? "Местоположение"}
-            {location.country ? `, ${location.country}` : ""}
+            <span>{location.city || "Определить местоположение"}</span>
+            {location.country ? <span className="opacity-60">, {location.country}</span> : ""}
           </button>
         )}
       </div>
@@ -158,6 +158,15 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
 
       {!isLoading && !error && (
         <div className="space-y-2.5">
+          {prayers.length === 0 && (
+            <div className="rounded-2xl border border-dashed border-neutral-200 p-8 text-center dark:border-neutral-800">
+              <p className="text-sm text-neutral-500">Нет данных для этого региона</p>
+              <button onClick={refreshLocation} className="mt-4 text-xs font-semibold text-primary-600 hover:text-primary-700">
+                Сбросить местоположение
+              </button>
+            </div>
+          )}
+
           {prayers
             .filter((p) => p.info.isFard)
             .map((prayer, index) => (
@@ -169,6 +178,8 @@ export function PrayerTimesList({ className }: PrayerTimesListProps) {
                 <PrayerCard prayer={prayer} />
               </div>
             ))}
+          
+          {/* ... existing Sunrise logic ... */}
 
           {/* Sunrise — small */}
           {prayers
