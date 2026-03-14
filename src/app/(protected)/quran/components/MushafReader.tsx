@@ -11,7 +11,7 @@ import {
 
 const TOTAL_PAGES = 604;
 
-export default function MushafReader({ initialPage }: { initialPage: number }) {
+export default function MushafReader({ initialPage, externalPage }: { initialPage: number, externalPage?: number }) {
   const [page, setPage] = useState(initialPage);
   const { t } = useLanguage();
   const transformRef = useRef<ReactZoomPanPinchRef | null>(null);
@@ -23,6 +23,12 @@ export default function MushafReader({ initialPage }: { initialPage: number }) {
   useEffect(() => {
     resetZoom();
   }, [page, resetZoom]);
+
+  useEffect(() => {
+    if (externalPage && externalPage !== page) {
+      setPage(externalPage);
+    }
+  }, [externalPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const nextPage = () => {
     if (page < TOTAL_PAGES) setPage(page + 1);

@@ -38,6 +38,7 @@ export interface Verse {
   verse_key: string;
   text_arabic: string; // Renamed from text_uthmani to be generic
   translation?: string;
+  page_number?: number;
 }
 
 export type QuranScriptType = "quran-uthmani" | "quran-simple" | "quran-indopak";
@@ -121,7 +122,8 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
         id: ayah.numberInSurah,
         verse_key: `${chapterId}:${ayah.numberInSurah}`,
         text_arabic: ayah.text,
-        translation: translationText
+        translation: translationText,
+        page_number: ayah.page
       };
     });
   } catch (error) {
@@ -146,7 +148,8 @@ export async function getSurahVerses(chapterId: number, scriptType: QuranScriptT
             id: i + 1,
             verse_key: v.verse_key,
             text_arabic: v.text_uthmani,
-            translation: translationText
+            translation: translationText,
+            page_number: v.page_number
           };
         });
       }

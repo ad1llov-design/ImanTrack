@@ -11,10 +11,12 @@ import { useLanguage } from "@shared/i18n/LanguageContext"
 
 export default function QuranHubPage() {
   const [selectedSurah, setSelectedSurah] = useState<number | null>(null)
+  const [activeAudioPage, setActiveAudioPage] = useState<number | null>(null)
   const { t } = useLanguage()
 
   const handleSelect = (surah: number) => {
     setSelectedSurah(surah)
+    setActiveAudioPage(null)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
@@ -58,9 +60,15 @@ export default function QuranHubPage() {
             </button>
           </div>
 
-          <MushafReader initialPage={surahStartPage[selectedSurah]} />
+          <MushafReader 
+            initialPage={surahStartPage[selectedSurah] || 1} 
+            externalPage={activeAudioPage || undefined} 
+          />
 
-          <AudioPlayer surah={selectedSurah} />
+          <AudioPlayer 
+            surah={selectedSurah} 
+            onPageChange={(p) => setActiveAudioPage(p)} 
+          />
         </div>
       )}
 
