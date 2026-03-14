@@ -18,6 +18,7 @@ import {
   Heart, 
   SunDim,
   Moon,
+  Sparkles,
   Bookmark,
   Bed,
   CloudSun,
@@ -27,7 +28,7 @@ import {
 const iconMap: Record<string, LucideIcon> = {
   "morning": SunDim,
   "evening": Moon,
-  "salah": Bookmark,
+  "salah": Sparkles,
   "general": Heart,
   "sleep": Bed,
   "wakeup": CloudSun,

@@ -32,16 +32,19 @@ const PRAYER_HADITHS = [
   {
     arabic: "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
     translationKey: "home.hadith_0_translation",
+    transliterationKey: "home.hadith_0_transliteration",
     referenceKey: "home.hadith_0_reference",
   },
   {
     arabic: "الصَّلَوَاتُ الْخَمْسُ كَفَّارَاتٌ لِمَا بَيْنَهُنَّ",
     translationKey: "home.hadith_1_translation",
+    transliterationKey: "home.hadith_1_transliteration",
     referenceKey: "home.hadith_1_reference",
   },
   {
     arabic: "أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ",
     translationKey: "home.hadith_2_translation",
+    transliterationKey: "home.hadith_2_transliteration",
     referenceKey: "home.hadith_2_reference",
   },
 ];
@@ -91,7 +94,10 @@ export default function SiratPage() {
               <p className="font-arabic text-lg leading-loose text-neutral-900 dark:text-neutral-50 text-right mb-3" dir="rtl">
                 {h.arabic}
               </p>
-              <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">
+              <p className="text-sm italic text-neutral-500 dark:text-neutral-400 mb-2">
+                {t(h.transliterationKey as any)}
+              </p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed mb-3">
                 {t(h.translationKey as any)}
               </p>
               <p className="text-[10px] font-bold text-primary-500 bg-primary-50 dark:bg-primary-950/30 px-2 py-0.5 rounded-md inline-block uppercase tracking-wider">
