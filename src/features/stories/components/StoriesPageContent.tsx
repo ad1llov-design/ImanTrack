@@ -12,8 +12,10 @@ import { getStoryOfTheDay, getRandomStory, getAllStories } from "../services/sto
 import { Story } from "../types/stories.types";
 import { StoryCard } from "./StoryCard";
 import { StoriesGrid } from "./StoriesGrid";
-import { Sparkles, Library, History } from "lucide-react";
+import { Sparkles, Library, History, X, Heart } from "lucide-react";
 import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@shared/lib/utils";
 
 export function StoriesPageContent() {
   const { t, language } = useLanguage();
@@ -23,39 +25,43 @@ export function StoriesPageContent() {
   const [currentStory, setCurrentStory] = useState<Story>(storyOfTheDay);
   const [isCopied, setIsCopied] = useState(false);
   const [isShared, setIsShared] = useState(false);
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
+  
   const [favorites, setFavorites] = useState<string[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('iman_stories_favorites');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("iman_stories_favorites");
       return saved ? JSON.parse(saved) : [];
     }
     return [];
   });
 
   React.useEffect(() => {
-    localStorage.setItem('iman_stories_favorites', JSON.stringify(favorites));
+    localStorage.setItem("iman_stories_favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const handleNext = () => {
     const next = getRandomStory();
     setCurrentStory(next);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelect = (story: Story) => {
-    setCurrentStory(story);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top when a new story is selected
+    setSelectedStory(story);
   };
 
-  const handleFavorite = () => {
-    const isFav = favorites.includes(currentStory.id);
+  const toggleFavorite = (storyId: string) => {
+    const isFav = favorites.includes(storyId);
     if (isFav) {
-      setFavorites(favorites.filter(id => id !== currentStory.id));
-      toast.success(language === 'ru' ? "Удалено из избранного" : "Removed from favorites");
+      setFavorites(favorites.filter((id) => id !== storyId));
+      toast.success(language === "ru" ? "Удалено из избранного" : "Removed from favorites");
     } else {
-      setFavorites([...favorites, currentStory.id]);
-      toast.success(language === 'ru' ? "Добавлено в избранное" : "Added to favorites");
+      setFavorites([...favorites, storyId]);
+      toast.success(language === "ru" ? "Добавлено в избранное" : "Added to favorites");
     }
   };
+
+  const favoriteStories = useMemo(() => {
+    return allStories.filter(s => favorites.includes(s.id));
+  }, [allStories, favorites]);
 
   const handleCopy = async () => {
     const text = `${currentStory.titleTranslations[language]}\n\n${currentStory.translations[language]}\n\n${t('stories.moral')}: ${currentStory.moralTranslations[language]}\n\n— SIRAT App`;
@@ -101,12 +107,59 @@ export function StoriesPageContent() {
           isFavorite={favorites.includes(currentStory.id)}
           isCopied={isCopied}
           isShared={isShared}
-          onToggleFavorite={handleFavorite}
+          onToggleFavorite={() => toggleFavorite(currentStory.id)}
           onCopy={handleCopy}
           onShare={handleShare}
           onNext={handleNext}
         />
       </div>
+
+      {/* ── Favorite Stories ─────────────────── */}
+      <AnimatePresence>
+        {favoriteStories.length > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="mb-16"
+          >
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-600 dark:bg-red-950/30">
+                <Heart className="h-5 w-5 fill-current" />
+              </div>
+              <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
+                {language === 'ru' ? 'Любимые истории' : language === 'uz' ? 'Sevimli qissalar' : language === 'ky' ? 'Сүйүктүү окуялар' : 'Favorite Stories'}
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {favoriteStories.map(story => (
+                <div 
+                  key={story.id}
+                  onClick={() => handleSelect(story)}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface p-4 transition-all hover:border-primary-400 dark:bg-surface/50"
+                >
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-primary-500">
+                    {story.sourceKey}
+                  </p>
+                  <h3 className="line-clamp-1 font-bold text-neutral-900 dark:text-neutral-50">
+                    {story.titleTranslations[language]}
+                  </h3>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(story.id);
+                    }}
+                    className="absolute right-4 top-4 text-red-500 opacity-0 transition-opacity group-hover:opacity-100"
+                  >
+                    <Heart className="h-4 w-4 fill-current" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Full Collection ─────────────────── */}
       <div className="mt-24">
@@ -137,6 +190,53 @@ export function StoriesPageContent() {
 
         <StoriesGrid stories={allStories} onSelect={handleSelect} />
       </div>
+
+      {/* ── Story Modal ─────────────────────── */}
+      <AnimatePresence>
+        {selectedStory && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedStory(null)}
+              className="absolute inset-0 bg-neutral-950/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] bg-surface dark:bg-neutral-900 shadow-2xl"
+            >
+              <button 
+                onClick={() => setSelectedStory(null)}
+                className="absolute right-6 top-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              
+              <div className="p-2 sm:p-4">
+                <StoryCard 
+                  story={selectedStory}
+                  isFavorite={favorites.includes(selectedStory.id)}
+                  onToggleFavorite={() => toggleFavorite(selectedStory.id)}
+                  onCopy={() => {
+                    const text = `${selectedStory.titleTranslations[language]}\n\n${selectedStory.translations[language]}\n\n— SIRAT App`;
+                    navigator.clipboard.writeText(text);
+                    toast.success(t("hadith.copied"));
+                  }}
+                  onShare={() => {
+                    if (navigator.share) {
+                      navigator.share({ text: selectedStory.translations[language], title: selectedStory.titleTranslations[language] });
+                    }
+                  }}
+                  // No onNext in modal
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* ── Quote / Insight Footer ──────────── */}
       <div className="mt-24 rounded-[2.5rem] bg-neutral-900 px-8 py-12 text-center text-white dark:bg-neutral-800/50">

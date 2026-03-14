@@ -26,25 +26,25 @@ import { motion, AnimatePresence } from "framer-motion";
 interface StoryCardProps {
   story: Story;
   isFavorite: boolean;
-  isCopied: boolean;
-  isShared: boolean;
+  isCopied?: boolean;
+  isShared?: boolean;
   onToggleFavorite: () => void;
   onCopy: () => void;
   onShare: () => void;
-  onNext: () => void;
+  onNext?: () => void;
   className?: string;
 }
 
 export function StoryCard({
   story,
   isFavorite,
-  isCopied,
-  isShared,
+  isCopied = false,
+  isShared = false,
   onToggleFavorite,
   onCopy,
   onShare,
   onNext,
-  className
+  className,
 }: StoryCardProps) {
   const { language } = useLanguage();
 

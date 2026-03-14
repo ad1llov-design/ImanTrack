@@ -14,9 +14,10 @@ import { HADITH_LIST } from "../data/hadith.collection";
 import type { Hadith } from "../types/hadith.types";
 import { cn } from "@shared/lib/utils";
 import Link from "next/link";
-import { BookMarked, Library, ArrowRight, Copy, Share2, Heart } from "lucide-react";
+import { BookMarked, Library, ArrowRight, Copy, Share2, Heart, X } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "@shared/i18n/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function HadithPageContent() {
   const { t, language } = useLanguage();
@@ -58,15 +59,24 @@ export function HadithPageContent() {
     }
   };
 
-  const toggleFavorite = () => {
-    const isFav = favorites.includes(currentHadith.id);
+  const toggleFavorite = (storyId: string) => {
+    const isFav = favorites.includes(storyId);
     if (isFav) {
-      setFavorites(favorites.filter((id) => id !== currentHadith.id));
+      setFavorites(favorites.filter((id) => id !== storyId));
       toast.success(language === "ru" ? "Удалено из избранного" : "Removed from favorites");
     } else {
-      setFavorites([...favorites, currentHadith.id]);
+      setFavorites([...favorites, storyId]);
       toast.success(language === "ru" ? "Добавлено в избранное" : "Added to favorites");
     }
+  };
+
+  const favoriteHadiths = useMemo(() => {
+    return HADITH_LIST.filter(h => favorites.includes(h.id));
+  }, [favorites]);
+
+  const selectHadith = (hadith: Hadith) => {
+    setCurrentHadith(hadith);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const share = async () => {
@@ -138,7 +148,7 @@ export function HadithPageContent() {
         <div className="flex items-center justify-between border-t border-border pt-4">
           <div className="flex items-center gap-2">
             <button
-              onClick={toggleFavorite}
+              onClick={() => toggleFavorite(currentHadith.id)}
               className={cn(
                 "flex h-9 w-9 items-center justify-center rounded-xl border border-border transition-colors",
                 favorites.includes(currentHadith.id)
@@ -177,6 +187,67 @@ export function HadithPageContent() {
           </div>
         </div>
       </div>
+
+      {/* ── Favorite Hadiths ─────────────────── */}
+      <AnimatePresence>
+        {favoriteHadiths.length > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="mt-12"
+          >
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-600 dark:bg-red-950/30">
+                <Heart className="h-5 w-5 fill-current" />
+              </div>
+              <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
+                {language === 'ru' ? 'Избранные хадисы' : language === 'uz' ? 'Saralangan hadislar' : language === 'ky' ? 'Тандалган хадистер' : 'Favorite Hadiths'}
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-3">
+              {favoriteHadiths.map(hadith => (
+                <div 
+                  key={hadith.id}
+                  onClick={() => selectHadith(hadith)}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface p-4 transition-all hover:border-primary-400 dark:bg-surface/50"
+                >
+                  <p className="line-clamp-2 text-sm text-neutral-700 dark:text-neutral-300">
+                    {(() => {
+                      const trans = hadith.translations?.[language as keyof typeof hadith.translations];
+                      if (typeof trans === "string") return trans;
+                      if (trans && typeof (trans as any).text === "string") return (trans as any).text;
+                      return hadith.translation;
+                    })()}
+                  </p>
+                  <div className="mt-2 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-neutral-400">
+                        {hadith.collection.toUpperCase()}
+                      </span>
+                      {hadith.grade && (
+                        <span className="text-[9px] font-medium text-primary-500 bg-primary-50 px-1.5 py-0.5 rounded-md dark:bg-primary-950/20">
+                          {hadith.grade}
+                        </span>
+                      )}
+                    </div>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(hadith.id);
+                      }}
+                      className="text-red-500 opacity-0 transition-opacity group-hover:opacity-100"
+                    >
+                      <Heart className="h-4 w-4 fill-current" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Collections section */}
       <div className="mt-12">

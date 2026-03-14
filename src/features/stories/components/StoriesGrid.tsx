@@ -55,7 +55,6 @@ export function StoriesGrid({ stories, onSelect }: StoriesGridProps) {
               className="text-xs font-bold text-primary-500 transition-colors hover:text-primary-600 px-2 py-1 -mr-2"
               onClick={() => {
                 onSelect(story);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
               {language === 'ru' ? 'Читать полностью' : language === 'uz' ? 'To\'liq o\'qish' : language === 'ky' ? 'Толук окуу' : 'Read more'} →
