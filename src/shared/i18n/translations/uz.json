@@ -259,5 +259,15 @@
   "namaz.step_salam_translit": "As-salomu 'alaykum va rohmatuLloh",
   "namaz.step_salam_desc": "Boshni o'ngga, keyin chapga burish, «As-salomu 'alaykum va rohmatuLloh» deyish. Bu namozni tugatadi.",
   "namaz.step_salam_type": "Farz",
-  "namaz.watch_video": "Video darslikni ko'rish"
+  "namaz.watch_video": "Video darslikni ko'rish",
+  "sunnah_details": {
+    "btn_collapse": "Yopish",
+    "btn_expand": "Batafsil",
+    "label_what": "Sunnatning mohiyati:",
+    "label_history": "Tarixiy kontekst:",
+    "label_why": "Nima uchun bu sunnat:",
+    "label_spiritual": "Ma'naviy foyda:",
+    "label_health": "Salomatlikka ta'siri:",
+    "label_hadith": "Qisqa hadis:"
+  }
 }

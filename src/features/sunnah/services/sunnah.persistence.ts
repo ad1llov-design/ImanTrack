@@ -29,6 +29,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Misvok", description: "Uyg'onganda va namozdan oldin misvok ishlatish." },
       ky: { label: "Мисвак", description: "Ойгонгондо жана намаздын алдында мисвак колдонуу." }
     },
+    transliterations: {
+      ru: "Ас-сиваку матхаратун лиль-фами мардатун лир-рабби",
+      en: "As-siwaku matharatun lil-fami mardatun lir-rabbi",
+      uz: "As-sivaku matharatun lil-fami mardatun lir-rabbi",
+      ky: "Ас-сиваку матхаратун лиль-фами мардатун лир-рабби"
+    },
     source: "Ан-Насаи" 
   },
   { 
@@ -42,6 +48,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Tonggi duo", description: "Uyg'onganda duo qilish." },
       ky: { label: "Эртең мененки дуба", description: "Ойгонгондо дуба кылуу." }
     },
+    transliterations: {
+      ru: "Аль-хамду лиЛляхи-ллязи ахьяна ба'да ма аматана ва иляйхин-нушур",
+      en: "Al-hamdu lillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+      uz: "Al-hamdu lillahil-ladzi ahyana ba'da ma amatana va ilayhin-nushur",
+      ky: "Аль-хамду лиЛляхи-ллязи ахьяна ба'да ма аматана ва иляйхин-нушур"
+    },
     source: "Аль-Бухари" 
   },
   { 
@@ -54,6 +66,12 @@ export const SUNNAH_ACTIONS = [
       en: { label: "Two Rakaats Fajr", description: "Two rakaats of sunnah before Fajr prayer." },
       uz: { label: "Ikki rakat Bomdod", description: "Bomdod namozidan oldin ikki rakat sunnat." },
       ky: { label: "Эки ирекет Багымдат", description: "Багымдат намазынын алдында эки ирекет сүннөт." }
+    },
+    transliterations: {
+      ru: "Рак'ата аль-фаджри хайрун мин ад-дунья ва ма фиха",
+      en: "Rak'ata al-fajri khayrun min ad-dunya wa ma fiha",
+      uz: "Rak'ata al-fajri khayrun min ad-dunya va ma fiha",
+      ky: "Рак'ата аль-фаджри хайрун мин ад-дунья ва ма фиха"
     },
     source: "Муслим" 
   },
@@ -70,6 +88,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Ravotib", description: "Kunda 12 rakat sunnat ravotib." },
       ky: { label: "Раватиб", description: "Күнүнө 12 ирекет сүннөт раватиб." }
     },
+    transliterations: {
+      ru: "Ман салля иснатей 'ашрата рак'атан фи яумин ва лейлятин буния ляху бихинна байтун филь-джанна",
+      en: "Man salla ithnatay 'ashrata rak'atan fi yawmin wa laylatin buniya lahu bihinna baytun fil-jannah",
+      uz: "Man salla ithnatay 'ashrata rak'atan fi yavmin va laylatin buniya lahu bihinna baytun fil-jannah",
+      ky: "Ман салля иснатей 'ашрата рак'атан фи яумин ва лейлятин буния ляху бихинна байтун филь-джанна"
+    },
     source: "Муслим" 
   },
   { 
@@ -83,6 +107,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Masjidga borish", description: "Jamoat namozi uchun masjidga piyoda borish." },
       ky: { label: "Мечитке баруу", description: "Жамаат намазы үчүн мечитке жөө баруу." }
     },
+    transliterations: {
+      ru: "Ман татаххара фи бейтихи сумма маша иля бейтин мин буютиЛляхи",
+      en: "Man tatahhara fi baytihi thumma masha ila baytin min buyutil-lah",
+      uz: "Man tatahhara fi baytihi thumma masha ila baytin min buyutil-loh",
+      ky: "Ман татаххара фи бейтихи сумма маша иля бейтин мин буютиЛляхи"
+    },
     source: "Муслим" 
   },
   { 
@@ -95,6 +125,12 @@ export const SUNNAH_ACTIONS = [
       en: { label: "Dhikr after prayer", description: "SubhanAllah 33, Alhamdulillah 33, Allahu Akbar 34." },
       uz: { label: "Namozdan keyingi zikr", description: "SubhanAlloh 33, Alhamdulilloh 33, Allohu Akbar 34." },
       ky: { label: "Намаздан кийинки зикир", description: "Субханаллах 33, Альхамдулиллах 33, Аллаху Акбар 34." }
+    },
+    transliterations: {
+      ru: "СубханаЛлах, валь-хамду лиЛлях, ва Аллаху Акбар",
+      en: "SubhanAllah, wal-hamdu lillah, wa Allahu Akbar",
+      uz: "SubhanAlloh, val-hamdu lilloh, va Allohu Akbar",
+      ky: "СубханаЛлах, валь-хамду лиЛлях, ва Аллаху Акбар"
     },
     source: "Муслим" 
   },
@@ -111,6 +147,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Uxlashdan oldin tahorat", description: "Uxlashdan oldin tahorat olish." },
       ky: { label: "Уктаар алдында даарат", description: "Уктаар алдында даарат алуу." }
     },
+    transliterations: {
+      ru: "Иза атейта мадж'ака фатавадда' вуду'ака лис-саля",
+      en: "Idha atayta madj'aka fatawadda' wudu'aka lis-salah",
+      uz: "Idza atayta madj'aka fatavadda' vudu'aka lis-salah",
+      ky: "Иза атейта мадж'ака фатавадда' вуду'ака лис-саля"
+    },
     source: "Аль-Бухари" 
   },
   { 
@@ -124,6 +166,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Oyatal Kursi", description: "Uxlashdan oldin himoya uchun Oyatal Kursi o'qish." },
       ky: { label: "Аят аль-Курси", description: "Уктаар алдында коргонуу үчүн Аят аль-Курси окуу." }
     },
+    transliterations: {
+      ru: "Аллаху ля иляха илля хуваль-Хайюль-Кайюм",
+      en: "Allahu la ilaha illa huwal-Hayyul-Qayyum",
+      uz: "Allohu la ilaha illa huval-Hayyul-Qayyum",
+      ky: "Аллаху ля иляха илля хуваль-Хайюль-Кайюм"
+    },
     source: "Аль-Бухари" 
   },
   { 
@@ -136,6 +184,12 @@ export const SUNNAH_ACTIONS = [
       en: { label: "Sleep on right side", description: "Lie down on the right side." },
       uz: { label: "O'ng tomonda uxlash", description: "O'ng tomonboshlab uxlash." },
       ky: { label: "Оң жамбаштап уктоо", description: "Оң жамбаштап жатуу." }
+    },
+    transliterations: {
+      ru: "Сумма-дтаджи' 'аля шиккикаль-айман",
+      en: "Thumma idtadji' 'ala shiqqikal-ayman",
+      uz: "Thumma idtadji' 'ala shiqqikal-ayman",
+      ky: "Сумма-дтаджи' 'аля шиккикаль-айман"
     },
     source: "Аль-Бухари" 
   },
@@ -152,6 +206,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Tabassum", description: "Birodaringizga tabassum ulashishingiz sadaqadir." },
       ky: { label: "Жылмаюу", description: "Бир тууганыңа жылмаюу — бул садака." }
     },
+    transliterations: {
+      ru: "Табассумука фи важхи ахика ляка садака",
+      en: "Tabassumuka fi wajhi akhika laka sadaqah",
+      uz: "Tabassumuka fi vajhi axika laka sadaqa",
+      ky: "Табассумука фи важхи ахика ляка садака"
+    },
     source: "Ат-Тирмизи" 
   },
   { 
@@ -165,6 +225,12 @@ export const SUNNAH_ACTIONS = [
       uz: { label: "Sabr", description: "Qiyinchiliklarda sabr qilish." },
       ky: { label: "Сабыр", description: "Кыйынчылыктарда сабырдуулук көрсөтүү." }
     },
+    transliterations: {
+      ru: "'Аджабан ли-амриль-му'мин инна амраху кулляху хайр",
+      en: "Ajaban li-amril-mu'min inna amrahu kullahu khayr",
+      uz: "Ajaban li-amril-mu'min inna amrahu kullahu xayr",
+      ky: "'Аджабан ли-амриль-му'мин инна амраху кулляху хайр"
+    },
     source: "Муслим" 
   },
   { 
@@ -177,6 +243,12 @@ export const SUNNAH_ACTIONS = [
       en: { label: "Kindness to neighbors", description: "Show kindness and respect to neighbors." },
       uz: { label: "Qo'shnilarga yaxshilik", description: "Qo'shnilarga yaxshilik va hurmat ko'rsatish." },
       ky: { label: "Кошуналарга жакшылык", description: "Кошуналарга жакшы мамиле кылуу." }
+    },
+    transliterations: {
+      ru: "Ма заля Джибрилю юсини биль-джари хатта зананту аннаху саюваррисуху",
+      en: "Ma zala Jibrilu yusini bil-jari hatta zanantu annahu sayuwar-rithuhu",
+      uz: "Ma zala Jibrilu yusini bil-jari hatta zanantu annahu sayuvar-rithuhu",
+      ky: "Ма заля Джибрилю юсини биль-джари хатта зананту аннаху саюваррисуху"
     },
     source: "Аль-Бухари" 
   },

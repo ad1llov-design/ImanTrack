@@ -19,7 +19,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     id: "morning",
     nameRu: "Утренние азкары", translations: { ru: "Утренние азкары", en: "Morning Azkars", uz: "Tong Azkars", ky: "Таң маанай" },
     nameAr: "أذكار الصباح",
-    icon: "sunrise",
+    icon: "morning",
     color: "gold",
     description: "Читаются после утреннего намаза до восхода солнца",
     descriptionTranslations: { ru: "Читаются после утреннего намаза до восхода солнца", en: "Recited after the morning prayer until sunrise", uz: "Quyosh chiqqunga qadar bomdod namozidan keyin o'qiladi", ky: "Багымдат намазынан кийин күн чыкканга чейин окулат" },
@@ -28,7 +28,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     id: "evening",
     nameRu: "Вечерние азкары", translations: { ru: "Вечерние азкары", en: "Evening Azkars", uz: "Kechqurun Azkarlar", ky: "Кечки Азкарлар" },
     nameAr: "أذكار المساء",
-    icon: "moon",
+    icon: "evening",
     color: "primary",
     description: "Читаются после намаза Аср до заката",
     descriptionTranslations: { ru: "Читаются после намаза Аср до заката", en: "Recited after Asr prayer until sunset", uz: "Asr namozidan keyin quyosh botguncha o'qiladi", ky: "Аср намазынан кийин күн батканга чейин окулат" },
@@ -37,7 +37,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     id: "after_salah",
     nameRu: "После намаза", translations: { ru: "После намаза", en: "After prayer", uz: "Namozdan keyin", ky: "Намаздан кийин" },
     nameAr: "أذكار بعد الصلاة",
-    icon: "sparkles",
+    icon: "salah",
     color: "primary",
     description: "Зикры после каждого обязательного намаза",
     descriptionTranslations: { ru: "Зикры после каждого обязательного намаза", en: "Dhikrs after every obligatory prayer", uz: "Har bir farz namozidan keyin zikrlar", ky: "Ар бир парз намаздан кийинки зикирлер" },
@@ -55,7 +55,7 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     id: "sleep",
     nameRu: "Перед сном", translations: { ru: "Перед сном", en: "Before bed", uz: "Yotishdan oldin", ky: "Жатар алдында" },
     nameAr: "أذكار النوم",
-    icon: "moon-star",
+    icon: "sleep",
     color: "neutral",
     description: "Зикры и дуа перед сном",
     descriptionTranslations: { ru: "Зикры и дуа перед сном", en: "Dhikrs and duas before bed", uz: "Yotishdan oldin zikr va duolar", ky: "Жатар алдында зикирлер жана дуалар" },
@@ -64,8 +64,8 @@ export const ADHKAR_CATEGORIES: CategoryInfo[] = [
     id: "wake_up",
     nameRu: "При пробуждении", translations: { ru: "При пробуждении", en: "Upon awakening", uz: "Uyg'onganida", ky: "Ойгонгондо" },
     nameAr: "أذكار الاستيقاظ",
-    icon: "sun",
-    color: "gold",
+    icon: "wakeup",
+    color: "primary",
     description: "Дуа при пробуждении ото сна",
     descriptionTranslations: { ru: "Дуа при пробуждении ото сна", en: "Dua upon waking from sleep", uz: "Uyqudan uyg'onganda o'qiladigan duo", ky: "Уйкудан ойгонгондо окула турган дуба" },
   },
@@ -80,6 +80,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "morning",
     arabic: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
     transliteration: "Асбахна ва асбахаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+    transliterations: {
+      ru: "Асбахна ва асбахаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+      en: "Asbahna wa asbahal-mulku lillah, wal-hamdu lillah, la ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
+      uz: "Asbahna va asbahal-mulku lilloh, val-hamdu lilloh, la ilaha illallohu vaxdaxu la sharika lax, laxul-mulku va laxul-hamdu va xuva 'ala kulli shay'in qodir",
+      ky: "Асбахна ва асбахаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир"
+    },
     translation: "Мы встретили утро, и вся власть принадлежит Аллаху. Хвала Аллаху. Нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть и хвала, и Он над всем властен.",
     translations: { ru: "Мы встретили утро, и вся власть принадлежит Аллаху. Хвала Аллаху. Нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть и хвала, и Он над всем властен.", en: "We have greeted the morning, and all power belongs to Allah. Praise be to Allah. There is no deity except Allah alone, Who has no partner. To Him belongs the power and the praise, and He is sovereign over everything.", uz: "Tongni qarshi oldik, barcha kuch Allohnikidir. Allohga hamdlar bo'lsin. Hech bir sherigi bo'lmagan yolg'iz Allohdan o'zga iloh yo'q. Qudrat va hamd Unikidir va U har bir narsaga hukmrondir.", ky: "Таңга салам бердик, бардык күч Аллага таандык. Аллахка мактоолор болсун. Жалгыз Аллахтан башка кудай жок, шериги жок. Күч жана мактоо Ага таандык жана Ал бардык нерсеге өкүмдар." },
     reference: "Абу Дауд 4/317",
@@ -92,6 +98,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "morning",
     arabic: "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
     transliteration: "Аллахумма бика асбахна, ва бика амсайна, ва бика нахья, ва бика намуту ва иляйкан-нушур",
+    transliterations: {
+      ru: "Аллахумма бика асбахна, ва бика амсайна, ва бика нахья, ва бика намуту ва иляйкан-нушур",
+      en: "Allahumma bika asbahna, wa bika amsayna, wa bika nahya, wa bika namutu wa ilaykan-nushur",
+      uz: "Alloxumma bika asbaxna, va bika amsayna, va bika naxya, va bika namutu va ilaykan-nushur",
+      ky: "Аллахумма бика асбахна, ва бика амсайна, ва бика нахья, ва бика намуту ва иляйкан-нушур"
+    },
     translation: "О Аллах, с Тобой мы встретили утро, и с Тобой встретим вечер, и с Тобой живём, и с Тобой умрём, и к Тебе воскрешение.",
     translations: { ru: "О Аллах, с Тобой мы встретили утро, и с Тобой встретим вечер, и с Тобой живём, и с Тобой умрём, и к Тебе воскрешение.", en: "O Allah, with You we have met the morning, and with You we will meet the evening, and with You we live, and with You we will die, and to You the resurrection.", uz: "Allohim, tongni Sen bilan uchratdik, shomni Sen bilan uchratamiz, Sen bilan yashaymiz, Sen bilan o'lamiz va qayta tirilish Sengadir.", ky: "Оо Аллахым, таңды Сени менен жолуктурдук, кечти Сен менен жолугабыз, Сен менен жашайбыз, Сен менен өлөбүз жана кайра тирилүү Сага." },
     reference: "Ат-Тирмизи 5/466",
@@ -102,6 +114,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "morning",
     arabic: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
     transliteration: "СубханАллахи ва бихамдих",
+    transliterations: {
+      ru: "СубханАллахи ва бихамдих",
+      en: "SubhanAllahi wa bihamdih",
+      uz: "SubhanAllohi va bixamdix",
+      ky: "СубханАллахи ва бихамдих"
+    },
     translation: "Преславен Аллах и хвала Ему",
     translations: { ru: "Преславен Аллах и хвала Ему", en: "Glory be to Allah and praise be to Him", uz: "Alloh taologa hamdu sanolar bo'lsin", ky: "Аллах Таалага мактоолор жана мактоолор болсун" },
     reference: "Муслим 4/2071",
@@ -114,6 +132,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "morning",
     arabic: "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
     transliteration: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+    transliterations: {
+      ru: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+      en: "La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
+      uz: "La ilaha illallohu vaxdaxu la sharika lax, laxul-mulku va laxul-hamdu va xuva 'ala kulli shay'in qodir",
+      ky: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир"
+    },
     translation: "Нет божества, кроме Аллаха Единого, у Которого нет сотоварища. Ему принадлежит власть и хвала, и Он над всем властен.",
     reference: "Аль-Бухари 4/95, Муслим 4/2071",
     targetCount: 10,
@@ -124,6 +148,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "morning",
     arabic: "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",
     transliteration: "АстагфируЛлаха ва атубу илейхи",
+    transliterations: {
+      ru: "АстагфируЛлаха ва атубу илейхи",
+      en: "Astaghfirullaha wa atubu ilayhi",
+      uz: "Astag'firulloha va atubu ilayxi",
+      ky: "АстагфируЛлаха ва атубу илейхи"
+    },
     translation: "Прошу прощения у Аллаха и каюсь перед Ним",
     reference: "Аль-Бухари, Фатх аль-Бари 11/101",
     targetCount: 100,
@@ -136,6 +166,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "evening",
     arabic: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
     transliteration: "Амсайна ва амсаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+    transliterations: {
+      ru: "Амсайна ва амсаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+      en: "Amsayna wa amsal-mulku lillah, wal-hamdu lillah, la ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
+      uz: "Amsayna va amsal-mulku lilloh, val-hamdu lilloh, la ilaha illallohu vaxdaxu la sharika lax, laxul-mulku va laxul-hamdu va xuva 'ala kulli shay'in qodir",
+      ky: "Амсайна ва амсаль-мульку лиЛлях, валь-хамду лиЛлях, ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир"
+    },
     translation: "Мы встретили вечер, и вся власть принадлежит Аллаху. Хвала Аллаху. Нет божества, кроме Аллаха Единого, у Которого нет сотоварища.",
     translations: { ru: "Мы встретили вечер, и вся власть принадлежит Аллаху. Хвала Аллаху. Нет божества, кроме Аллаха Единого, у Которого нет сотоварища.", en: "We have met the evening, and all power belongs to Allah. Praise be to Allah. There is no deity except Allah alone, Who has no partner.", uz: "Biz oqshomni uchratdik, barcha kuch Allohnikidir. Allohga hamdlar bo'lsin. Hech bir sherigi bo'lmagan yolg'iz Allohdan o'zga iloh yo'q.", ky: "Кечке жолуктук, бардык күч Аллага таандык. Аллахка мактоолор болсун. Жалгыз Аллахтан башка кудай жок, шериги жок." },
     reference: "Абу Дауд 4/317",
@@ -146,6 +182,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "evening",
     arabic: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
     transliteration: "Аллахумма бика амсайна, ва бика асбахна, ва бика нахья, ва бика намуту ва иляйкаль-масыр",
+    transliterations: {
+      ru: "Аллахумма бика амсайна, ва бика асбахна, ва бика нахья, ва бика намуту ва иляйкаль-масыр",
+      en: "Allahumma bika amsayna, wa bika asbahna, wa bika nahya, wa bika namutu wa ilaykal-masir",
+      uz: "Alloxumma bika amsayna, va bika asbaxna, va bika naxya, va bika namutu va ilaykal-masir",
+      ky: "Аллахумма бика амсайна, ва бика асбахна, ва бика нахья, ва бика намуту ва иляйкаль-масыр"
+    },
     translation: "О Аллах, с Тобой мы встретили вечер, и с Тобой встретим утро, и с Тобой живём, и с Тобой умрём, и к Тебе возвращение.",
     translations: { ru: "О Аллах, с Тобой мы встретили вечер, и с Тобой встретим утро, и с Тобой живём, и с Тобой умрём, и к Тебе возвращение.", en: "O Allah, with You we have met the evening, and with You we will meet the morning, and with You we live, and with You we will die, and to You we will return.", uz: "Allohim, sen bilan shomni uchratdik, tongni Sen bilan uchratamiz, Sen bilan yashaymiz, Sen bilan o'lamiz va Senga qaytguvchimiz.", ky: "Оо Аллахым, кечти Сен менен жолуктурдук, таңды Сен менен жолуктурдук, Сен менен жашайбыз, Сен менен өлөбүз жана Сага кайтабыз." },
     reference: "Ат-Тирмизи 5/466",
@@ -156,6 +198,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "evening",
     arabic: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
     transliteration: "СубханАллахи ва бихамдих",
+    transliterations: {
+      ru: "СубханАллахи ва бихамдих",
+      en: "SubhanAllahi wa bihamdih",
+      uz: "SubhanAllohi va bixamdix",
+      ky: "СубханАллахи ва бихамдих"
+    },
     translation: "Преславен Аллах и хвала Ему",
     translations: { ru: "Преславен Аллах и хвала Ему", en: "Glory be to Allah and praise be to Him", uz: "Alloh taologa hamdu sanolar bo'lsin", ky: "Аллах Таалага мактоолор жана мактоолор болсун" },
     reference: "Муслим 4/2071",
@@ -170,6 +218,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "after_salah",
     arabic: "أَسْتَغْفِرُ اللَّه",
     transliteration: "АстагфируЛлах",
+    transliterations: {
+      ru: "АстагфируЛлах",
+      en: "Astaghfirullah",
+      uz: "Astag'firulloh",
+      ky: "АстагфируЛлах"
+    },
     translation: "Прошу у Аллаха прощения",
     translations: { ru: "Прошу у Аллаха прощения", en: "I ask Allah for forgiveness", uz: "Allohdan kechirim so'rayman", ky: "Алладан кечирим сурайм" },
     reference: "Муслим 1/414",
@@ -180,6 +234,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "after_salah",
     arabic: "سُبْحَانَ اللَّهِ",
     transliteration: "СубханАллах",
+    transliterations: {
+      ru: "СубханАллах",
+      en: "SubhanAllah",
+      uz: "SubhanAlloh",
+      ky: "СубханАллах"
+    },
     translation: "Преславен Аллах",
     reference: "Муслим 1/418, аль-Бухари",
     targetCount: 33,
@@ -190,6 +250,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "after_salah",
     arabic: "الْحَمْدُ لِلَّهِ",
     transliteration: "Аль-хамду лиЛлях",
+    transliterations: {
+      ru: "Аль-хамду лиЛлях",
+      en: "Al-hamdu lillah",
+      uz: "Al-hamdu lilloh",
+      ky: "Аль-хамду лиЛлях"
+    },
     translation: "Хвала Аллаху",
     reference: "Муслим 1/418, аль-Бухари",
     targetCount: 33,
@@ -199,6 +265,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "after_salah",
     arabic: "اللَّهُ أَكْبَرُ",
     transliteration: "Аллаху Акбар",
+    transliterations: {
+      ru: "Аллаху Акбар",
+      en: "Allahu Akbar",
+      uz: "Allohu Akbar",
+      ky: "Аллаху Акбар"
+    },
     translation: "Аллах Велик",
     reference: "Муслим 1/418, аль-Бухари",
     targetCount: 33,
@@ -208,6 +280,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "after_salah",
     arabic: "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
     transliteration: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+    transliterations: {
+      ru: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир",
+      en: "La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir",
+      uz: "La ilaha illallohu vaxdaxu la sharika lax, laxul-mulku va laxul-hamdu va xuva 'ala kulli shay'in qodir",
+      ky: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир"
+    },
     translation: "Нет божества, кроме Аллаха Единого, без сотоварища. Ему власть и хвала, и Он над всём властен.",
     translations: { ru: "Нет божества, кроме Аллаха Единого, без сотоварища. Ему власть и хвала, и Он над всём властен.", en: "There is no deity but Allah alone, without a partner. To Him is power and praise, and He has power over everything.", uz: "Allohdan o'zga iloh yo'q yolg'iz, sherigi yo'q. Unga kuch va hamd bor va U har bir narsaga qodirdir.", ky: "Жалгыз Аллахтан башка илах жок, шериги жок. Күч жана мактоо Ага гана таандык жана Ал бардык нерсеге кудуреттүү." },
     reference: "Муслим 1/418",
@@ -222,6 +300,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "general",
     arabic: "سُبْحَانَ اللَّهِ",
     transliteration: "СубханАллах",
+    transliterations: {
+      ru: "СубханАллах",
+      en: "SubhanAllah",
+      uz: "SubhanAlloh",
+      ky: "СубханАллах"
+    },
     translation: "Преславен Аллах",
     translations: { ru: "Преславен Аллах", en: "Glory be to Allah", uz: "Allohga hamdlar bo'lsin", ky: "Аллах ыраазы болсун" },
     reference: "Муслим",
@@ -232,6 +316,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "general",
     arabic: "الْحَمْدُ لِلَّهِ",
     transliteration: "Аль-хамду лиЛлях",
+    transliterations: {
+      ru: "Аль-хамду лиЛлях",
+      en: "Al-hamdu lillah",
+      uz: "Al-hamdu lilloh",
+      ky: "Аль-хамду лиЛлях"
+    },
     translation: "Хвала Аллаху",
     translations: { ru: "Хвала Аллаху", en: "Praise be to Allah", uz: "Allohga hamdlar bo'lsin", ky: "Аллахка мактоолор болсун" },
     reference: "Муслим",
@@ -242,6 +332,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "general",
     arabic: "اللَّهُ أَكْبَرُ",
     transliteration: "Аллаху Акбар",
+    transliterations: {
+      ru: "Аллаху Акбар",
+      en: "Allahu Akbar",
+      uz: "Allohu Akbar",
+      ky: "Аллаху Акбар"
+    },
     translation: "Аллах Велик",
     translations: { ru: "Аллах Велик", en: "Allah is Great", uz: "Alloh buyukdir", ky: "Аллах Улуу" },
     reference: "Муслим",
@@ -252,6 +348,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "general",
     arabic: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
     transliteration: "Ля хауля ва ля куввата илля биЛлях",
+    transliterations: {
+      ru: "Ля хауля ва ля куввата илля биЛлях",
+      en: "La hawla wa la quwwata illa billah",
+      uz: "La xavla va la quvvata illa billoh",
+      ky: "Ля хауля ва ля куввата илля биЛлях"
+    },
     translation: "Нет мощи и силы ни у кого, кроме Аллаха",
     reference: "Аль-Бухари 11/213, Муслим 4/2076",
     targetCount: 100,
@@ -264,6 +366,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "sleep",
     arabic: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
     transliteration: "БисмикаЛлахумма амуту ва ахья",
+    transliterations: {
+      ru: "БисмикаЛлахумма амуту ва ахья",
+      en: "Bismika Allahumma amutu wa ahya",
+      uz: "Bismika Alloxumma amutu va axya",
+      ky: "БисмикаЛлахумма амуту ва ахья"
+    },
     translation: "С именем Твоим, о Аллах, я умираю и оживаю",
     translations: { ru: "С именем Твоим, о Аллах, я умираю и оживаю", en: "In Your name, O Allah, I die and come to life", uz: "Sening noming bilan, ey Alloh, men o'lib tirilaman", ky: "Сенин ысымың менен, Оо, Аллахым, мен өлөм жана тирилем" },
     reference: "Аль-Бухари 11/113",
@@ -274,6 +382,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "sleep",
     arabic: "سُبْحَانَ اللَّهِ",
     transliteration: "СубханАллах",
+    transliterations: {
+      ru: "СубханАллах",
+      en: "SubhanAllah",
+      uz: "SubhanAlloh",
+      ky: "СубханАллах"
+    },
     translation: "Преславен Аллах",
     reference: "Аль-Бухари, Муслим",
     targetCount: 33,
@@ -284,6 +398,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "sleep",
     arabic: "الْحَمْدُ لِلَّهِ",
     transliteration: "Аль-хамду лиЛлях",
+    transliterations: {
+      ru: "Аль-хамду лиЛлях",
+      en: "Al-hamdu lillah",
+      uz: "Al-hamdu lilloh",
+      ky: "Аль-хамду лиЛлях"
+    },
     translation: "Хвала Аллаху",
     reference: "Аль-Бухари, Муслим",
     targetCount: 33,
@@ -293,6 +413,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "sleep",
     arabic: "اللَّهُ أَكْبَرُ",
     transliteration: "Аллаху Акбар",
+    transliterations: {
+      ru: "Аллаху Акбар",
+      en: "Allahu Akbar",
+      uz: "Allohu Akbar",
+      ky: "Аллаху Акбар"
+    },
     translation: "Аллах Велик",
     reference: "Аль-Бухари, Муслим",
     targetCount: 34,
@@ -304,6 +430,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "wake_up",
     arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
     transliteration: "Аль-хамду лиЛляхи аллязи ахьяна ба'да ма аматана ва иляйхин-нушур",
+    transliterations: {
+      ru: "Аль-хамду лиЛляхи аллязи ахьяна ба'да ма аматана ва иляйхин-нушур",
+      en: "Al-hamdu lillahi alladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+      uz: "Al-hamdu lilloxi alladzi axyana ba'da ma amatana va ilayxin-nushur",
+      ky: "Аль-хамду лиЛляхи аллязи ахьяна ба'да ма аматана ва иляйхин-нушур"
+    },
     translation: "Хвала Аллаху, Который оживил нас после того, как умертвил, и к Нему воскрешение.",
     reference: "Аль-Бухари, Фатх аль-Бари 11/113",
     targetCount: 1,
@@ -313,6 +445,12 @@ export const ADHKAR_LIST: Dhikr[] = [
     categoryId: "wake_up",
     arabic: "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ",
     transliteration: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир. СубханАллах, валь-хамду лиЛлях, ва ля иляха илляЛлах, ваЛлаху акбар, ва ля хауля ва ля куввата илля биЛляхиль-'алиййиль-'азым",
+    transliterations: {
+      ru: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир. СубханАллах, валь-хамду лиЛлях, ва ля иляха илляЛлах, ваЛлаху акбар, ва ля хауля ва ля куввата илля биЛляхиль-'алиййиль-'азым",
+      en: "La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli shay'in qadir. SubhanAllah, wal-hamdu lillah, wa la ilaha illallah, wallahu akbar, wa la hawla wa la quwwata illa billahil-'aliyyil-'azim",
+      uz: "La ilaha illallohu vaxdaxu la sharika lax, laxul-mulku va laxul-hamdu va xuva 'ala kulli shay'in qodir. SubhanAlloh, val-hamdu lilloh, va la ilaha illalloh, vallohu akbar, va la xavla va la quvvata illa billaxil-'aliyyil-'azim",
+      ky: "Ля иляха илляЛлаху вахдаху ля шарика лях, лахуль-мульку ва лахуль-хамду ва хува 'аля кулли шайин кадир. СубханАллах, валь-хамду лиЛлях, ва ля иляха илляЛлах, ваЛлаху акбар, ва ля хауля ва ля куввата илля биЛляхиль-'алиййиль-'азым"
+    },
     translation: "Нет божества, кроме Аллаха Единого, без сотоварища. Ему власть и хвала, и Он над всём властен. Преславен Аллах, хвала Аллаху, нет божества кроме Аллаха, Аллах Велик, нет мощи и силы ни у кого, кроме Аллаха Всевышнего, Великого.",
     reference: "Аль-Бухари, Фатх аль-Бари 3/39",
     targetCount: 1,

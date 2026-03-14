@@ -35,6 +35,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Darhaqiqat, amallar faqat niyatga qarab baholanadi va har bir kishi faqat niyat qilgan narsasini oladi. Kimning hijrati Allohga va Rasuliga bo‘lsa, Alloh va Rasuliga hijrat qilgan bo‘lsa, kimning hijrati dunyoviy manfaat yoki nikoh uchun bo‘lsa, hijratni faqat o‘zi hijrat qilgan narsasiga qilgan.", narrator: "Umar ibn al-Xattob", grade: "Sahih" },
       ky: { text: "Чындыгында, амалдар ниет менен гана бааланат жана ар бир адам ниет кылганын гана алат. Кимдин хижраты Аллахка жана Анын Элчисине болсо, Аллахка жана Анын Элчисине хижрат кылган, ал эми кимдин хижраты дүнүйөлүк пайда же нике үчүн болсо, хижрат кылганы үчүн гана хижрат кылган.", narrator: "Умар ибн аль-Хаттаб", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Иннамаль-а'малю бин-нийят, ва иннама ликулли-мри'ин ма нава...",
+      en: "Innamal-a'malu bin-niyyat, wa innama likulli-mri'in ma nawa...",
+      uz: "Innamal-a'malu bin-niyyat, va innama likulli-mri'in ma nava...",
+      ky: "Иннамаль-а'малю бин-нийят, ва иннама ликулли-мри'ин ма нава..."
+    },
     translation: "Поистине, дела оцениваются только по намерениям, и каждому человеку достанется лишь то, что он намеревался обрести. Тот, чья хиджра была к Аллаху и Его Посланнику, совершил хиджру к Аллаху и Его Посланнику, а тот, чья хиджра была ради мирского блага или женитьбы, совершил хиджру лишь к тому, ради чего он переселился.",
     narrator: "Умар ибн аль-Хаттаб",
     narratorAr: "عمر بن الخطاب",
@@ -51,6 +57,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Islam is based on five pillars: witnessing that there is no god but Allah and that Muhammad is the Messenger of Allah, performing prayer, paying zakat, pilgrimage to the House and fasting in the month of Ramadan.", narrator: "Abdullah ibn Umar", grade: "Sahih" },
       uz: { text: "Islom dini besh ruknga asoslanadi: Allohdan o‘zga iloh yo‘qligiga va Muhammad Allohning rasuli ekanligiga guvohlik berish, namoz o‘qish, zakot berish, Baytullohni haj qilish va Ramazon oyida ro‘za tutish.", narrator: "Abdulloh ibn Umar", grade: "Sahih" },
       ky: { text: "Ислам беш түркүккө негизделген: Аллахтан башка кудай жок жана Мухаммад Алланын элчиси экендигине күбөлүк берүү, намаз окуу, зекет берүү, үйдү зыярат кылуу жана Рамазан айында орозо кармоо.", narrator: "Абдуллах ибн Умар", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Бунияль-Исляму 'аля хамсин: шахадати ан ля иляха илляЛлаху ва анна Мухаммадан Расулюллах...",
+      en: "Buniya al-Islamu 'ala khamsin: shahadati an la ilaha illallahu wa anna Muhammadan Rasulullah...",
+      uz: "Buniya al-Islamu 'ala xamsin: shahadati an la ilaha illallohu va anna Muhammadan Rasululloh...",
+      ky: "Бунияль-Исляму 'аля хамсин: шахадати ан ля иляха илляЛлаху ва анна Мухаммадан Расулюллах..."
     },
     translation: "Ислам основан на пяти столпах: свидетельство, что нет божества, кроме Аллаха, и что Мухаммад — Посланник Аллаха, совершение молитвы, выплата закята, паломничество к Дому и пост в месяц Рамадан.",
     narrator: "Абдуллах ибн Умар",
@@ -69,6 +81,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Sizlardan hech biringiz o'zi uchun xohlagan narsani birodariga ham xohlamagunicha iymon keltirmaysiz.", narrator: "Anas ibn Molik", grade: "Sahih" },
       ky: { text: "Силерден эч ким өзүнө каалаганды бир тууганына да кааламайынча ыйман келтире албайт.", narrator: "Анас ибн Малик", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ля ю'мину ахадукум хатта юхибба ли-ахихи ма юхиббу ли-нафсихи",
+      en: "La yu'minu ahadukum hatta yuhibba li-akhihi ma yuhibbu li-nafsihi",
+      uz: "La yu'minu axadukum xatta yuhibba li-axihi ma yuhibbu li-nafsihi",
+      ky: "Ля ю'мину ахадукум хатта юхибба ли-ахихи ма юхиббу ли-нафсихи"
+    },
     translation: "Не уверует никто из вас до тех пор, пока не станет желать своему брату того же, чего желает самому себе.",
     narrator: "Анас ибн Малик",
     narratorAr: "أنس بن مالك",
@@ -85,6 +103,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Whoever believes in Allah and the Last Day, let him speak good or remain silent. Whoever believes in Allah and the Last Day, let him honor his neighbor. Whoever believes in Allah and the Last Day, let him honor his guest.", narrator: "Abu Hurayrah", grade: "Sahih" },
       uz: { text: "Kim Allohga va oxirat kuniga iymon keltirgan bo'lsa, yaxshi gapirsin yoki jim tursin. Kim Allohga va oxirat kuniga iymon keltirgan bo'lsa, qo'shnisini hurmat qilsin. Kim Allohga va oxirat kuniga iymon keltirsa, mehmonini hurmat qilsin.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Ким Аллахка жана акырет күнүнө ишенсе, жакшы сүйлөсүн же унчукпасын. Ким Аллахка жана акырет күнүнө ыйман келтирсе, кошунасын сыйласын. Ким Аллага жана акырет күнүнө ыйман келтирсе, коногун сыйласын.", narrator: "Абу Хурайра", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ман кана ю'мину биЛляхи валь-яумиль-ахыри фаль-якуль хайран ау ли-ясмут...",
+      en: "Man kana yu'minu billahi wal-yawmil-akhiri falyakul khayran aw liyasmut...",
+      uz: "Man kana yu'minu billohi val-yovmil-oxiri falyakul xayran av liyasmut...",
+      ky: "Ман кана ю'мину биЛляхи валь-яумиль-ахыри фаль-якуль хайран ау ли-ясмут..."
     },
     translation: "Кто верует в Аллаха и в Последний день, пусть говорит благое или молчит. Кто верует в Аллаха и в Последний день, пусть почитает своего соседа. Кто верует в Аллаха и в Последний день, пусть оказывает почёт своему гостю.",
     narrator: "Абу Хурайра",
@@ -103,6 +127,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "G'azablanmang!", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Ачууланба!", narrator: "Абу Хурайра", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ля тагдаб",
+      en: "La taghdab",
+      uz: "La tag'dab",
+      ky: "Ля тагдаб"
+    },
     translation: "Не гневайся!",
     narrator: "Абу Хурайра",
     narratorAr: "أبو هريرة",
@@ -119,6 +149,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Indeed, Allah has prescribed good behavior towards everything.", narrator: "Shaddad ibn Aus", grade: "Sahih" },
       uz: { text: "Albatta, Alloh har bir narsaga yaxshi xulqni farz qilgan.", narrator: "Shaddod ibn Aus", grade: "Sahih" },
       ky: { text: "Чындыгында, Аллах бардык нерсеге жакшылыкты буйруган.", narrator: "Шаддад ибн Аус", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "ИннаЛлаха катабаль-ихсана 'аля кулли шай",
+      en: "Inna Allaha katabal-ihsana 'ala kulli shay'",
+      uz: "Inna Alloha katabal-ihsana 'ala kulli shay'",
+      ky: "ИннаЛлаха катабаль-ихсана 'аля кулли шай"
     },
     translation: "Поистине, Аллах предписал доброе отношение ко всему.",
     narrator: "Шаддад ибн Аус",
@@ -137,6 +173,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Qayerda bo'lsangiz ham Allohdan qo'rqing, bir yomon ishni yaxshilik bilan o'chiring, unga ergashing va odamlarga go'zal xulq bilan muomala qiling.", narrator: "Abu Zarr va Muoz ibn Jabal", grade: "Hasan" },
       ky: { text: "Кайда болсоң да Аллахтан корккула, жамандыкты жакшылык менен ээрчи, ал аны өчүрөт жана адамдарга жакшы адеп-ахлак менен мамиле кыл.", narrator: "Абу Зарр жана Муаз ибн Жабал", grade: "Хасан" }
     },
+    transliterations: {
+      ru: "Иттакы-Лляха хайсума кунта, ва атби'ис-саййи'аталь-хасаната тамхуха, ва халикин-наса би-хулюкин хасан",
+      en: "Ittaqi-llaha haythuma kunta, wa atbi'is-sayyi'atal hasanata tamhuha, wa khaliqin-nasa bi-khuluqin hasan",
+      uz: "Ittaqi-lloh xaytsuma kunta, va atbi'is-sayyi'atal xasanata tamhuxa, va xaliqin-nasa bi-xuluqin xasan",
+      ky: "Иттакы-Лляха хайсума кунта, ва атби'ис-саййи'аталь-хасаната тамхуха, ва халикин-наса би-хулюкин хасан"
+    },
     translation: "Бойся Аллаха, где бы ты ни был, вслед за дурным делом соверши доброе, и оно сотрёт его, и относись к людям с хорошим нравом.",
     narrator: "Абу Зарр и Муаз ибн Джабаль",
     narratorAr: "أبو ذر ومعاذ بن جبل",
@@ -153,6 +195,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "The perfection of Islam for a person is the abandonment of what does not concern him.", narrator: "Abu Hurayrah", grade: "Hasan" },
       uz: { text: "Inson uchun Islomning komilligi, o‘ziga tegishli bo‘lmagan narsani tark etishdir.", narrator: "Abu Hurayra", grade: "Hasan" },
       ky: { text: "Исламдын адам үчүн кемчиликсиздиги – ага тиешеси жок нерселерди таштоо.", narrator: "Абу Хурайра", grade: "Хасан" }
+    },
+    transliterations: {
+      ru: "Мин хусни ислямиль-мар'и таркуху ма ля я'нихи",
+      en: "Min husni islami al-mar'i tarkuhu ma la ya'nihi",
+      uz: "Min xusni islami al-mar'i tarkuxu ma la ya'nihi",
+      ky: "Мин хусни ислямиль-мар'и таркуху ма ля я'нихи"
     },
     translation: "Из совершенства ислама человека — оставление того, что его не касается.",
     narrator: "Абу Хурайра",
@@ -171,6 +219,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Dunyoviy narsalarni tark eting va Alloh sizni yaxshi ko'radi. Odamlarda bor narsadan voz keching va odamlar sizni yaxshi ko'rishadi.", narrator: "Sahl ibn Sa'd", grade: "Hasan" },
       ky: { text: "Дуйнолук нерселерди ташта, ошондо Аллах сени жакшы көрөт. Элде бар нерседен баш тарт, ошондо эл сени сүйөт.", narrator: "Сахл ибн Саад", grade: "Хасан" }
     },
+    transliterations: {
+      ru: "Изхад фи-ддунья юхиббукаЛлах, ва-изхад фима 'индан-нас юхиббукан-нас",
+      en: "Izhad fid-dunya yuhibbukallah, waizhad fima 'indan-nasi yuhibbukan-nas",
+      uz: "Izhad fid-dunya yuhibbukalloh, vaizhad fima 'indan-nasi yuhibbukan-nas",
+      ky: "Изхад фи-ддунья юхиббукаЛлах, ва-изхад фима 'индан-нас юхиббукан-нас"
+    },
     translation: "Откажись от мирского — и Аллах полюбит тебя. Откажись от того, что есть у людей — и люди полюбят тебя.",
     narrator: "Сахль ибн Саад",
     narratorAr: "سهل بن سعد",
@@ -187,6 +241,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "You must not harm yourself or others.", narrator: "Abu Said al-Khudri", grade: "Hasan" },
       uz: { text: "Siz o'zingizga va boshqalarga zarar etkazmasligingiz kerak.", narrator: "Abu Said al-Xudriy", grade: "Hasan" },
       ky: { text: "Өзүңө да, башкаларга да зыян келтирбеш керек.", narrator: "Абу Саид аль-Худри", grade: "Хасан" }
+    },
+    transliterations: {
+      ru: "Ля дарара ва ля дирар",
+      en: "La darara wa la dirar",
+      uz: "La darara va la dirar",
+      ky: "Ля дарара ва ля дирар"
     },
     translation: "Нельзя причинять вред ни себе, ни другим.",
     narrator: "Абу Саид аль-Худри",
@@ -208,6 +268,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Sizlarning eng yaxshilaringiz Qur'onni o'rgangan va uni boshqalarga o'rgatganingizdir.", narrator: "Usmon ibn Affon", grade: "Sahih" },
       ky: { text: "Силердин эң жакшыңар – Куранды үйрөнүп, аны башкаларга үйрөткөнүңөр.", narrator: "Усман ибн Аффан", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Хайрукум ман та'аллямаль-Курана ва 'аллямаху",
+      en: "Khayrukum man ta'allamal-Qur'ana wa 'allamahu",
+      uz: "Xayrukum man ta'allamal-Qur'onni va 'allamahu",
+      ky: "Хайрукум ман та'аллямаль-Курана ва 'аллямаху"
+    },
     translation: "Лучший из вас тот, кто изучил Коран и обучил ему других.",
     narrator: "Усман ибн Аффан",
     narratorAr: "عثمان بن عفان",
@@ -224,6 +290,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "A Muslim is one from whose tongue and hands other Muslims are safe.", narrator: "Abdullah ibn Amr", grade: "Sahih" },
       uz: { text: "Musulmon - boshqa musulmonlar tilidan va qo'lidan omon bo'lgan kishidir.", narrator: "Abdulloh ibn Amr", grade: "Sahih" },
       ky: { text: "Мусулман – тилинен жана колунан башка мусулмандар аман болгон адам.", narrator: "Абдуллах ибн Амр", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Аль-муслиму ман салималь-муслимуна мин лисанихи ва ядихи",
+      en: "Al-muslimu man salimal-muslimuna min lisanihi wa yadihi",
+      uz: "Al-muslimu man salimal-muslimuna min lisonixi va yadixi",
+      ky: "Аль-муслиму ман салималь-муслимуна мин лисанихи ва ядихи"
     },
     translation: "Мусульманин — тот, от языка и рук которого другие мусульмане в безопасности.",
     narrator: "Абдуллах ибн Амр",
@@ -242,6 +314,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Kim ikki sovuq namozni (bomdod va asr) o'qisa, jannatga kiradi.", narrator: "Abu Muso al-Ashariy", grade: "Sahih" },
       ky: { text: "Ким эки муздак намаз окуса (Багымдат жана аср) Бейишке кирет.", narrator: "Абу Муса аль-Ашари", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ман салляль-бардейни дахаляль-джанна",
+      en: "Man salla al-bardayni dakhala al-jannah",
+      uz: "Man salla al-bardayni daxala al-jannah",
+      ky: "Ман салляль-бардейни дахаляль-джанна"
+    },
     translation: "Кто совершает две прохладные молитвы (Фаджр и Аср), тот войдёт в Рай.",
     narrator: "Абу Муса аль-Ашари",
     narratorAr: "أبو موسى الأشعري",
@@ -258,6 +336,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Dua (supplication) is worship.", narrator: "Numan ibn Bashir", grade: "Sahih" },
       uz: { text: "Duo (duo) ibodatdir.", narrator: "Nu'mon ibn Bashir", grade: "Sahih" },
       ky: { text: "Дуа (дуба) бул ибадат.", narrator: "Нуман ибн Башир", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ад-ду'ау хуваль-'ибада",
+      en: "Ad-du'au huwal-'ibadah",
+      uz: "Ad-du'au huval-'ibadah",
+      ky: "Ад-ду'ау хуваль-'ибада"
     },
     translation: "Дуа (мольба) — это и есть поклонение.",
     narrator: "Нуман ибн Башир",
@@ -276,6 +360,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Albatta, Alloh tana va mollaringizga qaramaydi, balki qalblaringiz va amallaringizga qaraydi.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Чындыгында, Аллах силердин денеңер менен мал-мүлкүңөргө карабайт, бирок жүрөгүңөргө жана амалыңа карайт.", narrator: "Абу Хурайра", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "ИннаЛлаха ля янзуру иля суварикум ва амваликум ва лякин янзуру иля кулюбикум ва а'маликум",
+      en: "Inna Allaha la yanzuru ila suwarikum wa amwalikum wa lakin yanzuru ila qulubikum wa a'malikum",
+      uz: "Inna Alloha la yanzuru ila suvarikum va amvalikum va lakin yanzuru ila qulubikum va a'malikum",
+      ky: "ИннаЛлаха ля янзуру иля суварикум ва амваликум ва лякин янзуру иля кулюбикум ва а'маликум"
+    },
     translation: "Поистине, Аллах не смотрит на ваши тела и имущество, но смотрит на ваши сердца и деяния.",
     narrator: "Абу Хурайра",
     narratorAr: "أبو هريرة",
@@ -292,6 +382,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Purity is half of faith.", narrator: "Abu Malik al-Ashari", grade: "Sahih" },
       uz: { text: "Poklik iymonning yarmidir.", narrator: "Abu Malik al-Ashariy", grade: "Sahih" },
       ky: { text: "Тазалык ыймандын жарымы.", narrator: "Абу Малик аль-Ашари", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ат-тухуру шатруль-иман",
+      en: "At-tuhuru shatrul-iman",
+      uz: "At-tuhuru shatrul-iymon",
+      ky: "Ат-тухуру шатруль-иман"
     },
     translation: "Чистота — половина веры.",
     narrator: "Абу Малик аль-Ашари",
@@ -310,6 +406,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Kim ilm izlab yo'lga tushsa, Alloh unga jannat yo'lini oson qiladi.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Ким илим издеп жолго түшсө, Аллах анын бейиш жолун жеңилдетет.", narrator: "Абу Хурайра", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ман саляка тарикан яльтамису фихи 'ильман, саххаляЛлаху ляху бихи тарикан иляль-джанна",
+      en: "Man salaka tariqan yaltamisu fihi 'ilman, sahhala Allahu lahu bihi tariqan ilal-jannah",
+      uz: "Man salaka tariqan yaltamisu fixi 'ilman, saxxala Allohu laxu bixi tariqan ilal-jannah",
+      ky: "Ман саляка тарикан яльтамису фихи 'ильман, саххаляЛлаху ляху бихи тарикан иляль-джанна"
+    },
     translation: "Кто встал на путь в поисках знания, тому Аллах облегчит путь в Рай.",
     narrator: "Абу Хурайра",
     narratorAr: "أبو هريرة",
@@ -326,6 +428,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Do not neglect any good thing, even if it is meeting a brother with a friendly face.", narrator: "Abu Dharr", grade: "Sahih" },
       uz: { text: "Do'stona yuzli birodarni uchratgan bo'lsa ham, biron bir yaxshi narsani e'tiborsiz qoldirmang.", narrator: "Abu Zarr", grade: "Sahih" },
       ky: { text: "Жакшылыкка кайдыгер караба, мейли ал бир тууганды жолуктурса да.", narrator: "Абу Зар", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ля тахкиранна миналь-ма'руфи шай'ан ва ляу ан талька ахака би-важхин талык",
+      en: "La tahqiranna min al-ma'rufi shay'an walau an talqa akhaka bi-wajhin taliq",
+      uz: "La taxqiranna minal-ma'rufi shay'an valau an talqa axaka bi-vajxin taliq",
+      ky: "Ля тахкиранна миналь-ма'руфи шай'ан ва ляу ан талька ахака би-важхин талык"
     },
     translation: "Не пренебрегай ничем из добра, даже если это встреча с братом с приветливым лицом.",
     narrator: "Абу Зарр",
@@ -344,6 +452,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Birodaringga tabassuming sadaqadir.", narrator: "Abu Zarr", grade: "Hasan" },
       ky: { text: "Бир тууганыңа болгон жылмаюуң садака.", narrator: "Абу Зар", grade: "Хасан" }
     },
+    transliterations: {
+      ru: "Табассумука фи важхи ахика ляка садака",
+      en: "Tabassumuka fi wajhi akhika laka sadaqah",
+      uz: "Tabassumuka fi vajhi axika laka sadaqa",
+      ky: "Табассумука фи важхи ахика ляка садака"
+    },
     translation: "Твоя улыбка брату — это милостыня (садака).",
     narrator: "Абу Зарр",
     narratorAr: "أبو ذر",
@@ -361,6 +475,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Odamlarning eng yaxshisi odamlarga foydali bo'lganidir.", narrator: "Jobir", grade: "Hasan" },
       ky: { text: "Адамдардын эң жакшысы – адамдарга эң пайдалуусу.", narrator: "Жабир", grade: "Хасан" }
     },
+    transliterations: {
+      ru: "Хайрун-наси анфа'ухум лин-нас",
+      en: "Khayrun-nasi anfa'uhum lin-nas",
+      uz: "Xayrun-nasi anfa'uhum lin-nos",
+      ky: "Хайрун-наси анфа'ухум лин-нас"
+    },
     translation: "Лучший из людей — тот, кто наиболее полезен для людей.",
     narrator: "Джабир",
     narratorAr: "جابر",
@@ -376,6 +496,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "If a Muslim plants a tree or sows something and then a bird, person or animal eats from it, it will be charity for him.", narrator: "Anas ibn Malik", grade: "Sahih" },
       uz: { text: "Musulmon kishi daraxt eksa yoki biror narsa eksa, undan qush, odam yoki hayvon yesa, bu unga sadaqa bo‘ladi.", narrator: "Anas ibn Molik", grade: "Sahih" },
       ky: { text: "Мусулман бир дарак отургузса же бир нерсе сепсе, анан андан канаттуу, адам же жаныбар жесе, ал үчүн садака болот.", narrator: "Анас ибн Малик", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ма мин муслимин ягрису гарсан ау язра'у зар'ан фа-яккулю минху тайрун ау инсанун ау бахиматун илля кана ляху бихи садака",
+      en: "Ma min muslimin yaghrisu gharsan aw yazra'u zar'an faya'kulu minhu tayrun aw insanun aw bahimatun illa kana lahu bihi sadaqah",
+      uz: "Ma min muslimin yag'risu g'arsan av yazra'u zar'an faya'kulu minxu tayrun av insonun av baximatun illa kana laxu bixi sadaqa",
+      ky: "Ма мин муслимин ягрису гарсан ау язра'у зар'ан фа-яккулю минху тайрун ау инсанун ау бахиматун илля кана ляху бихи садака"
     },
     translation: "Если мусульманин посадит дерево или посеет что-либо, а затем птица, человек или животное поест с этого, то это будет для него милостыней.",
     narrator: "Анас ибн Малик",
@@ -394,6 +520,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Biror kishi vafot etsa, amallari to'xtaydi, faqat uchtasi: doimiy sadaqa (sadaqa jariya), foyda keltiruvchi ilm va unga duo qilish solih farzand.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Адам өлгөндө үч нерседен башка амалдары токтойт: үзгүлтүксүз садака (садака жария), пайда берүүчү илим жана ал үчүн дуба кылуучу салих бала.", narrator: "Абу Хурайра", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Иза мата ибну адама-нката'а 'амалюху илля мин саляса: илля мин садакатин джария, ау 'ильмин юнта-фа'у бихи, ау валядин салихин яд'у ляху",
+      en: "Idha mata al-insanu inqata'a 'anhu 'amaluhu illa min thalatha: illa min sadaqatin jariya, aw 'ilmin yuntafa'u bihi, aw waladin salihin yad'u lahu",
+      uz: "Idza mata al-insonu inqata'a 'anxu 'amaluxu illa min salasa: illa min sadaqatin jariya, av 'ilmin yuntafa'u bixi, av valadin solixin yad'u laxu",
+      ky: "Иза мата ибну адама-нката'а 'амалюху илля мин саляса: илля мин садакатин джария, ау 'ильмин юнта-фа'у бихи, ау валядин салихин яд'у ляху"
+    },
     translation: "Когда человек умирает, его дела прекращаются, кроме трёх: непрерывная милостыня (садака джария), знание, приносящее пользу, и праведный ребёнок, молящийся за него.",
     narrator: "Абу Хурайра",
     narratorAr: "أبو هريرة",
@@ -410,6 +542,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "Allah's most beloved deeds are permanent ones, even if they are small.", narrator: "Aisha", grade: "Sahih" },
       uz: { text: "Alloh taoloning eng sevimli amallari kichik bo'lsa ham doimiydir.", narrator: "Oysha", grade: "Sahih" },
       ky: { text: "Аллахтын эң сүйүктүү амалдары, кичине болсо да, түбөлүктүү.", narrator: "Айша", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ахаббуль-а'мали иляЛлахи адвамуха ва ин калля",
+      en: "Ahabbul-a'mali ila Allahi adwamuha wa in qalla",
+      uz: "Axabbul-a'mali ila Alloxi advamuxa va in qalla",
+      ky: "Ахаббуль-а'мали иляЛлахи адвамуха ва ин калля"
     },
     translation: "Самые любимые дела Аллахом — постоянные, даже если они малы.",
     narrator: "Аиша",
@@ -428,6 +566,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Rahm qilmaganga rahm qilinmaydi.", narrator: "Jarir ibn Abdulloh", grade: "Sahih" },
       ky: { text: "Ырайым кылбаганга ырайым болбойт.", narrator: "Жарир ибн Абдулла", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ман ля ярхам ля юрхам",
+      en: "Man la yarham la yurham",
+      uz: "Man la yarxam la yurxam",
+      ky: "Ман ля ярхам ля юрхам"
+    },
     translation: "Кто не проявляет милосердие — к тому не будет проявлено милосердие.",
     narrator: "Джарир ибн Абдуллах",
     narratorAr: "جرير بن عبد الله",
@@ -444,6 +588,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "This world is a prison for the believer and a paradise for the unbeliever.", narrator: "Abu Hurayrah", grade: "Sahih" },
       uz: { text: "Bu dunyo mo‘min uchun zindon, kofir uchun jannatdir.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Бул дүйнө момун үчүн түрмө, каапыр үчүн бейиш.", narrator: "Абу Хурайра", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Ад-дунья сиджнуль-му'мин ва джаннатуль-кафир",
+      en: "Ad-dunya sijnul-mu'min wa jannatul-kafir",
+      uz: "Ad-dunya sijnul-mo'min va jannatul-kofir",
+      ky: "Ад-дунья сиджнуль-му'мин ва джаннатуль-кафир"
     },
     translation: "Этот мир — тюрьма для верующего и рай для неверующего.",
     narrator: "Абу Хурайра",
@@ -462,6 +612,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Hech kim o'z qo'llari bilan topganidan yaxshiroq narsani yemagan.", narrator: "Al-Miqdam", grade: "Sahih" },
       ky: { text: "Эч ким өз колу менен тапканынан артык эч нерсе жеген эмес.", narrator: "Аль-Микдам", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Ма акаля ахадун та'аман катту хайран мин ан я'куля мин 'амали ядихи",
+      en: "Ma akala ahadun ta'aman qattu khayran min an ya'kula min 'amali yadihi",
+      uz: "Ma akala axadun ta'aman qattu xayran min an ya'kula min 'amali yadixi",
+      ky: "Ма акаля ахадун та'аман катту хайран мин ан я'куля мин 'амали ядихи"
+    },
     translation: "Никто не ел ничего лучше, чем то, что заработал своими руками.",
     narrator: "Аль-Микдам",
     narratorAr: "المقدام",
@@ -478,6 +634,12 @@ export const HADITH_LIST: Hadith[] = [
       en: { text: "A kind word is sadaqah (charity).", narrator: "Abu Hurayrah", grade: "Sahih" },
       uz: { text: "Yaxshi so'z sadaqadir.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Жакшы сөз – садака (садака).", narrator: "Абу Хурайра", grade: "Сахих" }
+    },
+    transliterations: {
+      ru: "Аль-калиматут-таййибату садака",
+      en: "Al-kalimatut-tayyibatu sadaqah",
+      uz: "Al-kalimatut-tayyibatu sadaqa",
+      ky: "Аль-калиматут-таййибату садака"
     },
     translation: "Доброе слово — это садака (милостыня).",
     narrator: "Абу Хурайра",
@@ -496,6 +658,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Albatta, Alloh go'zaldir va go'zallikni sevadi.", narrator: "Abdulloh ibn Mas'ud", grade: "Sahih" },
       ky: { text: "Чындыгында, Аллах сулуу жана сулуулукту сүйөт.", narrator: "Абдуллах ибн Масъуд", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "ИннаЛлаха джамилюн юхиббуль-джамаль",
+      en: "Inna Allaha jamilun yuhibbu al-jamal",
+      uz: "Inna Alloha jamilun yuhibbu al-jamol",
+      ky: "ИннаЛлаха джамилюн юхиббуль-джамаль"
+    },
     translation: "Поистине, Аллах красив и любит красоту.",
     narrator: "Абдуллах ибн Масъуд",
     narratorAr: "عبد الله بن مسعود",
@@ -513,6 +681,12 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Darhaqiqat, men faqat yaxshi xulq-atvorni komil qilish uchun yuborilganman.", narrator: "Abu Hurayra", grade: "Sahih" },
       ky: { text: "Чындыгында, мен жакшы кулк-мүнөздү толуктоо үчүн гана жиберилдим.", narrator: "Абу Хурайра", grade: "Сахих" }
     },
+    transliterations: {
+      ru: "Иннама бу'исту ли-утаммима макарималь-ахляк",
+      en: "Innama bu'ithtu li-utammima makarima al-akhlaq",
+      uz: "Innama bu'istu li-utammima makarima al-axloq",
+      ky: "Иннама бу'исту ли-утаммима макарималь-ахляк"
+    },
     translation: "Поистине, я был послан лишь для того, чтобы усовершенствовать благой нрав.",
     narrator: "Абу Хурайра",
     narratorAr: "أبو هريرة",
@@ -529,11 +703,11 @@ export const HADITH_LIST: Hadith[] = [
       uz: { text: "Yarim xurmo bersangiz ham olovdan saqlaning.", narrator: "Adi ibn Xotim", grade: "Sahih" },
       ky: { text: "Жарым курма берсең да оттон сактан.", narrator: "Ади ибн Хатим", grade: "Сахих" }
     },
-    translations: {
-      ru: { text: "Остерегайтесь Огня, хотя бы раздав половинку финика.", narrator: "Ади ибн Хатим" },
-      en: { text: "Beware of Fire, even if you give away half a date.", narrator: "Adi ibn Hatim" },
-      uz: { text: "Yarim xurmo bersangiz ham olovdan saqlaning.", narrator: "Adi ibn Xotim" },
-      ky: { text: "Жарым курма берсең да оттон сактан.", narrator: "Ади ибн Хатим" }
+    transliterations: {
+      ru: "Иттакы ан-нара ва ляу би-шикки тамра",
+      en: "Ittaqu an-nara walau bi-shiqqi tamrah",
+      uz: "Ittaqu an-nara valau bi-shiqqi tamrah",
+      ky: "Иттакы ан-нара ва ляу би-шикки тамра"
     },
     translation: "Остерегайтесь Огня, хотя бы раздав половинку финика.",
     narrator: "Ади ибн Хатим",

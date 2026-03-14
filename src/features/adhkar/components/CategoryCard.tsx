@@ -15,22 +15,22 @@ import { useAdhkarStore } from "../store/adhkarStore";
 import type { CategoryInfo } from "../types/adhkar.types";
 import { useLanguage } from "@shared/i18n/LanguageContext";
 import { 
-  Sunrise, 
-  Moon, 
   Heart, 
-  Sun, 
-  MoonStar,
-  Sparkles,
+  SunDim,
+  Moon,
+  Bookmark,
+  Bed,
+  CloudSun,
   LucideIcon
 } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
-  "sunrise": Sunrise,
-  "moon": Moon,
-  "sparkles": Sparkles,
-  "heart": Heart,
-  "moon-star": MoonStar,
-  "sun": Sun,
+  "morning": SunDim,
+  "evening": Moon,
+  "salah": Bookmark,
+  "general": Heart,
+  "sleep": Bed,
+  "wakeup": CloudSun,
 };
 
 interface CategoryCardProps {

@@ -259,5 +259,15 @@
   "namaz.step_salam_translit": "As-salamu 'alaykum wa rahmatullah",
   "namaz.step_salam_desc": "Turn the head to the right, then to the left, saying 'As-salamu 'alaykum wa rahmatullah'. This completes the prayer.",
   "namaz.step_salam_type": "Fard",
-  "namaz.watch_video": "Watch tutorial"
+  "namaz.watch_video": "Watch tutorial",
+  "sunnah_details": {
+    "btn_collapse": "Collapse",
+    "btn_expand": "Details",
+    "label_what": "Essence of Sunnah:",
+    "label_history": "Historical Context:",
+    "label_why": "Why it is Sunnah:",
+    "label_spiritual": "Spiritual Benefit:",
+    "label_health": "Health Impact:",
+    "label_hadith": "Brief Hadith:"
+  }
 }

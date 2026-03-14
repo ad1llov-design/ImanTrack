@@ -61,8 +61,13 @@ export function SunnahGrid({ className }: { className?: string }) {
                     key={sunnah.id}
                     className="rounded-2xl border border-border bg-surface p-5 shadow-sm overflow-hidden transition-all duration-300"
                   >
-                    <div className="mb-4 text-right">
-                      <p className="font-arabic text-2xl leading-[2.2] text-main">{sunnah.arabic}</p>
+                    <div className="mb-4 text-center">
+                      <p className="font-arabic text-2xl leading-[2.2] text-main mb-2">{sunnah.arabic}</p>
+                      {sunnah.transliterations && (
+                        <p className="text-sm italic text-primary-600/80 dark:text-primary-400/80 font-medium">
+                          {sunnah.transliterations[language] || sunnah.transliterations["en"]}
+                        </p>
+                      )}
                     </div>
                     <h3 className="text-base font-bold text-main mb-2">
                       {translation.label}
@@ -76,7 +81,7 @@ export function SunnahGrid({ className }: { className?: string }) {
                         onClick={() => setExpandedId(isExpanded ? null : sunnah.id)}
                         className="flex items-center gap-1.5 text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors uppercase tracking-wider"
                       >
-                        {isExpanded ? (t("sunnah_details.btn_collapse") !== "sunnah_details.btn_collapse" ? t("sunnah_details.btn_collapse") : "Свернуть") : (t("sunnah_details.btn_expand") !== "sunnah_details.btn_expand" ? t("sunnah_details.btn_expand") : "Подробности")}
+                        {isExpanded ? t("sunnah_details.btn_collapse") : t("sunnah_details.btn_expand")}
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>
 
@@ -89,37 +94,37 @@ export function SunnahGrid({ className }: { className?: string }) {
                       <div className="mt-4 pt-4 border-t border-border space-y-4 animate-fade-in text-sm text-muted">
                         {dWhat && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_what") !== "sunnah_details.label_what" ? t("sunnah_details.label_what") : "Суть сунны:"}</span>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_what")}</span>
                             <p>{dWhat}</p>
                           </div>
                         )}
                         {dHistory && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_history") !== "sunnah_details.label_history" ? t("sunnah_details.label_history") : "Исторический контекст:"}</span>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_history")}</span>
                             <p>{dHistory}</p>
                           </div>
                         )}
                         {dWhy && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_why") !== "sunnah_details.label_why" ? t("sunnah_details.label_why") : "Почему это сунна:"}</span>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_why")}</span>
                             <p>{dWhy}</p>
                           </div>
                         )}
                         {dSpiritual && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_spiritual") !== "sunnah_details.label_spiritual" ? t("sunnah_details.label_spiritual") : "Духовная польза:"}</span>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_spiritual")}</span>
                             <p>{dSpiritual}</p>
                           </div>
                         )}
                         {dHealth && (
                           <div>
-                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_health") !== "sunnah_details.label_health" ? t("sunnah_details.label_health") : "Влияние на здоровье:"}</span>
+                            <span className="font-bold text-main block mb-0.5">{t("sunnah_details.label_health")}</span>
                             <p>{dHealth}</p>
                           </div>
                         )}
                         {dHadith && (
                           <div className="bg-neutral-50 dark:bg-neutral-900/40 p-3 rounded-xl border border-border italic">
-                            <span className="font-bold text-main not-italic block mb-1">{t("sunnah_details.label_hadith") !== "sunnah_details.label_hadith" ? t("sunnah_details.label_hadith") : "Краткий хадис:"}</span>
+                            <span className="font-bold text-main not-italic block mb-1">{t("sunnah_details.label_hadith")}</span>
                             {dHadith}
                           </div>
                         )}

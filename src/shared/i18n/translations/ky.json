@@ -259,5 +259,15 @@
   "namaz.step_salam_translit": "Ас-саляму 'алейкум ва рахматуЛлах",
   "namaz.step_salam_desc": "Башты оңго, андан солго бурушуу, «Ас-саляму 'алейкум ва рахматуЛлах» деп айтуу. Бул намазды бүтүрөт.",
   "namaz.step_salam_type": "Парз",
-  "namaz.watch_video": "Видео сабак көрүү"
+  "namaz.watch_video": "Видео сабак көрүү",
+  "sunnah_details": {
+    "btn_collapse": "Жабуу",
+    "btn_expand": "Толугураак",
+    "label_what": "Сүннөттүн маңызы:",
+    "label_history": "Тарыхый контекст:",
+    "label_why": "Эмне үчүн бул сүннөт:",
+    "label_spiritual": "Руханий пайдасы:",
+    "label_health": "Ден соолукка таасири:",
+    "label_hadith": "Кыска хадис:"
+  }
 }

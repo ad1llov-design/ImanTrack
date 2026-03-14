@@ -32,6 +32,7 @@ export interface Dhikr {
   categoryId: AdhkarCategory;
   arabic: string;
   transliteration: string;
+  transliterations?: { ru: string, en: string, uz: string, ky: string };
   translation: string;
   translations?: { ru: string, en: string, uz: string, ky: string };
   reference: string;      // Источник (хадис)

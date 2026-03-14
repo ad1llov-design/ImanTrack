@@ -259,5 +259,15 @@
   "namaz.step_salam_translit": "Ас-саляму 'алейкум ва рахматуЛлах",
   "namaz.step_salam_desc": "Повернуть голову направо, затем налево, произнося «Ас-саляму 'алейкум ва рахматуЛлах». Это завершает намаз.",
   "namaz.step_salam_type": "Фард",
-  "namaz.watch_video": "Смотреть видеоурок"
+  "namaz.watch_video": "Смотреть видеоурок",
+  "sunnah_details": {
+    "btn_collapse": "Свернуть",
+    "btn_expand": "Подробности",
+    "label_what": "Суть сунны:",
+    "label_history": "Исторический контекст:",
+    "label_why": "Почему это сунна:",
+    "label_spiritual": "Духовная польза:",
+    "label_health": "Влияние на здоровье:",
+    "label_hadith": "Краткий хадис:"
+  }
 }

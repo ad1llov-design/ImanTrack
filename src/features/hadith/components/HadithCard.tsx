@@ -12,6 +12,7 @@
 "use client";
 
 import { cn } from "@shared/lib/utils";
+import { useLanguage } from "@shared/i18n/LanguageContext";
 import { getCollectionInfo } from "../data/hadith.collection";
 import type { Hadith } from "../types/hadith.types";
 
@@ -40,6 +41,7 @@ export function HadithCard({
   onShowToday,
   className,
 }: HadithCardProps) {
+  const { language } = useLanguage();
   const collection = getCollectionInfo(hadith.collection);
 
   return (
@@ -78,6 +80,11 @@ export function HadithCard({
           <p className="font-arabic text-xl leading-[2.4] text-neutral-900 dark:text-neutral-50 sm:text-2xl">
             {hadith.arabic}
           </p>
+          {hadith.transliterations && (
+            <p className="mt-2 text-sm italic text-primary-600/80 dark:text-primary-400/80 font-medium">
+              {hadith.transliterations[language] || hadith.transliterations["en"]}
+            </p>
+          )}
         </blockquote>
 
         {/* ── Divider ────────────────────────── */}

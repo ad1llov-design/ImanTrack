@@ -178,7 +178,7 @@ export function DhikrCounter({
 
         {/* Transliteration */}
         <p className="mt-4 text-sm italic text-neutral-500 dark:text-neutral-400">
-          {dhikr.transliteration}
+          {dhikr.transliterations?.[language as keyof typeof dhikr.transliterations] || dhikr.transliteration}
         </p>
 
         {/* Translation */}

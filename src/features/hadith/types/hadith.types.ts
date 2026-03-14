@@ -29,6 +29,13 @@ export interface Hadith {
   arabic: string;
   translation: string;       // Русский перевод
   translations?: {
+    [key: string]: {
+      text: string;
+      narrator?: string;
+      grade?: string;
+    };
+  };
+  transliterations?: {
     ru: string;
     en: string;
     uz: string;

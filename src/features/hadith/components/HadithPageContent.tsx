@@ -71,12 +71,19 @@ export function HadithPageContent() {
       {/* ── Main hadith card */}
       <div className="rounded-3xl border border-border bg-surface p-6 md:p-8 shadow-card space-y-6">
         {/* Arabic */}
-        <p
-          className="text-right text-2xl md:text-3xl text-main leading-[2.2] tracking-wide"
-          style={{ direction: "rtl", fontFamily: "var(--font-amiri, 'Amiri'), serif" }}
-        >
-          {currentHadith.arabic}
-        </p>
+        <div className="text-center">
+          <p
+            className="text-right text-2xl md:text-3xl text-main leading-[2.2] tracking-wide"
+            style={{ direction: "rtl", fontFamily: "var(--font-amiri, 'Amiri'), serif" }}
+          >
+            {currentHadith.arabic}
+          </p>
+          {currentHadith.transliterations && (
+            <p className="mt-2 text-sm italic text-primary-600/80 dark:text-primary-400/80 font-medium">
+              {currentHadith.transliterations[language] || currentHadith.transliterations["en"]}
+            </p>
+          )}
+        </div>
 
         {/* Translation */}
         <p className="text-sm md:text-base text-main leading-relaxed">
