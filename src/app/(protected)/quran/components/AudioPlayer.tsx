@@ -7,9 +7,10 @@ import { getSurahVerses, Verse } from "@features/quran/services/quran_api.servic
 interface AudioPlayerProps {
   surah: number
   onPageChange?: (page: number) => void
+  onVerseChange?: (verseKey: string) => void
 }
 
-export default function AudioPlayer({ surah, onPageChange }: AudioPlayerProps) {
+export default function AudioPlayer({ surah, onPageChange, onVerseChange }: AudioPlayerProps) {
   const [reciter, setReciter] = useState("Alafasy_128kbps")
   const { t, language } = useLanguage()
   const [verses, setVerses] = useState<Verse[]>([])
@@ -27,12 +28,12 @@ export default function AudioPlayer({ surah, onPageChange }: AudioPlayerProps) {
 
   useEffect(() => {
     if (verses.length > 0 && currentVerseIndex < verses.length) {
-      const page = verses[currentVerseIndex]?.page_number
-      if (page && onPageChange && isPlaying) {
-        onPageChange(page)
-      }
+      const v = verses[currentVerseIndex]
+      const page = v?.page_number
+      if (page && onPageChange && isPlaying) onPageChange(page)
+      if (v && onVerseChange && isPlaying) onVerseChange(v.verse_key)
     }
-  }, [currentVerseIndex, verses, onPageChange, isPlaying])
+  }, [currentVerseIndex, verses, onPageChange, onVerseChange, isPlaying])
 
   if (verses.length === 0) return null
 
