@@ -74,7 +74,7 @@ export default function SurahList({ onSelect }: { onSelect: (s: number) => void 
                 <button
                   key={num}
                   onClick={() => onSelect(num)}
-                  className="flex items-center justify-between rounded-xl bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 transition p-4 text-neutral-100 font-semibold group w-full"
+                  className="flex items-center justify-between rounded-xl bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition p-4 text-neutral-900 dark:text-neutral-100 font-semibold group w-full"
                 >
                   <div className="flex items-center gap-4">
                     <span className="flex items-center justify-center w-10 h-10 rounded-full bg-green-600 text-white text-xs font-bold shrink-0 shadow-sm">
