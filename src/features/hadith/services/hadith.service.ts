@@ -56,7 +56,7 @@ function getDayOfYear(date: Date): number {
 
 /* ── Favorites (localStorage) ───────────────────────────────────────── */
 
-const FAVORITES_KEY = "imantrack-hadith-favorites";
+const FAVORITES_KEY = "sirat-hadith-favorites";
 
 export function loadFavorites(): string[] {
   try {
@@ -151,7 +151,7 @@ export function formatHadithText(hadith: Hadith): string {
     `📖 ${hadith.collection === "nawawi" ? "40 хадисов ан-Навави" : ""} ${hadith.number ? `#${hadith.number}` : ""}`.trim(),
     hadith.grade ? `Степень: ${hadith.grade}` : "",
     "",
-    "🌙 MAZI",
+    "🌙 SIRAT",
   ].filter(Boolean);
 
   return lines.join("\n");
@@ -194,7 +194,7 @@ export async function shareHadith(hadith: Hadith): Promise<boolean> {
   if (typeof navigator !== "undefined" && navigator.share) {
     try {
       await navigator.share({
-        title: "Хадис дня — MAZI",
+        title: "Хадис дня — SIRAT",
         text,
       });
       return true;

@@ -1,4 +1,4 @@
-# ImanTrack — Трекер духовного роста
+# SIRAT — Трекер духовного роста
 
 <div align="center">
   <h3>بسم الله الرحمن الرحيم</h3>
@@ -48,7 +48,7 @@
 Проект следует принципам **Feature-Sliced Design (FSD)**:
 
 ```
-ImanTrecker/
+sirat/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── layout.tsx          # Root layout (SEO, fonts, providers)
@@ -156,7 +156,7 @@ ImanTrecker/
 
 ```bash
 git clone <repo-url>
-cd ImanTrecker
+cd sirat
 git checkout feature/initial-architecture
 ```
 
@@ -276,7 +276,7 @@ test(prayer): добавить тесты prayerTimesService
 docker build \
   --build-arg NEXT_PUBLIC_SUPABASE_URL=your_url \
   --build-arg NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key \
-  -t imantrack:latest .
+  -t sirat:latest .
 
 # Запуск через Docker Compose
 docker-compose up -d
@@ -378,5 +378,5 @@ npm run db:generate      # Генерация типов из Supabase
 
 <div align="center">
   <p>Сделано с ❤️ и بسم الله</p>
-  <p><sub>ImanTrack — помогаем мусульманам расти духовно каждый день</sub></p>
+  <p><sub>SIRAT — помогаем мусульманам расти духовно каждый день</sub></p>
 </div>

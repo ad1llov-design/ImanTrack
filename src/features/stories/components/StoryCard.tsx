@@ -118,14 +118,22 @@ export function StoryCard({
                 {story.arabic}
               </p>
               
-              {/* Transliteration - now right after Arabic */}
-              {story.transliterations[language] && (
-                <div className="mt-4 text-center">
-                  <p className="text-sm italic leading-relaxed text-primary-600/70 dark:text-primary-400/70">
-                    {story.transliterations[language].replace(/\.\.\.$/, '')}
-                  </p>
-                </div>
-              )}
+          {/* Transliteration - now right after Arabic */}
+              {(() => {
+                const translit = story.transliterations[language]
+                  || story.transliterations['ru']
+                  || story.transliterations['en'];
+                if (!translit) return null;
+                // Remove trailing "..." that was a shortening marker
+                const clean = translit.replace(/\.{2,}$/, '');
+                return (
+                  <div className="mt-4 text-center">
+                    <p className="text-sm italic leading-relaxed text-primary-600/70 dark:text-primary-400/70">
+                      {clean}
+                    </p>
+                  </div>
+                );
+              })()}
             </div>
           </div>
 

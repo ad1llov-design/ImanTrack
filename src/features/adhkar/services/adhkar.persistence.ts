@@ -14,9 +14,9 @@ import type { DhikrProgress } from "../types/adhkar.types";
 
 /* ── Constants ──────────────────────────────────────────────────────── */
 
-const STORAGE_KEY = "imantrack-adhkar-progress";
+const STORAGE_KEY = "sirat-adhkar-progress";
 
-/** Возвращает ключ с датой: "imantrack-adhkar-progress-2026-02-21" */
+/** Возвращает ключ с датой: "sirat-adhkar-progress-2026-02-21" */
 function getDateKey(date?: Date): string {
   const d = date ?? new Date();
   const yyyy = d.getFullYear();

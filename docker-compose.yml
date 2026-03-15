@@ -10,8 +10,8 @@ services:
         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
         NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME}
-    image: imantrack:latest
-    container_name: imantrack-app
+    image: sirat:latest
+    container_name: sirat-app
     ports:
       - "3000:3000"
     environment:
@@ -20,7 +20,7 @@ services:
       - AUTH_SECRET=${AUTH_SECRET}
     restart: unless-stopped
     networks:
-      - imantrack-network
+      - sirat-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
       interval: 30s
@@ -29,5 +29,5 @@ services:
       start_period: 40s
 
 networks:
-  imantrack-network:
+  sirat-network:
     driver: bridge

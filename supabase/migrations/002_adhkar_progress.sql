@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════════════
--- ImanTrack — Database Schema: Adhkar Progress
+-- SIRAT — Database Schema: Adhkar Progress
 -- ═══════════════════════════════════════════════════════════════════════════
 -- Запустите этот SQL в Supabase SQL Editor (Dashboard → SQL Editor)
 -- ПОСЛЕ 001_profiles.sql

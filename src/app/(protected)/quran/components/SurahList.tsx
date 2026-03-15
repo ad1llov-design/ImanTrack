@@ -54,8 +54,18 @@ const surahJuzMap: Record<number, number> = {
 };
 
 export default function SurahList({ onSelect }: { onSelect: (s: number) => void }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const juzKeys = Array.from({ length: 30 }, (_, i) => i + 1);
+
+  const getTranslSurahName = (nameRu: string, lang: string) => {
+    if (lang === 'ru' || lang === 'ky') return nameRu;
+    const map: Record<string, string> = {
+      'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo', 'Ж': 'J', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'X', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch', 'Ъ': '', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',
+      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'j', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'x', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+      "'": "'", '-': '-'
+    };
+    return nameRu.split('').map(c => map[c] || c).join('');
+  };
 
   return (
     <div className="w-full space-y-8">
@@ -83,7 +93,7 @@ export default function SurahList({ onSelect }: { onSelect: (s: number) => void 
                       {num}
                     </span>
                     <span className="text-sm font-bold transition-colors text-left line-clamp-1">
-                      {SURAH_NAMES[num]}
+                      {getTranslSurahName(SURAH_NAMES[num], language)}
                     </span>
                   </div>
                   <span className="text-[10px] text-neutral-400 uppercase tracking-wider whitespace-nowrap ml-2">

@@ -10,8 +10,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Авторизация — MAZI",
-  description: "Войдите или зарегистрируйтесь в MAZI",
+  title: "Авторизация — SIRAT",
+  description: "Войдите или зарегистрируйтесь в SIRAT",
 };
 
 export default function AuthLayout({

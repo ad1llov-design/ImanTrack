@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import { ForgotPasswordForm } from "@features/auth/components/ForgotPasswordForm";
 
 export const metadata: Metadata = {
-  title: "Восстановление пароля — MAZI",
-  description: "Сбросьте пароль для вашего аккаунта MAZI",
+  title: "Восстановление пароля — SIRAT",
+  description: "Сбросьте пароль для вашего аккаунта SIRAT",
 };
 
 export default function ForgotPasswordPage() {

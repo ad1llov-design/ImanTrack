@@ -113,9 +113,9 @@ export function HadithPageContent() {
           >
             {currentHadith.arabic}
           </p>
-          {currentHadith.transliterations && (
+          {currentHadith.transliterations && (currentHadith.transliterations[language] || currentHadith.transliterations["ru"] || currentHadith.transliterations["en"]) && (
             <p className="mt-2 text-sm italic text-primary-600/80 dark:text-primary-400/80 font-medium">
-              {currentHadith.transliterations[language] || currentHadith.transliterations["en"]}
+              {currentHadith.transliterations[language] || currentHadith.transliterations["ru"] || currentHadith.transliterations["en"]}
             </p>
           )}
         </div>

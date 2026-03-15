@@ -19,10 +19,12 @@ import { cn } from "@shared/lib/utils";
 
 export function StoriesPageContent() {
   const { t, language } = useLanguage();
-  const storyOfTheDay = useMemo(() => getStoryOfTheDay(), []);
+  const [currentStory, setCurrentStory] = useState<Story | null>(null);
   const allStories = useMemo(() => getAllStories(), []);
   
-  const [currentStory, setCurrentStory] = useState<Story>(storyOfTheDay);
+  React.useEffect(() => {
+    setCurrentStory(getStoryOfTheDay());
+  }, []);
   const [isCopied, setIsCopied] = useState(false);
   const [isShared, setIsShared] = useState(false);
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
@@ -64,6 +66,7 @@ export function StoriesPageContent() {
   }, [allStories, favorites]);
 
   const handleCopy = async () => {
+    if (!currentStory) return;
     const text = `${currentStory.titleTranslations[language]}\n\n${currentStory.translations[language]}\n\n${t('stories.moral')}: ${currentStory.moralTranslations[language]}\n\n— SIRAT App`;
     try {
       await navigator.clipboard.writeText(text);
@@ -76,6 +79,7 @@ export function StoriesPageContent() {
   };
 
   const handleShare = async () => {
+    if (!currentStory) return;
     const text = `${currentStory.titleTranslations[language]}\n\n${currentStory.translations[language]}`;
     if (navigator.share) {
       try {
@@ -102,16 +106,20 @@ export function StoriesPageContent() {
           </h1>
         </div>
 
-        <StoryCard 
-          story={currentStory}
-          isFavorite={favorites.includes(currentStory.id)}
-          isCopied={isCopied}
-          isShared={isShared}
-          onToggleFavorite={() => toggleFavorite(currentStory.id)}
-          onCopy={handleCopy}
-          onShare={handleShare}
-          onNext={handleNext}
-        />
+        {currentStory ? (
+          <StoryCard 
+            story={currentStory}
+            isFavorite={favorites.includes(currentStory.id)}
+            isCopied={isCopied}
+            isShared={isShared}
+            onToggleFavorite={() => toggleFavorite(currentStory.id)}
+            onCopy={handleCopy}
+            onShare={handleShare}
+            onNext={handleNext}
+          />
+        ) : (
+          <div className="h-96 w-full animate-pulse rounded-[2.5rem] bg-surface dark:bg-neutral-900" />
+        )}
       </div>
 
       {/* ── Favorite Stories ─────────────────── */}
@@ -173,7 +181,7 @@ export function StoriesPageContent() {
                 {t('nav.stories')}
               </h2>
               <p className="text-sm text-neutral-500">
-                {allStories.length} {language === 'ru' ? 'удивительных историй' : 'amazing stories'}
+                {allStories.length} {language === 'ru' ? 'удивительных историй' : language === 'uz' ? 'ajoyib qissa' : language === 'ky' ? 'укмуштуу окуя' : 'amazing stories'}
               </p>
             </div>
           </div>

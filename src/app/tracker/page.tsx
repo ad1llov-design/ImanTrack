@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Прогресс — MAZI",
+  title: "Прогресс — SIRAT",
   description: "Статистика духовного роста",
 };
 

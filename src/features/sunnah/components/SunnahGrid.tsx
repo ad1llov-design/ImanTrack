@@ -17,10 +17,10 @@ export function SunnahGrid({ className }: { className?: string }) {
   const categories = [...new Set(SUNNAH_ACTIONS.map((s) => s.category))];
 
   const categoryTitles: Record<string, string> = {
-    morning: t("sunnah.cat_morning" as any) || "Утренние Сунны",
-    prayer: t("sunnah.cat_prayer" as any) || "Сунны Намаза",
-    night: t("sunnah.cat_night" as any) || "Сунны Перед Сном",
-    character: t("sunnah.cat_character" as any) || "Сунны Характера"
+    morning: language === 'ru' ? "Утренние Сунны" : language === 'uz' ? "Tonggi Sunnatlar" : language === 'ky' ? "Таңкы сүннөттөр" : "Morning Sunnahs",
+    prayer: language === 'ru' ? "Сунны Намаза" : language === 'uz' ? "Namoz Sunnatlari" : language === 'ky' ? "Намаз сүннөттөрү" : "Prayer Sunnahs",
+    night: language === 'ru' ? "Сунны Перед Сном" : language === 'uz' ? "Uxlashdan oldingi sunnatlar" : language === 'ky' ? "Уктаар алдындагы сүннөттөр" : "Sunnahs Before Sleep",
+    character: language === 'ru' ? "Сунны Характера" : language === 'uz' ? "Xulq-atvor Sunnatlari" : language === 'ky' ? "Мүнөз сүннөттөрү" : "Character Sunnahs"
   };
 
   const [expandedId, setExpandedId] = useState<string | null>(null);

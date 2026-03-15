@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════════════
--- ImanTrack — Database Schema: Hadith Favorites
+-- SIRAT — Database Schema: Hadith Favorites
 -- ═══════════════════════════════════════════════════════════════════════════
 -- Запустите этот SQL в Supabase SQL Editor
 -- ПОСЛЕ 001_profiles.sql

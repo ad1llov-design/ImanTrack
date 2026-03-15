@@ -1,7 +1,7 @@
 import { DhikrTasbih } from "@features/dhikr/components/DhikrTasbih";
 
 export const metadata = {
-  title: "Зикр | MAZI",
+  title: "Зикр | SIRAT",
   description: "Электронный тасбих и учет поминания Аллаха.",
 };
 

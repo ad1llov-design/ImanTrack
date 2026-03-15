@@ -1,23 +1,19 @@
 services:
-  - type: web
-    name: imantrack
-    env: docker
-    plan: free # or starter
-    region: frankfurt # or your preferred region
-    dockerContext: .
-    dockerfilePath: Dockerfile
+  - type: static
+    name: sirat
+    env: static
+    plan: free
+    region: frankfurt
+    buildCommand: npm run build
+    publishPath: ./out
     envVars:
       - key: NEXT_PUBLIC_SUPABASE_URL
         sync: false
       - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
         sync: false
       - key: NEXT_PUBLIC_APP_URL
-        value: https://imantrack.onrender.com # Change this to your actual URL
+        value: https://sirat-app.onrender.com
       - key: NEXT_PUBLIC_APP_NAME
-        value: ImanTrack
-      - key: SUPABASE_SERVICE_ROLE_KEY
-        sync: false
-      - key: AUTH_SECRET
-        generateValue: true
+        value: SIRAT
       - key: NODE_ENV
         value: production

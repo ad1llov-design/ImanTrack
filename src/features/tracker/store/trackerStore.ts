@@ -76,7 +76,7 @@ export const useTrackerStore = create<TrackerState & TrackerActions>()(
           }
         },
       }),
-      { name: "imantrack-tracker-storage" }
+      { name: "sirat-tracker-storage" }
     ),
     { name: "TrackerStore" }
   )

@@ -118,7 +118,7 @@ export async function getLocation(): Promise<LocationInfo> {
 
 /* ── Storage ────────────────────────────────────────────────────────── */
 
-const LOCATION_KEY = "imantrack-location";
+const LOCATION_KEY = "sirat-location";
 
 /** Сохраняет координаты в localStorage */
 export function saveLocation(location: LocationInfo): void {

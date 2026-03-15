@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Статистика — MAZI",
+  title: "Статистика — SIRAT",
   description: "Статистика вашей духовной практики.",
 };
 

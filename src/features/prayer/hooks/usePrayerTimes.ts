@@ -103,7 +103,7 @@ export function usePrayerTimes() {
    */
   const refreshLocation = useCallback(async () => {
     // Сбрасываем кэш
-    try { localStorage.removeItem("imantrack-location"); } catch {}
+    try { localStorage.removeItem("sirat-location"); } catch {}
     await loadPrayerTimes();
   }, [loadPrayerTimes]);
 

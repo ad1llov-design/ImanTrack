@@ -44,7 +44,7 @@ export const useAuthStore = create<AuthState>()(
           ),
       }),
       {
-        name: "imantrack-auth",
+        name: "sirat-auth",
         // Не сохраняем isLoading в localStorage
         partialize: (state) => ({
           user: state.user,

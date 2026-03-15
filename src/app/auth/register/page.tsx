@@ -8,8 +8,8 @@ import type { Metadata } from "next";
 import { RegisterForm } from "@features/auth/components/RegisterForm";
 
 export const metadata: Metadata = {
-  title: "Регистрация — MAZI",
-  description: "Создайте аккаунт MAZI и начните свой духовный путь",
+  title: "Регистрация — SIRAT",
+  description: "Создайте аккаунт SIRAT и начните свой духовный путь",
 };
 
 export default function RegisterPage() {
